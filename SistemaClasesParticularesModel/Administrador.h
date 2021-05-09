@@ -20,6 +20,7 @@ namespace SistemaClasesParticularesModel {
 	private:
 
 		int codigo;
+		//Lista
 		List<Pago^>^ objListaPago;
 		List<Profesor^>^ objListaProfesor;
 		List<Clase^>^ objListaClase;
