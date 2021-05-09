@@ -9,8 +9,8 @@ namespace SistemaClasesParticularesModel {
 	private:
 
 		int codigo;
-		String^	codigoMinedu;
-		String^ Empresa;
+		String^	objCodigoMinedu;
+		String^ objEmpresa;
 		int telefonoEmpresa;
 
 

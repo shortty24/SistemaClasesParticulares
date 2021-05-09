@@ -22,7 +22,7 @@ namespace SistemaClasesParticularesModel {
 		int precio;
 		CV^ objCV;
 		//se crea una listaCursos que sería un objeto del tipo lista de objeto cursos ( listaCursos sería un arreglo dinámico)
-		List<Curso^>^ listaCursos;
+		List<Curso^>^ objListaCursos;
 
 
 	public:

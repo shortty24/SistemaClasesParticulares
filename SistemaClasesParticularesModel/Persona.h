@@ -9,12 +9,12 @@ namespace SistemaClasesParticularesModel {
 	protected:
 
 		int		dni;
-		String^ usuario;
-		String^ contraseña;
-		String^ apellidoPaterno;
-		String^ apellidoMaterno;
-		String^ nombre;
-		String^ correo;
+		String^ objUsuario;
+		String^ objContraseña;
+		String^ objApellidoPaterno;
+		String^ objApellidoMaterno;
+		String^ objNombre;
+		String^ objCorreo;
 
 	public:
 		//Persona();

@@ -9,7 +9,7 @@ namespace SistemaClasesParticularesModel {
 	private:
 
 		int codigo;
-		String^ Tema;
+		String^ objTema;
 		int Dificultad;
 
 

@@ -13,7 +13,7 @@ namespace SistemaClasesParticularesModel {
 		int codigo;
 		int precioTotal;
 		int fechaRealizacion;
-		String^ Estado;
+		String^ objEstado;
 		Pago^ objPago;
 
 

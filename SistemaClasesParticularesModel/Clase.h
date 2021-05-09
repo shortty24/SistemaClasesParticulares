@@ -12,7 +12,7 @@ namespace SistemaClasesParticularesModel {
 
 		int codigo;
 		int puntuacion;
-		String^ Link;
+		String^ objLink;
 		Alumno^ objAlumno;
 		Profesor^ objProfesor;
 
