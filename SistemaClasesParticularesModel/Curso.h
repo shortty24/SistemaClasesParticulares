@@ -1,21 +1,16 @@
 #pragma once
 
-namespace SistemaClasesParticularesModel {
-	//para reconocer el String
-	using namespace System;
+//para reconocer el String
+using namespace System;
 
-	public ref class Curso {
+public ref class Curso {
 
 	private:
-
 		int codigo;
 		String^ objTema;
-		int Dificultad;
-
+		int dificultad;
 
 	public:
 		//Curso();
-
-
-	};
-}
+		Curso(int codigo, String^ objTema, int dificultad);
+};

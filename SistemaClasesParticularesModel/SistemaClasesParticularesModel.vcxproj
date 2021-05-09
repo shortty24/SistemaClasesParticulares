@@ -121,6 +121,17 @@
     <ClInclude Include="Profesor.h" />
     <ClInclude Include="Persona.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Administrador.cpp" />
+    <ClCompile Include="Alumno.cpp" />
+    <ClCompile Include="Clase.cpp" />
+    <ClCompile Include="Curso.cpp" />
+    <ClCompile Include="CV.cpp" />
+    <ClCompile Include="Inscripcion.cpp" />
+    <ClCompile Include="Pago.cpp" />
+    <ClCompile Include="Persona.cpp" />
+    <ClCompile Include="Profesor.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
