@@ -20,10 +20,10 @@ namespace SistemaClasesParticularesModel {
 	private:
 
 		int codigo;
-		List<Pago^>^ ListaPago;
-		List<Profesor^>^ ListaProfesor;
-		List<Clase^>^ ListaClase;
-		List<Alumno^> ^ListaAlumno;
+		List<Pago^>^ objListaPago;
+		List<Profesor^>^ objListaProfesor;
+		List<Clase^>^ objListaClase;
+		List<Alumno^>^ objListaAlumno;
 
 
 	public:
