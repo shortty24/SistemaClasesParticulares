@@ -129,9 +129,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="frmPrincipal.cpp" />
+    <ClCompile Include="frmRegistro.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="frmPrincipal.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmRegistro.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
