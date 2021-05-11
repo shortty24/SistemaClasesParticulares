@@ -20,10 +20,10 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{3C37157C-6FC6-4080-894D-58AF48A1E02C}</ProjectGuid>
+    <ProjectGuid>{D574512F-D98E-46A6-BE2A-CDC63DB22D28}</ProjectGuid>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
-    <RootNamespace>SistemaClasesParticularesModel</RootNamespace>
+    <RootNamespace>SistemaClasesParticularesView</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -42,7 +42,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CLRSupport>true</CLRSupport>
@@ -74,19 +74,21 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-    </ClCompile>
-    <Link>
-      <AdditionalDependencies />
-    </Link>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies />
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>main</EntryPointSymbol>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
@@ -111,26 +113,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Alumno.h" />
-    <ClInclude Include="Administrador.h" />
-    <ClInclude Include="CV.h" />
-    <ClInclude Include="Curso.h" />
-    <ClInclude Include="Clase.h" />
-    <ClInclude Include="Inscripcion.h" />
-    <ClInclude Include="Pago.h" />
-    <ClInclude Include="Profesor.h" />
-    <ClInclude Include="Persona.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Administrador.cpp" />
-    <ClCompile Include="Alumno.cpp" />
-    <ClCompile Include="Clase.cpp" />
-    <ClCompile Include="Curso.cpp" />
-    <ClCompile Include="CV.cpp" />
-    <ClCompile Include="Inscripcion.cpp" />
-    <ClCompile Include="Pago.cpp" />
-    <ClCompile Include="Persona.cpp" />
-    <ClCompile Include="Profesor.cpp" />
+    <ProjectReference Include="..\SistemaClasesParticularesController\SistemaClasesParticularesController.vcxproj">
+      <Project>{fead8d97-3d94-4f78-8276-8e290ce6943e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\SistemaClasesParticularesModel\SistemaClasesParticularesModel.vcxproj">
+      <Project>{3c37157c-6fc6-4080-894d-58af48a1e02c}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
