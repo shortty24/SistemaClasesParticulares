@@ -148,8 +148,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmLogeo.resx">
+      <DependentUpon>frmLogeo.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegistroAlumno.resx">
+      <DependentUpon>frmRegistroAlumno.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegistroProfesor.resx">
+      <DependentUpon>frmRegistroProfesor.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
