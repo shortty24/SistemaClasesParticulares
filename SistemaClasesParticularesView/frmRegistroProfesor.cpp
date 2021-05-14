@@ -1,0 +1,2 @@
+#include "frmRegistroProfesor.h"
+

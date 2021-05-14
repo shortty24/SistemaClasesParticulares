@@ -130,7 +130,8 @@
   <ItemGroup>
     <ClCompile Include="frmLogeo.cpp" />
     <ClCompile Include="frmPrincipal.cpp" />
-    <ClCompile Include="frmRegistro.cpp" />
+    <ClCompile Include="frmRegistroAlumno.cpp" />
+    <ClCompile Include="frmRegistroProfesor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="frmLogeo.h">
@@ -139,7 +140,10 @@
     <ClInclude Include="frmPrincipal.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="frmRegistro.h">
+    <ClInclude Include="frmRegistroAlumno.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmRegistroProfesor.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
