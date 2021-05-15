@@ -1,5 +1,7 @@
 #include "Persona.h"
 
+using namespace SistemaClasesParticularesModel;
+
 Persona::Persona(int dni, String^ objUsuario, String^ objContrasenha, String^ objApellidoPaterno, String^ objApellidoMaterno, String^ objNombre, String^ objCorreo) {
 	this->dni = dni;
 	this->objUsuario = objUsuario;

@@ -2,10 +2,11 @@
 
 #include "Pago.h"
 
-//para reconocer el String
-using namespace System;
+namespace SistemaClasesParticularesModel {
+	//para reconocer el String
+	using namespace System;
 
-public ref class Inscripcion {
+	public ref class Inscripcion {
 
 	private:
 		int codigo;
@@ -18,4 +19,5 @@ public ref class Inscripcion {
 		//Inscripcion();
 		Inscripcion(int codigo, int precioTotal, int fechaRealizacion, String^ objEstado, Pago^ objPago);
 
-};
+	};
+}

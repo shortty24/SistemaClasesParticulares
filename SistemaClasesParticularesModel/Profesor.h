@@ -7,12 +7,12 @@
 #include "CV.h"
 #include "Curso.h"
 
+namespace SistemaClasesParticularesModel {
+	//para usar la clase list (no olvidar poner todo junto en especial ::)
+	using namespace System::Collections::Generic;
 
-//para usar la clase list (no olvidar poner todo junto en especial ::)
-using namespace System::Collections::Generic;
-
-// el : que profesor hereda de en este caso persona
-public ref class Profesor : public Persona {
+	// el : que profesor hereda de en este caso persona
+	public ref class Profesor : public Persona {
 	private:
 
 		int codigo;
@@ -28,4 +28,5 @@ public ref class Profesor : public Persona {
 		//Profesor();
 		Profesor(int codigo, int calificacion, int horario, int precio, CV^ objCV, List<Curso^>^ objListaCursos);
 
-};
+	};
+}

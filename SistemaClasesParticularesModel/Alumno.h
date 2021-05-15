@@ -5,14 +5,15 @@
 #include "Persona.h"
 #include "Inscripcion.h"
 
-//para reconocer el String
-using namespace System;
+namespace SistemaClasesParticularesModel {
+	//para reconocer el String
+	using namespace System;
 
-//para usar la clase list (no olvidar poner todo junto en especial ::)
-using namespace System::Collections::Generic;
+	//para usar la clase list (no olvidar poner todo junto en especial ::)
+	using namespace System::Collections::Generic;
 
-// el : que alumno hereda de en este caso persona
-public ref class Alumno : public Persona {
+	// el : que alumno hereda de en este caso persona
+	public ref class Alumno : public Persona {
 
 	private:
 		int codigo;
@@ -25,5 +26,6 @@ public ref class Alumno : public Persona {
 		//Alumno();
 		Alumno(int codigo, int horasPedidas, List<Inscripcion^>^ objListaInscripcion);
 
-};
+	};
+}
 

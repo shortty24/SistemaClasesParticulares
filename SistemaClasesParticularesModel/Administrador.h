@@ -10,23 +10,24 @@
 
 #include "Clase.h"
 
-//para usar la clase list (no olvidar poner todo junto en especial ::)
-using namespace System::Collections::Generic;
+namespace SistemaClasesParticularesModel{
+	//para usar la clase list (no olvidar poner todo junto en especial ::)
+	using namespace System::Collections::Generic;
 
-// el : que administrador hereda de en este caso persona
-public ref class Administrador : public Persona {
-	private:
+	// el : que administrador hereda de en este caso persona
+	public ref class Administrador : public Persona {
+		private:
 
-		int codigo;
-		//Lista
-		List<Pago^>^ objListaPago;
-		List<Profesor^>^ objListaProfesor;
-		List<Clase^>^ objListaClase;
-		List<Alumno^>^ objListaAlumno;
+			int codigo;
+			//Lista
+			List<Pago^>^ objListaPago;
+			List<Profesor^>^ objListaProfesor;
+			List<Clase^>^ objListaClase;
+			List<Alumno^>^ objListaAlumno;
 
-	public:
-		//Administrador();
-		Administrador(List<Pago^>^ objListaPago, List<Profesor^>^ objListaProfesor, List<Clase^>^ objListaClase, List<Alumno^>^ objListaALumno);
+		public:
+			//Administrador();
+			Administrador(List<Pago^>^ objListaPago, List<Profesor^>^ objListaProfesor, List<Clase^>^ objListaClase, List<Alumno^>^ objListaALumno);
 
-};
-
+	};
+}

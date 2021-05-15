@@ -1,10 +1,11 @@
 #pragma once
 
-//para reconocer el String
-using namespace System;
+namespace SistemaClasesParticularesModel {
+	//para reconocer el String
+	using namespace System;
 
-public ref class Persona {
-	//por ser herencia se usa protected ya que estos se usaran en alumno y profesores
+	public ref class Persona {
+		//por ser herencia se usa protected ya que estos se usaran en alumno y profesores
 	protected:
 		int		dni;
 		String^ objUsuario;
@@ -18,4 +19,5 @@ public ref class Persona {
 		//Persona();
 		Persona(int dni, String^ objUsuario, String^ objContrasenha, String^ objApellidoPaterno, String^ objApellidoMaterno, String^ objNombre, String^ objCorreo)
 
-};
+	};
+}

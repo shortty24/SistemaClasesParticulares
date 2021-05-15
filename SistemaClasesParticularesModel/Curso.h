@@ -1,9 +1,10 @@
 #pragma once
 
-//para reconocer el String
-using namespace System;
+namespace SistemaClasesParticularesModel {
+	//para reconocer el String
+	using namespace System;
 
-public ref class Curso {
+	public ref class Curso {
 
 	private:
 		int codigo;
@@ -13,4 +14,5 @@ public ref class Curso {
 	public:
 		//Curso();
 		Curso(int codigo, String^ objTema, int dificultad);
-};
+	};
+}

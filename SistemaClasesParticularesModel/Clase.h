@@ -3,10 +3,11 @@
 #include "Alumno.h"
 #include "Profesor.h"
 
-//para reconocer el String
-using namespace System;
+namespace SistemaClasesParticularesModel {
+	//para reconocer el String
+	using namespace System;
 
-public ref class Clase {
+	public ref class Clase {
 
 	private:
 
@@ -19,4 +20,5 @@ public ref class Clase {
 	public:
 		//Clase();
 		Clase(int codigo, int puntuacion, String^ objLink, Alumno^ objAlumno, Profesor^ objProfesor);
-};
+	};
+}

@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClCompile Include="frmLogeo.cpp" />
     <ClCompile Include="frmPrincipal.cpp" />
+    <ClCompile Include="frmProfesor.cpp" />
     <ClCompile Include="frmRegistroAlumno.cpp" />
     <ClCompile Include="frmRegistroProfesor.cpp" />
     <ClCompile Include="main.cpp" />
@@ -141,6 +142,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="frmPrincipal.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmProfesor.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="frmRegistroAlumno.h">
@@ -156,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProfesor.resx">
+      <DependentUpon>frmProfesor.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRegistroAlumno.resx">
       <DependentUpon>frmRegistroAlumno.h</DependentUpon>
