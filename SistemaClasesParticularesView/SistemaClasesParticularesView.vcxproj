@@ -134,6 +134,7 @@
     <ClCompile Include="frmPrincipal.cpp" />
     <ClCompile Include="frmRegistroAlumno.cpp" />
     <ClCompile Include="frmRegistroProfesor.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="frmLogeo.h">
