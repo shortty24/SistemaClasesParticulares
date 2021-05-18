@@ -1,2 +1,2 @@
-#include "frmRegistro.h"
+#include "frmRegistroAlumno.h"
 

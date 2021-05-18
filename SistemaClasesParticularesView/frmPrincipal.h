@@ -1,4 +1,5 @@
 #pragma once
+#include "frmLogeo.h"
 
 namespace SistemaClasesParticularesView {
 
@@ -88,6 +89,7 @@ namespace SistemaClasesParticularesView {
 			this->button1->TabIndex = 3;
 			this->button1->Text = L"Iniciar Sesion";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &frmPrincipal::button1_Click_1);
 			// 
 			// frmPrincipal
 			// 
@@ -113,5 +115,9 @@ namespace SistemaClasesParticularesView {
 	}
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	};
+	private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
+		frmLogeo^ ventanaLogeo = gcnew frmLogeo();
+		ventanaLogeo->Show();
+	}
+};
 }
