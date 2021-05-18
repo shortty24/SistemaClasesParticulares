@@ -1,6 +1,6 @@
 #pragma once
 
-
+//zzzz
 //esta jalando de persona esto se combina con el : de public ref class
 #include "Persona.h"
 #include "Inscripcion.h"
