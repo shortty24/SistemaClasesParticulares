@@ -1,5 +1,6 @@
 #pragma once
 //esta jalando de persona esto se combina con el : de public ref class
+//AEA
 #include "Persona.h"
 
 #include "Pago.h"
