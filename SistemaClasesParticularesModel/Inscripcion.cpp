@@ -2,11 +2,10 @@
 
 using namespace SistemaClasesParticularesModel;
 
-Inscripcion::Inscripcion(int codigo, int precioTotal, int fechaRealizacion, String^ objEstado, Pago^ objPago) {
-	this->codigo = codigo;
+Inscripcion::Inscripcion(int precioTotal, int fechaRealizacion, String^ estado, Alumno^ objAlumno) {
 	this->precioTotal = precioTotal;
 	this->fechaRealizacion=fechaRealizacion;
-	this->objEstado = objEstado;
-	this->objPago = objPago;
+	this->estado = estado;
+	this->objAlumno = objAlumno;
 
 }

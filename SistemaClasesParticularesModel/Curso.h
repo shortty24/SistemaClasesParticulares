@@ -7,12 +7,12 @@ namespace SistemaClasesParticularesModel {
 	public ref class Curso {
 
 	private:
-		int codigo;
+		//int codigo;
 		String^ objTema;
 		int dificultad;
 
 	public:
 		//Curso();
-		Curso(int codigo, String^ objTema, int dificultad);
+		//Curso(String^ objTema, int dificultad);
 	};
 }

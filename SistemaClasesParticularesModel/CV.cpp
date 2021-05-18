@@ -2,10 +2,9 @@
 
 using namespace SistemaClasesParticularesModel;
 
-CV::CV(int codigo, String^ objCodigoMinedu, String^ objEmpresa, int telefonoEmpresa) {
-	this->codigo = codigo;
+/*CV::CV(String^ objCodigoMinedu, String^ objEmpresa, int telefonoEmpresa) {
 	this->objCodigoMinedu;
 	this->objEmpresa = objEmpresa;
 	this->telefonoEmpresa = telefonoEmpresa;
 
-}
+}*/

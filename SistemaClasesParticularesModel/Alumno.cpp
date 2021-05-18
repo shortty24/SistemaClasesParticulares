@@ -2,9 +2,6 @@
 
 using namespace SistemaClasesParticularesModel;
 
-Alumno::Alumno(int codigo, int horasPedidas, List<Inscripcion^>^ objListaInscripcion) {
-	this->codigo = codigo;
+Alumno::Alumno(int horasPedidas, Administrador^ objAdministrador, String^ dni, String^ objUsuario, String^ objContrasenha, String^ objApellidoPaterno, String^ objApellidoMaterno, String^ objNombre) : Persona(dni, objUsuario, objContrasenha, objApellidoPaterno, objApellidoMaterno, objNombre) {
 	this->horasPedidas = horasPedidas;
-	this->objListaInscripcion = objListaInscripcion;
-
 }

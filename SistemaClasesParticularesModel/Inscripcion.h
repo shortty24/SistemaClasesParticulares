@@ -1,23 +1,21 @@
 #pragma once
 
-#include "Pago.h"
+#include "Alumno.h"
+
 
 namespace SistemaClasesParticularesModel {
 	//para reconocer el String
 	using namespace System;
 
 	public ref class Inscripcion {
+		private:
+			int precioTotal;
+			int fechaRealizacion;
+			String^ estado;
+			Alumno^ objAlumno;
 
-	private:
-		int codigo;
-		int precioTotal;
-		int fechaRealizacion;
-		String^ objEstado;
-		Pago^ objPago;
-
-	public:
-		//Inscripcion();
-		Inscripcion(int codigo, int precioTotal, int fechaRealizacion, String^ objEstado, Pago^ objPago);
-
+		public:
+			//Inscripcion();
+			Inscripcion(int precioTotal, int fechaRealizacion, String^ estado, Alumno^ objAlumno);
 	};
 }

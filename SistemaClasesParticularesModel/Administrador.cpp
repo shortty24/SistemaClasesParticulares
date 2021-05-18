@@ -2,9 +2,6 @@
 
 using namespace SistemaClasesParticularesModel;
 
-Administrador::Administrador(List<Pago^>^ objListaPago, List<Profesor^>^ objListaProfesor, List<Clase^>^ objListaClase, List<Alumno^>^ objListaALumno) {
-	this->objListaPago = objListaPago;
-	this->objListaProfesor = objListaProfesor;
-	this->objListaClase = objListaClase;
-	this->objListaAlumno = objListaAlumno;
+Administrador::Administrador(String^ dni, String^ objUsuario, String^ objContrasenha, String^ objApellidoPaterno, String^ objApellidoMaterno, String^ objNombre) : Persona(dni, objUsuario,objContrasenha, objApellidoPaterno, objApellidoMaterno, objNombre){
+
 }

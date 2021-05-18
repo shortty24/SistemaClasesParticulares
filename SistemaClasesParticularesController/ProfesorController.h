@@ -1,8 +1,11 @@
 #pragma once
 
-using namespace System::Collections::Generic;
+namespace SistemaClasesParticularesController {
+	using namespace System::Collections::Generic;
+	using namespace SistemaClasesParticularesModel;
 
-public ref class ProfesorController {
+	public ref class ProfesorController {
 	private:
 		List<Clase^>^ listaClases;
-};
+	};
+}
