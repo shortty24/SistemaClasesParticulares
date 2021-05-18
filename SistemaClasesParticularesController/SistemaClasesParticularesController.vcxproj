@@ -116,7 +116,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="LogeoController.h" />
     <ClInclude Include="ProfesorController.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="LogeoController.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
