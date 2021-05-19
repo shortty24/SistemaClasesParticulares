@@ -8,6 +8,9 @@ namespace SistemaClasesParticularesView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
+	using namespace SistemaClasesParticularesController;
+	using namespace SistemaClasesParticularesModel;
 
 	/// <summary>
 	/// Resumen de frmLogeo
@@ -85,6 +88,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(100, 20);
 			this->textBox1->TabIndex = 2;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &frmLogeo::textBox1_TextChanged);
 			// 
 			// textBox2
 			// 
@@ -92,6 +96,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(100, 20);
 			this->textBox2->TabIndex = 3;
+			this->textBox2->TextChanged += gcnew System::EventHandler(this, &frmLogeo::textBox2_TextChanged);
 			// 
 			// button1
 			// 
@@ -101,6 +106,7 @@ namespace SistemaClasesParticularesView {
 			this->button1->TabIndex = 4;
 			this->button1->Text = L"Iniciar Sesion";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &frmLogeo::button1_Click);
 			// 
 			// frmLogeo
 			// 
@@ -119,5 +125,21 @@ namespace SistemaClasesParticularesView {
 
 		}
 #pragma endregion
-	};
+	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	
+	}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+
+	if (textBox1->Text ==""  && textBox2->Text == "") {
+		MessageBox::Show("Usuario correcto");
+	}
+	else {
+		MessageBox::Show("Usuario y/o contraseña son incorrectos");
+	}
+	
+}
+private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+};
 }

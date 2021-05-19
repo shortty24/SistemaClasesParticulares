@@ -20,7 +20,6 @@ namespace SistemaClasesParticularesModel {
 	public:
 		//Alumno();
 		Alumno(int horasPedidas, Administrador^ objAdministrador, String^ dni, String^ objUsuario, String^ objContrasenha, String^ objApellidoPaterno, String^ objApellidoMaterno, String^ objNombre);
-
 	};
 }
 
