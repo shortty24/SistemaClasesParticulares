@@ -12,10 +12,10 @@ namespace SistemaClasesParticularesView {
 	/// <summary>
 	/// Resumen de frmRegistro
 	/// </summary>
-	public ref class frmRegistro : public System::Windows::Forms::Form
+	public ref class frmRegistroAlumno : public System::Windows::Forms::Form
 	{
 	public:
-		frmRegistro(void)
+		frmRegistroAlumno(void)
 		{
 			InitializeComponent();
 			//
@@ -27,7 +27,7 @@ namespace SistemaClasesParticularesView {
 		/// <summary>
 		/// Limpiar los recursos que se estén usando.
 		/// </summary>
-		~frmRegistro()
+		~frmRegistroAlumno()
 		{
 			if (components)
 			{
@@ -124,7 +124,7 @@ namespace SistemaClasesParticularesView {
 			this->label1->Size = System::Drawing::Size(43, 13);
 			this->label1->TabIndex = 5;
 			this->label1->Text = L"Usuario";
-			this->label1->Click += gcnew System::EventHandler(this, &frmRegistro::label1_Click);
+			this->label1->Click += gcnew System::EventHandler(this, &frmRegistroAlumno::label1_Click);
 			// 
 			// label2
 			// 
@@ -134,7 +134,7 @@ namespace SistemaClasesParticularesView {
 			this->label2->Size = System::Drawing::Size(26, 13);
 			this->label2->TabIndex = 6;
 			this->label2->Text = L"DNI";
-			this->label2->Click += gcnew System::EventHandler(this, &frmRegistro::label2_Click);
+			this->label2->Click += gcnew System::EventHandler(this, &frmRegistroAlumno::label2_Click);
 			// 
 			// label3
 			// 
@@ -144,7 +144,7 @@ namespace SistemaClasesParticularesView {
 			this->label3->Size = System::Drawing::Size(44, 13);
 			this->label3->TabIndex = 7;
 			this->label3->Text = L"Nombre";
-			this->label3->Click += gcnew System::EventHandler(this, &frmRegistro::label3_Click);
+			this->label3->Click += gcnew System::EventHandler(this, &frmRegistroAlumno::label3_Click);
 			// 
 			// label4
 			// 

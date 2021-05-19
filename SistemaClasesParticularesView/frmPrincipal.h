@@ -1,5 +1,7 @@
 #pragma once
 #include "frmLogeo.h"
+#include "frmRegistroAlumno.h"
+#include "frmRegistroProfesor.h"
 
 namespace SistemaClasesParticularesView {
 
@@ -71,6 +73,7 @@ namespace SistemaClasesParticularesView {
 			this->button3->TabIndex = 5;
 			this->button3->Text = L"Registrate como profesor";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &frmPrincipal::button3_Click);
 			// 
 			// button2
 			// 
@@ -80,6 +83,7 @@ namespace SistemaClasesParticularesView {
 			this->button2->TabIndex = 4;
 			this->button2->Text = L"Registrate como estudiante";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &frmPrincipal::button2_Click_1);
 			// 
 			// button1
 			// 
@@ -119,5 +123,15 @@ namespace SistemaClasesParticularesView {
 		frmLogeo^ ventanaLogeo = gcnew frmLogeo();
 		ventanaLogeo->Show();
 	}
+private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {
+
+	frmRegistroAlumno^ ventanaRegistroAlumno = gcnew frmRegistroAlumno();
+	ventanaRegistroAlumno->Show();
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	frmRegistroProfesor^ ventanaRegistroProfesor = gcnew frmRegistroProfesor();
+	ventanaRegistroProfesor->Show();
+}
 };
 }
