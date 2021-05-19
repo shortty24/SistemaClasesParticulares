@@ -130,6 +130,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="frmAlumno.cpp" />
     <ClCompile Include="frmLogeo.cpp" />
     <ClCompile Include="frmPrincipal.cpp" />
     <ClCompile Include="frmProfesor.cpp" />
@@ -138,6 +139,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="frmAlumno.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="frmLogeo.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -155,6 +159,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmAlumno.resx">
+      <DependentUpon>frmAlumno.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogeo.resx">
       <DependentUpon>frmLogeo.h</DependentUpon>
     </EmbeddedResource>
