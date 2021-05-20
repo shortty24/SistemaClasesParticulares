@@ -121,17 +121,17 @@ namespace SistemaClasesParticularesView {
 	}
 	private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
 		frmLogeo^ ventanaLogeo = gcnew frmLogeo();
-		ventanaLogeo->Show();
+		ventanaLogeo->ShowDialog();
 	}
 private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {
 
 	frmRegistroAlumno^ ventanaRegistroAlumno = gcnew frmRegistroAlumno();
-	ventanaRegistroAlumno->Show();
+	ventanaRegistroAlumno->ShowDialog();
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 
 	frmRegistroProfesor^ ventanaRegistroProfesor = gcnew frmRegistroProfesor();
-	ventanaRegistroProfesor->Show();
+	ventanaRegistroProfesor->ShowDialog();
 }
 };
 }
