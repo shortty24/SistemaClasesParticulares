@@ -45,6 +45,7 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
+	private: System::Windows::Forms::Button^ button2;
 
 
 
@@ -74,6 +75,7 @@ namespace SistemaClasesParticularesView {
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
@@ -153,11 +155,21 @@ namespace SistemaClasesParticularesView {
 			this->Column5->HeaderText = L"Link";
 			this->Column5->Name = L"Column5";
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(249, 291);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->TabIndex = 4;
+			this->button2->Text = L"Enviar Clase";
+			this->button2->UseVisualStyleBackColor = true;
+			// 
 			// frmProgramarClase
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(583, 365);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->dataGridView1);
 			this->Name = L"frmProgramarClase";
