@@ -1,6 +1,8 @@
 #pragma once
 
 #include "frmProfesor.h"
+#include "frmAlumno.h"
+#include "frmAdministrador.h"
 
 namespace SistemaClasesParticularesView {
 
@@ -131,17 +133,31 @@ namespace SistemaClasesParticularesView {
 	
 	}
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	LogeoController^ objgestor = gcnew LogeoController();
+	if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 1) {
+		
+		frmAlumno^ ventanaAlumno = gcnew frmAlumno();
+		ventanaAlumno->Show();
+	}
+	else if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 2) {
 
+		frmProfesor^ ventanaProfesor = gcnew frmProfesor();
+		ventanaProfesor->Show();
+	}
+	else if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 3) {
 
-	if (textBox1->Text ==""  && textBox2->Text == "") {
-		//MessageBox::Show("Usuario correcto");
-		frmProfesor^ ventanaMantProfesores = gcnew frmProfesor();
-
-		ventanaMantProfesores->Show();
+		frmAdministrador^ ventanaAdministrador = gcnew frmAdministrador();
+		ventanaAdministrador->Show();
 	}
 	else {
 		MessageBox::Show("Usuario y/o contraseña son incorrectos");
 	}
+	/*if (textBox1->Text ==""  && textBox2->Text == "") {
+		//MessageBox::Show("Usuario correcto");
+		frmProfesor^ ventanaMantProfesores = gcnew frmProfesor();
+
+		ventanaMantProfesores->Show();
+	}*/
 
 }
 private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
