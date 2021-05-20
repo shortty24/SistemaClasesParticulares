@@ -129,15 +129,14 @@ namespace SistemaClasesParticularesView {
 	
 	}
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-
-
-	if (textBox1->Text ==""  && textBox2->Text == "") {
+	LogeoController^ objgestor = gcnew LogeoController();
+	if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 1) {
 		MessageBox::Show("Usuario correcto");
 	}
 	else {
 		MessageBox::Show("Usuario y/o contraseña son incorrectos");
 	}
-	
+
 }
 private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
