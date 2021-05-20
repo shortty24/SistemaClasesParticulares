@@ -24,4 +24,5 @@ Alumno^ AlumnoController::buscaAlumno(String^usuarioAlumno) {
 			break;
 		}
 	}
+	return objAlumnoEncontrado;
 }
