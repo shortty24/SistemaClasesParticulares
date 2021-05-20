@@ -15,12 +15,13 @@ Alumno^ AlumnoController::buscaAlumno(String^usuarioAlumno) {
 		array<String^>^ palabras = lineaAlumno->Split(separadores->ToCharArray());
 		String^ dni = palabras[1];
 		String^ usuario = palabras[2];
+		String^ contrasenha = palabras[3];
 		String^ apellidoPaterno = palabras[4];
 		String^ apellidoMaterno = palabras[5];
 		String^ nombre = palabras[6];
 		
 		if (usuario == usuarioAlumno) {
-			objAlumnoEncontrado = gcnew Alumno(dni, usuario, apellidoPaterno, apellidoMaterno, nombre);
+			objAlumnoEncontrado = gcnew Alumno(dni, usuario, contrasenha, apellidoPaterno, apellidoMaterno, nombre);
 			break;
 		}
 	}
