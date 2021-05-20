@@ -6,7 +6,7 @@ namespace SistemaClasesParticularesModel {
 
 	public ref class Persona {
 		//por ser herencia se usa protected ya que estos se usaran en alumno y profesores
-	protected:
+	public:
 		String^	dni;
 		String^ objUsuario;
 		String^ objContrasenha;

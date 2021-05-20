@@ -34,19 +34,10 @@ namespace SistemaClasesParticularesView {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TabControl^ tabControl1;
+
 	protected:
-	private: System::Windows::Forms::TabPage^ tabPage1;
-	private: System::Windows::Forms::TextBox^ textBox2;
-	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::TextBox^ textBox1;
-	private: System::Windows::Forms::Label^ label1;
 
 	private: System::Windows::Forms::TabPage^ tabPage2;
-	private: System::Windows::Forms::GroupBox^ groupBox1;
-	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::TabPage^ tabPage3;
-	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::GroupBox^ groupBox2;
 	private: System::Windows::Forms::Button^ button9;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
@@ -54,6 +45,7 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
+	private: System::Windows::Forms::GroupBox^ groupBox1;
 	private: System::Windows::Forms::Button^ button8;
 	private: System::Windows::Forms::Button^ button7;
 	private: System::Windows::Forms::Button^ button6;
@@ -64,6 +56,46 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::TextBox^ textBox3;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::TabPage^ tabPage1;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::TabControl^ tabControl1;
+	private: System::Windows::Forms::TabPage^ tabPage3;
+
+	protected:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	protected:
 
@@ -87,14 +119,7 @@ namespace SistemaClasesParticularesView {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(frmProfesor::typeid));
-			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
-			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
 			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
-			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
@@ -109,47 +134,27 @@ namespace SistemaClasesParticularesView {
 			this->button8 = (gcnew System::Windows::Forms::Button());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->button9 = (gcnew System::Windows::Forms::Button());
+			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->tabControl1->SuspendLayout();
-			this->tabPage1->SuspendLayout();
+			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
+			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
 			this->tabPage2->SuspendLayout();
 			this->groupBox1->SuspendLayout();
 			this->groupBox2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			this->tabPage1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			this->tabControl1->SuspendLayout();
 			this->SuspendLayout();
-			// 
-			// tabControl1
-			// 
-			this->tabControl1->Controls->Add(this->tabPage1);
-			this->tabControl1->Controls->Add(this->tabPage2);
-			this->tabControl1->Controls->Add(this->tabPage3);
-			this->tabControl1->Location = System::Drawing::Point(12, 12);
-			this->tabControl1->Multiline = true;
-			this->tabControl1->Name = L"tabControl1";
-			this->tabControl1->SelectedIndex = 0;
-			this->tabControl1->Size = System::Drawing::Size(654, 418);
-			this->tabControl1->TabIndex = 0;
-			// 
-			// tabPage1
-			// 
-			this->tabPage1->Controls->Add(this->pictureBox1);
-			this->tabPage1->Controls->Add(this->textBox2);
-			this->tabPage1->Controls->Add(this->label2);
-			this->tabPage1->Controls->Add(this->textBox1);
-			this->tabPage1->Controls->Add(this->label1);
-			this->tabPage1->Location = System::Drawing::Point(4, 22);
-			this->tabPage1->Name = L"tabPage1";
-			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage1->Size = System::Drawing::Size(572, 392);
-			this->tabPage1->TabIndex = 0;
-			this->tabPage1->Text = L"Inicio";
-			this->tabPage1->UseVisualStyleBackColor = true;
 			// 
 			// tabPage2
 			// 
@@ -162,52 +167,6 @@ namespace SistemaClasesParticularesView {
 			this->tabPage2->TabIndex = 1;
 			this->tabPage2->Text = L"Actividades";
 			this->tabPage2->UseVisualStyleBackColor = true;
-			// 
-			// tabPage3
-			// 
-			this->tabPage3->AllowDrop = true;
-			this->tabPage3->Location = System::Drawing::Point(4, 22);
-			this->tabPage3->Name = L"tabPage3";
-			this->tabPage3->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage3->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->tabPage3->Size = System::Drawing::Size(572, 392);
-			this->tabPage3->TabIndex = 2;
-			this->tabPage3->Text = L"Configuración";
-			this->tabPage3->UseVisualStyleBackColor = true;
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(175, 57);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(47, 13);
-			this->label1->TabIndex = 1;
-			this->label1->Text = L"Nombre:";
-			// 
-			// textBox1
-			// 
-			this->textBox1->Location = System::Drawing::Point(228, 50);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->ReadOnly = true;
-			this->textBox1->Size = System::Drawing::Size(122, 20);
-			this->textBox1->TabIndex = 2;
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(185, 103);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(37, 13);
-			this->label2->TabIndex = 3;
-			this->label2->Text = L"Curso:";
-			// 
-			// textBox2
-			// 
-			this->textBox2->Location = System::Drawing::Point(228, 103);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->ReadOnly = true;
-			this->textBox2->Size = System::Drawing::Size(123, 20);
-			this->textBox2->TabIndex = 4;
 			// 
 			// groupBox1
 			// 
@@ -350,17 +309,11 @@ namespace SistemaClasesParticularesView {
 			this->dataGridView1->Size = System::Drawing::Size(440, 150);
 			this->dataGridView1->TabIndex = 0;
 			// 
-			// Column1
+			// Column4
 			// 
-			this->Column1->HeaderText = L"Nombre";
-			this->Column1->Name = L"Column1";
-			this->Column1->ReadOnly = true;
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Hora";
-			this->Column3->Name = L"Column3";
-			this->Column3->ReadOnly = true;
+			this->Column4->HeaderText = L"Link";
+			this->Column4->Name = L"Column4";
+			this->Column4->ReadOnly = true;
 			// 
 			// Column2
 			// 
@@ -368,11 +321,17 @@ namespace SistemaClasesParticularesView {
 			this->Column2->Name = L"Column2";
 			this->Column2->ReadOnly = true;
 			// 
-			// Column4
+			// Column3
 			// 
-			this->Column4->HeaderText = L"Link";
-			this->Column4->Name = L"Column4";
-			this->Column4->ReadOnly = true;
+			this->Column3->HeaderText = L"Hora";
+			this->Column3->Name = L"Column3";
+			this->Column3->ReadOnly = true;
+			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"Nombre";
+			this->Column1->Name = L"Column1";
+			this->Column1->ReadOnly = true;
 			// 
 			// button9
 			// 
@@ -382,6 +341,55 @@ namespace SistemaClasesParticularesView {
 			this->button9->TabIndex = 1;
 			this->button9->Text = L"Unirse";
 			this->button9->UseVisualStyleBackColor = true;
+			// 
+			// tabPage1
+			// 
+			this->tabPage1->Controls->Add(this->pictureBox1);
+			this->tabPage1->Controls->Add(this->textBox2);
+			this->tabPage1->Controls->Add(this->textBox1);
+			this->tabPage1->Controls->Add(this->label2);
+			this->tabPage1->Controls->Add(this->label1);
+			this->tabPage1->Location = System::Drawing::Point(4, 22);
+			this->tabPage1->Name = L"tabPage1";
+			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage1->Size = System::Drawing::Size(646, 392);
+			this->tabPage1->TabIndex = 0;
+			this->tabPage1->Text = L"Inicio";
+			this->tabPage1->UseVisualStyleBackColor = true;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(175, 57);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(47, 13);
+			this->label1->TabIndex = 1;
+			this->label1->Text = L"Nombre:";
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(228, 50);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->ReadOnly = true;
+			this->textBox1->Size = System::Drawing::Size(122, 20);
+			this->textBox1->TabIndex = 2;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(185, 103);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(37, 13);
+			this->label2->TabIndex = 3;
+			this->label2->Text = L"Curso:";
+			// 
+			// textBox2
+			// 
+			this->textBox2->Location = System::Drawing::Point(228, 103);
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->ReadOnly = true;
+			this->textBox2->Size = System::Drawing::Size(123, 20);
+			this->textBox2->TabIndex = 4;
 			// 
 			// pictureBox1
 			// 
@@ -393,6 +401,28 @@ namespace SistemaClasesParticularesView {
 			this->pictureBox1->TabIndex = 5;
 			this->pictureBox1->TabStop = false;
 			// 
+			// tabControl1
+			// 
+			this->tabControl1->Controls->Add(this->tabPage1);
+			this->tabControl1->Controls->Add(this->tabPage2);
+			this->tabControl1->Controls->Add(this->tabPage3);
+			this->tabControl1->Location = System::Drawing::Point(12, 12);
+			this->tabControl1->Multiline = true;
+			this->tabControl1->Name = L"tabControl1";
+			this->tabControl1->SelectedIndex = 0;
+			this->tabControl1->Size = System::Drawing::Size(654, 418);
+			this->tabControl1->TabIndex = 0;
+			// 
+			// tabPage3
+			// 
+			this->tabPage3->Location = System::Drawing::Point(4, 22);
+			this->tabPage3->Name = L"tabPage3";
+			this->tabPage3->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage3->Size = System::Drawing::Size(646, 392);
+			this->tabPage3->TabIndex = 2;
+			this->tabPage3->Text = L"tabPage3";
+			this->tabPage3->UseVisualStyleBackColor = true;
+			// 
 			// frmProfesor
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -401,15 +431,15 @@ namespace SistemaClasesParticularesView {
 			this->Controls->Add(this->tabControl1);
 			this->Name = L"frmProfesor";
 			this->Text = L"frmProfesor";
-			this->tabControl1->ResumeLayout(false);
-			this->tabPage1->ResumeLayout(false);
-			this->tabPage1->PerformLayout();
 			this->tabPage2->ResumeLayout(false);
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
 			this->groupBox2->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			this->tabPage1->ResumeLayout(false);
+			this->tabPage1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			this->tabControl1->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}

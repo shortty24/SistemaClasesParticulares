@@ -12,10 +12,10 @@ namespace SistemaClasesParticularesView {
 	/// <summary>
 	/// Resumen de MyForm
 	/// </summary>
-	public ref class MyForm : public System::Windows::Forms::Form
+	public ref class frmAdministrador : public System::Windows::Forms::Form
 	{
 	public:
-		MyForm(void)
+		frmAdministrador(void)
 		{
 			InitializeComponent();
 			//
@@ -27,7 +27,7 @@ namespace SistemaClasesParticularesView {
 		/// <summary>
 		/// Limpiar los recursos que se estén usando.
 		/// </summary>
-		~MyForm()
+		~frmAdministrador()
 		{
 			if (components)
 			{
@@ -65,7 +65,7 @@ namespace SistemaClasesParticularesView {
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"Verificar Quejas";
 			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+			this->button1->Click += gcnew System::EventHandler(this, &frmAdministrador::button1_Click);
 			// 
 			// button2
 			// 
@@ -89,13 +89,13 @@ namespace SistemaClasesParticularesView {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(545, 273);
+			this->ClientSize = System::Drawing::Size(567, 297);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Name = L"MyForm";
 			this->Text = L"Administrador";
-			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
+			this->Load += gcnew System::EventHandler(this, &frmAdministrador::MyForm_Load);
 			this->ResumeLayout(false);
 
 		}
