@@ -134,22 +134,17 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 
 	if (textBox1->Text ==""  && textBox2->Text == "") {
-		MessageBox::Show("Usuario correcto");
+		//MessageBox::Show("Usuario correcto");
+		frmProfesor^ ventanaMantProfesores = gcnew frmProfesor();
+
+		ventanaMantProfesores->Show();
 	}
 	else {
 		MessageBox::Show("Usuario y/o contraseña son incorrectos");
 	}
-	
+
 }
 private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
-};
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-
-		frmMantProfesores^ ventanaMantProfesores = gnew frmMantProfesores();
-
-		ventanaMantProfesores->MdiParent = this;
-		ventanaMantProefsores->Show();
-	}
 };
 }
