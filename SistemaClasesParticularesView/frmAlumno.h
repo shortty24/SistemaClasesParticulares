@@ -398,6 +398,7 @@ namespace SistemaClasesParticularesView {
 			this->Controls->Add(this->tabControl1);
 			this->Name = L"frmAlumno";
 			this->Text = L"frmAlumno";
+			this->Load += gcnew System::EventHandler(this, &frmAlumno::frmAlumno_Load);
 			this->tabControl1->ResumeLayout(false);
 			this->tabPage1->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
@@ -424,6 +425,8 @@ private: System::Void dataGridView1_CellContentClick(System::Object^ sender, Sys
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
