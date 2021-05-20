@@ -9,6 +9,6 @@ namespace SistemaClasesParticularesController {
 			List < Alumno^ >^ listaAlumnos;
 		public:
 			AlumnoController();
-			Alumno^ buscaAlumno(String^ usuario);
+			Alumno^ buscaAlumno(String^ usuarioAlumno);
 	};
 }
