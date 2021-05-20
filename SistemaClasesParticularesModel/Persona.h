@@ -17,5 +17,6 @@ namespace SistemaClasesParticularesModel {
 	public:
 		//Persona();
 		Persona(String^ dni, String^ objUsuario, String^ objContrasenha, String^ objApellidoPaterno, String^ objApellidoMaterno, String^ objNombre);
+		
 	};
 }
