@@ -1,5 +1,7 @@
 #pragma once
 
+#include "frmProfesor.h"
+
 namespace SistemaClasesParticularesView {
 
 	using namespace System;
@@ -101,6 +103,7 @@ namespace SistemaClasesParticularesView {
 			this->button1->TabIndex = 4;
 			this->button1->Text = L"Iniciar Sesion";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &frmLogeo::button1_Click);
 			// 
 			// frmLogeo
 			// 
@@ -119,5 +122,12 @@ namespace SistemaClasesParticularesView {
 
 		}
 #pragma endregion
-	};
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		frmMantProfesores^ ventanaMantProfesores = gnew frmMantProfesores();
+
+		ventanaMantProfesores->MdiParent = this;
+		ventanaMantProefsores->Show();
+	}
+};
 }
