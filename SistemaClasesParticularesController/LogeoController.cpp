@@ -9,7 +9,7 @@ LogeoController::LogeoController() {
 
 	this->listaPersonas = gcnew List<Persona^>();
 	this->Existe = Existe;
-	this->usuarioAlumno = usuarioAlumno;
+	//this->usuarioAlumno = usuarioAlumno;
 }
 
 int LogeoController::VerificarSiUsuarioExiste(String^ textBox1, String^ textBox2) {
@@ -47,6 +47,6 @@ int LogeoController::VerificarSiUsuarioExiste(String^ textBox1, String^ textBox2
 	return Existe;
 }
 
-String^ LogeoController::obtenerUsuario() {
+/*String^ LogeoController::obtenerUsuario() {
 	return usuarioAlumno;
-}
+}*/

@@ -11,12 +11,12 @@ namespace SistemaClasesParticularesController {
 	private:
 		List < Persona^ >^ listaPersonas;
 		int Existe;
-		String^ usuarioAlumno;
+		//String^ usuarioAlumno;
 
 	public:
 		LogeoController();
 		//void CargarPersonasDesdeArchivo();
 		int VerificarSiUsuarioExiste(String^ textBox1, String^ textBox2);
-		String^ obtenerUsuario();
+		//String^ obtenerUsuario();
 	};
 }
