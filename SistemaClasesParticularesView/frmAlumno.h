@@ -439,8 +439,8 @@ private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ 
 	LogeoController^ gestorLogeo = gcnew LogeoController();
 	this->dataGridView2->Rows->Clear();
 	//String^ valor = gestorLogeo->obtenerUsuario();
-	Alumno^ alumnoEn = gestorDatosAlumno->buscaAlumno(valor);
-	MessageBox::Show(valor);
+	//Alumno^ alumnoEn = gestorDatosAlumno->buscaAlumno(valor);
+	//MessageBox::Show(valor);
 	/*array<String^>^ fila = gcnew array<String^>(5);
 	fila[0] = alumnoEn->dni;
 	fila[1] = alumnoEn->objUsuario;
