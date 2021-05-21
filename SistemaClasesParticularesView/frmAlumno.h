@@ -8,6 +8,8 @@ namespace SistemaClasesParticularesView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace SistemaClasesParticularesController;
+	using namespace SistemaClasesParticularesModel;
 
 	/// <summary>
 	/// Summary for frmAlumno
@@ -68,11 +70,16 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::TabPage^ tabPage5;
 	private: System::Windows::Forms::GroupBox^ groupBox4;
 	private: System::Windows::Forms::DataGridView^ dataGridView2;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
+
+
+
+
+
 
 	private:
 		/// <summary>
@@ -112,11 +119,11 @@ namespace SistemaClasesParticularesView {
 			this->tabPage5 = (gcnew System::Windows::Forms::TabPage());
 			this->groupBox4 = (gcnew System::Windows::Forms::GroupBox());
 			this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
-			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -357,28 +364,24 @@ namespace SistemaClasesParticularesView {
 			// 
 			this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
-				this->Column5,
-					this->Column6, this->Column7, this->Column9, this->Column8
+				this->Column6,
+					this->Column5, this->Column9, this->Column8, this->Column7
 			});
 			this->dataGridView2->Location = System::Drawing::Point(26, 45);
 			this->dataGridView2->Name = L"dataGridView2";
 			this->dataGridView2->Size = System::Drawing::Size(382, 160);
 			this->dataGridView2->TabIndex = 0;
-			// 
-			// Column5
-			// 
-			this->Column5->HeaderText = L"Codigo ";
-			this->Column5->Name = L"Column5";
+			this->dataGridView2->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &frmAlumno::dataGridView2_CellContentClick);
 			// 
 			// Column6
 			// 
 			this->Column6->HeaderText = L"DNI";
 			this->Column6->Name = L"Column6";
 			// 
-			// Column7
+			// Column5
 			// 
-			this->Column7->HeaderText = L"Nombres";
-			this->Column7->Name = L"Column7";
+			this->Column5->HeaderText = L"Usuario";
+			this->Column5->Name = L"Column5";
 			// 
 			// Column9
 			// 
@@ -390,6 +393,11 @@ namespace SistemaClasesParticularesView {
 			this->Column8->HeaderText = L"Apellido Materno";
 			this->Column8->Name = L"Column8";
 			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"Nombres";
+			this->Column7->Name = L"Column7";
+			// 
 			// frmAlumno
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -397,7 +405,8 @@ namespace SistemaClasesParticularesView {
 			this->ClientSize = System::Drawing::Size(505, 450);
 			this->Controls->Add(this->tabControl1);
 			this->Name = L"frmAlumno";
-			this->Text = L"Alumno";
+			this->Text = L"frmAlumno";
+			this->Load += gcnew System::EventHandler(this, &frmAlumno::frmAlumno_Load);
 			this->tabControl1->ResumeLayout(false);
 			this->tabPage1->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
@@ -424,6 +433,26 @@ private: System::Void dataGridView1_CellContentClick(System::Object^ sender, Sys
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ e) {
+	AlumnoController^ gestorDatosAlumno = gcnew AlumnoController();
+	LogeoController^ gestorLogeo = gcnew LogeoController();
+	this->dataGridView2->Rows->Clear();
+	//String^ valor = gestorLogeo->obtenerUsuario();
+	//Alumno^ alumnoEn = gestorDatosAlumno->buscaAlumno(valor);
+	//MessageBox::Show(valor);
+	/*array<String^>^ fila = gcnew array<String^>(5);
+	fila[0] = alumnoEn->dni;
+	fila[1] = alumnoEn->objUsuario;
+	fila[2] = alumnoEn->objApellidoPaterno;
+	fila[3] = alumnoEn->objApellidoMaterno;
+	fila[4] = alumnoEn->objNombre;
+	this->dataGridView2->Rows->Add(fila);*/
+
+	
+}
+private: System::Void dataGridView2_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+
 }
 };
 }
