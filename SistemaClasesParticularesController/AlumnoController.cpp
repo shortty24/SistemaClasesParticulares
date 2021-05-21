@@ -9,7 +9,7 @@ AlumnoController::AlumnoController(){
 }
 Alumno^ AlumnoController::buscaAlumno(String^usuarioAlumno) {
 	Alumno^ objAlumnoEncontrado;
-	array<String^>^ lineas = File::ReadAllLines("alumnos.txt");
+	array<String^>^ lineas = File::ReadAllLines("Personas.txt");
 	String^ separadores = ";";
 	for each (String ^ lineaAlumno in lineas) {
 		array<String^>^ palabras = lineaAlumno->Split(separadores->ToCharArray());

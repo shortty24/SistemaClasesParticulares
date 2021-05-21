@@ -8,6 +8,8 @@ namespace SistemaClasesParticularesView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace SistemaClasesParticularesController;
+	using namespace SistemaClasesParticularesModel;
 
 	/// <summary>
 	/// Summary for frmAlumno
@@ -433,6 +435,19 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ e) {
+	AlumnoController^ gestorDatosAlumno = gcnew AlumnoController();
+	LogeoController^ gestorLogeo = gcnew LogeoController();
+	this->dataGridView2->Rows->Clear();
+	String^ valor = gestorLogeo->obtenerUsuario();
+	Alumno^ alumnoEn = gestorDatosAlumno->buscaAlumno(valor);
+	MessageBox::Show(valor);
+	/*array<String^>^ fila = gcnew array<String^>(5);
+	fila[0] = alumnoEn->dni;
+	fila[1] = alumnoEn->objUsuario;
+	fila[2] = alumnoEn->objApellidoPaterno;
+	fila[3] = alumnoEn->objApellidoMaterno;
+	fila[4] = alumnoEn->objNombre;
+	this->dataGridView2->Rows->Add(fila);*/
 
 	
 }
