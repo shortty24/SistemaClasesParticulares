@@ -1,5 +1,9 @@
 #pragma once
 
+#include "frmQuejas.h"
+#include "frmProgramarClase.h"
+#include "frmVerificarCV.h"
+
 namespace SistemaClasesParticularesView {
 
 	using namespace System;
@@ -75,6 +79,7 @@ namespace SistemaClasesParticularesView {
 			this->button2->TabIndex = 1;
 			this->button2->Text = L"Verificar CV";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &frmAdministrador::button2_Click);
 			// 
 			// button3
 			// 
@@ -84,8 +89,9 @@ namespace SistemaClasesParticularesView {
 			this->button3->TabIndex = 2;
 			this->button3->Text = L"Programar Clase";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &frmAdministrador::button3_Click);
 			// 
-			// MyForm
+			// frmAdministrador
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
@@ -93,7 +99,7 @@ namespace SistemaClasesParticularesView {
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
-			this->Name = L"MyForm";
+			this->Name = L"frmAdministrador";
 			this->Text = L"Administrador";
 			this->Load += gcnew System::EventHandler(this, &frmAdministrador::MyForm_Load);
 			this->ResumeLayout(false);
@@ -103,6 +109,18 @@ namespace SistemaClasesParticularesView {
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		frmQuejas^ ventanaQuejas = gcnew frmQuejas();
+		ventanaQuejas->ShowDialog();
 	}
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		frmVerificarCV^ ventanaCV = gcnew frmVerificarCV();
+		ventanaCV->ShowDialog();
+	}
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		frmProgramarClase^ ventanaProgramarClase = gcnew frmProgramarClase();
+		ventanaProgramarClase->ShowDialog();
+	}
+
+
 	};
 }

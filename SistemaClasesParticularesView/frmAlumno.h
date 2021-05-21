@@ -1,5 +1,7 @@
 #pragma once
 
+#include "frmInscripcion.h"
+
 namespace SistemaClasesParticularesView {
 
 	using namespace System;
@@ -427,6 +429,8 @@ namespace SistemaClasesParticularesView {
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	frmInscripcion^ ventanaInscripcion = gcnew frmInscripcion();
+	ventanaInscripcion->ShowDialog();
 }
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 }
