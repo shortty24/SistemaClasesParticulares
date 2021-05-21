@@ -8,6 +8,8 @@ namespace SistemaClasesParticularesView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace SistemaClasesParticularesController;
+	using namespace SistemaClasesParticularesModel;
 
 	/// <summary>
 	/// Resumen de frmRegistro
@@ -87,6 +89,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(130, 20);
 			this->textBox1->TabIndex = 0;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &frmRegistroAlumno::textBox1_TextChanged);
 			// 
 			// textBox2
 			// 
@@ -94,6 +97,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(130, 20);
 			this->textBox2->TabIndex = 1;
+			this->textBox2->TextChanged += gcnew System::EventHandler(this, &frmRegistroAlumno::textBox2_TextChanged);
 			// 
 			// textBox3
 			// 
@@ -101,6 +105,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(130, 20);
 			this->textBox3->TabIndex = 2;
+			this->textBox3->TextChanged += gcnew System::EventHandler(this, &frmRegistroAlumno::textBox3_TextChanged);
 			// 
 			// textBox4
 			// 
@@ -108,6 +113,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(130, 20);
 			this->textBox4->TabIndex = 3;
+			this->textBox4->TextChanged += gcnew System::EventHandler(this, &frmRegistroAlumno::textBox4_TextChanged);
 			// 
 			// textBox5
 			// 
@@ -115,6 +121,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(130, 20);
 			this->textBox5->TabIndex = 4;
+			this->textBox5->TextChanged += gcnew System::EventHandler(this, &frmRegistroAlumno::textBox5_TextChanged);
 			// 
 			// label1
 			// 
@@ -170,6 +177,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox6->Name = L"textBox6";
 			this->textBox6->Size = System::Drawing::Size(130, 20);
 			this->textBox6->TabIndex = 10;
+			this->textBox6->TextChanged += gcnew System::EventHandler(this, &frmRegistroAlumno::textBox6_TextChanged);
 			// 
 			// label6
 			// 
@@ -186,6 +194,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox7->Name = L"textBox7";
 			this->textBox7->Size = System::Drawing::Size(130, 20);
 			this->textBox7->TabIndex = 12;
+			this->textBox7->TextChanged += gcnew System::EventHandler(this, &frmRegistroAlumno::textBox7_TextChanged);
 			// 
 			// label7
 			// 
@@ -204,8 +213,9 @@ namespace SistemaClasesParticularesView {
 			this->button1->TabIndex = 14;
 			this->button1->Text = L"Registrarse";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &frmRegistroAlumno::button1_Click);
 			// 
-			// frmRegistro
+			// frmRegistroAlumno
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
@@ -225,7 +235,7 @@ namespace SistemaClasesParticularesView {
 			this->Controls->Add(this->textBox3);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->textBox1);
-			this->Name = L"frmRegistro";
+			this->Name = L"frmRegistroAlumno";
 			this->Text = L"frmRegistroAlumno";
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -237,6 +247,26 @@ namespace SistemaClasesParticularesView {
 private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+
+}
+private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox3_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox4_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox5_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox6_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox7_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	Close();
+	//RegistroController^ objgestorRegistro = gcnew RegistroController();
+	//RegistroNuevoAlumno(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, textBox7);
 }
 };
 }

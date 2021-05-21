@@ -397,7 +397,7 @@ namespace SistemaClasesParticularesView {
 			this->ClientSize = System::Drawing::Size(505, 450);
 			this->Controls->Add(this->tabControl1);
 			this->Name = L"frmAlumno";
-			this->Text = L"frmAlumno";
+			this->Text = L"Alumno";
 			this->tabControl1->ResumeLayout(false);
 			this->tabPage1->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();

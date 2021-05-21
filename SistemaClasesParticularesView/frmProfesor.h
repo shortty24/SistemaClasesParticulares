@@ -430,7 +430,7 @@ namespace SistemaClasesParticularesView {
 			this->ClientSize = System::Drawing::Size(705, 442);
 			this->Controls->Add(this->tabControl1);
 			this->Name = L"frmProfesor";
-			this->Text = L"frmProfesor";
+			this->Text = L"Profesor";
 			this->tabPage2->ResumeLayout(false);
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();

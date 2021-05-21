@@ -91,6 +91,7 @@ namespace SistemaClasesParticularesView {
 			this->button1->TabIndex = 29;
 			this->button1->Text = L"Registrarse";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &frmRegistroProfesor::button1_Click);
 			// 
 			// label7
 			// 
@@ -244,5 +245,8 @@ namespace SistemaClasesParticularesView {
 #pragma endregion
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	Close();
+}
 };
 }

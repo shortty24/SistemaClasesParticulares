@@ -9,7 +9,7 @@ namespace SistemaClasesParticularesController {
 	public ref class LogeoController {
 
 	private:
-		List < Persona^ >^ listaPersonas;
+		//List < Persona^ >^ listaPersonas;
 		int Existe;
 
 	public:

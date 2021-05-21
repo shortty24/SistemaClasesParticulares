@@ -118,10 +118,12 @@
   <ItemGroup>
     <ClInclude Include="LogeoController.h" />
     <ClInclude Include="ProfesorController.h" />
+    <ClInclude Include="RegistroController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LogeoController.cpp" />
     <ClCompile Include="ProfesorController.cpp" />
+    <ClCompile Include="RegistroController.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

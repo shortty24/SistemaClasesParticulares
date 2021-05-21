@@ -7,7 +7,7 @@ using namespace System::IO;
 
 LogeoController::LogeoController() {
 
-	this->listaPersonas = gcnew List<Persona^>();
+	//this->listaPersonas = gcnew List<Persona^>();
 	this->Existe = Existe;
 }
 
@@ -23,7 +23,7 @@ int LogeoController::VerificarSiUsuarioExiste(String^ textBox1, String^ textBox2
 		String^ ApellidoPaterno = palabras[4];
 		String^ ApellidoMaterno = palabras[5];
 		String^ Nombre = palabras[6];
-		Persona^ objPersona = gcnew Persona(dni, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre);
+		//Persona^ objPersona = gcnew Persona(dni, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre);
 		//this->listaPersonas->Add(objPersona);
 		if (textBox1 == Usuario && textBox2 == Contrasenha) {
 			if (ID == "A") {
