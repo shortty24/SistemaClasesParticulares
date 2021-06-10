@@ -26,6 +26,14 @@ namespace SistemaClasesParticularesView {
 			//TODO: Add the constructor code here
 			//
 		}
+		frmAlumno(Alumno^ AlumnoLogeado)
+		{
+			InitializeComponent();
+			this->AlumnoLogeado = AlumnoLogeado;
+			//
+			//TODO: Add the constructor code here
+			//
+		}
 
 	protected:
 		/// <summary>
@@ -77,7 +85,7 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
-
+	private: Alumno^ AlumnoLogeado; 
 
 
 
@@ -442,16 +450,14 @@ private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ 
 	AlumnoController^ gestorDatosAlumno = gcnew AlumnoController();
 	LogeoController^ gestorLogeo = gcnew LogeoController();
 	this->dataGridView2->Rows->Clear();
-	//String^ valor = gestorLogeo->obtenerUsuario();
-	//Alumno^ alumnoEn = gestorDatosAlumno->buscaAlumno(valor);
-	//MessageBox::Show(valor);
-	/*array<String^>^ fila = gcnew array<String^>(5);
-	fila[0] = alumnoEn->dni;
-	fila[1] = alumnoEn->objUsuario;
-	fila[2] = alumnoEn->objApellidoPaterno;
-	fila[3] = alumnoEn->objApellidoMaterno;
-	fila[4] = alumnoEn->objNombre;
-	this->dataGridView2->Rows->Add(fila);*/
+	
+	array<String^>^ fila = gcnew array<String^>(5);
+	fila[0] = AlumnoLogeado->dni;
+	fila[1] = AlumnoLogeado->objUsuario;
+	fila[2] = AlumnoLogeado->objApellidoPaterno;
+	fila[3] = AlumnoLogeado->objApellidoMaterno;
+	fila[4] = AlumnoLogeado->objNombre;
+	this->dataGridView2->Rows->Add(fila);
 
 	
 }

@@ -9,6 +9,7 @@ namespace SistemaClasesParticularesView {
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
+	using namespace System::Collections::Generic;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
@@ -47,7 +48,7 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::Button^ button1;
-
+	private: Alumno^ AlumnoLogeado;
 	private:
 		/// <summary>
 		/// Variable del diseñador necesaria.
@@ -135,8 +136,10 @@ namespace SistemaClasesParticularesView {
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	LogeoController^ objgestor = gcnew LogeoController();
 	if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 1) {
+		AlumnoController^ objGestorAlumno = gcnew AlumnoController();
 
-		frmAlumno^ ventanaAlumno = gcnew frmAlumno();
+		AlumnoLogeado = objGestorAlumno->buscaAlumno(textBox1->Text);
+		frmAlumno^ ventanaAlumno = gcnew frmAlumno(this->AlumnoLogeado);
 		ventanaAlumno->Show();
 	}
 	else if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 2) {
