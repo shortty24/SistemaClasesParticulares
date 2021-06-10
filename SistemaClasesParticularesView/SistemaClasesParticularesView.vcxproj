@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="frmAlumno.cpp" />
+    <ClCompile Include="frmCV.cpp" />
     <ClCompile Include="frmInscripcion.cpp" />
     <ClCompile Include="frmLogeo.cpp" />
     <ClCompile Include="frmPrincipal.cpp" />
@@ -145,6 +146,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="frmAlumno.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmCV.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="frmInscripcion.h">
