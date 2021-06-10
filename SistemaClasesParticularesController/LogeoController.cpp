@@ -29,7 +29,7 @@ int LogeoController::VerificarSiUsuarioExiste(String^ textBox1, String^ textBox2
 		if (textBox1 == Usuario && textBox2 == Contrasenha) {
 			if (ID == "A") {
 				Existe = 1;
-				//usuarioAlumno = textBox1;
+			//usuarioAlumno = textBox1;
 			}
 			else if (ID == "P") {
 				Existe = 2;

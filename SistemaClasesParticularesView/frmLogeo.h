@@ -135,7 +135,7 @@ namespace SistemaClasesParticularesView {
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	LogeoController^ objgestor = gcnew LogeoController();
 	if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 1) {
-		
+
 		frmAlumno^ ventanaAlumno = gcnew frmAlumno();
 		ventanaAlumno->Show();
 	}
