@@ -348,6 +348,7 @@ namespace SistemaClasesParticularesView {
 			this->monthCalendar1->Location = System::Drawing::Point(51, 24);
 			this->monthCalendar1->Name = L"monthCalendar1";
 			this->monthCalendar1->TabIndex = 0;
+			this->monthCalendar1->DateChanged += gcnew System::Windows::Forms::DateRangeEventHandler(this, &frmAlumno::monthCalendar1_DateChanged);
 			// 
 			// tabPage5
 			// 
@@ -463,6 +464,8 @@ private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ 
 }
 private: System::Void dataGridView2_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 
+}
+private: System::Void monthCalendar1_DateChanged(System::Object^ sender, System::Windows::Forms::DateRangeEventArgs^ e) {
 }
 };
 }

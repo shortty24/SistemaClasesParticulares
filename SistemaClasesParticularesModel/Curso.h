@@ -1,18 +1,20 @@
 #pragma once
-
+#include "Profesor.h"
 namespace SistemaClasesParticularesModel {
 	//para reconocer el String
 	using namespace System;
 
 	public ref class Curso {
 
-	private:
+	public:
 		//int codigo;
-		String^ objTema;
-		int dificultad;
+		String^ nombreCurso;
+		//String^ objTema;
+		String^ dificultad;
+		List<Profesor^>^ listaProfesores;
 
 	public:
-		//Curso();
+		Curso(String^ nombreCurso, String^ dificultad);
 		//Curso(String^ objTema, int dificultad);
 	};
 }

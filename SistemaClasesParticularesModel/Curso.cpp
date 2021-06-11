@@ -2,7 +2,7 @@
 
 using namespace SistemaClasesParticularesModel;
 
-/*Curso::Curso(String^ objTema, int dificultad) {
-	this->objTema = objTema;
+Curso::Curso(String^ nombreCurso, String^ dificultad) {
+	this->nombreCurso = nombreCurso;
 	this->dificultad = dificultad;
-}*/
+}
