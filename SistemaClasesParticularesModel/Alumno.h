@@ -16,9 +16,12 @@ namespace SistemaClasesParticularesModel {
 		int horasPedidas;
 		//se crea una listaInscripcion que sería un objeto del tipo lista de objeto inscripcion ( listaInscripcion sería un arreglo dinámico)
 		Administrador^ objAdministrador;
+		String^ objCodigoUsuario;
+		String^ objCorreo;
 
 	public:
 		Alumno(String^ dni, String^ objUsuario, String^ objContrasenha, String^ objApellidoPaterno, String^ objApellidoMaterno, String^ objNombre);
+		Alumno(String^ objCodigoUsuario, String^ objUsuario, String^ dni, String^ objNombre, String^ objApellidoPaterno, String^ objApellidoMaterno, String^ objCorreo, String^ objContrasenha);
 		//Alumno(int horasPedidas, Administrador^ objAdministrador, String^ dni, String^ objUsuario, String^ objContrasenha, String^ objApellidoPaterno, String^ objApellidoMaterno, String^ objNombre);
 	};
 }

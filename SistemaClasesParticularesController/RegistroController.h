@@ -1,6 +1,6 @@
 #pragma once
 
-/*namespace SistemaClasesParticularesController {
+namespace SistemaClasesParticularesController {
 
 	using namespace System::Collections::Generic;
 	using namespace SistemaClasesParticularesModel;
@@ -10,11 +10,13 @@
 
 	private:
 		int Repite;
+		List < Persona^ >^ listaPersonas;
 
 	public:
 		RegistroController();
-		//void CargarPersonasDesdeArchivo();
-		void RegistroNuevoAlumno(String^ textBox1, String^ textBox2, String^ textBox3, String^ textBox4, String^ textBox5, String^ textBox6, String^ textBox7);
-		int VerificarSiUsuarioRepite(String^ textBox1);
+		void CargarPersonasDesdeArchivo();
+		//void RegistroNuevoAlumno(String^ textBox1, String^ textBox2, String^ textBox3, String^ textBox4, String^ textBox5, String^ textBox6, String^ textBox7);
+		//int VerificarSiUsuarioRepite(String^ textBox1);
+		void GuardarNuevoAlumnoEnArchivo(Alumno^objAlumno);
 	};
-}*/
+}
