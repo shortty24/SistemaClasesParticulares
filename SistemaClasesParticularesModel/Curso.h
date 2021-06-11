@@ -1,8 +1,9 @@
 #pragma once
-#include "Profesor.h"
+
 namespace SistemaClasesParticularesModel {
 	//para reconocer el String
 	using namespace System;
+	using namespace System::Collections::Generic;
 
 	public ref class Curso {
 
@@ -11,7 +12,7 @@ namespace SistemaClasesParticularesModel {
 		String^ nombreCurso;
 		//String^ objTema;
 		String^ dificultad;
-		List<Profesor^>^ listaProfesores;
+		//List<Profesor^>^ listaProfesores;
 
 	public:
 		Curso(String^ nombreCurso, String^ dificultad);
