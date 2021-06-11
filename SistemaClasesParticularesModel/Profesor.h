@@ -2,7 +2,7 @@
 
 #include "Persona.h"
 //se jala de CV los datos necesarios
-#include "Curso.h"
+
 #include "Administrador.h"
 
 namespace SistemaClasesParticularesModel {
@@ -17,11 +17,11 @@ namespace SistemaClasesParticularesModel {
 			int horario;
 			int precio;
 			//se crea una listaCursos que sería un objeto del tipo lista de objeto cursos ( listaCursos sería un arreglo dinámico)
-			Curso^ objCurso;
+			
 			Administrador^ objAdministrador;
 
 		public:
 			//Profesor();
-			Profesor(int calificacion, int horario, int precio, Curso^ objCurso, Administrador^ objAdministrador, String^ dni, String^ objUsuario, String^ objContrasenha, String^ objApellidoPaterno, String^ objApellidoMaterno, String^ objNombre);
+			Profesor(int calificacion, int horario, int precio, Administrador^ objAdministrador, String^ dni, String^ objUsuario, String^ objContrasenha, String^ objApellidoPaterno, String^ objApellidoMaterno, String^ objNombre);
 	};
 }
