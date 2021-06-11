@@ -43,6 +43,4 @@ void RegistroController::GuardarNuevoAlumnoEnArchivo(Alumno^ objAlumno) {
 		/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
 		File::WriteAllLines("Personas.txt", lineasArchivoPersonas);
 	
-
-
 }
