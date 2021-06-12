@@ -17,8 +17,8 @@ List<Curso^>^ CursoController::CursosDisponibles() {
 		array<String^>^ palabras = lineaCurso->Split(separadores->ToCharArray());
 		String^ nombreCurso = palabras[0];
 		String^ dificultad = palabras[1];
-		String^ dniProfesor = palabras[2];
-		Curso^ objCurso = gcnew Curso(nombreCurso, dificultad, dniProfesor);
+		String^ usuarioProfesor = palabras[2];
+		Curso^ objCurso = gcnew Curso(nombreCurso, dificultad, usuarioProfesor);
 		this->listaCursos->Add(objCurso);
 	}
 	return this->listaCursos;
