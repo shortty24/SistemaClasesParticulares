@@ -157,7 +157,7 @@ namespace SistemaClasesParticularesView {
 			this->tabControl1->Location = System::Drawing::Point(3, 2);
 			this->tabControl1->Name = L"tabControl1";
 			this->tabControl1->SelectedIndex = 0;
-			this->tabControl1->Size = System::Drawing::Size(502, 449);
+			this->tabControl1->Size = System::Drawing::Size(651, 449);
 			this->tabControl1->TabIndex = 0;
 			// 
 			// tabPage1
@@ -214,6 +214,7 @@ namespace SistemaClasesParticularesView {
 			this->button3->TabIndex = 3;
 			this->button3->Text = L"Información";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &frmAlumno::button3_Click);
 			// 
 			// button2
 			// 
@@ -356,7 +357,7 @@ namespace SistemaClasesParticularesView {
 			this->tabPage5->Location = System::Drawing::Point(4, 22);
 			this->tabPage5->Name = L"tabPage5";
 			this->tabPage5->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage5->Size = System::Drawing::Size(494, 423);
+			this->tabPage5->Size = System::Drawing::Size(643, 423);
 			this->tabPage5->TabIndex = 4;
 			this->tabPage5->Text = L"Perfil";
 			this->tabPage5->UseVisualStyleBackColor = true;
@@ -366,7 +367,7 @@ namespace SistemaClasesParticularesView {
 			this->groupBox4->Controls->Add(this->dataGridView2);
 			this->groupBox4->Location = System::Drawing::Point(25, 29);
 			this->groupBox4->Name = L"groupBox4";
-			this->groupBox4->Size = System::Drawing::Size(441, 278);
+			this->groupBox4->Size = System::Drawing::Size(574, 278);
 			this->groupBox4->TabIndex = 0;
 			this->groupBox4->TabStop = false;
 			this->groupBox4->Text = L"Datos del alumno:";
@@ -380,7 +381,7 @@ namespace SistemaClasesParticularesView {
 			});
 			this->dataGridView2->Location = System::Drawing::Point(26, 45);
 			this->dataGridView2->Name = L"dataGridView2";
-			this->dataGridView2->Size = System::Drawing::Size(382, 160);
+			this->dataGridView2->Size = System::Drawing::Size(548, 160);
 			this->dataGridView2->TabIndex = 0;
 			this->dataGridView2->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &frmAlumno::dataGridView2_CellContentClick);
 			// 
@@ -413,7 +414,7 @@ namespace SistemaClasesParticularesView {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(505, 450);
+			this->ClientSize = System::Drawing::Size(683, 450);
 			this->Controls->Add(this->tabControl1);
 			this->Name = L"frmAlumno";
 			this->Text = L"frmAlumno";
@@ -477,6 +478,8 @@ private: System::Void dataGridView2_CellContentClick(System::Object^ sender, Sys
 
 }
 private: System::Void monthCalendar1_DateChanged(System::Object^ sender, System::Windows::Forms::DateRangeEventArgs^ e) {
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
