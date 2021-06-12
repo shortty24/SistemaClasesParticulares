@@ -448,6 +448,17 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ e) {
+	/*CursoController^ gestorDatosCurso = gcnew CursoController();
+	this->dataGridView1->Rows->Clear();
+	array<String^>^ fila = gcnew array<String^>(5);
+	fila[0] = AlumnoLogeado->dni;
+	fila[1] = AlumnoLogeado->objUsuario;
+	fila[2] = AlumnoLogeado->objApellidoPaterno;
+	fila[3] = AlumnoLogeado->objApellidoMaterno;
+	fila[4] = AlumnoLogeado->objNombre;
+	this->dataGridView2->Rows->Add(fila);*/
+
+
 	AlumnoController^ gestorDatosAlumno = gcnew AlumnoController();
 	LogeoController^ gestorLogeo = gcnew LogeoController();
 	this->dataGridView2->Rows->Clear();
