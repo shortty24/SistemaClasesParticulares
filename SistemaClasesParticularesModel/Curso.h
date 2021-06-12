@@ -12,12 +12,12 @@ namespace SistemaClasesParticularesModel {
 		String^ nombreCurso;
 		//String^ objTema;
 		String^ dificultad;
-		String^ dniProfesor;
+		String^ usuarioProfesor;
 		//Profesor^ ProfesorCurso;
 
 
 	public:
-		Curso(String^ nombreCurso, String^ dificultad, String^ dniProfesor);
+		Curso(String^ nombreCurso, String^ dificultad, String^ usuarioProfesor);
 		//Curso(String^ objTema, int dificultad);
 	};
 }

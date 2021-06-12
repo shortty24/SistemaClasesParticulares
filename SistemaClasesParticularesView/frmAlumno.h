@@ -7,6 +7,7 @@ namespace SistemaClasesParticularesView {
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
+	using namespace System::Collections::Generic;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
@@ -65,10 +66,10 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
+
+
+
+
 	private: System::Windows::Forms::TabPage^ tabPage3;
 	private: System::Windows::Forms::GroupBox^ groupBox2;
 	private: System::Windows::Forms::GroupBox^ groupBox3;
@@ -86,6 +87,9 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
 	private: Alumno^ AlumnoLogeado; 
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 
 
 
@@ -107,10 +111,6 @@ namespace SistemaClasesParticularesView {
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
@@ -134,6 +134,9 @@ namespace SistemaClasesParticularesView {
 			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -177,34 +180,14 @@ namespace SistemaClasesParticularesView {
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
 				this->Column1,
-					this->Column2, this->Column3, this->Column4
+					this->Column4, this->Column2
 			});
 			this->dataGridView1->Location = System::Drawing::Point(19, 186);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->Size = System::Drawing::Size(449, 168);
 			this->dataGridView1->TabIndex = 4;
-			// 
-			// Column1
-			// 
-			this->Column1->HeaderText = L"Curso";
-			this->Column1->Name = L"Column1";
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"Profesor";
-			this->Column2->Name = L"Column2";
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Tema";
-			this->Column3->Name = L"Column3";
-			// 
-			// Column4
-			// 
-			this->Column4->HeaderText = L"Dificultad";
-			this->Column4->Name = L"Column4";
 			// 
 			// button3
 			// 
@@ -410,6 +393,21 @@ namespace SistemaClasesParticularesView {
 			this->Column7->HeaderText = L"Nombres";
 			this->Column7->Name = L"Column7";
 			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"Curso";
+			this->Column1->Name = L"Column1";
+			// 
+			// Column4
+			// 
+			this->Column4->HeaderText = L"Dificultad";
+			this->Column4->Name = L"Column4";
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"Profesor";
+			this->Column2->Name = L"Column2";
+			// 
 			// frmAlumno
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -449,19 +447,21 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ e) {
-	/*CursoController^ gestorDatosCurso = gcnew CursoController();
+	CursoController^ gestorDatosCurso = gcnew CursoController();
+	ProfesorController^ gestorProfesor = gcnew ProfesorController();
+	List<Curso^>^ listaCursosDisponibles = gestorDatosCurso->CursosDisponibles();
 	this->dataGridView1->Rows->Clear();
-	array<String^>^ fila = gcnew array<String^>(5);
-	fila[0] = AlumnoLogeado->dni;
-	fila[1] = AlumnoLogeado->objUsuario;
-	fila[2] = AlumnoLogeado->objApellidoPaterno;
-	fila[3] = AlumnoLogeado->objApellidoMaterno;
-	fila[4] = AlumnoLogeado->objNombre;
-	this->dataGridView2->Rows->Add(fila);*/
+	for (int i = 0; i < listaCursosDisponibles->Count; i++) {
+		Curso^ objCurso = listaCursosDisponibles[i];
+		Profesor^ objProfesor = gestorProfesor->buscaProfesor(objCurso->usuarioProfesor);
+		array<String^>^ fila = gcnew array<String^>(4);
+		fila[0] = objCurso->nombreCurso;
+		fila[1] = objCurso->dificultad;
+		fila[2] = objProfesor->objNombre + " " + objProfesor->objApellidoPaterno + " " + objProfesor->objApellidoMaterno;
+		this->dataGridView1->Rows->Add(fila);
+	}
 
 
-	AlumnoController^ gestorDatosAlumno = gcnew AlumnoController();
-	LogeoController^ gestorLogeo = gcnew LogeoController();
 	this->dataGridView2->Rows->Clear();
 	
 	array<String^>^ fila = gcnew array<String^>(5);
