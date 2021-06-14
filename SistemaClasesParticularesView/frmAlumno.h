@@ -1,6 +1,7 @@
 #pragma once
 
 #include "frmInscripcion.h"
+#include "frmInfoProfesorCurso.h"
 
 namespace SistemaClasesParticularesView {
 
@@ -111,6 +112,9 @@ namespace SistemaClasesParticularesView {
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
@@ -134,9 +138,6 @@ namespace SistemaClasesParticularesView {
 			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -189,6 +190,21 @@ namespace SistemaClasesParticularesView {
 			this->dataGridView1->Size = System::Drawing::Size(449, 168);
 			this->dataGridView1->TabIndex = 4;
 			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"Curso";
+			this->Column1->Name = L"Column1";
+			// 
+			// Column4
+			// 
+			this->Column4->HeaderText = L"Dificultad";
+			this->Column4->Name = L"Column4";
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"Profesor";
+			this->Column2->Name = L"Column2";
+			// 
 			// button3
 			// 
 			this->button3->Location = System::Drawing::Point(250, 375);
@@ -197,6 +213,7 @@ namespace SistemaClasesParticularesView {
 			this->button3->TabIndex = 3;
 			this->button3->Text = L"Información";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &frmAlumno::button3_Click);
 			// 
 			// button2
 			// 
@@ -392,21 +409,6 @@ namespace SistemaClasesParticularesView {
 			this->Column7->HeaderText = L"Nombres";
 			this->Column7->Name = L"Column7";
 			// 
-			// Column1
-			// 
-			this->Column1->HeaderText = L"Curso";
-			this->Column1->Name = L"Column1";
-			// 
-			// Column4
-			// 
-			this->Column4->HeaderText = L"Dificultad";
-			this->Column4->Name = L"Column4";
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"Profesor";
-			this->Column2->Name = L"Column2";
-			// 
 			// frmAlumno
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -477,6 +479,15 @@ private: System::Void dataGridView2_CellContentClick(System::Object^ sender, Sys
 
 }
 private: System::Void monthCalendar1_DateChanged(System::Object^ sender, System::Windows::Forms::DateRangeEventArgs^ e) {
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
+	String^ nombreProfSeleccionado = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[2]->Value->ToString();
+	ProfesorController^ gestorProfesor = gcnew ProfesorController();
+	String^ usuarioProfesor;
+	usuarioProfesor = gestorProfesor->obtenerUsuarioxNombreCompleto(nombreProfSeleccionado);
+	frmInfoProfesorCurso^ ventanaInfoProfesor = gcnew frmInfoProfesorCurso(usuarioProfesor);
+	ventanaInfoProfesor->ShowDialog();
 }
 };
 }
