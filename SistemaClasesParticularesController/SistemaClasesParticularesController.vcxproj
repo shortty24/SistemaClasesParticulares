@@ -118,6 +118,7 @@
   <ItemGroup>
     <ClInclude Include="AlumnoController.h" />
     <ClInclude Include="CursoController.h" />
+    <ClInclude Include="CVController.h" />
     <ClInclude Include="LogeoController.h" />
     <ClInclude Include="PersonaController.h" />
     <ClInclude Include="ProfesorController.h" />
@@ -126,6 +127,7 @@
   <ItemGroup>
     <ClCompile Include="AlumnoController.cpp" />
     <ClCompile Include="CursoController.cpp" />
+    <ClCompile Include="CVController.cpp" />
     <ClCompile Include="LogeoController.cpp" />
     <ClCompile Include="PersonaController.cpp" />
     <ClCompile Include="ProfesorController.cpp" />
