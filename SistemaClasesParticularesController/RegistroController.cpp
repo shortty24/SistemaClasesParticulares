@@ -43,8 +43,9 @@ void RegistroController::CargarCVsDesdeArchivo() {
 		String^ DNI = palabras[0];
 		String^ codigoMinedu = palabras[1];
 		String^ Empresa = palabras[2];
-		int NumeroEmpresa = Convert::ToInt32(palabras[3]);
-		CV^ objCV = gcnew CV(DNI, codigoMinedu, Empresa, NumeroEmpresa);
+		String^ NumeroEmpresa = palabras[3];
+		String^ Validacion = palabras[4];
+		CV^ objCV = gcnew CV(DNI, codigoMinedu, Empresa, NumeroEmpresa,Validacion);
 		this->listaCV->Add(objCV);
 	}
 }
@@ -76,7 +77,7 @@ void RegistroController::GuardarNuevoCV(CV^ objCV) {
 	for (int i = 0; i < this->listaCV->Count; i++) {
 		CV^ objCV = this->listaCV[i];
 		//Profesor^ objProfesor = this->listaProfesores[n];
-		lineasArchivoCV[i] = objCV->DniProfesor + ";" + objCV->objCodigoMinedu + ";" + objCV->objEmpresa + ";" + objCV->telefonoEmpresa;
+		lineasArchivoCV[i] = objCV->DniProfesor + ";" + objCV->objCodigoMinedu + ";" + objCV->objEmpresa + ";" + objCV->telefonoEmpresa + ";" + objCV->Validación;
 
 	}
 
