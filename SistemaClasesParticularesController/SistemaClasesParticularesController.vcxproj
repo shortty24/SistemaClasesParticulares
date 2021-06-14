@@ -117,18 +117,24 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AlumnoController.h" />
+    <ClInclude Include="ClaseController.h" />
     <ClInclude Include="CursoController.h" />
     <ClInclude Include="CVController.h" />
+    <ClInclude Include="InscripcionController.h" />
     <ClInclude Include="LogeoController.h" />
+    <ClInclude Include="PagoController.h" />
     <ClInclude Include="PersonaController.h" />
     <ClInclude Include="ProfesorController.h" />
     <ClInclude Include="RegistroController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AlumnoController.cpp" />
+    <ClCompile Include="ClaseController.cpp" />
     <ClCompile Include="CursoController.cpp" />
     <ClCompile Include="CVController.cpp" />
+    <ClCompile Include="InscripcionController.cpp" />
     <ClCompile Include="LogeoController.cpp" />
+    <ClCompile Include="PagoController.cpp" />
     <ClCompile Include="PersonaController.cpp" />
     <ClCompile Include="ProfesorController.cpp" />
     <ClCompile Include="RegistroController.cpp" />

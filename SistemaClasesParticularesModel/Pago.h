@@ -11,13 +11,13 @@ namespace SistemaClasesParticularesModel {
 
 	private:
 		//int codigo; No entiendo a qué se refiere
-		int fechaPago;
+		String^ fechaPago;
 		String^ objEstado;
-		List<Inscripcion^>^ listaInscripcion;
+		Inscripcion^ objInscripcion;
 		Administrador^ objAdministrador;
 
 	public:
 		//Pago();
-		//Pago(int fechaPago, String^ objEstado, Clase^ objClase);
+		Pago(String^ fechaPago, String^ objEstado, Inscripcion^ objInscripcion, Administrador^ objAdministrador);
 	};
 }
