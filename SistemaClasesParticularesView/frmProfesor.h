@@ -1,5 +1,7 @@
 #pragma once
 
+#include "frmEditarAccesoProfesor.h"
+
 namespace SistemaClasesParticularesView {
 
 	using namespace System;
@@ -116,17 +118,19 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::GroupBox^ groupBox6;
 	private: System::Windows::Forms::TextBox^ textBox14;
 	private: System::Windows::Forms::Label^ label13;
-	private: System::Windows::Forms::Button^ button19;
+
 	private: System::Windows::Forms::TextBox^ textBox13;
 	private: System::Windows::Forms::Button^ button18;
 	private: System::Windows::Forms::Label^ label14;
 	private: System::Windows::Forms::GroupBox^ groupBox5;
 	private: System::Windows::Forms::TextBox^ textBox12;
-	private: System::Windows::Forms::Button^ button20;
+
 	private: System::Windows::Forms::Label^ label11;
 	private: System::Windows::Forms::TextBox^ textBox15;
 	private: System::Windows::Forms::Label^ label15;
-	private: System::Windows::Forms::Button^ button17;
+	private: Persona^ Usuario;
+	private: Persona^ Contrasenha;
+
 private: System::Windows::Forms::DataGridView^ dataGridView4;
 
 
@@ -138,6 +142,7 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column10;
 private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
 private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
 private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
+private: System::Windows::Forms::Button^ button16;
 
 
 
@@ -223,6 +228,10 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
 			this->dataGridView4 = (gcnew System::Windows::Forms::DataGridView());
+			this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->tabPage5 = (gcnew System::Windows::Forms::TabPage());
 			this->groupBox4 = (gcnew System::Windows::Forms::GroupBox());
@@ -245,22 +254,16 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 			this->groupBox6 = (gcnew System::Windows::Forms::GroupBox());
 			this->textBox14 = (gcnew System::Windows::Forms::TextBox());
 			this->label13 = (gcnew System::Windows::Forms::Label());
-			this->button19 = (gcnew System::Windows::Forms::Button());
 			this->textBox13 = (gcnew System::Windows::Forms::TextBox());
 			this->button18 = (gcnew System::Windows::Forms::Button());
 			this->label14 = (gcnew System::Windows::Forms::Label());
 			this->groupBox5 = (gcnew System::Windows::Forms::GroupBox());
+			this->button16 = (gcnew System::Windows::Forms::Button());
 			this->textBox12 = (gcnew System::Windows::Forms::TextBox());
-			this->button20 = (gcnew System::Windows::Forms::Button());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->textBox15 = (gcnew System::Windows::Forms::TextBox());
 			this->label15 = (gcnew System::Windows::Forms::Label());
-			this->button17 = (gcnew System::Windows::Forms::Button());
 			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->tabPage2->SuspendLayout();
 			this->groupBox2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -497,10 +500,30 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 				this->Column10,
 					this->Column7, this->Column8, this->Column9
 			});
-			this->dataGridView4->Location = System::Drawing::Point(6, 191);
+			this->dataGridView4->Location = System::Drawing::Point(21, 185);
 			this->dataGridView4->Name = L"dataGridView4";
-			this->dataGridView4->Size = System::Drawing::Size(551, 150);
+			this->dataGridView4->Size = System::Drawing::Size(476, 98);
 			this->dataGridView4->TabIndex = 16;
+			// 
+			// Column10
+			// 
+			this->Column10->HeaderText = L"DNI";
+			this->Column10->Name = L"Column10";
+			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"Nombre";
+			this->Column7->Name = L"Column7";
+			// 
+			// Column8
+			// 
+			this->Column8->HeaderText = L"Apellido Paterno";
+			this->Column8->Name = L"Column8";
+			// 
+			// Column9
+			// 
+			this->Column9->HeaderText = L"Apellido Materno";
+			this->Column9->Name = L"Column9";
 			// 
 			// pictureBox1
 			// 
@@ -680,13 +703,12 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 			// 
 			this->groupBox6->Controls->Add(this->textBox14);
 			this->groupBox6->Controls->Add(this->label13);
-			this->groupBox6->Controls->Add(this->button19);
 			this->groupBox6->Controls->Add(this->textBox13);
 			this->groupBox6->Controls->Add(this->button18);
 			this->groupBox6->Controls->Add(this->label14);
-			this->groupBox6->Location = System::Drawing::Point(37, 224);
+			this->groupBox6->Location = System::Drawing::Point(37, 238);
 			this->groupBox6->Name = L"groupBox6";
-			this->groupBox6->Size = System::Drawing::Size(335, 100);
+			this->groupBox6->Size = System::Drawing::Size(273, 131);
 			this->groupBox6->TabIndex = 19;
 			this->groupBox6->TabStop = false;
 			this->groupBox6->Text = L"Acceso";
@@ -708,15 +730,6 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 			this->label13->TabIndex = 9;
 			this->label13->Text = L"Contraseña :";
 			// 
-			// button19
-			// 
-			this->button19->Location = System::Drawing::Point(264, 21);
-			this->button19->Name = L"button19";
-			this->button19->Size = System::Drawing::Size(55, 23);
-			this->button19->TabIndex = 14;
-			this->button19->Text = L"Editar";
-			this->button19->UseVisualStyleBackColor = true;
-			// 
 			// textBox13
 			// 
 			this->textBox13->Location = System::Drawing::Point(86, 66);
@@ -727,12 +740,13 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 			// 
 			// button18
 			// 
-			this->button18->Location = System::Drawing::Point(264, 64);
+			this->button18->Location = System::Drawing::Point(114, 102);
 			this->button18->Name = L"button18";
 			this->button18->Size = System::Drawing::Size(55, 23);
 			this->button18->TabIndex = 11;
 			this->button18->Text = L"Editar";
 			this->button18->UseVisualStyleBackColor = true;
+			this->button18->Click += gcnew System::EventHandler(this, &frmProfesor::button18_Click);
 			// 
 			// label14
 			// 
@@ -745,18 +759,26 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 			// 
 			// groupBox5
 			// 
+			this->groupBox5->Controls->Add(this->button16);
 			this->groupBox5->Controls->Add(this->textBox12);
-			this->groupBox5->Controls->Add(this->button20);
 			this->groupBox5->Controls->Add(this->label11);
 			this->groupBox5->Controls->Add(this->textBox15);
 			this->groupBox5->Controls->Add(this->label15);
-			this->groupBox5->Controls->Add(this->button17);
 			this->groupBox5->Location = System::Drawing::Point(37, 74);
 			this->groupBox5->Name = L"groupBox5";
-			this->groupBox5->Size = System::Drawing::Size(335, 127);
+			this->groupBox5->Size = System::Drawing::Size(273, 142);
 			this->groupBox5->TabIndex = 18;
 			this->groupBox5->TabStop = false;
 			this->groupBox5->Text = L"Contacto";
+			// 
+			// button16
+			// 
+			this->button16->Location = System::Drawing::Point(114, 113);
+			this->button16->Name = L"button16";
+			this->button16->Size = System::Drawing::Size(55, 23);
+			this->button16->TabIndex = 14;
+			this->button16->Text = L"Editar";
+			this->button16->UseVisualStyleBackColor = true;
 			// 
 			// textBox12
 			// 
@@ -765,15 +787,6 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 			this->textBox12->ReadOnly = true;
 			this->textBox12->Size = System::Drawing::Size(172, 20);
 			this->textBox12->TabIndex = 7;
-			// 
-			// button20
-			// 
-			this->button20->Location = System::Drawing::Point(264, 79);
-			this->button20->Name = L"button20";
-			this->button20->Size = System::Drawing::Size(55, 23);
-			this->button20->TabIndex = 17;
-			this->button20->Text = L"Editar";
-			this->button20->UseVisualStyleBackColor = true;
 			// 
 			// label11
 			// 
@@ -801,15 +814,6 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 			this->label15->TabIndex = 15;
 			this->label15->Text = L"Celular :";
 			// 
-			// button17
-			// 
-			this->button17->Location = System::Drawing::Point(264, 37);
-			this->button17->Name = L"button17";
-			this->button17->Size = System::Drawing::Size(55, 23);
-			this->button17->TabIndex = 8;
-			this->button17->Text = L"Editar";
-			this->button17->UseVisualStyleBackColor = true;
-			// 
 			// label9
 			// 
 			this->label9->AutoSize = true;
@@ -818,26 +822,6 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 			this->label9->Size = System::Drawing::Size(172, 13);
 			this->label9->TabIndex = 0;
 			this->label9->Text = L"Configuración general de la cuenta";
-			// 
-			// Column10
-			// 
-			this->Column10->HeaderText = L"DNI";
-			this->Column10->Name = L"Column10";
-			// 
-			// Column7
-			// 
-			this->Column7->HeaderText = L"Nombre";
-			this->Column7->Name = L"Column7";
-			// 
-			// Column8
-			// 
-			this->Column8->HeaderText = L"Apellido Paterno";
-			this->Column8->Name = L"Column8";
-			// 
-			// Column9
-			// 
-			this->Column9->HeaderText = L"Apellido Materno";
-			this->Column9->Name = L"Column9";
 			// 
 			// frmProfesor
 			// 
@@ -884,17 +868,35 @@ private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e)
 }
 private: System::Void textBox4_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
-private: System::Void frmProfesor_Load(System::Object^ sender, System::EventArgs^ e) {
-	ProfesorController^ gestorDatosAlumno = gcnew ProfesorController();
-	LogeoController^ gestorLogeo = gcnew LogeoController();
-	this->dataGridView4->Rows->Clear();
+	private: System::Void frmProfesor_Load(System::Object^ sender, System::EventArgs^ e) {
+		ProfesorController^ gestorDatosAlumno = gcnew ProfesorController();
+		LogeoController^ gestorLogeo = gcnew LogeoController();
 
-	array<String^>^ fila = gcnew array<String^>(5);
-	fila[0] = ProfesorLogeado->dni;
-	fila[1] = ProfesorLogeado->objNombre;
-	fila[2] = ProfesorLogeado->objApellidoPaterno;
-	fila[3] = ProfesorLogeado->objApellidoMaterno;
-	this->dataGridView4->Rows->Add(fila);
+		this->dataGridView4->Rows->Clear();
+
+		array<String^>^ fila = gcnew array<String^>(5);
+		fila[0] = ProfesorLogeado->dni;
+		fila[1] = ProfesorLogeado->objNombre;
+		fila[2] = ProfesorLogeado->objApellidoPaterno;
+		fila[3] = ProfesorLogeado->objApellidoMaterno;
+		this->dataGridView4->Rows->Add(fila);
+
+		this->textBox14->Text=ProfesorLogeado->objUsuario;
+		this->textBox13->Text = ProfesorLogeado->objContrasenha;
+	}
+
+private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ e) {
 }
+	private: System::Void button18_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		String^ UsuarioProfesorEditar = this->textBox14->Text;
+		String^ ContrasenhaProfesorEditar = this->textBox13->Text;
+		frmEditarAccesoProfesor^ ventanaEditarAccesoProfesor= gcnew frmEditarAccesoProfesor(UsuarioProfesorEditar, ContrasenhaProfesorEditar);
+		ventanaEditarAccesoProfesor->ShowDialog();
+		/*PartidoPoliticoController^ gestorPartidoPolitico = gcnew PartidoPoliticoController();
+		gestorPartidoPolitico->CargarPartidosDesdeArchivo();
+		List<PartidoPolitico^>^ objListaPartidos = gestorPartidoPolitico->obtenerListaPartidos();
+		mostrarGrilla(objListaPartidos);*/
+	}
 };
 }
