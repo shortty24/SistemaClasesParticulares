@@ -21,7 +21,7 @@ Profesor^ ProfesorController::buscaProfesor(String^ usuarioProfesor) {
 		String^ nombre = palabras[6];
 
 		if (usuario == usuarioProfesor) {
-			String^ numCelular = palabras[9];
+			String^ numCelular = "9123"; // falta modificar
 			objProfesorEncontrado = gcnew Profesor(dni, usuario, contrasenha, apellidoPaterno, apellidoMaterno, nombre, numCelular);
 			break;
 		}
