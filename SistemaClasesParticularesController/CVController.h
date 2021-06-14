@@ -8,7 +8,7 @@ namespace SistemaClasesParticularesController {
 		List<CV^>^ listaCV;
 	public:
 		CVController();
-
+		String^ obtenerEmpresaRef(String^ dniProfesor);
 	};
 
 }
