@@ -1,7 +1,7 @@
-A;72348122;Fernando14;fca159;Nanez;Flores;Fernando
-A;72238113;Carlos124;carlitos002;Lopez;Tunez;Carlos
-A;72145159;Pedro513;meca999;Tunquer;Quispe;Pedro
-P;42248643;Raul05;good123;Almora;Hernandez;Raul;21ABCEDU;Trilce;925165158
-P;43248547;Victor98;acvd125;Alva;Campos;Victor;45TBTEDU;PUCP;983363158
-P;41248543;Felipe15;Fqr159;Rojas;Quispe;Felipe;73FPDEDU;USIL;954164158
-M;40048142;Juan10;mpato321;Corrales;Garcia;Juan
+A;72348122;Fernando14;fca159;Nanez;Flores;Fernando;fernando14@gmail.com
+A;72238113;Carlos124;carlitos002;Lopez;Tunez;Carlos;Carlos124@gmail.com
+A;72145159;Pedro513;meca999;Tunquer;Quispe;Pedro;Pedro513@gmail.com
+P;42248643;Raul05;good123;Almora;Hernandez;Raul;Raul05@gmail.com
+P;43248547;Victor98;acvd125;Alva;Campos;Victor;Victor98@gmail.com
+P;41248543;Felipe15;Fqr159;Rojas;Quispe;Felipe;Felipe15@gmail.com
+M;40048142;Juan10;mpato321;Corrales;Garcia;Juan;Juan10@gmail.com

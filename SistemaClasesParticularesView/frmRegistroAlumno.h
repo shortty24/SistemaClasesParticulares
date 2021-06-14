@@ -273,9 +273,9 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	String^ ApellidoMaterno = this->textBox5->Text;
 	String^ Correo = this->textBox6->Text;
 	String^ Contrasenha = this->textBox7->Text;
-	Alumno^ objAlumno = gcnew Alumno(CodigoUsuario, Usuario, DNI, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Contrasenha);
+	Persona^ objPersona = gcnew Persona(CodigoUsuario, DNI, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre, Correo);
 	RegistroController^ objRegistro = gcnew RegistroController();
-	objRegistro->GuardarNuevoAlumnoEnArchivo(objAlumno);
+	objRegistro->GuardarNuevoUsuarioEnArchivo(objPersona);
 	MessageBox::Show("Se ha registrado con éxito");
 	this->Close();
 	//RegistroController^ objgestorRegistro = gcnew RegistroController();
