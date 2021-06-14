@@ -2,10 +2,9 @@
 
 using namespace SistemaClasesParticularesModel;
 
-/*Pago::Pago(int fechaPago, String^ objEstado, Clase^ objClase) {
+Pago::Pago(String^ fechaPago, String^ objEstado, Inscripcion^ objInscripcion, Administrador^ objAdministrador) {
 	this->fechaPago = fechaPago;
 	this->objEstado = objEstado;
-	this->objClase = objClase;
-	this->listaInscripcion=gcnew List<Inscripcion^>();
-
-}*/
+	this->objInscripcion = objInscripcion;
+	this->objAdministrador = objAdministrador;
+}
