@@ -117,12 +117,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AlumnoController.h" />
+    <ClInclude Include="CursoController.h" />
     <ClInclude Include="LogeoController.h" />
     <ClInclude Include="ProfesorController.h" />
     <ClInclude Include="RegistroController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AlumnoController.cpp" />
+    <ClCompile Include="CursoController.cpp" />
     <ClCompile Include="LogeoController.cpp" />
     <ClCompile Include="ProfesorController.cpp" />
     <ClCompile Include="RegistroController.cpp" />

@@ -17,6 +17,7 @@ namespace SistemaClasesParticularesModel {
 			int calificacion;
 			int horario;
 			int precio;
+			String^ numCelular;
 			//se crea una listaCursos que sería un objeto del tipo lista de objeto cursos ( listaCursos sería un arreglo dinámico)
 			//CV^ objCV;
 			Administrador^ objAdministrador;
@@ -25,5 +26,6 @@ namespace SistemaClasesParticularesModel {
 			//Profesor();
 			Profesor(String^ codigoUsuario, String^ objUsuario, String^ dni, String^ objNombre, String^ objApellidoPaterno, String^ objApellidoMaterno, String^ objCorreo, String^ objContrasenha);
 			Profesor(int calificacion, int horario, int precio, Administrador^ objAdministrador, String^ dni, String^ objUsuario, String^ objContrasenha, String^ objApellidoPaterno, String^ objApellidoMaterno, String^ objNombre);
+			Profesor(String^ dni, String^ objUsuario, String^ objContrasenha, String^ objApellidoPaterno, String^ objApellidoMaterno, String^ objNombre, String^ numCelular);
 	};
 }
