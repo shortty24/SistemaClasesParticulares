@@ -9,6 +9,7 @@ RegistroController::RegistroController() {
 
 	this->Repite = Repite;
 	this->listaPersonas = gcnew List<Persona^>();
+	this->listaCV = gcnew List<CV^>();
 }
 
 void RegistroController::CargarPersonasDesdeArchivo() {
@@ -18,29 +19,67 @@ void RegistroController::CargarPersonasDesdeArchivo() {
 	String^ separadores = ";";
 	for each (String ^ lineaPersona in lineas) {
 		array<String^>^ palabras = lineaPersona->Split(separadores->ToCharArray());
-		String^ dni = palabras[1];
-		String^ Usuario = palabras[2];
-		String^ Contrasenha = palabras[3];
-		String^ ApellidoPaterno = palabras[4];
-		String^ ApellidoMaterno = palabras[5];
-		String^ Nombre = palabras[6];
-		Persona^ objPersona = gcnew Persona(dni, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno,  Nombre);
-		this->listaPersonas->Add(objPersona);
+			String^ codigoUsuario = palabras[0];
+			String^ dni = palabras[1];
+			String^ Usuario = palabras[2];
+			String^ Contrasenha = palabras[3];
+			String^ ApellidoPaterno = palabras[4];
+			String^ ApellidoMaterno = palabras[5];
+			String^ Nombre = palabras[6];
+			String^ Correo = palabras[7];
+			Persona^ objPersona = gcnew Persona(codigoUsuario, dni, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre,Correo);
+			this->listaPersonas->Add(objPersona);
+		//}
+	}
+}
+
+void RegistroController::CargarCVsDesdeArchivo() {
+	this->listaCV->Clear();
+	array<String^>^ lineas = File::ReadAllLines("CVs.txt");
+
+	String^ separadores = ";";
+	for each (String ^ lineaCV in lineas) {
+		array<String^>^ palabras = lineaCV->Split(separadores->ToCharArray());
+		String^ DNI = palabras[0];
+		String^ codigoMinedu = palabras[1];
+		String^ Empresa = palabras[2];
+		int NumeroEmpresa = Convert::ToInt32(palabras[3]);
+		CV^ objCV = gcnew CV(DNI, codigoMinedu, Empresa, NumeroEmpresa);
+		this->listaCV->Add(objCV);
 	}
 }
 
 
-void RegistroController::GuardarNuevoAlumnoEnArchivo(Alumno^ objAlumno) {
+void RegistroController::GuardarNuevoUsuarioEnArchivo(Persona^ objPersona) {
 		this->listaPersonas->Clear();
+		//this->listaProfesores->Clear();
 		CargarPersonasDesdeArchivo();
-		this->listaPersonas->Add(objAlumno);
-
+		this->listaPersonas->Add(objPersona);
 		array<String^>^ lineasArchivoPersonas = gcnew array<String^>(this->listaPersonas->Count);
 		for (int i = 0; i < this->listaPersonas->Count; i++) {
 			Persona^ objPersona = this->listaPersonas[i];
-			lineasArchivoPersonas[i] = objPersona->dni + ";" + objPersona->objUsuario + ";" + objPersona->objContrasenha + ";" + objPersona->objApellidoPaterno + ";"+ objPersona->objApellidoMaterno + ";" +objPersona->objNombre;
+			//Profesor^ objProfesor = this->listaProfesores[n];
+				lineasArchivoPersonas[i] = objPersona->CodigoUsuario + ";" + objPersona->dni + ";" + objPersona->objUsuario + ";" + objPersona->objContrasenha + ";" + objPersona->objApellidoPaterno + ";" + objPersona->objApellidoMaterno + ";" + objPersona->objNombre + ";" + objPersona->objCorreo;
+			
 		}
+		
 		/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
-		File::WriteAllLines("Personas.txt", lineasArchivoPersonas);
-	
+		File::WriteAllLines("Personas.txt", lineasArchivoPersonas);	
+}
+
+void RegistroController::GuardarNuevoCV(CV^ objCV) {
+	this->listaCV->Clear();
+	//this->listaProfesores->Clear();
+	CargarCVsDesdeArchivo();
+	this->listaCV->Add(objCV);
+	array<String^>^ lineasArchivoCV = gcnew array<String^>(this->listaCV->Count);
+	for (int i = 0; i < this->listaCV->Count; i++) {
+		CV^ objCV = this->listaCV[i];
+		//Profesor^ objProfesor = this->listaProfesores[n];
+		lineasArchivoCV[i] = objCV->DniProfesor + ";" + objCV->objCodigoMinedu + ";" + objCV->objEmpresa + ";" + objCV->telefonoEmpresa;
+
+	}
+
+	/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
+	File::WriteAllLines("CVs.txt", lineasArchivoCV);
 }

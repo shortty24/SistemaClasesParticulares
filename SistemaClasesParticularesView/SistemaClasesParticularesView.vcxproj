@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClCompile Include="frmAlumno.cpp" />
     <ClCompile Include="frmCV.cpp" />
+    <ClCompile Include="frmInfoProfesorCurso.cpp" />
     <ClCompile Include="frmEditarAccesoProfesor.cpp" />
     <ClCompile Include="frmInscripcion.cpp" />
     <ClCompile Include="frmLogeo.cpp" />
@@ -150,6 +151,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="frmCV.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmInfoProfesorCurso.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="frmEditarAccesoProfesor.h">
@@ -192,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAlumno.resx">
       <DependentUpon>frmAlumno.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInfoProfesorCurso.resx">
+      <DependentUpon>frmInfoProfesorCurso.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEditarAccesoProfesor.resx">
       <DependentUpon>frmEditarAccesoProfesor.h</DependentUpon>

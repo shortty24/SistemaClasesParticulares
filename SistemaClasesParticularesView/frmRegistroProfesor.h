@@ -8,6 +8,8 @@ namespace SistemaClasesParticularesView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace SistemaClasesParticularesController;
+	using namespace SistemaClasesParticularesModel;
 
 	/// <summary>
 	/// Resumen de frmRegistroProfesor
@@ -50,7 +52,14 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::TextBox^ textBox3;
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::TextBox^ textBox1;
-	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::GroupBox^ groupBox1;
+	private: System::Windows::Forms::Label^ label10;
+	private: System::Windows::Forms::Label^ label9;
+	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::TextBox^ textBox10;
+	private: System::Windows::Forms::TextBox^ textBox9;
+	private: System::Windows::Forms::TextBox^ textBox8;
+
 
 	private:
 		/// <summary>
@@ -80,12 +89,19 @@ namespace SistemaClasesParticularesView {
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->textBox10 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
+			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(298, 353);
+			this->button1->Location = System::Drawing::Point(340, 416);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(130, 23);
 			this->button1->TabIndex = 29;
@@ -204,23 +220,78 @@ namespace SistemaClasesParticularesView {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(130, 20);
 			this->textBox1->TabIndex = 15;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox1_TextChanged);
 			// 
-			// button2
+			// groupBox1
 			// 
-			this->button2->Location = System::Drawing::Point(340, 310);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(130, 23);
-			this->button2->TabIndex = 30;
-			this->button2->Text = L"Adjuntar CV";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &frmRegistroProfesor::button2_Click);
+			this->groupBox1->Controls->Add(this->label10);
+			this->groupBox1->Controls->Add(this->label9);
+			this->groupBox1->Controls->Add(this->label8);
+			this->groupBox1->Controls->Add(this->textBox10);
+			this->groupBox1->Controls->Add(this->textBox9);
+			this->groupBox1->Controls->Add(this->textBox8);
+			this->groupBox1->Location = System::Drawing::Point(276, 310);
+			this->groupBox1->Name = L"groupBox1";
+			this->groupBox1->Size = System::Drawing::Size(332, 100);
+			this->groupBox1->TabIndex = 31;
+			this->groupBox1->TabStop = false;
+			this->groupBox1->Text = L"Datos de CV";
+			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Location = System::Drawing::Point(231, 37);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(88, 13);
+			this->label10->TabIndex = 5;
+			this->label10->Text = L"Numero Empresa";
+			// 
+			// label9
+			// 
+			this->label9->AutoSize = true;
+			this->label9->Location = System::Drawing::Point(133, 37);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(48, 13);
+			this->label9->TabIndex = 4;
+			this->label9->Text = L"Empresa";
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(6, 37);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(78, 13);
+			this->label8->TabIndex = 3;
+			this->label8->Text = L"Codigo Minedu";
+			// 
+			// textBox10
+			// 
+			this->textBox10->Location = System::Drawing::Point(221, 53);
+			this->textBox10->Name = L"textBox10";
+			this->textBox10->Size = System::Drawing::Size(100, 20);
+			this->textBox10->TabIndex = 2;
+			// 
+			// textBox9
+			// 
+			this->textBox9->Location = System::Drawing::Point(115, 53);
+			this->textBox9->Name = L"textBox9";
+			this->textBox9->Size = System::Drawing::Size(100, 20);
+			this->textBox9->TabIndex = 1;
+			// 
+			// textBox8
+			// 
+			this->textBox8->Location = System::Drawing::Point(9, 53);
+			this->textBox8->Name = L"textBox8";
+			this->textBox8->Size = System::Drawing::Size(100, 20);
+			this->textBox8->TabIndex = 0;
+			this->textBox8->TextChanged += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox8_TextChanged);
 			// 
 			// frmRegistroProfesor
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(718, 477);
-			this->Controls->Add(this->button2);
+			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->textBox7);
@@ -238,6 +309,8 @@ namespace SistemaClasesParticularesView {
 			this->Controls->Add(this->textBox1);
 			this->Name = L"frmRegistroProfesor";
 			this->Text = L"frmRegistroProfesor";
+			this->groupBox1->ResumeLayout(false);
+			this->groupBox1->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -246,7 +319,28 @@ namespace SistemaClasesParticularesView {
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	Close();
+	String^ CodigoUsuario = "P";
+	String^ Usuario = this->textBox1->Text;
+	String^ DNI = this->textBox2->Text;
+	String^ Nombre = this->textBox3->Text;
+	String^ ApellidoPaterno = this->textBox4->Text;
+	String^ ApellidoMaterno = this->textBox5->Text;
+	String^ Correo = this->textBox6->Text;
+	String^ Contrasenha = this->textBox7->Text;
+	String^ CodigoMinedu = this->textBox8->Text;
+	String^ Empresa = this->textBox9->Text;
+	int NumeroEmpresa = Convert::ToInt32(this->textBox10->Text);
+	Persona^ objPersona = gcnew Persona(CodigoUsuario, DNI, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre, Correo);
+	CV^ objCV = gcnew CV(DNI, CodigoMinedu, Empresa, NumeroEmpresa);
+	RegistroController^ objRegistro = gcnew RegistroController();
+	objRegistro->GuardarNuevoUsuarioEnArchivo(objPersona);
+	objRegistro->GuardarNuevoCV(objCV);
+	MessageBox::Show("Se ha registrado con éxito");
+	this->Close();
+}
+private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox8_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

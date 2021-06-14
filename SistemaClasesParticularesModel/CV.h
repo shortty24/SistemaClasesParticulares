@@ -1,5 +1,5 @@
 #pragma once
-#include "Profesor.h"
+//#include "Profesor.h"
 
 namespace SistemaClasesParticularesModel {
 	//para reconocer el String
@@ -7,16 +7,17 @@ namespace SistemaClasesParticularesModel {
 
 	public ref class CV {
 
-	private:
+	public:
 		//int codigo;
 		String^ objCodigoMinedu;
 		String^ objEmpresa;
 		int telefonoEmpresa;
-		Profesor^ CV;
+		String^ DniProfesor;
+		//Profesor^ CV;
 
 	public:
 		//CV();
-		//CV(String^ objCodigoMinedu, String^ objEmpresa, int telefonoEmpresa);
+		CV(String^ DniProfesor, String^ objCodigoMinedu, String^ objEmpresa, int telefonoEmpresa);
 
 	};
 }
