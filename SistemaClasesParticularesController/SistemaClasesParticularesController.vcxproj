@@ -119,6 +119,7 @@
     <ClInclude Include="AlumnoController.h" />
     <ClInclude Include="ClaseController.h" />
     <ClInclude Include="CursoController.h" />
+    <ClInclude Include="CVController.h" />
     <ClInclude Include="InscripcionController.h" />
     <ClInclude Include="LogeoController.h" />
     <ClInclude Include="PagoController.h" />
@@ -130,6 +131,7 @@
     <ClCompile Include="AlumnoController.cpp" />
     <ClCompile Include="ClaseController.cpp" />
     <ClCompile Include="CursoController.cpp" />
+    <ClCompile Include="CVController.cpp" />
     <ClCompile Include="InscripcionController.cpp" />
     <ClCompile Include="LogeoController.cpp" />
     <ClCompile Include="PagoController.cpp" />

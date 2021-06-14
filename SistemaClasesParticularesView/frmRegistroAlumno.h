@@ -265,19 +265,24 @@ private: System::Void textBox7_TextChanged(System::Object^ sender, System::Event
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	String^ CodigoUsuario = "A";
-	String^ Usuario= this->textBox1->Text;
-	String^ DNI = this->textBox2->Text;
-	String^ Nombre = this->textBox3->Text;
-	String^ ApellidoPaterno = this->textBox4->Text;
-	String^ ApellidoMaterno = this->textBox5->Text;
-	String^ Correo = this->textBox6->Text;
-	String^ Contrasenha = this->textBox7->Text;
-	Persona^ objPersona = gcnew Persona(CodigoUsuario, DNI, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre, Correo);
-	RegistroController^ objRegistro = gcnew RegistroController();
-	objRegistro->GuardarNuevoUsuarioEnArchivo(objPersona);
-	MessageBox::Show("Se ha registrado con éxito");
-	this->Close();
+	if (textBox1->Text != "" && textBox2->Text != "" && textBox3->Text != "" && textBox4->Text != "" && textBox5->Text != "" && textBox6->Text != "" && textBox7->Text != "") {
+		String^ CodigoUsuario = "A";
+		String^ Usuario = this->textBox1->Text;
+		String^ DNI = this->textBox2->Text;
+		String^ Nombre = this->textBox3->Text;
+		String^ ApellidoPaterno = this->textBox4->Text;
+		String^ ApellidoMaterno = this->textBox5->Text;
+		String^ Correo = this->textBox6->Text;
+		String^ Contrasenha = this->textBox7->Text;
+		Persona^ objPersona = gcnew Persona(CodigoUsuario, DNI, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre, Correo);
+		RegistroController^ objRegistro = gcnew RegistroController();
+		objRegistro->GuardarNuevoUsuarioEnArchivo(objPersona);
+		MessageBox::Show("Se ha registrado con éxito");
+		this->Close();
+	}
+	else {
+		MessageBox::Show(" Por favor llene todos los datos");
+	}
 	//RegistroController^ objgestorRegistro = gcnew RegistroController();
 	//RegistroNuevoAlumno(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, textBox7);
 }

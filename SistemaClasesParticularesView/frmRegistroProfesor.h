@@ -319,24 +319,27 @@ namespace SistemaClasesParticularesView {
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	String^ CodigoUsuario = "P";
-	String^ Usuario = this->textBox1->Text;
-	String^ DNI = this->textBox2->Text;
-	String^ Nombre = this->textBox3->Text;
-	String^ ApellidoPaterno = this->textBox4->Text;
-	String^ ApellidoMaterno = this->textBox5->Text;
-	String^ Correo = this->textBox6->Text;
-	String^ Contrasenha = this->textBox7->Text;
-	String^ CodigoMinedu = this->textBox8->Text;
-	String^ Empresa = this->textBox9->Text;
-	int NumeroEmpresa = Convert::ToInt32(this->textBox10->Text);
-	Persona^ objPersona = gcnew Persona(CodigoUsuario, DNI, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre, Correo);
-	CV^ objCV = gcnew CV(DNI, CodigoMinedu, Empresa, NumeroEmpresa);
-	RegistroController^ objRegistro = gcnew RegistroController();
-	objRegistro->GuardarNuevoUsuarioEnArchivo(objPersona);
-	objRegistro->GuardarNuevoCV(objCV);
-	MessageBox::Show("Se ha registrado con éxito");
-	this->Close();
+	if (textBox1->Text != "" && textBox2->Text != "" && textBox3->Text != "" && textBox4->Text != "" && textBox5->Text != "" && textBox6->Text != "" && textBox7->Text != "" && textBox8->Text != "" && textBox9->Text != "") {
+		String^ CodigoUsuario = "P";
+		String^ Usuario = this->textBox1->Text;
+		String^ DNI = this->textBox2->Text;
+		String^ Nombre = this->textBox3->Text;
+		String^ ApellidoPaterno = this->textBox4->Text;
+		String^ ApellidoMaterno = this->textBox5->Text;
+		String^ Correo = this->textBox6->Text;
+		String^ Contrasenha = this->textBox7->Text;
+		String^ CodigoMinedu = this->textBox8->Text;
+		String^ Empresa = this->textBox9->Text;
+		String^ NumeroEmpresa = this->textBox10->Text;
+		String^ Validacion = "0";
+		Persona^ objPersona = gcnew Persona(CodigoUsuario, DNI, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre, Correo);
+		CV^ objCV = gcnew CV(DNI, CodigoMinedu, Empresa, NumeroEmpresa,Validacion);
+		RegistroController^ objRegistro = gcnew RegistroController();
+		objRegistro->GuardarNuevoUsuarioEnArchivo(objPersona);
+		objRegistro->GuardarNuevoCV(objCV);
+		MessageBox::Show("Se ha registrado con éxito");
+		this->Close();
+	}
 }
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }

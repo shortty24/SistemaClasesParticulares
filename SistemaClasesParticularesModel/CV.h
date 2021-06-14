@@ -11,13 +11,14 @@ namespace SistemaClasesParticularesModel {
 		//int codigo;
 		String^ objCodigoMinedu;
 		String^ objEmpresa;
-		int telefonoEmpresa;
+		String^ telefonoEmpresa;
 		String^ DniProfesor;
+		String^ Validación;
 		//Profesor^ CV;
 
 	public:
 		//CV();
-		CV(String^ DniProfesor, String^ objCodigoMinedu, String^ objEmpresa, int telefonoEmpresa);
+		CV(String^ DniProfesor, String^ objCodigoMinedu, String^ objEmpresa, String^ telefonoEmpresa, String^ Validación);
 
 	};
 }
