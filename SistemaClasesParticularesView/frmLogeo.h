@@ -49,6 +49,8 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::Button^ button1;
 	private: Alumno^ AlumnoLogeado;
+	private: Profesor^ ProfesorLogeado;
+
 	private:
 		/// <summary>
 		/// Variable del diseñador necesaria.
@@ -143,8 +145,10 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		ventanaAlumno->Show();
 	}
 	else if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 2) {
+		ProfesorController^ objGestorProfesor = gcnew ProfesorController();
 
-		frmProfesor^ ventanaProfesor = gcnew frmProfesor();
+		ProfesorLogeado = objGestorProfesor->buscaProfesor(textBox1->Text);
+		frmProfesor^ ventanaProfesor = gcnew frmProfesor(this->ProfesorLogeado);
 		ventanaProfesor->Show();
 	}
 	else if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 3) {

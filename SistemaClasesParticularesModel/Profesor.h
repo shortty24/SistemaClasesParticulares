@@ -18,7 +18,6 @@ namespace SistemaClasesParticularesModel {
 			int precio;
 			String^ numCelular;
 			//se crea una listaCursos que sería un objeto del tipo lista de objeto cursos ( listaCursos sería un arreglo dinámico)
-			
 			Administrador^ objAdministrador;
 
 		public:
