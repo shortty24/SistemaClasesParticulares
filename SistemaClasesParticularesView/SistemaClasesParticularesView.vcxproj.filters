@@ -57,6 +57,9 @@
     <ClCompile Include="frmInfoProfesorCurso.cpp">
       <Filter>Archivos de encabezado</Filter>
     </ClCompile>
+    <ClCompile Include="frmEditarAccesoProfesor.cpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="frmPrincipal.h">
@@ -96,6 +99,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="frmInfoProfesorCurso.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="frmEditarAccesoProfesor.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

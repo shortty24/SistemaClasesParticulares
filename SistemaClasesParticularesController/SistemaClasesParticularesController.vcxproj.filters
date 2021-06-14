@@ -30,6 +30,12 @@
     <ClInclude Include="CursoController.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="PersonaController.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="CVController.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LogeoController.cpp">
@@ -45,6 +51,12 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="CursoController.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="PersonaController.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="CVController.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

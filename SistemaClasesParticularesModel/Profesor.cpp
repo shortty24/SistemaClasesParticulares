@@ -21,13 +21,12 @@ Profesor::Profesor(String^ CodigoUsuario, String^ objUsuario, String^ dni, Strin
 	//this->objCV = objCV;
 
 }
-Profesor::Profesor(String^ dni, String^ objUsuario, String^ objContrasenha, String^ objApellidoPaterno, String^ objApellidoMaterno, String^ objNombre, String^ numCelular) :Persona(CodigoUsuario,dni, objUsuario, objContrasenha, objApellidoPaterno, objApellidoMaterno, objNombre, objCorreo) {
+Profesor::Profesor(String^ dni, String^ objUsuario, String^ objContrasenha, String^ objApellidoPaterno, String^ objApellidoMaterno, String^ objNombre) :Persona(CodigoUsuario,dni, objUsuario, objContrasenha, objApellidoPaterno, objApellidoMaterno, objNombre, objCorreo) {
 	this->dni = dni;
 	this->objUsuario = objUsuario;
 	this->objContrasenha = objContrasenha;
 	this->objApellidoPaterno = objApellidoPaterno;
 	this->objApellidoMaterno = objApellidoMaterno;
 	this->objNombre = objNombre;
-	this->numCelular = numCelular;
 
 }
