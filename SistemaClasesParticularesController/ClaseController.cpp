@@ -23,11 +23,11 @@ List<Clase^>^ ClaseController::ClasesProgramadas(String^ dniProfesorBuscar){
 		Curso^ objCurso = buscarCursoxNombreCurso(curso);
 		String^ hora = palabras[3];
 		String^ fecha = palabras[4];
-		Inscripcion^ objInscripcion = buscarInsrcipcionxHoraxFecha(hora, fecha);
+		Inscripcion^ objInscripcion = buscarInscripcionxHoraxFecha(hora, fecha);
 		String^ link = palabras[5];
 		
 		if (dniProfesor == dniProfesorBuscar) {
-			Clase^ objClaseProgramada = gcnew Clase(objAlumno, objProfesor, objCurso, objInscripcion, link);
+			Clase^ objClaseProgramada = gcnew Clase(objAlumno, objProfesor, objCurso, hora, fecha, link);
 			listaClasesProgramadas->Add(objClaseProgramada);
 		}
 		
@@ -104,7 +104,7 @@ Curso^ ClaseController::buscarCursoxNombreCurso(String^ cursoBuscar) {
 	return objCursoEncontrado;
 }
 
-Inscripcion^ ClaseController::buscarInsrcipcionxHoraxFecha(String^ horaBuscar, String^ fechaBuscar) {
+Inscripcion^ ClaseController::buscarInscripcionxHoraxFecha(String^ horaBuscar, String^ fechaBuscar) {
 	Inscripcion^ objInscripcionEncontrada;
 	array<String^>^ lineas = File::ReadAllLines("Inscripciones.txt");
 
@@ -113,13 +113,19 @@ Inscripcion^ ClaseController::buscarInsrcipcionxHoraxFecha(String^ horaBuscar, S
 		array<String^>^ palabras = lineaPersonas->Split(separadores->ToCharArray());
 		String^ dniAlumno = palabras[0];
 		Alumno^ objAlumno = buscarAlumnoxDNI(dniAlumno);
-		String^ curso = palabras[1];
+		String^ dniProfesor = palabras[1];
+		Profesor^ objProfesor = buscarProfesorxDNI(dniProfesor);
+		String^ curso = palabras[2];
 		Curso^ objCurso = buscarCursoxNombreCurso(curso);
-		String^ hora = palabras[2];
-		String^ fecha = palabras[3];
+		String^ horaInscripcion = palabras[3];
+		String^ fechaInscripcion = palabras[4];
+		int tiempoReserva = Convert::ToInt32(palabras[5]);
+		String^ horaClase = palabras[6];
+		String^ fechaClase= palabras[7];
+		int codigo = Convert::ToInt32(palabras[8]);
 
-		if ((hora == horaBuscar)&&(fecha== fechaBuscar)) {
-			objInscripcionEncontrada = gcnew Inscripcion(objAlumno, objCurso, hora, fecha);
+		if ((horaClase == horaBuscar)&&(fechaClase == fechaBuscar)) {
+			objInscripcionEncontrada = gcnew Inscripcion(objAlumno, objCurso, horaInscripcion, fechaInscripcion, tiempoReserva);
 			break;
 		}
 	}

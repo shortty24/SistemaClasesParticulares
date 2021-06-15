@@ -13,7 +13,7 @@ namespace SistemaClasesParticularesController {
 		Alumno^ buscarAlumnoxDNI(String^ dniAlumno);
 		Profesor^ buscarProfesorxDNI(String^ dniProfesor);
 		Curso^ buscarCursoxNombreCurso(String^ cursoBuscar);
-		Inscripcion^ buscarInsrcipcionxHoraxFecha(String^ horaBuscar, String^ fechaBuscar);
+		Inscripcion^ buscarInscripcionxHoraxFecha(String^ horaBuscar, String^ fechaBuscar);
 
 	};
 
