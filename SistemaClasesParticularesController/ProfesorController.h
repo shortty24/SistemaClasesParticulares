@@ -13,5 +13,6 @@ namespace SistemaClasesParticularesController {
 			ProfesorController();
 			Profesor^ buscaProfesor(String^ usuarioProfesor);
 			String^ obtenerUsuarioxNombreCompleto(String^ nombreCompleto);
+			String^ obtenerdnixNombreCompleto(String^ nombreCompleto);
 	};
 }

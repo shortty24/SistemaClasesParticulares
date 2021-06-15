@@ -440,7 +440,12 @@ namespace SistemaClasesParticularesView {
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	frmInscripcion^ ventanaInscripcion = gcnew frmInscripcion();
+	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
+	String^ nombreProfSeleccionado = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[2]->Value->ToString();
+	ProfesorController^ gestorProfesor = gcnew ProfesorController();
+	String^ dniProfesor;
+	dniProfesor = gestorProfesor->obtenerdnixNombreCompleto(nombreProfSeleccionado);
+	frmInscripcion^ ventanaInscripcion = gcnew frmInscripcion(dniProfesor);
 	ventanaInscripcion->ShowDialog();
 }
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {

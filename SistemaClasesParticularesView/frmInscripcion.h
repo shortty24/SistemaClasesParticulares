@@ -5,9 +5,12 @@ namespace SistemaClasesParticularesView {
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
+	using namespace System::Collections::Generic;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace SistemaClasesParticularesController;
+	using namespace SistemaClasesParticularesModel;
 
 	/// <summary>
 	/// Resumen de frmInscripcion
@@ -18,6 +21,14 @@ namespace SistemaClasesParticularesView {
 		frmInscripcion(void)
 		{
 			InitializeComponent();
+			//
+			//TODO: agregar código de constructor aquí
+			//
+		}
+		frmInscripcion(String^ dniProfesor)
+		{
+			InitializeComponent();
+			this->dniProfesor = dniProfesor;
 			//
 			//TODO: agregar código de constructor aquí
 			//
@@ -58,7 +69,7 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
-
+	private: String^ dniProfesor;
 	protected:
 
 
@@ -105,9 +116,9 @@ namespace SistemaClasesParticularesView {
 				this->Column1,
 					this->Column5, this->Column2, this->Column3, this->Column4, this->Column6, this->Column7
 			});
-			this->dataGridView1->Location = System::Drawing::Point(12, 133);
+			this->dataGridView1->Location = System::Drawing::Point(54, 199);
 			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(730, 81);
+			this->dataGridView1->Size = System::Drawing::Size(558, 118);
 			this->dataGridView1->TabIndex = 5;
 			// 
 			// Column1
@@ -155,44 +166,47 @@ namespace SistemaClasesParticularesView {
 			this->groupBox1->Controls->Add(this->label1);
 			this->groupBox1->Location = System::Drawing::Point(37, 36);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(656, 72);
+			this->groupBox1->Size = System::Drawing::Size(610, 131);
 			this->groupBox1->TabIndex = 6;
 			this->groupBox1->TabStop = false;
-			this->groupBox1->Text = L"Criterios de Busqueda:";
+			this->groupBox1->Text = L"Selección de Horario:";
 			// 
 			// comboBox3
 			// 
 			this->comboBox3->FormattingEnabled = true;
-			this->comboBox3->Location = System::Drawing::Point(490, 26);
+			this->comboBox3->Location = System::Drawing::Point(262, 92);
 			this->comboBox3->Name = L"comboBox3";
 			this->comboBox3->Size = System::Drawing::Size(121, 21);
 			this->comboBox3->TabIndex = 8;
+			this->comboBox3->SelectedIndexChanged += gcnew System::EventHandler(this, &frmInscripcion::comboBox3_SelectedIndexChanged);
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(437, 26);
+			this->label3->Location = System::Drawing::Point(170, 95);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(47, 13);
+			this->label3->Size = System::Drawing::Size(86, 13);
 			this->label3->TabIndex = 7;
-			this->label3->Text = L"Hora Fin";
+			this->label3->Text = L"Tiempo asesoría";
 			// 
 			// comboBox2
 			// 
 			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Location = System::Drawing::Point(280, 26);
+			this->comboBox2->Location = System::Drawing::Point(406, 29);
 			this->comboBox2->Name = L"comboBox2";
 			this->comboBox2->Size = System::Drawing::Size(121, 21);
 			this->comboBox2->TabIndex = 5;
+			this->comboBox2->SelectedIndexChanged += gcnew System::EventHandler(this, &frmInscripcion::comboBox2_SelectedIndexChanged);
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(216, 26);
+			this->label2->Location = System::Drawing::Point(308, 32);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(58, 13);
+			this->label2->Size = System::Drawing::Size(92, 13);
 			this->label2->TabIndex = 4;
-			this->label2->Text = L"Hora Inicio";
+			this->label2->Text = L"Horas Disponibles";
+			this->label2->Click += gcnew System::EventHandler(this, &frmInscripcion::label2_Click);
 			// 
 			// comboBox1
 			// 
@@ -201,6 +215,7 @@ namespace SistemaClasesParticularesView {
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(121, 21);
 			this->comboBox1->TabIndex = 3;
+			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &frmInscripcion::comboBox1_SelectedIndexChanged_2);
 			// 
 			// label1
 			// 
@@ -214,23 +229,25 @@ namespace SistemaClasesParticularesView {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(335, 241);
+			this->button1->Location = System::Drawing::Point(317, 421);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 2;
 			this->button1->Text = L"Pagar";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &frmInscripcion::button1_Click);
 			// 
 			// frmInscripcion
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(775, 289);
+			this->ClientSize = System::Drawing::Size(670, 481);
 			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->button1);
 			this->Name = L"frmInscripcion";
 			this->Text = L"frmInscripcion";
+			this->Load += gcnew System::EventHandler(this, &frmInscripcion::frmInscripcion_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
@@ -243,6 +260,59 @@ namespace SistemaClasesParticularesView {
 private: System::Void comboBox1_SelectedIndexChanged_1(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void frmInscripcion_Load(System::Object^ sender, System::EventArgs^ e) {
+	HorarioController^ gestorHorario = gcnew HorarioController();
+	List<Horario^>^ listaHorarios = gestorHorario->HorarioxProfesor(dniProfesor);
+	this->comboBox1->Items->Clear();
+	for (int i = 0; i < listaHorarios->Count; i++) {
+		this->comboBox1->Items->Add(listaHorarios[i]->dia);
+	}
+}
+private: System::Void comboBox1_SelectedIndexChanged_2(System::Object^ sender, System::EventArgs^ e) {
+	HorarioController^ gestorHorario = gcnew HorarioController();
+	List<Horario^>^ listaHorarios = gestorHorario->HorarioxProfesor(dniProfesor);
+	List<String^>^ horasxDia;
+	for (int i = 0; i < listaHorarios->Count; i++) {
+		this->comboBox2->Items->Clear();
+		if (this->comboBox1->Text == listaHorarios[i]->dia) {
+			horasxDia = listaHorarios[i]->horasDisponibles;
+			for (int j = 0; j < horasxDia->Count; j++) {
+				this->comboBox2->Items->Add(horasxDia[j]);
+			}
+			break;
+		}
+	}
+
+}
+private: System::Void comboBox3_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void comboBox2_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	HorarioController^ gestorHorario = gcnew HorarioController();
+	List<Horario^>^ listaHorarios = gestorHorario->HorarioxProfesor(dniProfesor);
+	List<String^>^ horasxDia;
+	for (int i = 0; i < listaHorarios->Count; i++) {
+		this->comboBox3->Items->Clear();
+		if (this->comboBox1->Text == listaHorarios[i]->dia) {
+			horasxDia = listaHorarios[i]->horasDisponibles;
+			for (int j = 0; j < horasxDia->Count; j++) {
+				if (this->comboBox2->Text == horasxDia[j]) {
+					this->comboBox3->Items->Add("1");
+					if (horasxDia[j] != "22") {
+						if ((Convert::ToInt32(horasxDia[j + 1]) - Convert::ToInt32(horasxDia[j]) == 1)) {
+							this->comboBox3->Items->Add("2");
+						}
+						break;
+					}
+				}
+			}
+			break;
+		}
+	}
 }
 };
 }

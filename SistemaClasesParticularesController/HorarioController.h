@@ -1,6 +1,6 @@
 #pragma once
 
-namespace SistemaEleccionesEstudiantilController {
+namespace SistemaClasesParticularesController {
 	using namespace System;
 	using namespace System::Collections::Generic;
 	using namespace SistemaClasesParticularesModel;
@@ -9,6 +9,6 @@ namespace SistemaEleccionesEstudiantilController {
 			List<Horario^>^ listaHorarios;
 		public:
 			HorarioController();
-
+			List<Horario^>^ HorarioxProfesor(String^ dniProfesor);
 	};
 }
