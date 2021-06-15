@@ -1,4 +1,4 @@
 CalculoI;Baja;Raul05
 FisicaI;Media;Victor98
-FísicaII;Baja;Victor98
+FisicaII;Baja;Victor98
 CalculoII;Media;Felipe15

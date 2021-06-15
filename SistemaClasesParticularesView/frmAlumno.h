@@ -53,7 +53,7 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::TabPage^ tabPage1;
 	private: System::Windows::Forms::GroupBox^ groupBox1;
 
-	private: System::Windows::Forms::TextBox^ textBox1;
+
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TabPage^ tabPage2;
 
@@ -91,6 +91,7 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+	private: System::Windows::Forms::ComboBox^ comboBox1;
 
 
 
@@ -119,7 +120,6 @@ namespace SistemaClasesParticularesView {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
@@ -138,6 +138,7 @@ namespace SistemaClasesParticularesView {
 			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -173,7 +174,7 @@ namespace SistemaClasesParticularesView {
 			this->tabPage1->Location = System::Drawing::Point(4, 22);
 			this->tabPage1->Name = L"tabPage1";
 			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage1->Size = System::Drawing::Size(494, 423);
+			this->tabPage1->Size = System::Drawing::Size(643, 423);
 			this->tabPage1->TabIndex = 0;
 			this->tabPage1->Text = L"Cursos disponibles";
 			this->tabPage1->UseVisualStyleBackColor = true;
@@ -227,8 +228,8 @@ namespace SistemaClasesParticularesView {
 			// 
 			// groupBox1
 			// 
+			this->groupBox1->Controls->Add(this->comboBox1);
 			this->groupBox1->Controls->Add(this->button1);
-			this->groupBox1->Controls->Add(this->textBox1);
 			this->groupBox1->Controls->Add(this->label1);
 			this->groupBox1->Location = System::Drawing::Point(19, 16);
 			this->groupBox1->Name = L"groupBox1";
@@ -239,21 +240,13 @@ namespace SistemaClasesParticularesView {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(341, 50);
+			this->button1->Location = System::Drawing::Point(323, 49);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(74, 26);
 			this->button1->TabIndex = 4;
 			this->button1->Text = L"Buscar";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &frmAlumno::button1_Click);
-			// 
-			// textBox1
-			// 
-			this->textBox1->Location = System::Drawing::Point(105, 54);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(210, 20);
-			this->textBox1->TabIndex = 1;
-			this->textBox1->TextChanged += gcnew System::EventHandler(this, &frmAlumno::textBox1_TextChanged);
 			// 
 			// label1
 			// 
@@ -270,7 +263,7 @@ namespace SistemaClasesParticularesView {
 			this->tabPage2->Location = System::Drawing::Point(4, 22);
 			this->tabPage2->Name = L"tabPage2";
 			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage2->Size = System::Drawing::Size(494, 423);
+			this->tabPage2->Size = System::Drawing::Size(643, 423);
 			this->tabPage2->TabIndex = 1;
 			this->tabPage2->Text = L"Clases inscritas";
 			this->tabPage2->UseVisualStyleBackColor = true;
@@ -290,7 +283,7 @@ namespace SistemaClasesParticularesView {
 			this->tabPage3->Location = System::Drawing::Point(4, 22);
 			this->tabPage3->Name = L"tabPage3";
 			this->tabPage3->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage3->Size = System::Drawing::Size(494, 423);
+			this->tabPage3->Size = System::Drawing::Size(643, 423);
 			this->tabPage3->TabIndex = 2;
 			this->tabPage3->Text = L"Quejas y/o recomendaciones";
 			this->tabPage3->UseVisualStyleBackColor = true;
@@ -338,7 +331,7 @@ namespace SistemaClasesParticularesView {
 			this->tabPage4->Location = System::Drawing::Point(4, 22);
 			this->tabPage4->Name = L"tabPage4";
 			this->tabPage4->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage4->Size = System::Drawing::Size(494, 423);
+			this->tabPage4->Size = System::Drawing::Size(643, 423);
 			this->tabPage4->TabIndex = 3;
 			this->tabPage4->Text = L"Calendario";
 			this->tabPage4->UseVisualStyleBackColor = true;
@@ -409,6 +402,15 @@ namespace SistemaClasesParticularesView {
 			this->Column7->HeaderText = L"Nombres";
 			this->Column7->Name = L"Column7";
 			// 
+			// comboBox1
+			// 
+			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"CalculoI", L"FisicaI", L"FisicaII", L"CalculoII" });
+			this->comboBox1->Location = System::Drawing::Point(75, 53);
+			this->comboBox1->Name = L"comboBox1";
+			this->comboBox1->Size = System::Drawing::Size(202, 21);
+			this->comboBox1->TabIndex = 5;
+			// 
 			// frmAlumno
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -444,16 +446,19 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ nombreSeleccinado = this->comboBox1->Text;
+	CursoController^ gestorDatosCurso = gcnew CursoController();
+	List<Curso^>^ listaCursosSeleccionados = gestorDatosCurso->CursosDisponiblesxNombre(nombreSeleccinado);
+
+	mostrarGrillaxLista(listaCursosSeleccionados);
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 }
-private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ e) {
-	CursoController^ gestorDatosCurso = gcnew CursoController();
-	ProfesorController^ gestorProfesor = gcnew ProfesorController();
-	List<Curso^>^ listaCursosDisponibles = gestorDatosCurso->CursosDisponibles();
+private: void mostrarGrillaxLista(List<Curso^>^ listaCursos) {
 	this->dataGridView1->Rows->Clear();
-	for (int i = 0; i < listaCursosDisponibles->Count; i++) {
-		Curso^ objCurso = listaCursosDisponibles[i];
+	ProfesorController^ gestorProfesor = gcnew ProfesorController();
+	for (int i = 0; i < listaCursos->Count; i++) {
+		Curso^ objCurso = listaCursos[i];
 		Profesor^ objProfesor = gestorProfesor->buscaProfesor(objCurso->usuarioProfesor);
 		array<String^>^ fila = gcnew array<String^>(4);
 		fila[0] = objCurso->nombreCurso;
@@ -461,6 +466,11 @@ private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ 
 		fila[2] = objProfesor->objNombre + " " + objProfesor->objApellidoPaterno + " " + objProfesor->objApellidoMaterno;
 		this->dataGridView1->Rows->Add(fila);
 	}
+}
+private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ e) {
+	CursoController^ gestorDatosCurso = gcnew CursoController();
+	List<Curso^>^ listaCursosDisponibles = gestorDatosCurso->CursosDisponibles();
+	mostrarGrillaxLista(listaCursosDisponibles);
 
 
 	this->dataGridView2->Rows->Clear();

@@ -9,7 +9,7 @@ namespace SistemaClasesParticularesController {
 	public:
 		CursoController();
 		List<Curso^>^ CursosDisponibles();
-
+		List<Curso^>^ CursosDisponiblesxNombre(String^ nombreDelCurso);
 	};
 
 }

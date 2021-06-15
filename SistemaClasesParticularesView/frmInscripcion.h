@@ -79,14 +79,6 @@ namespace SistemaClasesParticularesView {
 		void InitializeComponent(void)
 		{
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
-			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
-			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -94,6 +86,14 @@ namespace SistemaClasesParticularesView {
 			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
@@ -107,84 +107,8 @@ namespace SistemaClasesParticularesView {
 			});
 			this->dataGridView1->Location = System::Drawing::Point(12, 133);
 			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(747, 81);
+			this->dataGridView1->Size = System::Drawing::Size(730, 81);
 			this->dataGridView1->TabIndex = 5;
-			// 
-			// groupBox1
-			// 
-			this->groupBox1->Controls->Add(this->comboBox3);
-			this->groupBox1->Controls->Add(this->label3);
-			this->groupBox1->Controls->Add(this->comboBox2);
-			this->groupBox1->Controls->Add(this->label2);
-			this->groupBox1->Controls->Add(this->comboBox1);
-			this->groupBox1->Controls->Add(this->label1);
-			this->groupBox1->Location = System::Drawing::Point(37, 36);
-			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(656, 72);
-			this->groupBox1->TabIndex = 6;
-			this->groupBox1->TabStop = false;
-			this->groupBox1->Text = L"Criterios de Busqueda:";
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(335, 241);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 2;
-			this->button1->Text = L"Pagar";
-			this->button1->UseVisualStyleBackColor = true;
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(32, 29);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(25, 13);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"Día";
-			this->label1->Click += gcnew System::EventHandler(this, &frmInscripcion::label1_Click);
-			// 
-			// comboBox1
-			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(64, 29);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(121, 21);
-			this->comboBox1->TabIndex = 3;
-			// 
-			// comboBox2
-			// 
-			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Location = System::Drawing::Point(280, 26);
-			this->comboBox2->Name = L"comboBox2";
-			this->comboBox2->Size = System::Drawing::Size(121, 21);
-			this->comboBox2->TabIndex = 5;
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(216, 26);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(58, 13);
-			this->label2->TabIndex = 4;
-			this->label2->Text = L"Hora Inicio";
-			// 
-			// comboBox3
-			// 
-			this->comboBox3->FormattingEnabled = true;
-			this->comboBox3->Location = System::Drawing::Point(490, 26);
-			this->comboBox3->Name = L"comboBox3";
-			this->comboBox3->Size = System::Drawing::Size(121, 21);
-			this->comboBox3->TabIndex = 8;
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(437, 26);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(47, 13);
-			this->label3->TabIndex = 7;
-			this->label3->Text = L"Hora Fin";
 			// 
 			// Column1
 			// 
@@ -221,11 +145,87 @@ namespace SistemaClasesParticularesView {
 			this->Column7->HeaderText = L"Día";
 			this->Column7->Name = L"Column7";
 			// 
+			// groupBox1
+			// 
+			this->groupBox1->Controls->Add(this->comboBox3);
+			this->groupBox1->Controls->Add(this->label3);
+			this->groupBox1->Controls->Add(this->comboBox2);
+			this->groupBox1->Controls->Add(this->label2);
+			this->groupBox1->Controls->Add(this->comboBox1);
+			this->groupBox1->Controls->Add(this->label1);
+			this->groupBox1->Location = System::Drawing::Point(37, 36);
+			this->groupBox1->Name = L"groupBox1";
+			this->groupBox1->Size = System::Drawing::Size(656, 72);
+			this->groupBox1->TabIndex = 6;
+			this->groupBox1->TabStop = false;
+			this->groupBox1->Text = L"Criterios de Busqueda:";
+			// 
+			// comboBox3
+			// 
+			this->comboBox3->FormattingEnabled = true;
+			this->comboBox3->Location = System::Drawing::Point(490, 26);
+			this->comboBox3->Name = L"comboBox3";
+			this->comboBox3->Size = System::Drawing::Size(121, 21);
+			this->comboBox3->TabIndex = 8;
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(437, 26);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(47, 13);
+			this->label3->TabIndex = 7;
+			this->label3->Text = L"Hora Fin";
+			// 
+			// comboBox2
+			// 
+			this->comboBox2->FormattingEnabled = true;
+			this->comboBox2->Location = System::Drawing::Point(280, 26);
+			this->comboBox2->Name = L"comboBox2";
+			this->comboBox2->Size = System::Drawing::Size(121, 21);
+			this->comboBox2->TabIndex = 5;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(216, 26);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(58, 13);
+			this->label2->TabIndex = 4;
+			this->label2->Text = L"Hora Inicio";
+			// 
+			// comboBox1
+			// 
+			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Location = System::Drawing::Point(64, 29);
+			this->comboBox1->Name = L"comboBox1";
+			this->comboBox1->Size = System::Drawing::Size(121, 21);
+			this->comboBox1->TabIndex = 3;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(32, 29);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(25, 13);
+			this->label1->TabIndex = 0;
+			this->label1->Text = L"Día";
+			this->label1->Click += gcnew System::EventHandler(this, &frmInscripcion::label1_Click);
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(335, 241);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->TabIndex = 2;
+			this->button1->Text = L"Pagar";
+			this->button1->UseVisualStyleBackColor = true;
+			// 
 			// frmInscripcion
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(771, 289);
+			this->ClientSize = System::Drawing::Size(775, 289);
 			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->button1);
