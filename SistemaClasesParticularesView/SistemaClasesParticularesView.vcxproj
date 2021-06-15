@@ -132,10 +132,12 @@
   <ItemGroup>
     <ClCompile Include="frmAlumno.cpp" />
     <ClCompile Include="frmCV.cpp" />
+    <ClCompile Include="frmEditarHorario.cpp" />
     <ClCompile Include="frmInfoProfesorCurso.cpp" />
     <ClCompile Include="frmEditarAccesoProfesor.cpp" />
     <ClCompile Include="frmInscripcion.cpp" />
     <ClCompile Include="frmLogeo.cpp" />
+    <ClCompile Include="frmNuevoHorario.cpp" />
     <ClCompile Include="frmPrincipal.cpp" />
     <ClCompile Include="frmProfesor.cpp" />
     <ClCompile Include="frmProgramarClase.cpp" />
@@ -153,6 +155,9 @@
     <ClInclude Include="frmCV.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="frmEditarHorario.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="frmInfoProfesorCurso.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -163,6 +168,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="frmLogeo.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmNuevoHorario.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="frmPrincipal.h">
@@ -197,6 +205,9 @@
     <EmbeddedResource Include="frmAlumno.resx">
       <DependentUpon>frmAlumno.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmEditarHorario.resx">
+      <DependentUpon>frmEditarHorario.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmInfoProfesorCurso.resx">
       <DependentUpon>frmInfoProfesorCurso.h</DependentUpon>
     </EmbeddedResource>
@@ -208,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogeo.resx">
       <DependentUpon>frmLogeo.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNuevoHorario.resx">
+      <DependentUpon>frmNuevoHorario.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.h</DependentUpon>
