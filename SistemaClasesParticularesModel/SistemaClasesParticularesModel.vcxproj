@@ -116,6 +116,7 @@
     <ClInclude Include="CV.h" />
     <ClInclude Include="Curso.h" />
     <ClInclude Include="Clase.h" />
+    <ClInclude Include="Horario.h" />
     <ClInclude Include="Inscripcion.h" />
     <ClInclude Include="Pago.h" />
     <ClInclude Include="Profesor.h" />
@@ -127,6 +128,7 @@
     <ClCompile Include="Clase.cpp" />
     <ClCompile Include="Curso.cpp" />
     <ClCompile Include="CV.cpp" />
+    <ClCompile Include="Horario.cpp" />
     <ClCompile Include="Inscripcion.cpp" />
     <ClCompile Include="Pago.cpp" />
     <ClCompile Include="Persona.cpp" />
