@@ -95,10 +95,13 @@ namespace SistemaClasesParticularesView {
 			// textBox2
 			// 
 			this->textBox2->Location = System::Drawing::Point(342, 147);
+			this->textBox2->MaxLength = 8;
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(130, 20);
 			this->textBox2->TabIndex = 1;
 			this->textBox2->TextChanged += gcnew System::EventHandler(this, &frmRegistroAlumno::textBox2_TextChanged);
+			this->textBox2->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &frmRegistroAlumno::textBox2_KeyPress);
+			this->textBox2->Validating += gcnew System::ComponentModel::CancelEventHandler(this, &frmRegistroAlumno::textBox2_Validating);
 			// 
 			// textBox3
 			// 
@@ -319,6 +322,17 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	}
 	//RegistroController^ objgestorRegistro = gcnew RegistroController();
 	//RegistroNuevoAlumno(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, textBox7);
+}
+private: System::Void textBox2_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+
+	if ((e->KeyChar >= 32 && e->KeyChar <= 47) || (e->KeyChar >= 58 && e->KeyChar <= 255)) {
+		MessageBox::Show("Solo números","Alerta",MessageBoxButtons::OK,MessageBoxIcon::Exclamation);
+		e->Handled = true;
+	}
+		
+}
+	private: System::Void textBox2_Validating(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
+	
 }
 };
 }
