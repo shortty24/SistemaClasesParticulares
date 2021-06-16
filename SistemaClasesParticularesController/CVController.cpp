@@ -74,7 +74,7 @@ void CVController::aprobarCV(String^ dniseleccionado) {
 	for (int i = 0; i < this->listaCV->Count; i++) {
 		CV^ objCV = this->listaCV[i];
 		if (objCV->DniProfesor == dniseleccionado) {
-			this->listaCV[i]->Validación = "1";
+			this->listaCV[i]->Validación = "si";
 			break;
 		}
 	}
@@ -95,7 +95,7 @@ void CVController::desaprobarCV(String^ dniseleccionado) {
 	for (int i = 0; i < this->listaCV->Count; i++) {
 		CV^ objCV = this->listaCV[i];
 		if (objCV->DniProfesor == dniseleccionado) {
-			this->listaCV[i]->Validación = "0";
+			this->listaCV[i]->Validación = "no";
 			break;
 		}
 	}
