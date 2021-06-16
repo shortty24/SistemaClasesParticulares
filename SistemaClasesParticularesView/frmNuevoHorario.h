@@ -47,14 +47,27 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::ComboBox^ comboBox2;
 	private: System::Windows::Forms::ComboBox^ comboBox3;
 	private: System::Windows::Forms::GroupBox^ groupBox2;
-	private: System::Windows::Forms::DataGridView^ dataGridView1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
+
+
+
+
+
 	private: System::Windows::Forms::DateTimePicker^ dateTimePicker1;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
+
+
+	private: System::Windows::Forms::CheckedListBox^ checkedListBox1;
+	private: System::Windows::Forms::GroupBox^ groupBox1;
+	private: System::Windows::Forms::CheckedListBox^ checkedListBox2;
+	private: System::Windows::Forms::GroupBox^ groupBox3;
+	private: System::Windows::Forms::CheckedListBox^ checkedListBox3;
+	private: System::Windows::Forms::GroupBox^ groupBox4;
+	private: System::Windows::Forms::CheckedListBox^ checkedListBox4;
+	private: System::Windows::Forms::GroupBox^ groupBox5;
+	private: System::Windows::Forms::CheckedListBox^ checkedListBox5;
+	private: System::Windows::Forms::GroupBox^ groupBox6;
+	private: System::Windows::Forms::CheckedListBox^ checkedListBox6;
+	private: System::Windows::Forms::GroupBox^ groupBox7;
+	private: System::Windows::Forms::CheckedListBox^ checkedListBox7;
 
 	private:
 		/// <summary>
@@ -76,16 +89,27 @@ namespace SistemaClasesParticularesView {
 			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
 			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
-			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->checkedListBox1 = (gcnew System::Windows::Forms::CheckedListBox());
+			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->checkedListBox2 = (gcnew System::Windows::Forms::CheckedListBox());
+			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
+			this->checkedListBox3 = (gcnew System::Windows::Forms::CheckedListBox());
+			this->groupBox4 = (gcnew System::Windows::Forms::GroupBox());
+			this->checkedListBox4 = (gcnew System::Windows::Forms::CheckedListBox());
+			this->groupBox5 = (gcnew System::Windows::Forms::GroupBox());
+			this->checkedListBox5 = (gcnew System::Windows::Forms::CheckedListBox());
+			this->groupBox6 = (gcnew System::Windows::Forms::GroupBox());
+			this->checkedListBox6 = (gcnew System::Windows::Forms::CheckedListBox());
+			this->groupBox7 = (gcnew System::Windows::Forms::GroupBox());
+			this->checkedListBox7 = (gcnew System::Windows::Forms::CheckedListBox());
 			this->groupBox2->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			this->groupBox1->SuspendLayout();
+			this->groupBox3->SuspendLayout();
+			this->groupBox4->SuspendLayout();
+			this->groupBox5->SuspendLayout();
+			this->groupBox6->SuspendLayout();
+			this->groupBox7->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -117,7 +141,7 @@ namespace SistemaClasesParticularesView {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(257, 350);
+			this->button1->Location = System::Drawing::Point(294, 552);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 6;
@@ -143,45 +167,13 @@ namespace SistemaClasesParticularesView {
 			// 
 			// groupBox2
 			// 
-			this->groupBox2->Controls->Add(this->dataGridView1);
-			this->groupBox2->Location = System::Drawing::Point(52, 163);
+			this->groupBox2->Controls->Add(this->checkedListBox1);
+			this->groupBox2->Location = System::Drawing::Point(12, 151);
 			this->groupBox2->Name = L"groupBox2";
-			this->groupBox2->Size = System::Drawing::Size(483, 172);
+			this->groupBox2->Size = System::Drawing::Size(86, 376);
 			this->groupBox2->TabIndex = 11;
 			this->groupBox2->TabStop = false;
-			this->groupBox2->Text = L"Horario";
-			// 
-			// dataGridView1
-			// 
-			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
-				this->Column1,
-					this->Column2, this->Column3, this->Column4
-			});
-			this->dataGridView1->Location = System::Drawing::Point(7, 19);
-			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(469, 122);
-			this->dataGridView1->TabIndex = 0;
-			// 
-			// Column1
-			// 
-			this->Column1->HeaderText = L"Fecha";
-			this->Column1->Name = L"Column1";
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"Día";
-			this->Column2->Name = L"Column2";
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Hora de inicio";
-			this->Column3->Name = L"Column3";
-			// 
-			// Column4
-			// 
-			this->Column4->HeaderText = L"Hora fin";
-			this->Column4->Name = L"Column4";
+			this->groupBox2->Text = L"Lunes";
 			// 
 			// dateTimePicker1
 			// 
@@ -190,31 +182,169 @@ namespace SistemaClasesParticularesView {
 			this->dateTimePicker1->Size = System::Drawing::Size(200, 20);
 			this->dateTimePicker1->TabIndex = 12;
 			// 
-			// button2
+			// checkedListBox1
 			// 
-			this->button2->Location = System::Drawing::Point(559, 182);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(61, 39);
-			this->button2->TabIndex = 13;
-			this->button2->Text = L"Añadir horario";
-			this->button2->UseVisualStyleBackColor = true;
+			this->checkedListBox1->FormattingEnabled = true;
+			this->checkedListBox1->Items->AddRange(gcnew cli::array< System::Object^  >(23) {
+				L"0-1", L"1-2", L"2-3", L"3-4", L"4-5", L"5-6",
+					L"6-7", L"7-8", L"8-9", L"9-10", L"10-11", L"11-12", L"12-13", L"13-14", L"14-15", L"15-16", L"16-17", L"17-18", L"18-19", L"19-20",
+					L"20-21", L"22-23", L"24-0"
+			});
+			this->checkedListBox1->Location = System::Drawing::Point(6, 21);
+			this->checkedListBox1->Name = L"checkedListBox1";
+			this->checkedListBox1->Size = System::Drawing::Size(69, 349);
+			this->checkedListBox1->TabIndex = 0;
+			this->checkedListBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &frmNuevoHorario::checkedListBox1_SelectedIndexChanged);
 			// 
-			// button3
+			// groupBox1
 			// 
-			this->button3->Location = System::Drawing::Point(559, 245);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(61, 39);
-			this->button3->TabIndex = 14;
-			this->button3->Text = L"Eliminar horario";
-			this->button3->UseVisualStyleBackColor = true;
+			this->groupBox1->Controls->Add(this->checkedListBox2);
+			this->groupBox1->Location = System::Drawing::Point(104, 151);
+			this->groupBox1->Name = L"groupBox1";
+			this->groupBox1->Size = System::Drawing::Size(86, 376);
+			this->groupBox1->TabIndex = 12;
+			this->groupBox1->TabStop = false;
+			this->groupBox1->Text = L"Martes";
+			// 
+			// checkedListBox2
+			// 
+			this->checkedListBox2->FormattingEnabled = true;
+			this->checkedListBox2->Items->AddRange(gcnew cli::array< System::Object^  >(23) {
+				L"0-1", L"1-2", L"2-3", L"3-4", L"4-5", L"5-6",
+					L"6-7", L"7-8", L"8-9", L"9-10", L"10-11", L"11-12", L"12-13", L"13-14", L"14-15", L"15-16", L"16-17", L"17-18", L"18-19", L"19-20",
+					L"20-21", L"22-23", L"24-0"
+			});
+			this->checkedListBox2->Location = System::Drawing::Point(6, 21);
+			this->checkedListBox2->Name = L"checkedListBox2";
+			this->checkedListBox2->Size = System::Drawing::Size(69, 349);
+			this->checkedListBox2->TabIndex = 0;
+			// 
+			// groupBox3
+			// 
+			this->groupBox3->Controls->Add(this->checkedListBox3);
+			this->groupBox3->Location = System::Drawing::Point(196, 151);
+			this->groupBox3->Name = L"groupBox3";
+			this->groupBox3->Size = System::Drawing::Size(86, 376);
+			this->groupBox3->TabIndex = 12;
+			this->groupBox3->TabStop = false;
+			this->groupBox3->Text = L"Miércoles";
+			// 
+			// checkedListBox3
+			// 
+			this->checkedListBox3->FormattingEnabled = true;
+			this->checkedListBox3->Items->AddRange(gcnew cli::array< System::Object^  >(23) {
+				L"0-1", L"1-2", L"2-3", L"3-4", L"4-5", L"5-6",
+					L"6-7", L"7-8", L"8-9", L"9-10", L"10-11", L"11-12", L"12-13", L"13-14", L"14-15", L"15-16", L"16-17", L"17-18", L"18-19", L"19-20",
+					L"20-21", L"22-23", L"24-0"
+			});
+			this->checkedListBox3->Location = System::Drawing::Point(6, 21);
+			this->checkedListBox3->Name = L"checkedListBox3";
+			this->checkedListBox3->Size = System::Drawing::Size(69, 349);
+			this->checkedListBox3->TabIndex = 0;
+			// 
+			// groupBox4
+			// 
+			this->groupBox4->Controls->Add(this->checkedListBox4);
+			this->groupBox4->Location = System::Drawing::Point(472, 151);
+			this->groupBox4->Name = L"groupBox4";
+			this->groupBox4->Size = System::Drawing::Size(86, 376);
+			this->groupBox4->TabIndex = 15;
+			this->groupBox4->TabStop = false;
+			this->groupBox4->Text = L"Sábado";
+			// 
+			// checkedListBox4
+			// 
+			this->checkedListBox4->FormattingEnabled = true;
+			this->checkedListBox4->Items->AddRange(gcnew cli::array< System::Object^  >(23) {
+				L"0-1", L"1-2", L"2-3", L"3-4", L"4-5", L"5-6",
+					L"6-7", L"7-8", L"8-9", L"9-10", L"10-11", L"11-12", L"12-13", L"13-14", L"14-15", L"15-16", L"16-17", L"17-18", L"18-19", L"19-20",
+					L"20-21", L"22-23", L"24-0"
+			});
+			this->checkedListBox4->Location = System::Drawing::Point(6, 21);
+			this->checkedListBox4->Name = L"checkedListBox4";
+			this->checkedListBox4->Size = System::Drawing::Size(69, 349);
+			this->checkedListBox4->TabIndex = 0;
+			// 
+			// groupBox5
+			// 
+			this->groupBox5->Controls->Add(this->checkedListBox5);
+			this->groupBox5->Location = System::Drawing::Point(380, 151);
+			this->groupBox5->Name = L"groupBox5";
+			this->groupBox5->Size = System::Drawing::Size(86, 376);
+			this->groupBox5->TabIndex = 14;
+			this->groupBox5->TabStop = false;
+			this->groupBox5->Text = L"Viernes";
+			// 
+			// checkedListBox5
+			// 
+			this->checkedListBox5->FormattingEnabled = true;
+			this->checkedListBox5->Items->AddRange(gcnew cli::array< System::Object^  >(23) {
+				L"0-1", L"1-2", L"2-3", L"3-4", L"4-5", L"5-6",
+					L"6-7", L"7-8", L"8-9", L"9-10", L"10-11", L"11-12", L"12-13", L"13-14", L"14-15", L"15-16", L"16-17", L"17-18", L"18-19", L"19-20",
+					L"20-21", L"22-23", L"24-0"
+			});
+			this->checkedListBox5->Location = System::Drawing::Point(6, 21);
+			this->checkedListBox5->Name = L"checkedListBox5";
+			this->checkedListBox5->Size = System::Drawing::Size(69, 349);
+			this->checkedListBox5->TabIndex = 0;
+			// 
+			// groupBox6
+			// 
+			this->groupBox6->Controls->Add(this->checkedListBox6);
+			this->groupBox6->Location = System::Drawing::Point(288, 151);
+			this->groupBox6->Name = L"groupBox6";
+			this->groupBox6->Size = System::Drawing::Size(86, 376);
+			this->groupBox6->TabIndex = 13;
+			this->groupBox6->TabStop = false;
+			this->groupBox6->Text = L"Jueves";
+			// 
+			// checkedListBox6
+			// 
+			this->checkedListBox6->FormattingEnabled = true;
+			this->checkedListBox6->Items->AddRange(gcnew cli::array< System::Object^  >(23) {
+				L"0-1", L"1-2", L"2-3", L"3-4", L"4-5", L"5-6",
+					L"6-7", L"7-8", L"8-9", L"9-10", L"10-11", L"11-12", L"12-13", L"13-14", L"14-15", L"15-16", L"16-17", L"17-18", L"18-19", L"19-20",
+					L"20-21", L"22-23", L"24-0"
+			});
+			this->checkedListBox6->Location = System::Drawing::Point(6, 21);
+			this->checkedListBox6->Name = L"checkedListBox6";
+			this->checkedListBox6->Size = System::Drawing::Size(69, 349);
+			this->checkedListBox6->TabIndex = 0;
+			// 
+			// groupBox7
+			// 
+			this->groupBox7->Controls->Add(this->checkedListBox7);
+			this->groupBox7->Location = System::Drawing::Point(564, 151);
+			this->groupBox7->Name = L"groupBox7";
+			this->groupBox7->Size = System::Drawing::Size(86, 376);
+			this->groupBox7->TabIndex = 16;
+			this->groupBox7->TabStop = false;
+			this->groupBox7->Text = L"Domingo";
+			// 
+			// checkedListBox7
+			// 
+			this->checkedListBox7->FormattingEnabled = true;
+			this->checkedListBox7->Items->AddRange(gcnew cli::array< System::Object^  >(23) {
+				L"0-1", L"1-2", L"2-3", L"3-4", L"4-5", L"5-6",
+					L"6-7", L"7-8", L"8-9", L"9-10", L"10-11", L"11-12", L"12-13", L"13-14", L"14-15", L"15-16", L"16-17", L"17-18", L"18-19", L"19-20",
+					L"20-21", L"22-23", L"24-0"
+			});
+			this->checkedListBox7->Location = System::Drawing::Point(6, 21);
+			this->checkedListBox7->Name = L"checkedListBox7";
+			this->checkedListBox7->Size = System::Drawing::Size(69, 349);
+			this->checkedListBox7->TabIndex = 0;
 			// 
 			// frmNuevoHorario
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(676, 539);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
+			this->ClientSize = System::Drawing::Size(716, 587);
+			this->Controls->Add(this->groupBox7);
+			this->Controls->Add(this->groupBox4);
+			this->Controls->Add(this->groupBox3);
+			this->Controls->Add(this->groupBox5);
+			this->Controls->Add(this->groupBox1);
+			this->Controls->Add(this->groupBox6);
 			this->Controls->Add(this->dateTimePicker1);
 			this->Controls->Add(this->groupBox2);
 			this->Controls->Add(this->comboBox3);
@@ -226,7 +356,12 @@ namespace SistemaClasesParticularesView {
 			this->Name = L"frmNuevoHorario";
 			this->Text = L"frmNuevoHorario";
 			this->groupBox2->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			this->groupBox1->ResumeLayout(false);
+			this->groupBox3->ResumeLayout(false);
+			this->groupBox4->ResumeLayout(false);
+			this->groupBox5->ResumeLayout(false);
+			this->groupBox6->ResumeLayout(false);
+			this->groupBox7->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -234,5 +369,7 @@ namespace SistemaClasesParticularesView {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
