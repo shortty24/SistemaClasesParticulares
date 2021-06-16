@@ -14,11 +14,13 @@ namespace SistemaClasesParticularesModel {
 		String^ dificultad;
 		String^ usuarioProfesor;
 		Profesor^ objProfesor;
+		String^ precioCurso;
 
 
 	public:
 		Curso(String^ nombreCurso, String^ dificultad, String^ usuarioProfesor);
 		Curso(String^ nombreCurso, String^ dificultad, Profesor^ objProfesor);
+
 		//Curso(String^ objTema, int dificultad);
 	};
 }
