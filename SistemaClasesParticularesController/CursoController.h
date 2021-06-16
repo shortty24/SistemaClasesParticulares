@@ -10,6 +10,7 @@ namespace SistemaClasesParticularesController {
 		CursoController();
 		List<Curso^>^ CursosDisponibles();
 		List<Curso^>^ CursosDisponiblesxNombre(String^ nombreDelCurso);
+		Curso^ CursoDisponiblexNombrexProfesor(String^ nombreDelCurso, String^ usuarioProfe);
 	};
 
 }
