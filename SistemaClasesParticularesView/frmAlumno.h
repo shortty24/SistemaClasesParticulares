@@ -507,10 +507,12 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column15;
 			// 
 			// textBox1
 			// 
+			this->textBox1->Enabled = false;
 			this->textBox1->Location = System::Drawing::Point(30, 205);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(133, 20);
 			this->textBox1->TabIndex = 9;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &frmAlumno::textBox1_TextChanged_1);
 			// 
 			// label4
 			// 
@@ -728,6 +730,7 @@ private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ 
 	fila[4] = AlumnoLogeado->objNombre;
 	this->dataGridView2->Rows->Add(fila);
 
+	this->textBox1->Text = AlumnoLogeado->dni;
 	
 }
 private: System::Void dataGridView2_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
@@ -755,6 +758,8 @@ private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, Sys
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	frmPago^ ventanaPago = gcnew frmPago();
 	ventanaPago->ShowDialog();
+}
+private: System::Void textBox1_TextChanged_1(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

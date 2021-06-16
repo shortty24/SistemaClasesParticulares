@@ -10,5 +10,6 @@ namespace SistemaClasesParticularesController {
 		public:
 			HorarioController();
 			List<Horario^>^ HorarioxProfesorxCurso (String^ dniProfesor, String^ nombreDelCurso);
+			List<Horario^>^ HorarioxProfesor(String^ dniProfesorBuscar);
 	};
 }

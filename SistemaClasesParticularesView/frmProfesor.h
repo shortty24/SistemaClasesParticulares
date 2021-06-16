@@ -737,10 +737,12 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			// 
 			// textBox1
 			// 
+			this->textBox1->Enabled = false;
 			this->textBox1->Location = System::Drawing::Point(27, 200);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(133, 20);
 			this->textBox1->TabIndex = 16;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &frmProfesor::textBox1_TextChanged);
 			// 
 			// label1
 			// 
@@ -1043,7 +1045,7 @@ private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e)
 private: System::Void textBox4_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 
-	private: void mostrarGrilla(List<Clase^>^ objClase) {
+	private: void mostrarGrillaClases(List<Clase^>^ objClase) {
 		this->dataGridView1->Rows->Clear();
 		for (int i = 0; i < objClase->Count; i++) {
 			Clase^ ClaseProgramada = objClase[i];
@@ -1056,6 +1058,23 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 			this->dataGridView1->Rows->Add(fila);
 		}
 	}
+
+	/*private: void mostrarGrillaHorario(List<Horario^>^ objHorario) {
+		this->dataGridView1->Rows->Clear();
+		for (int i = 0; i < objHorario->Count; i++) {
+			Horario^ horarioDisponible= objHorario[i];
+			array<String^>^ fila = gcnew array<String^>(3);
+			fila[0] = horarioDisponible->dia;
+			String^ limInferior;
+
+			horarioDisponible->horasDisponibles->ForEach(Comparison)
+
+			fila[1] = horarioDisponible->horasDisponibles->
+			fila[2] = horarioDisponible
+
+			this->dataGridView1->Rows->Add(fila);
+		}
+	}*/
 
 	private: System::Void frmProfesor_Load(System::Object^ sender, System::EventArgs^ e) {
 		/*ProfesorController^ gestorDatosAlumno = gcnew ProfesorController();
@@ -1073,11 +1092,17 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 		List<Clase^>^ listaClasesProgramadas;
 		ClaseController^ objGestorLista = gcnew ClaseController();
 		listaClasesProgramadas = objGestorLista->ClasesProgramadas(ProfesorLogeado->dni);
-		mostrarGrilla(listaClasesProgramadas);
+		mostrarGrillaClases(listaClasesProgramadas);
+
+		this->textBox1->Text = ProfesorLogeado->dni;
 
 		this->textBox14->Text=ProfesorLogeado->objUsuario;
 		this->textBox13->Text = ProfesorLogeado->objContrasenha;
 
+		List<Horario^>^ listaHorarioDisponible;
+		HorarioController^ objGestorHorario = gcnew HorarioController();
+		listaHorarioDisponible = objGestorHorario->HorarioxProfesor(ProfesorLogeado->dni);
+		//mostrarGrillaHorario(listaHorarioDisponible);
 
 	}
 
@@ -1105,6 +1130,9 @@ private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e
 }
 
 private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	
 }
 };
 }
