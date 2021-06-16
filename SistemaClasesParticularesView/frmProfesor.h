@@ -111,13 +111,13 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::TextBox^ textBox10;
 	private: System::Windows::Forms::Button^ button14;
 	private: System::Windows::Forms::Button^ button15;
-	private: System::Windows::Forms::DataGridView^ dataGridView2;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
-	private: System::Windows::Forms::Button^ button12;
-	private: System::Windows::Forms::Button^ button11;
-	private: System::Windows::Forms::Button^ button10;
-	private: System::Windows::Forms::TextBox^ textBox9;
+
+
+
+
+
+
+
 	private: System::Windows::Forms::GroupBox^ groupBox6;
 	private: System::Windows::Forms::TextBox^ textBox14;
 	private: System::Windows::Forms::Label^ label13;
@@ -168,6 +168,12 @@ private: System::Windows::Forms::DataGridView^ dataGridView6;
 private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column19;
 private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column20;
 private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column21;
+private: System::Windows::Forms::TextBox^ textBox1;
+private: System::Windows::Forms::Label^ label1;
+private: System::Windows::Forms::Label^ label2;
+private: System::Windows::Forms::ComboBox^ comboBox2;
+private: System::Windows::Forms::Button^ button10;
+private: System::Windows::Forms::TextBox^ textBox2;
 
 
 
@@ -277,13 +283,12 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column21;
 			this->button14 = (gcnew System::Windows::Forms::Button());
 			this->button15 = (gcnew System::Windows::Forms::Button());
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
-			this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
-			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->button12 = (gcnew System::Windows::Forms::Button());
-			this->button11 = (gcnew System::Windows::Forms::Button());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
 			this->button10 = (gcnew System::Windows::Forms::Button());
-			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
 			this->groupBox8 = (gcnew System::Windows::Forms::GroupBox());
 			this->button19 = (gcnew System::Windows::Forms::Button());
@@ -320,7 +325,6 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column21;
 			this->groupBox4->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->BeginInit();
 			this->groupBox3->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
 			this->tabPage3->SuspendLayout();
 			this->groupBox8->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView6))->BeginInit();
@@ -419,6 +423,7 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column21;
 			this->button8->TabIndex = 10;
 			this->button8->Text = L"Buscar";
 			this->button8->UseVisualStyleBackColor = true;
+			this->button8->Click += gcnew System::EventHandler(this, &frmProfesor::button8_Click);
 			// 
 			// button7
 			// 
@@ -717,11 +722,12 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column21;
 			// 
 			// groupBox3
 			// 
-			this->groupBox3->Controls->Add(this->dataGridView2);
-			this->groupBox3->Controls->Add(this->button12);
-			this->groupBox3->Controls->Add(this->button11);
+			this->groupBox3->Controls->Add(this->textBox1);
+			this->groupBox3->Controls->Add(this->label1);
+			this->groupBox3->Controls->Add(this->label2);
+			this->groupBox3->Controls->Add(this->comboBox2);
 			this->groupBox3->Controls->Add(this->button10);
-			this->groupBox3->Controls->Add(this->textBox9);
+			this->groupBox3->Controls->Add(this->textBox2);
 			this->groupBox3->Location = System::Drawing::Point(28, 64);
 			this->groupBox3->Name = L"groupBox3";
 			this->groupBox3->Size = System::Drawing::Size(359, 403);
@@ -729,61 +735,58 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column21;
 			this->groupBox3->TabStop = false;
 			this->groupBox3->Text = L"Quejas :";
 			// 
-			// dataGridView2
+			// textBox1
 			// 
-			this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
-				this->Column5,
-					this->Column6
+			this->textBox1->Location = System::Drawing::Point(27, 200);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(133, 20);
+			this->textBox1->TabIndex = 16;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(24, 171);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(80, 13);
+			this->label1->TabIndex = 15;
+			this->label1->Text = L"DNI Agraviado:";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(24, 103);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(71, 13);
+			this->label2->TabIndex = 14;
+			this->label2->Text = L"DNI Agresor :";
+			// 
+			// comboBox2
+			// 
+			this->comboBox2->FormattingEnabled = true;
+			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) {
+				L"Agresion verbal", L"No se presento a la clase",
+					L"No dicto los temas pedidos"
 			});
-			this->dataGridView2->Location = System::Drawing::Point(21, 94);
-			this->dataGridView2->Name = L"dataGridView2";
-			this->dataGridView2->Size = System::Drawing::Size(240, 150);
-			this->dataGridView2->TabIndex = 4;
-			// 
-			// Column5
-			// 
-			this->Column5->HeaderText = L"Código";
-			this->Column5->Name = L"Column5";
-			// 
-			// Column6
-			// 
-			this->Column6->HeaderText = L"Motivo";
-			this->Column6->Name = L"Column6";
-			// 
-			// button12
-			// 
-			this->button12->Location = System::Drawing::Point(187, 269);
-			this->button12->Name = L"button12";
-			this->button12->Size = System::Drawing::Size(61, 23);
-			this->button12->TabIndex = 3;
-			this->button12->Text = L"Eliminar";
-			this->button12->UseVisualStyleBackColor = true;
-			// 
-			// button11
-			// 
-			this->button11->Location = System::Drawing::Point(105, 269);
-			this->button11->Name = L"button11";
-			this->button11->Size = System::Drawing::Size(61, 23);
-			this->button11->TabIndex = 2;
-			this->button11->Text = L"Modificar";
-			this->button11->UseVisualStyleBackColor = true;
+			this->comboBox2->Location = System::Drawing::Point(27, 52);
+			this->comboBox2->Name = L"comboBox2";
+			this->comboBox2->Size = System::Drawing::Size(202, 21);
+			this->comboBox2->TabIndex = 13;
 			// 
 			// button10
 			// 
-			this->button10->Location = System::Drawing::Point(22, 269);
+			this->button10->Location = System::Drawing::Point(128, 273);
 			this->button10->Name = L"button10";
-			this->button10->Size = System::Drawing::Size(61, 23);
-			this->button10->TabIndex = 1;
-			this->button10->Text = L"Añadir";
+			this->button10->Size = System::Drawing::Size(104, 33);
+			this->button10->TabIndex = 12;
+			this->button10->Text = L"Enviar";
 			this->button10->UseVisualStyleBackColor = true;
 			// 
-			// textBox9
+			// textBox2
 			// 
-			this->textBox9->Location = System::Drawing::Point(21, 54);
-			this->textBox9->Name = L"textBox9";
-			this->textBox9->Size = System::Drawing::Size(214, 20);
-			this->textBox9->TabIndex = 0;
+			this->textBox2->Location = System::Drawing::Point(27, 133);
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->Size = System::Drawing::Size(133, 20);
+			this->textBox2->TabIndex = 11;
 			// 
 			// tabPage3
 			// 
@@ -1017,7 +1020,6 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column21;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->EndInit();
 			this->groupBox3->ResumeLayout(false);
 			this->groupBox3->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
 			this->tabPage3->ResumeLayout(false);
 			this->tabPage3->PerformLayout();
 			this->groupBox8->ResumeLayout(false);
@@ -1102,5 +1104,7 @@ private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e
 	mostrarGrilla(objListaPartidos);*/
 }
 
+private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

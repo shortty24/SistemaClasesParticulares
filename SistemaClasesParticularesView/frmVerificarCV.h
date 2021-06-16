@@ -5,9 +5,12 @@ namespace SistemaClasesParticularesView {
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
+	using namespace System::Collections::Generic;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace SistemaClasesParticularesController;
+	using namespace SistemaClasesParticularesModel;
 
 	/// <summary>
 	/// Resumen de frmVerificarCV
@@ -72,12 +75,12 @@ namespace SistemaClasesParticularesView {
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
@@ -102,6 +105,7 @@ namespace SistemaClasesParticularesView {
 			this->button1->TabIndex = 2;
 			this->button1->Text = L"Buscar";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &frmVerificarCV::button1_Click);
 			// 
 			// textBox1
 			// 
@@ -132,25 +136,6 @@ namespace SistemaClasesParticularesView {
 			this->dataGridView1->Size = System::Drawing::Size(514, 150);
 			this->dataGridView1->TabIndex = 2;
 			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(211, 304);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(75, 23);
-			this->button2->TabIndex = 4;
-			this->button2->Text = L"Aprobado";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &frmVerificarCV::button2_Click);
-			// 
-			// button3
-			// 
-			this->button3->Location = System::Drawing::Point(368, 304);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(89, 23);
-			this->button3->TabIndex = 5;
-			this->button3->Text = L"Desaprobado";
-			this->button3->UseVisualStyleBackColor = true;
-			// 
 			// Column4
 			// 
 			this->Column4->HeaderText = L"DNI Profesor";
@@ -170,6 +155,25 @@ namespace SistemaClasesParticularesView {
 			// 
 			this->Column3->HeaderText = L"TelfEmpresa";
 			this->Column3->Name = L"Column3";
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(211, 304);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->TabIndex = 4;
+			this->button2->Text = L"Aprobado";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &frmVerificarCV::button2_Click);
+			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(368, 304);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(89, 23);
+			this->button3->TabIndex = 5;
+			this->button3->Text = L"Desaprobado";
+			this->button3->UseVisualStyleBackColor = true;
 			// 
 			// frmVerificarCV
 			// 
@@ -192,6 +196,34 @@ namespace SistemaClasesParticularesView {
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ dniprofebuscar = this->textBox1->Text;
+	List<CV^>^ listaCV;
+	CVController^ objGestorCV = gcnew CVController();
+	if (dniprofebuscar == "") {
+		objGestorCV->CargarCVDesdeArchivo();
+		listaCV = objGestorCV->obtenerListaCVs();
+	}
+	else {
+		listaCV = objGestorCV->buscarCV(dniprofebuscar);
+	}
+	mostrarGrilla(listaCV);
+
+}
+
+private: void mostrarGrilla(List<CV^>^ listaCV) {
+	this->dataGridView1->Rows->Clear();
+	for (int i = 0; i < listaCV->Count; i++) {
+		CV^ objCV = listaCV[i];
+		array<String^>^ fila = gcnew array<String^>(4);
+		fila[0] = objCV->DniProfesor;
+		fila[1] = objCV->objCodigoMinedu;
+		fila[2] = objCV->objEmpresa;
+		fila[3] = objCV->telefonoEmpresa;
+
+		this->dataGridView1->Rows->Add(fila);
+	}
 }
 };
 }

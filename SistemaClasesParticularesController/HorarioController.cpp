@@ -7,7 +7,7 @@ using namespace System::IO;
 HorarioController::HorarioController() {
 }
 
-List<Horario^>^ HorarioController::HorarioxProfesor(String^ dniProfesor) {
+List<Horario^>^ HorarioController::HorarioxProfesorxCurso(String^ dniProfesor, String^ nombreDelCurso) {
 	List<Horario^>^ HorarioProfesor = gcnew List<Horario^>();
 	array<String^>^ lineas = File::ReadAllLines("Horarios.txt");
 	/*List<String^>^ horasPosibles;
@@ -20,10 +20,11 @@ List<Horario^>^ HorarioController::HorarioxProfesor(String^ dniProfesor) {
 	for each (String ^ lineaHorario in lineas) {
 		array<String^>^ palabras = lineaHorario->Split(separadores->ToCharArray());
 		String^ dni = palabras[0];
-		String^ dia = palabras[1];
+		String^ nombreCurso = palabras[1];
+		String^ dia = palabras[2];
 		List<String^>^ horasxDia = gcnew List<String^>();
-		for (int i = 2; i < 26; i++) {
-			for (int j = 0; j < 23; j++) {
+		for (int i = 3; i < 27; i++) {
+			for (int j = 0; j < 24; j++) {
 				String^ convertido = Convert::ToString(j);
 				if (palabras[i] == convertido) {
 					horasxDia->Add(palabras[i]);
@@ -32,7 +33,7 @@ List<Horario^>^ HorarioController::HorarioxProfesor(String^ dniProfesor) {
 			}
 		}
 		Horario^ objHorario = gcnew Horario(dni, dia, horasxDia);
-		if (dni == dniProfesor) {
+		if (dni == dniProfesor && nombreCurso == nombreDelCurso) {
 			HorarioProfesor->Add(objHorario);
 		}
 	}

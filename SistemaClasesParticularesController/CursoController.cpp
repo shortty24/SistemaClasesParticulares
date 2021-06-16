@@ -40,3 +40,21 @@ List<Curso^>^ CursoController::CursosDisponiblesxNombre(String^ nombreDelCurso) 
 	}
 	return this->listaCursos;
 }
+Curso^ CursoController::CursoDisponiblexNombrexProfesor(String^ nombreDelCurso, String^ usuarioProfe) {
+	Curso^ cursoEncontrado;
+	array<String^>^ lineas = File::ReadAllLines("CursosDisponibles.txt");
+
+	String^ separadores = ";";
+	for each (String ^ lineaCurso in lineas) {
+		array<String^>^ palabras = lineaCurso->Split(separadores->ToCharArray());
+		String^ nombreCurso = palabras[0];
+		String^ dificultad = palabras[1];
+		String^ usuarioProfesor = palabras[2];
+		Curso^ objCurso = gcnew Curso(nombreCurso, dificultad, usuarioProfesor);
+		if (nombreDelCurso == nombreCurso && usuarioProfesor == usuarioProfe) {
+			cursoEncontrado=objCurso;
+			break;
+		}
+	}
+	return cursoEncontrado;
+}

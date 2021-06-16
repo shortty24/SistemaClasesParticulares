@@ -75,7 +75,7 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::GroupBox^ groupBox2;
 	private: System::Windows::Forms::GroupBox^ groupBox3;
 	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::TextBox^ textBox2;
+
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TabPage^ tabPage4;
 	private: System::Windows::Forms::MonthCalendar^ monthCalendar1;
@@ -92,6 +92,11 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 	private: System::Windows::Forms::ComboBox^ comboBox1;
+	private: System::Windows::Forms::ComboBox^ comboBox2;
+	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Label^ label3;
 
 
 
@@ -119,12 +124,17 @@ namespace SistemaClasesParticularesView {
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -138,7 +148,6 @@ namespace SistemaClasesParticularesView {
 			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -238,6 +247,16 @@ namespace SistemaClasesParticularesView {
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Criterios de Búsqueda";
 			// 
+			// comboBox1
+			// 
+			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"CalculoI", L"FisicaI", L"FisicaII", L"CalculoII" });
+			this->comboBox1->Location = System::Drawing::Point(75, 53);
+			this->comboBox1->Name = L"comboBox1";
+			this->comboBox1->Size = System::Drawing::Size(202, 21);
+			this->comboBox1->TabIndex = 5;
+			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &frmAlumno::comboBox1_SelectedIndexChanged);
+			// 
 			// button1
 			// 
 			this->button1->Location = System::Drawing::Point(323, 49);
@@ -290,6 +309,10 @@ namespace SistemaClasesParticularesView {
 			// 
 			// groupBox3
 			// 
+			this->groupBox3->Controls->Add(this->textBox1);
+			this->groupBox3->Controls->Add(this->label4);
+			this->groupBox3->Controls->Add(this->label3);
+			this->groupBox3->Controls->Add(this->comboBox2);
 			this->groupBox3->Controls->Add(this->button4);
 			this->groupBox3->Controls->Add(this->textBox2);
 			this->groupBox3->Controls->Add(this->label2);
@@ -299,9 +322,46 @@ namespace SistemaClasesParticularesView {
 			this->groupBox3->TabIndex = 0;
 			this->groupBox3->TabStop = false;
 			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(30, 205);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(133, 20);
+			this->textBox1->TabIndex = 9;
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(27, 176);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(80, 13);
+			this->label4->TabIndex = 8;
+			this->label4->Text = L"DNI Agraviado:";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(27, 108);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(71, 13);
+			this->label3->TabIndex = 7;
+			this->label3->Text = L"DNI Agresor :";
+			// 
+			// comboBox2
+			// 
+			this->comboBox2->FormattingEnabled = true;
+			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) {
+				L"Agresion verbal", L"No se presento a la clase",
+					L"No dicto los temas pedidos"
+			});
+			this->comboBox2->Location = System::Drawing::Point(30, 57);
+			this->comboBox2->Name = L"comboBox2";
+			this->comboBox2->Size = System::Drawing::Size(202, 21);
+			this->comboBox2->TabIndex = 6;
+			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(161, 102);
+			this->button4->Location = System::Drawing::Point(131, 278);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(104, 33);
 			this->button4->TabIndex = 2;
@@ -311,9 +371,9 @@ namespace SistemaClasesParticularesView {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(46, 62);
+			this->textBox2->Location = System::Drawing::Point(30, 138);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(361, 20);
+			this->textBox2->Size = System::Drawing::Size(133, 20);
 			this->textBox2->TabIndex = 1;
 			// 
 			// label2
@@ -321,9 +381,10 @@ namespace SistemaClasesParticularesView {
 			this->label2->AutoSize = true;
 			this->label2->Location = System::Drawing::Point(27, 30);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(95, 13);
+			this->label2->Size = System::Drawing::Size(41, 13);
 			this->label2->TabIndex = 0;
-			this->label2->Text = L"Redacta tu queja :";
+			this->label2->Text = L"Queja :";
+			this->label2->Click += gcnew System::EventHandler(this, &frmAlumno::label2_Click);
 			// 
 			// tabPage4
 			// 
@@ -402,15 +463,6 @@ namespace SistemaClasesParticularesView {
 			this->Column7->HeaderText = L"Nombres";
 			this->Column7->Name = L"Column7";
 			// 
-			// comboBox1
-			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"CalculoI", L"FisicaI", L"FisicaII", L"CalculoII" });
-			this->comboBox1->Location = System::Drawing::Point(75, 53);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(202, 21);
-			this->comboBox1->TabIndex = 5;
-			// 
 			// frmAlumno
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -442,10 +494,11 @@ namespace SistemaClasesParticularesView {
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
 	String^ nombreProfSeleccionado = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[2]->Value->ToString();
+	String^ nombreDelCurso = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
 	ProfesorController^ gestorProfesor = gcnew ProfesorController();
 	String^ dniProfesor;
 	dniProfesor = gestorProfesor->obtenerdnixNombreCompleto(nombreProfSeleccionado);
-	frmInscripcion^ ventanaInscripcion = gcnew frmInscripcion(dniProfesor);
+	frmInscripcion^ ventanaInscripcion = gcnew frmInscripcion(dniProfesor, nombreDelCurso);
 	ventanaInscripcion->ShowDialog();
 }
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
@@ -503,6 +556,10 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	usuarioProfesor = gestorProfesor->obtenerUsuarioxNombreCompleto(nombreProfSeleccionado);
 	frmInfoProfesorCurso^ ventanaInfoProfesor = gcnew frmInfoProfesorCurso(usuarioProfesor);
 	ventanaInfoProfesor->ShowDialog();
+}
+private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

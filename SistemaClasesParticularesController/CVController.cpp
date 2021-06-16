@@ -6,7 +6,46 @@ using namespace SistemaClasesParticularesController;
 using namespace System::IO;
 
 CVController::CVController() {
+	this->listaCV = gcnew List<CV^>();
+}
 
+void CVController::CargarCVDesdeArchivo() {
+	this->listaCV->Clear();
+	array<String^>^ lineas = File::ReadAllLines("CVs.txt");
+
+	String^ separadores = ";";
+	for each (String ^ lineaCVs in lineas) {
+		array<String^>^ palabras = lineaCVs->Split(separadores->ToCharArray());
+		int dniprofesor = Convert::ToInt32(palabras[0]);
+		String^ codigoMinedu = palabras[1];
+		String^ empresa = palabras[2];
+		String^ celuempresa = palabras[3];
+		String^ verficacion = palabras[4];
+
+	}
+}
+
+List<CV^>^ CVController::obtenerListaCVs() {
+	return this->listaCV;
+}
+
+List<CV^>^ CVController::buscarCV(String^ dniBuscar) {
+	List<CV^>^ listaCVsEncontrados = gcnew List<CV^>();
+	array<String^>^ lineas = File::ReadAllLines("CVs.txt");
+	String^ separadores = ";";
+	for each (String ^ lineaCVs in lineas) {
+		array<String^>^ palabras = lineaCVs->Split(separadores->ToCharArray());
+		String^ dniprofesor = palabras[0];
+		String^ codigoMinedu = palabras[1];
+		String^ empresa = palabras[2];
+		String^ celuempresa = palabras[3];
+		String^ verficacion = palabras[4];
+		if (dniprofesor->ToUpper() == dniBuscar->ToUpper()) {
+			CV^ objCV = gcnew CV(dniprofesor, codigoMinedu, empresa, celuempresa, verficacion);
+			listaCVsEncontrados->Add(objCV);
+		}
+	}
+	return listaCVsEncontrados;
 }
 
 String^ CVController::obtenerEmpresaRef(String^ dniProfesor) {

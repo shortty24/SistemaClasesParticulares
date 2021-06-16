@@ -125,7 +125,7 @@ namespace SistemaClasesParticularesView {
 				this->Column4,
 					this->Column1, this->Column2, this->Column3, this->Column5
 			});
-			this->dataGridView1->Location = System::Drawing::Point(34, 118);
+			this->dataGridView1->Location = System::Drawing::Point(24, 110);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->Size = System::Drawing::Size(514, 150);
 			this->dataGridView1->TabIndex = 2;
