@@ -137,6 +137,8 @@ namespace SistemaClasesParticularesView {
 	}
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	LogeoController^ objgestor = gcnew LogeoController();
+	//String^ Texto = objgestor->BuscarDniProfesor(textBox1->Text);
+	//MessageBox::Show(Texto);
 	if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 1) {
 		AlumnoController^ objGestorAlumno = gcnew AlumnoController();
 
@@ -145,6 +147,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		ventanaAlumno->Show();
 	}
 	else if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 2) {
+		//MessageBox::Show(objgestor->BuscarDniProfesor(textBox1->Text));
 		ProfesorController^ objGestorProfesor = gcnew ProfesorController();
 
 		ProfesorLogeado = objGestorProfesor->buscaProfesor(textBox1->Text);
@@ -155,6 +158,9 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 		frmAdministrador^ ventanaAdministrador = gcnew frmAdministrador();
 		ventanaAdministrador->Show();
+	}
+	else if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 4) {
+		MessageBox::Show("Profesor registrado, pero aún falta que el administrador valide su CV");
 	}
 	else {
 		MessageBox::Show("Usuario y/o contraseña son incorrectos");

@@ -84,3 +84,30 @@ void RegistroController::GuardarNuevoCV(CV^ objCV) {
 	/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
 	File::WriteAllLines("CVs.txt", lineasArchivoCV);
 }
+int RegistroController::VerificarSiUsuarioRepite(String^ textBox1) {
+	array<String^>^ lineas = File::ReadAllLines("Personas.txt");
+	String^ separadores = ";";
+	for each (String ^ lineaPersona in lineas) {
+		array<String^>^ palabras = lineaPersona->Split(separadores->ToCharArray());
+		String^ ID = palabras[0];
+		String^ dni = palabras[1];
+		String^ Usuario = palabras[2];
+		String^ Contrasenha = palabras[3];
+		String^ ApellidoPaterno = palabras[4];
+		String^ ApellidoMaterno = palabras[5];
+		String^ Nombre = palabras[6];
+		//Persona^ objPersona = gcnew Persona(dni, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre);
+		//this->listaPersonas->Add(objPersona);
+		if (textBox1 == Usuario) {
+				Repite = 1; // Si
+				//usuarioAlumno = textBox1;
+		
+			break;
+		}
+		else {
+		Repite = 0; // No
+
+		}
+	}
+	return Repite;
+}

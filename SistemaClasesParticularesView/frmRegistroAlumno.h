@@ -10,6 +10,7 @@ namespace SistemaClasesParticularesView {
 	using namespace System::Drawing;
 	using namespace SistemaClasesParticularesController;
 	using namespace SistemaClasesParticularesModel;
+	using namespace System::Text::RegularExpressions;
 
 	/// <summary>
 	/// Resumen de frmRegistro
@@ -261,24 +262,57 @@ private: System::Void textBox5_TextChanged(System::Object^ sender, System::Event
 }
 private: System::Void textBox6_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
+private: System::Boolean Email_Valido(String^ Email) {
+	String^ Validando = "\\w+([-+.']\\w+)*@(gmail|hotmail)\\.com";
+	if (Regex::IsMatch(Email, Validando))
+	{
+		if (Regex::Replace(Email, Validando, String::Empty)->Length == 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else
+	{
+		return false;
+	}
+}
 private: System::Void textBox7_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
+	RegistroController^ objGestor = gcnew RegistroController();
+	int Valor = objGestor->VerificarSiUsuarioRepite(textBox1->Text);
 	if (textBox1->Text != "" && textBox2->Text != "" && textBox3->Text != "" && textBox4->Text != "" && textBox5->Text != "" && textBox6->Text != "" && textBox7->Text != "") {
 		String^ CodigoUsuario = "A";
-		String^ Usuario = this->textBox1->Text;
-		String^ DNI = this->textBox2->Text;
-		String^ Nombre = this->textBox3->Text;
-		String^ ApellidoPaterno = this->textBox4->Text;
-		String^ ApellidoMaterno = this->textBox5->Text;
-		String^ Correo = this->textBox6->Text;
-		String^ Contrasenha = this->textBox7->Text;
-		Persona^ objPersona = gcnew Persona(CodigoUsuario, DNI, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre, Correo);
-		RegistroController^ objRegistro = gcnew RegistroController();
-		objRegistro->GuardarNuevoUsuarioEnArchivo(objPersona);
-		MessageBox::Show("Se ha registrado con éxito");
-		this->Close();
+		if (Valor == 0) { // Indica que dicho nombre de usuario todavía no se ha usado
+			String^ Usuario = this->textBox1->Text;
+			String^ DNI = this->textBox2->Text;
+			String^ Nombre = this->textBox3->Text;
+			String^ ApellidoPaterno = this->textBox4->Text;
+			String^ ApellidoMaterno = this->textBox5->Text;
+			String^ Correo = this->textBox6->Text;
+			if (Email_Valido(Correo) == true) {
+				String^ Contrasenha = this->textBox7->Text;
+				Persona^ objPersona = gcnew Persona(CodigoUsuario, DNI, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre, Correo);
+				RegistroController^ objRegistro = gcnew RegistroController();
+				objRegistro->GuardarNuevoUsuarioEnArchivo(objPersona);
+				MessageBox::Show("Se ha registrado con éxito");
+				this->Close();
+			}
+			else {
+
+				MessageBox::Show("El correo ingresado no existe, por favor ingreselo nuevamente");
+
+			}
+		}
+		else { // El nombre de usuario ya se ha usado
+			MessageBox::Show("El usuario que ha ingresado ya existe, por favor ingrese otro nombre de usuario");
+		}
+
 	}
 	else {
 		MessageBox::Show(" Por favor llene todos los datos");

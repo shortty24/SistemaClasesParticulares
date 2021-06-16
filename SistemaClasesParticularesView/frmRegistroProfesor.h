@@ -3,6 +3,8 @@
 namespace SistemaClasesParticularesView {
 
 	using namespace System;
+	using namespace System::Text;
+	using namespace System::Text::RegularExpressions;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
@@ -319,30 +321,68 @@ namespace SistemaClasesParticularesView {
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	RegistroController^ objGestor = gcnew RegistroController();
+	int Valor = objGestor->VerificarSiUsuarioRepite(textBox1->Text);
 	if (textBox1->Text != "" && textBox2->Text != "" && textBox3->Text != "" && textBox4->Text != "" && textBox5->Text != "" && textBox6->Text != "" && textBox7->Text != "" && textBox8->Text != "" && textBox9->Text != "") {
 		String^ CodigoUsuario = "P";
-		String^ Usuario = this->textBox1->Text;
-		String^ DNI = this->textBox2->Text;
-		String^ Nombre = this->textBox3->Text;
-		String^ ApellidoPaterno = this->textBox4->Text;
-		String^ ApellidoMaterno = this->textBox5->Text;
-		String^ Correo = this->textBox6->Text;
-		String^ Contrasenha = this->textBox7->Text;
-		String^ CodigoMinedu = this->textBox8->Text;
-		String^ Empresa = this->textBox9->Text;
-		String^ NumeroEmpresa = this->textBox10->Text;
-		String^ Validacion = "0";
-		Persona^ objPersona = gcnew Persona(CodigoUsuario, DNI, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre, Correo);
-		CV^ objCV = gcnew CV(DNI, CodigoMinedu, Empresa, NumeroEmpresa,Validacion);
-		RegistroController^ objRegistro = gcnew RegistroController();
-		objRegistro->GuardarNuevoUsuarioEnArchivo(objPersona);
-		objRegistro->GuardarNuevoCV(objCV);
-		MessageBox::Show("Se ha registrado con éxito");
-		this->Close();
+		if (Valor == 0) { // Indica que dicho nombre de usuario todavía no se ha usado
+			String^ Usuario = this->textBox1->Text;
+			String^ DNI = this->textBox2->Text;
+			String^ Nombre = this->textBox3->Text;
+			String^ ApellidoPaterno = this->textBox4->Text;
+			String^ ApellidoMaterno = this->textBox5->Text;
+			String^ Correo = this->textBox6->Text;
+			if (Email_Valido(Correo) == true) {
+				String^ Contrasenha = this->textBox7->Text;
+				String^ CodigoMinedu = this->textBox8->Text;
+				String^ Empresa = this->textBox9->Text;
+				String^ NumeroEmpresa = this->textBox10->Text;
+				String^ Validacion = "no";
+				Persona^ objPersona = gcnew Persona(CodigoUsuario, DNI, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre, Correo);
+				CV^ objCV = gcnew CV(DNI, CodigoMinedu, Empresa, NumeroEmpresa, Validacion);
+				RegistroController^ objRegistro = gcnew RegistroController();
+				objRegistro->GuardarNuevoUsuarioEnArchivo(objPersona);
+				objRegistro->GuardarNuevoCV(objCV);
+				MessageBox::Show("Se ha registrado con éxito. Su CV estará en revisión");
+				this->Close();
+			
+			}
+			else {
+			
+				MessageBox::Show("El correo ingresado no existe, por favor ingreselo nuevamente");
+			
+			}
+	
+		}
+		else { // El nombre de usuario ya fue usado
+			MessageBox::Show("El usuario que ha ingresado ya existe, por favor ingrese otro nombre de usuario");
+		}
+	}
+	else {
+		MessageBox::Show(" Por favor llene todos los datos");
 	}
 }
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
+private: System::Boolean Email_Valido(String^Email) {
+		String^ Validando = "\\w+([-+.']\\w+)*@(gmail|hotmail)\\.com";
+		if (Regex::IsMatch(Email, Validando))
+		{
+			if (Regex::Replace(Email, Validando, String::Empty)->Length == 0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+}
+	
 private: System::Void textBox8_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
