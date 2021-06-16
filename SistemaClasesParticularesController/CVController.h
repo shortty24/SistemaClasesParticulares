@@ -9,6 +9,9 @@ namespace SistemaClasesParticularesController {
 	public:
 		CVController();
 		String^ obtenerEmpresaRef(String^ dniProfesor);
+		List<CV^>^ obtenerListaCVs();
+		List<CV^>^ buscarCV(String^ dniBuscar);
+		void CargarCVDesdeArchivo();
 	};
 
 }

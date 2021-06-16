@@ -171,24 +171,6 @@ namespace SistemaClasesParticularesView {
 			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->groupBox5 = (gcnew System::Windows::Forms::GroupBox());
-			this->dataGridView3 = (gcnew System::Windows::Forms::DataGridView());
-			this->dataGridView4 = (gcnew System::Windows::Forms::DataGridView());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column11 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column13 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column12 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column15 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column14 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column16 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column17 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column18 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column19 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column20 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column21 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column22 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -300,6 +282,7 @@ namespace SistemaClasesParticularesView {
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(202, 21);
 			this->comboBox1->TabIndex = 5;
+			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &frmAlumno::comboBox1_SelectedIndexChanged);
 			// 
 			// button1
 			// 
@@ -399,6 +382,43 @@ namespace SistemaClasesParticularesView {
 			// 
 			this->comboBox2->FormattingEnabled = true;
 			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"CalculoI", L"FisicaI", L"FisicaII", L"CalculoII" });
+			this->comboBox2->Location = System::Drawing::Point(30, 57);
+			this->comboBox2->Name = L"comboBox2";
+			this->comboBox2->Size = System::Drawing::Size(202, 21);
+			this->comboBox2->TabIndex = 6;
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(30, 205);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(133, 20);
+			this->textBox1->TabIndex = 9;
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(27, 176);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(80, 13);
+			this->label4->TabIndex = 8;
+			this->label4->Text = L"DNI Agraviado:";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(27, 108);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(71, 13);
+			this->label3->TabIndex = 7;
+			this->label3->Text = L"DNI Agresor :";
+			// 
+			// comboBox2
+			// 
+			this->comboBox2->FormattingEnabled = true;
+			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) {
+				L"Agresion verbal", L"No se presento a la clase",
+					L"No dicto los temas pedidos"
+			});
 			this->comboBox2->Location = System::Drawing::Point(30, 57);
 			this->comboBox2->Name = L"comboBox2";
 			this->comboBox2->Size = System::Drawing::Size(202, 21);
@@ -508,120 +528,6 @@ namespace SistemaClasesParticularesView {
 			this->Column7->HeaderText = L"Nombres";
 			this->Column7->Name = L"Column7";
 			// 
-			// groupBox5
-			// 
-			this->groupBox5->Controls->Add(this->dataGridView4);
-			this->groupBox5->Location = System::Drawing::Point(29, 215);
-			this->groupBox5->Name = L"groupBox5";
-			this->groupBox5->Size = System::Drawing::Size(479, 173);
-			this->groupBox5->TabIndex = 1;
-			this->groupBox5->TabStop = false;
-			this->groupBox5->Text = L"Inscripciones En Proceso";
-			// 
-			// dataGridView3
-			// 
-			this->dataGridView3->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView3->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
-				this->Column3,
-					this->Column10, this->Column11, this->Column13, this->Column12, this->Column15, this->Column14
-			});
-			this->dataGridView3->Location = System::Drawing::Point(19, 30);
-			this->dataGridView3->Name = L"dataGridView3";
-			this->dataGridView3->Size = System::Drawing::Size(435, 113);
-			this->dataGridView3->TabIndex = 1;
-			this->dataGridView3->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &frmAlumno::dataGridView3_CellContentClick);
-			// 
-			// dataGridView4
-			// 
-			this->dataGridView4->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView4->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
-				this->Column16,
-					this->Column17, this->Column18, this->Column19, this->Column20, this->Column21, this->Column22
-			});
-			this->dataGridView4->Location = System::Drawing::Point(19, 33);
-			this->dataGridView4->Name = L"dataGridView4";
-			this->dataGridView4->Size = System::Drawing::Size(435, 127);
-			this->dataGridView4->TabIndex = 0;
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Codigo";
-			this->Column3->Name = L"Column3";
-			// 
-			// Column10
-			// 
-			this->Column10->HeaderText = L"Curso";
-			this->Column10->Name = L"Column10";
-			// 
-			// Column11
-			// 
-			this->Column11->HeaderText = L"Profesor";
-			this->Column11->Name = L"Column11";
-			// 
-			// Column13
-			// 
-			this->Column13->HeaderText = L"Fecha";
-			this->Column13->Name = L"Column13";
-			// 
-			// Column12
-			// 
-			this->Column12->HeaderText = L"Hora de Inicio";
-			this->Column12->Name = L"Column12";
-			// 
-			// Column15
-			// 
-			this->Column15->HeaderText = L"Horas Solicitadas";
-			this->Column15->Name = L"Column15";
-			// 
-			// Column14
-			// 
-			this->Column14->HeaderText = L"Link";
-			this->Column14->Name = L"Column14";
-			// 
-			// Column16
-			// 
-			this->Column16->HeaderText = L"Codigo";
-			this->Column16->Name = L"Column16";
-			// 
-			// Column17
-			// 
-			this->Column17->HeaderText = L"Curso";
-			this->Column17->Name = L"Column17";
-			// 
-			// Column18
-			// 
-			this->Column18->HeaderText = L"Profesor";
-			this->Column18->Name = L"Column18";
-			// 
-			// Column19
-			// 
-			this->Column19->HeaderText = L"Fecha";
-			this->Column19->Name = L"Column19";
-			// 
-			// Column20
-			// 
-			this->Column20->HeaderText = L"Hora de Inicio";
-			this->Column20->Name = L"Column20";
-			// 
-			// Column21
-			// 
-			this->Column21->HeaderText = L"Horas Solicitadas";
-			this->Column21->Name = L"Column21";
-			// 
-			// Column22
-			// 
-			this->Column22->HeaderText = L"Monto";
-			this->Column22->Name = L"Column22";
-			// 
-			// button5
-			// 
-			this->button5->Location = System::Drawing::Point(521, 296);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(75, 30);
-			this->button5->TabIndex = 2;
-			this->button5->Text = L"Pagar";
-			this->button5->UseVisualStyleBackColor = true;
-			// 
 			// frmAlumno
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -725,6 +631,8 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 private: System::Void tabPage2_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void dataGridView3_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+}
+private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
