@@ -342,13 +342,13 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 				String^ CodigoMinedu = this->textBox8->Text;
 				String^ Empresa = this->textBox9->Text;
 				String^ NumeroEmpresa = this->textBox10->Text;
-				String^ Validacion = "no";
+				String^ Validacion = "PorVerificar";
 				Persona^ objPersona = gcnew Persona(CodigoUsuario, DNI, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre, Correo);
 				CV^ objCV = gcnew CV(DNI, CodigoMinedu, Empresa, NumeroEmpresa, Validacion);
 				RegistroController^ objRegistro = gcnew RegistroController();
 				objRegistro->GuardarNuevoUsuarioEnArchivo(objPersona);
 				objRegistro->GuardarNuevoCV(objCV);
-				MessageBox::Show("Se ha registrado con éxito. Su CV estará en revisión");
+				MessageBox::Show("Se ha registrado con éxito. Se revisará su CV para que se pueda loguear");
 				this->Close();
 			
 			}
