@@ -212,9 +212,12 @@ namespace SistemaClasesParticularesView {
 			// textBox2
 			// 
 			this->textBox2->Location = System::Drawing::Point(340, 154);
+			this->textBox2->MaxLength = 8;
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(130, 20);
 			this->textBox2->TabIndex = 16;
+			this->textBox2->TextChanged += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox2_TextChanged);
+			this->textBox2->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &frmRegistroProfesor::textBox2_KeyPress);
 			// 
 			// textBox1
 			// 
@@ -269,9 +272,11 @@ namespace SistemaClasesParticularesView {
 			// textBox10
 			// 
 			this->textBox10->Location = System::Drawing::Point(221, 53);
+			this->textBox10->MaxLength = 9;
 			this->textBox10->Name = L"textBox10";
 			this->textBox10->Size = System::Drawing::Size(100, 20);
 			this->textBox10->TabIndex = 2;
+			this->textBox10->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &frmRegistroProfesor::textBox10_KeyPress);
 			// 
 			// textBox9
 			// 
@@ -384,6 +389,22 @@ private: System::Boolean Email_Valido(String^Email) {
 }
 	
 private: System::Void textBox8_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox10_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+
+	if ((e->KeyChar >= 32 && e->KeyChar <= 47) || (e->KeyChar >= 58 && e->KeyChar <= 255)) {
+		MessageBox::Show("Solo números", "Alerta", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+		e->Handled = true;
+	}
+}
+private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox2_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+
+	if ((e->KeyChar >= 32 && e->KeyChar <= 47) || (e->KeyChar >= 58 && e->KeyChar <= 255)) {
+		MessageBox::Show("Solo números", "Alerta", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+		e->Handled = true;
+	}
 }
 };
 }
