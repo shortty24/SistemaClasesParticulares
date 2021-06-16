@@ -283,6 +283,12 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			this->button14 = (gcnew System::Windows::Forms::Button());
 			this->button15 = (gcnew System::Windows::Forms::Button());
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
+			this->button10 = (gcnew System::Windows::Forms::Button());
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
 			this->groupBox8 = (gcnew System::Windows::Forms::GroupBox());
 			this->button19 = (gcnew System::Windows::Forms::Button());
@@ -305,12 +311,6 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			this->textBox15 = (gcnew System::Windows::Forms::TextBox());
 			this->label15 = (gcnew System::Windows::Forms::Label());
 			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->button10 = (gcnew System::Windows::Forms::Button());
-			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->tabPage2->SuspendLayout();
 			this->groupBox2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -423,6 +423,7 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			this->button8->TabIndex = 10;
 			this->button8->Text = L"Buscar";
 			this->button8->UseVisualStyleBackColor = true;
+			this->button8->Click += gcnew System::EventHandler(this, &frmProfesor::button8_Click);
 			// 
 			// button7
 			// 
@@ -734,6 +735,59 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			this->groupBox3->TabStop = false;
 			this->groupBox3->Text = L"Quejas :";
 			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(27, 200);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(133, 20);
+			this->textBox1->TabIndex = 16;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(24, 171);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(80, 13);
+			this->label1->TabIndex = 15;
+			this->label1->Text = L"DNI Agraviado:";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(24, 103);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(71, 13);
+			this->label2->TabIndex = 14;
+			this->label2->Text = L"DNI Agresor :";
+			// 
+			// comboBox2
+			// 
+			this->comboBox2->FormattingEnabled = true;
+			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) {
+				L"Agresion verbal", L"No se presento a la clase",
+					L"No dicto los temas pedidos"
+			});
+			this->comboBox2->Location = System::Drawing::Point(27, 52);
+			this->comboBox2->Name = L"comboBox2";
+			this->comboBox2->Size = System::Drawing::Size(202, 21);
+			this->comboBox2->TabIndex = 13;
+			// 
+			// button10
+			// 
+			this->button10->Location = System::Drawing::Point(128, 273);
+			this->button10->Name = L"button10";
+			this->button10->Size = System::Drawing::Size(104, 33);
+			this->button10->TabIndex = 12;
+			this->button10->Text = L"Enviar";
+			this->button10->UseVisualStyleBackColor = true;
+			// 
+			// textBox2
+			// 
+			this->textBox2->Location = System::Drawing::Point(27, 133);
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->Size = System::Drawing::Size(133, 20);
+			this->textBox2->TabIndex = 11;
+			// 
 			// tabPage3
 			// 
 			this->tabPage3->Controls->Add(this->groupBox8);
@@ -940,56 +994,6 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			this->label9->TabIndex = 0;
 			this->label9->Text = L"Configuración general de la cuenta";
 			// 
-			// textBox1
-			// 
-			this->textBox1->Location = System::Drawing::Point(27, 200);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(133, 20);
-			this->textBox1->TabIndex = 16;
-			// 
-			// textBox2
-			// 
-			this->textBox2->Location = System::Drawing::Point(27, 133);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(133, 20);
-			this->textBox2->TabIndex = 11;
-			// 
-			// button10
-			// 
-			this->button10->Location = System::Drawing::Point(128, 273);
-			this->button10->Name = L"button10";
-			this->button10->Size = System::Drawing::Size(104, 33);
-			this->button10->TabIndex = 12;
-			this->button10->Text = L"Enviar";
-			this->button10->UseVisualStyleBackColor = true;
-			// 
-			// comboBox2
-			// 
-			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"CalculoI", L"FisicaI", L"FisicaII", L"CalculoII" });
-			this->comboBox2->Location = System::Drawing::Point(27, 52);
-			this->comboBox2->Name = L"comboBox2";
-			this->comboBox2->Size = System::Drawing::Size(202, 21);
-			this->comboBox2->TabIndex = 13;
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(24, 103);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(71, 13);
-			this->label2->TabIndex = 14;
-			this->label2->Text = L"DNI Agresor :";
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(24, 171);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(80, 13);
-			this->label1->TabIndex = 15;
-			this->label1->Text = L"DNI Agraviado:";
-			// 
 			// frmProfesor
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -1100,5 +1104,7 @@ private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e
 	mostrarGrilla(objListaPartidos);*/
 }
 
+private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
