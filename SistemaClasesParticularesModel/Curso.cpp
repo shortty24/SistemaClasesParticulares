@@ -2,8 +2,9 @@
 
 using namespace SistemaClasesParticularesModel;
 
-Curso::Curso(String^ nombreCurso, String^ dificultad, String^ usuarioProfesor) {
+Curso::Curso(String^ nombreCurso, String^ precioCurso, String^ dificultad, String^ usuarioProfesor) {
 	this->nombreCurso = nombreCurso;
+	this->precioCurso = precioCurso;
 	this->dificultad = dificultad;
 	this->usuarioProfesor = usuarioProfesor;
 }

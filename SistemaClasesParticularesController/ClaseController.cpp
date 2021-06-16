@@ -98,7 +98,7 @@ Curso^ ClaseController::buscarCursoxNombreCurso(String^ cursoBuscar) {
 		String^ usuario = palabras[3];
 
 		if (cursoBuscar == curso) {
-			objCursoEncontrado = gcnew Curso(curso, dificultad, usuario);
+			objCursoEncontrado = gcnew Curso(curso, tarifa, dificultad, usuario);
 			break;
 		}
 	}
