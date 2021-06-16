@@ -10,7 +10,12 @@ namespace SistemaClasesParticularesController {
 		CVController();
 		String^ obtenerEmpresaRef(String^ dniProfesor);
 		List<CV^>^ obtenerListaCVs();
+		List<CV^>^ buscarCVxEstado(String^ estado);
+		void aprobarCV(String^ dniseleccionado);
+		void desaprobarCV(String^ dniseleccionado);
+
 		List<CV^>^ buscarCV(String^ dniBuscar);
+
 		void CargarCVDesdeArchivo();
 	};
 

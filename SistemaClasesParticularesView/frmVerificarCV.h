@@ -49,10 +49,24 @@ namespace SistemaClasesParticularesView {
 
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button3;
+
+
+
+
+
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Button^ button4;
+
+
+
+
+
+	private: System::Windows::Forms::ComboBox^ comboBox2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
 
 
 
@@ -71,6 +85,9 @@ namespace SistemaClasesParticularesView {
 		void InitializeComponent(void)
 		{
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
+			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
@@ -79,6 +96,7 @@ namespace SistemaClasesParticularesView {
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->groupBox1->SuspendLayout();
@@ -87,19 +105,51 @@ namespace SistemaClasesParticularesView {
 			// 
 			// groupBox1
 			// 
+			this->groupBox1->Controls->Add(this->comboBox2);
+			this->groupBox1->Controls->Add(this->button4);
+			this->groupBox1->Controls->Add(this->label2);
 			this->groupBox1->Controls->Add(this->button1);
 			this->groupBox1->Controls->Add(this->textBox1);
 			this->groupBox1->Controls->Add(this->label1);
 			this->groupBox1->Location = System::Drawing::Point(58, 34);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(514, 72);
+			this->groupBox1->Size = System::Drawing::Size(514, 98);
 			this->groupBox1->TabIndex = 3;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Criterios de Busqueda:";
 			// 
+			// comboBox2
+			// 
+			this->comboBox2->FormattingEnabled = true;
+			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"0", L"1" });
+			this->comboBox2->Location = System::Drawing::Point(117, 61);
+			this->comboBox2->Name = L"comboBox2";
+			this->comboBox2->Size = System::Drawing::Size(187, 21);
+			this->comboBox2->TabIndex = 14;
+			// 
+			// button4
+			// 
+			this->button4->Location = System::Drawing::Point(334, 61);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(75, 23);
+			this->button4->TabIndex = 5;
+			this->button4->Text = L"Buscar";
+			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &frmVerificarCV::button4_Click);
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(32, 64);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(40, 13);
+			this->label2->TabIndex = 3;
+			this->label2->Text = L"Estado";
+			this->label2->Click += gcnew System::EventHandler(this, &frmVerificarCV::label2_Click);
+			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(352, 29);
+			this->button1->Location = System::Drawing::Point(334, 23);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 2;
@@ -127,11 +177,11 @@ namespace SistemaClasesParticularesView {
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
 				this->Column4,
-					this->Column1, this->Column2, this->Column3
+					this->Column1, this->Column2, this->Column3, this->Column5
 			});
-			this->dataGridView1->Location = System::Drawing::Point(58, 129);
+			this->dataGridView1->Location = System::Drawing::Point(58, 149);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->Size = System::Drawing::Size(514, 150);
 			this->dataGridView1->TabIndex = 2;
@@ -156,9 +206,14 @@ namespace SistemaClasesParticularesView {
 			this->Column3->HeaderText = L"TelfEmpresa";
 			this->Column3->Name = L"Column3";
 			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"Estado";
+			this->Column5->Name = L"Column5";
+			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(211, 304);
+			this->button2->Location = System::Drawing::Point(196, 315);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 4;
@@ -168,12 +223,13 @@ namespace SistemaClasesParticularesView {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(368, 304);
+			this->button3->Location = System::Drawing::Point(364, 315);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(89, 23);
 			this->button3->TabIndex = 5;
 			this->button3->Text = L"Desaprobado";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &frmVerificarCV::button3_Click);
 			// 
 			// frmVerificarCV
 			// 
@@ -194,6 +250,13 @@ namespace SistemaClasesParticularesView {
 		}
 #pragma endregion
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
+		String^ dniseleccionado = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
+
+		CVController^ objGestorCV = gcnew CVController();
+		objGestorCV->aprobarCV(dniseleccionado);
+		MessageBox::Show("El CV ha sido aprobado con éxito !!!");
+			
 	}
 private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
@@ -216,14 +279,33 @@ private: void mostrarGrilla(List<CV^>^ listaCV) {
 	this->dataGridView1->Rows->Clear();
 	for (int i = 0; i < listaCV->Count; i++) {
 		CV^ objCV = listaCV[i];
-		array<String^>^ fila = gcnew array<String^>(4);
+		array<String^>^ fila = gcnew array<String^>(5);
 		fila[0] = objCV->DniProfesor;
 		fila[1] = objCV->objCodigoMinedu;
 		fila[2] = objCV->objEmpresa;
 		fila[3] = objCV->telefonoEmpresa;
+		fila[4] = objCV->Validación;
 
 		this->dataGridView1->Rows->Add(fila);
 	}
+}
+private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ estadobuscar = this->comboBox2->Text;
+	List<CV^>^ listaCV;
+	CVController^ objGestorCV = gcnew CVController();
+    listaCV = objGestorCV->buscarCVxEstado(estadobuscar);
+	mostrarGrilla(listaCV);
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
+	String^ dniseleccionado = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
+
+	CVController^ objGestorCV = gcnew CVController();
+	objGestorCV->desaprobarCV(dniseleccionado);
+	MessageBox::Show("El CV ha sido desaprobado con éxito !!!");
+
 }
 };
 }
