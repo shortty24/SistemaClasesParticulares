@@ -46,6 +46,8 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ button3;
 
 
 
@@ -72,6 +74,8 @@ namespace SistemaClasesParticularesView {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
@@ -141,11 +145,32 @@ namespace SistemaClasesParticularesView {
 			this->label1->Text = L"DNI Agresor";
 			this->label1->Click += gcnew System::EventHandler(this, &frmQuejas::label1_Click);
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(171, 307);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->TabIndex = 3;
+			this->button2->Text = L"Procede";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &frmQuejas::button2_Click);
+			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(366, 307);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(75, 23);
+			this->button3->TabIndex = 4;
+			this->button3->Text = L"No procede";
+			this->button3->UseVisualStyleBackColor = true;
+			// 
 			// frmQuejas
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(663, 361);
+			this->Controls->Add(this->button3);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->dataGridView1);
 			this->Name = L"frmQuejas";
@@ -159,5 +184,7 @@ namespace SistemaClasesParticularesView {
 #pragma endregion
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	};
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }
