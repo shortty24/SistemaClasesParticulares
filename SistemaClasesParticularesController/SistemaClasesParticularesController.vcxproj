@@ -126,6 +126,7 @@
     <ClInclude Include="PagoController.h" />
     <ClInclude Include="PersonaController.h" />
     <ClInclude Include="ProfesorController.h" />
+    <ClInclude Include="QuejasController.h" />
     <ClInclude Include="RegistroController.h" />
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +140,7 @@
     <ClCompile Include="PagoController.cpp" />
     <ClCompile Include="PersonaController.cpp" />
     <ClCompile Include="ProfesorController.cpp" />
+    <ClCompile Include="QuejasController.cpp" />
     <ClCompile Include="RegistroController.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
