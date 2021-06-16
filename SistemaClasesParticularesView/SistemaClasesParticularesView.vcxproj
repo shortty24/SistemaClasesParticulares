@@ -138,6 +138,7 @@
     <ClCompile Include="frmInscripcion.cpp" />
     <ClCompile Include="frmLogeo.cpp" />
     <ClCompile Include="frmNuevoHorario.cpp" />
+    <ClCompile Include="frmPago.cpp" />
     <ClCompile Include="frmPrincipal.cpp" />
     <ClCompile Include="frmProfesor.cpp" />
     <ClCompile Include="frmProgramarClase.cpp" />
@@ -171,6 +172,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="frmNuevoHorario.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmPago.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="frmPrincipal.h">
@@ -222,6 +226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNuevoHorario.resx">
       <DependentUpon>frmNuevoHorario.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPago.resx">
+      <DependentUpon>frmPago.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.h</DependentUpon>
