@@ -9,6 +9,7 @@ namespace SistemaClasesParticularesModel {
 
 	public:
 		//int codigo;
+		String^ tarifa;
 		String^ nombreCurso;
 		//String^ objTema;
 		String^ dificultad;

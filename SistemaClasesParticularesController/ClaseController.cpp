@@ -93,8 +93,9 @@ Curso^ ClaseController::buscarCursoxNombreCurso(String^ cursoBuscar) {
 	for each (String ^ lineaPersonas in lineas) {
 		array<String^>^ palabras = lineaPersonas->Split(separadores->ToCharArray());
 		String^ curso = palabras[0];
-		String^ dificultad = palabras[1];
-		String^ usuario = palabras[2];
+		String^ tarifa= palabras[1];
+		String^ dificultad = palabras[2];
+		String^ usuario = palabras[3];
 
 		if (cursoBuscar == curso) {
 			objCursoEncontrado = gcnew Curso(curso, dificultad, usuario);
