@@ -2,10 +2,10 @@
 
 using namespace SistemaClasesParticularesModel;
 
-Inscripcion::Inscripcion(Alumno^ objAlumno, Curso^ objCurso, String^ horaRealizacion, String^ fechaRealizacion) {
+Inscripcion::Inscripcion(Alumno^ objAlumno, Curso^ objCurso, String^ horaInscripcion, String^ fechaInscripcion, int tiempoReserva) {
 	this->objAlumno = objAlumno;
 	this->objCurso = objCurso;
-	this->horaRealizacion = horaRealizacion;
-	this->fechaRealizacion=fechaRealizacion;
-
+	this->horaInscripcion = horaInscripcion;
+	this->fechaInscripcion = fechaInscripcion;
+	this->tiempoReserva = tiempoReserva;
 }

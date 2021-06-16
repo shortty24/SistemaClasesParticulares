@@ -6,18 +6,19 @@
 namespace SistemaClasesParticularesModel {
 	//para reconocer el String
 	using namespace System;
+	using namespace System::Collections::Generic;
 
 	public ref class Inscripcion {
 		public:
-			//int precioTotal;
-			String^ horaRealizacion;
-			String^ fechaRealizacion;
-			String^ estado;
+			String^ horaInscripcion;
+			String^ fechaInscripcion;
+			int tiempoReserva;
+			//String^ estado;
 			Alumno^ objAlumno;
 			Curso^ objCurso;
 
 		public:
 			//Inscripcion();
-			Inscripcion(Alumno^ objAlumno, Curso^ objCurso,String^ horaRealizacion, String^ fechaRealizacion);
+			Inscripcion(Alumno^ objAlumno, Curso^ objCurso, String^ horaInscripcion, String^ fechaInscripcion, int tiempoReserva);
 	};
 }

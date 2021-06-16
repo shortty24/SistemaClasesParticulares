@@ -77,11 +77,11 @@ namespace SistemaClasesParticularesView {
 			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->groupBox2->SuspendLayout();
@@ -163,13 +163,6 @@ namespace SistemaClasesParticularesView {
 			this->dataGridView1->Size = System::Drawing::Size(469, 122);
 			this->dataGridView1->TabIndex = 0;
 			// 
-			// dateTimePicker1
-			// 
-			this->dateTimePicker1->Location = System::Drawing::Point(151, 38);
-			this->dateTimePicker1->Name = L"dateTimePicker1";
-			this->dateTimePicker1->Size = System::Drawing::Size(200, 20);
-			this->dateTimePicker1->TabIndex = 12;
-			// 
 			// Column1
 			// 
 			this->Column1->HeaderText = L"Fecha";
@@ -189,6 +182,13 @@ namespace SistemaClasesParticularesView {
 			// 
 			this->Column4->HeaderText = L"Hora fin";
 			this->Column4->Name = L"Column4";
+			// 
+			// dateTimePicker1
+			// 
+			this->dateTimePicker1->Location = System::Drawing::Point(151, 38);
+			this->dateTimePicker1->Name = L"dateTimePicker1";
+			this->dateTimePicker1->Size = System::Drawing::Size(200, 20);
+			this->dateTimePicker1->TabIndex = 12;
 			// 
 			// button2
 			// 
@@ -212,7 +212,7 @@ namespace SistemaClasesParticularesView {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(676, 405);
+			this->ClientSize = System::Drawing::Size(676, 539);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->dateTimePicker1);

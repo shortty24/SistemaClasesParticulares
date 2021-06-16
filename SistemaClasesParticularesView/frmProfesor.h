@@ -1,6 +1,8 @@
 #pragma once
 
 #include "frmEditarAccesoProfesor.h"
+#include "frmNuevoHorario.h"
+#include "frmEditarHorario.h"
 
 namespace SistemaClasesParticularesView {
 
@@ -836,6 +838,7 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column21;
 			this->button9->TabIndex = 1;
 			this->button9->Text = L"Añadir";
 			this->button9->UseVisualStyleBackColor = true;
+			this->button9->Click += gcnew System::EventHandler(this, &frmProfesor::button9_Click);
 			// 
 			// dataGridView6
 			// 
@@ -1045,8 +1048,8 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 			array<String^>^ fila = gcnew array<String^>(5);
 			fila[0] = ClaseProgramada->objAlumno->objNombre + " " + ClaseProgramada->objAlumno->objApellidoPaterno + " " + ClaseProgramada->objAlumno->objApellidoMaterno;
 			fila[1] = ClaseProgramada->objCurso->nombreCurso;
-			fila[2] = ClaseProgramada->objInscripcion->horaRealizacion;
-			fila[3] = ClaseProgramada->objInscripcion->fechaRealizacion;
+			fila[2] = ClaseProgramada->horaClase;
+			fila[3] = ClaseProgramada->fechaClase;
 			fila[4] = ClaseProgramada->objLink;
 			this->dataGridView1->Rows->Add(fila);
 		}
@@ -1070,15 +1073,6 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 		listaClasesProgramadas = objGestorLista->ClasesProgramadas(ProfesorLogeado->dni);
 		mostrarGrilla(listaClasesProgramadas);
 
-		/*this->dataGridView1->Rows->Clear();
-		array<String^>^ fila = gcnew array<String^>(5);
-		fila[0] = 
-		fila[1] = ProfesorLogeado->objNombre;
-		fila[2] = ProfesorLogeado->objApellidoPaterno;
-		fila[3] = ProfesorLogeado->objApellidoMaterno;
-		fila[4] = ProfesorLogeado->objApellidoMaterno;
-		this->dataGridView4->Rows->Add(fila);*/
-
 		this->textBox14->Text=ProfesorLogeado->objUsuario;
 		this->textBox13->Text = ProfesorLogeado->objContrasenha;
 
@@ -1098,5 +1092,15 @@ private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ 
 		List<PartidoPolitico^>^ objListaPartidos = gestorPartidoPolitico->obtenerListaPartidos();
 		mostrarGrilla(objListaPartidos);*/
 	}
+
+private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
+	frmNuevoHorario^ ventanaNuevoHorario= gcnew frmNuevoHorario();
+	ventanaNuevoHorario->ShowDialog();
+	/*PartidoPoliticoController^ gestorPartidoPolitico = gcnew PartidoPoliticoController();
+	gestorPartidoPolitico->CargarPartidosDesdeArchivo();
+	List<PartidoPolitico^>^ objListaPartidos = gestorPartidoPolitico->obtenerListaPartidos();
+	mostrarGrilla(objListaPartidos);*/
+}
+
 };
 }

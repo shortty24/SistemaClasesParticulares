@@ -18,10 +18,11 @@ using namespace SistemaClasesParticularesModel;
 	this->objLink = objLink;
 }*/
 
-Clase::Clase(Alumno^ objAlumno, Profesor^ objProfesor, Curso^ objCurso, Inscripcion^ objInscripcion, String^ objLink) {
+Clase::Clase(Alumno^ objAlumno, Profesor^ objProfesor, Curso^ objCurso, String^ horaClase, String^ fechaClase, String^ objLink) {
 	this->objAlumno = objAlumno;
 	this->objProfesor = objProfesor;
 	this->objCurso = objCurso;
-	this->objInscripcion = objInscripcion;
+	this->horaClase = horaClase;
+	this->fechaClase = fechaClase;
 	this->objLink = objLink;
 }
