@@ -132,3 +132,51 @@ Inscripcion^ ClaseController::buscarInscripcionxHoraxFecha(String^ horaBuscar, S
 	}
 	return objInscripcionEncontrada;
 }
+
+void ClaseController::CargarClaseDesdeArchivo() {
+	this->listaClases->Clear();
+	array<String^>^ lineas = File::ReadAllLines("Clases.txt");
+
+	String^ separadores = ";";
+	for each (String ^ lineaClases in lineas) {
+		array<String^>^ palabras = lineaClases->Split(separadores->ToCharArray());
+		String^ dnialumno = palabras[0];
+		Alumno^ objAlumno = buscarAlumnoxDNI(dnialumno);
+		String^ dniprofesor = palabras[1];
+		Profesor^ objProfesor = buscarProfesorxDNI(dniprofesor);
+		String^ curso = palabras[2];
+		Curso^ objCurso = buscarCursoxNombreCurso(curso);
+		String^ horaclase = palabras[3];
+		String^ fecha = palabras[4];
+		String^ link = palabras[5];
+		Clase^ objClase = gcnew Clase(objAlumno, objProfesor, objCurso, horaclase, fecha, link);
+		this->listaClases->Add(objClase);
+	}
+}
+
+
+void ClaseController::enviarlink(String^ linkclase, String^ dnialumno) {
+	this->listaClases->Clear();
+	CargarClaseDesdeArchivo();
+	for (int i = 0; i < this->listaClases->Count; i++) {
+		Clase^ objClase = this->listaClases[i];
+		if (objClase->objAlumno->dni == dnialumno) {
+			this->listaClases[i]->objLink = linkclase;
+			break;
+		}
+	}
+
+	array<String^>^ lineasArchivoClases = gcnew array<String^>(this->listaClases->Count);
+	for (int i = 0; i < this->listaClases->Count; i++) {
+		Clase^ objClase = this->listaClases[i];
+		lineasArchivoClases[i] = objClase->objAlumno->dni + ";" + objClase->objProfesor->dni + ";" + objClase->objCurso->nombreCurso + ";" + objClase->horaClase + ";" + objClase->fechaClase + ";" + objClase->objLink;
+	}
+	/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
+	File::WriteAllLines("Clases.txt", lineasArchivoClases);
+
+}
+
+
+
+
+
