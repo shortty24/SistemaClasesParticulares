@@ -132,12 +132,11 @@
   <ItemGroup>
     <ClCompile Include="frmAlumno.cpp" />
     <ClCompile Include="frmCV.cpp" />
-    <ClCompile Include="frmEditarHorario.cpp" />
     <ClCompile Include="frmInfoProfesorCurso.cpp" />
     <ClCompile Include="frmEditarAccesoProfesor.cpp" />
     <ClCompile Include="frmInscripcion.cpp" />
     <ClCompile Include="frmLogeo.cpp" />
-    <ClCompile Include="frmNuevoHorario.cpp" />
+    <ClCompile Include="frmModificarHorario.cpp" />
     <ClCompile Include="frmPago.cpp" />
     <ClCompile Include="frmPrincipal.cpp" />
     <ClCompile Include="frmProfesor.cpp" />
@@ -156,9 +155,6 @@
     <ClInclude Include="frmCV.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="frmEditarHorario.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="frmInfoProfesorCurso.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -171,7 +167,7 @@
     <ClInclude Include="frmLogeo.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="frmNuevoHorario.h">
+    <ClInclude Include="frmModificarHorario.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="frmPago.h">
@@ -209,9 +205,6 @@
     <EmbeddedResource Include="frmAlumno.resx">
       <DependentUpon>frmAlumno.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditarHorario.resx">
-      <DependentUpon>frmEditarHorario.h</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmInfoProfesorCurso.resx">
       <DependentUpon>frmInfoProfesorCurso.h</DependentUpon>
     </EmbeddedResource>
@@ -224,8 +217,8 @@
     <EmbeddedResource Include="frmLogeo.resx">
       <DependentUpon>frmLogeo.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmNuevoHorario.resx">
-      <DependentUpon>frmNuevoHorario.h</DependentUpon>
+    <EmbeddedResource Include="frmModificarHorario.resx">
+      <DependentUpon>frmModificarHorario.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPago.resx">
       <DependentUpon>frmPago.h</DependentUpon>
