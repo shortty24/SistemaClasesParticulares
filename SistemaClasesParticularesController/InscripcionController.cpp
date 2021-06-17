@@ -41,5 +41,33 @@ List<Inscripcion^>^ InscripcionController::InscripcionesxAlumno(String^ datoAlum
 	return this->listaInscripcion;
 }
 
+void InscripcionController::GuardarInscripcion(String^ diaNuevo, String^ horaInicioNuevo, String^ tiempoPedidoNuevo, String^ nombreDelCursoNuevo, String^ dniProfesorNuevo, String^ dniAlumnoNuevo, String^ fechaInscripcionNuevo, String^ horaInscripcionNuevo) {
+	List<String^>^ listaTextoInscrip = gcnew List<String^>();
+	array<String^>^ lineas = File::ReadAllLines("Inscripciones.txt");
 
+	String^ separadores = ";";
+	String^ lineaAgregar;
+	int k = 0;
+	int ultimoCodigo;
+	for each (String ^ lineaInscripcion in lineas) {
+		array<String^>^ palabras = lineaInscripcion->Split(separadores->ToCharArray());
+		String^ dniAlumno = palabras[0];
+		String^ dniProfesor = palabras[1];
+		String^ nombreCurso = palabras[2];
+		String^ horaInscripion = palabras[3];
+		String^ fechaInscripion = palabras[4];
+		int horasPedidas = Convert::ToInt32(palabras[5]);
+		String^ horaInicio = palabras[6];
+		String^ fechaClase = palabras[7];
+		String^ codigoIns = palabras[8];
+		ultimoCodigo = Convert::ToInt32(codigoIns);
 
+		lineaAgregar = dniAlumno + ";" + dniProfesor + ";" + nombreCurso + ";" + horaInscripion + ";" + fechaInscripion + ";" + Convert::ToString(horasPedidas) + ";" + horaInicio + ";" + fechaClase + ";" + codigoIns;
+		listaTextoInscrip->Add(lineaAgregar);
+	}
+	String^ codigoNuevo = Convert::ToString(ultimoCodigo + 1);
+
+	lineaAgregar = dniAlumnoNuevo + ";" + dniProfesorNuevo + ";" + nombreDelCursoNuevo + ";" + horaInscripcionNuevo + ";" + fechaInscripcionNuevo + ";" + tiempoPedidoNuevo + ";" + horaInicioNuevo + ";" + diaNuevo + ";" + codigoNuevo;
+	listaTextoInscrip->Add(lineaAgregar);
+	File::WriteAllLines("Inscripciones.txt", listaTextoInscrip);
+}
