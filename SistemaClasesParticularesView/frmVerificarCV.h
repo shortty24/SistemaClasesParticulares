@@ -121,7 +121,7 @@ namespace SistemaClasesParticularesView {
 			// comboBox2
 			// 
 			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"no", L"si" });
+			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Aprobado", L"Desaprobado", L"PorVerificar" });
 			this->comboBox2->Location = System::Drawing::Point(117, 61);
 			this->comboBox2->Name = L"comboBox2";
 			this->comboBox2->Size = System::Drawing::Size(187, 21);
