@@ -23,3 +23,4 @@ Alumno::Alumno(String^ CodigoUsuario, String^ objUsuario, String^ dni, String^ o
 	this->objNombre = objNombre;
 	this->objCorreo = objCorreo;
 }
+
