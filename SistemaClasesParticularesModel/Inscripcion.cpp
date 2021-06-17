@@ -9,3 +9,11 @@ Inscripcion::Inscripcion(Alumno^ objAlumno, Curso^ objCurso, String^ horaInscrip
 	this->fechaInscripcion = fechaInscripcion;
 	this->tiempoReserva = tiempoReserva;
 }
+
+Inscripcion::Inscripcion(Alumno^ objAlumno, String^ horaClase, int tiempoReserva) {
+	this->objAlumno = objAlumno;
+	this->horaClase = horaClase;
+	this->tiempoReserva = tiempoReserva;
+
+
+}

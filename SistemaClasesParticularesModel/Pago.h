@@ -1,6 +1,5 @@
 #pragma once
 #include "Inscripcion.h"
-#include "Administrador.h"
 
 namespace SistemaClasesParticularesModel {
 	//para reconocer el String
@@ -11,13 +10,18 @@ namespace SistemaClasesParticularesModel {
 
 	private:
 		//int codigo; No entiendo a qué se refiere
-		String^ fechaPago;
-		String^ objEstado;
 		Inscripcion^ objInscripcion;
-		Administrador^ objAdministrador;
+		String^ estadopago;
+		String^ horaPago;
+		String^ fechaPago;
+		String^ codigoPago;
+		String^ estadoclase;
+
+		
 
 	public:
 		//Pago();
-		Pago(String^ fechaPago, String^ objEstado, Inscripcion^ objInscripcion, Administrador^ objAdministrador);
+		Pago(Inscripcion^ objInscripcion, String^ estadopago, String^ horaPago, String^ fechaPago, String^ codigoPago, String^ estadoclase);
+
 	};
 }

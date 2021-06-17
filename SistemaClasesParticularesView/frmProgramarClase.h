@@ -146,6 +146,7 @@ namespace SistemaClasesParticularesView {
 			this->button1->TabIndex = 2;
 			this->button1->Text = L"Buscar";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &frmProgramarClase::button1_Click);
 			// 
 			// label1
 			// 
@@ -320,6 +321,13 @@ private: System::Void dataGridView1_CellContentClick(System::Object^ sender, Sys
 private: System::Void groupBox1_Enter(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void frmProgramarClase_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ estadobuscar = this->comboBox2->Text;
+	List<Pago^>^ listaPagos;
+	PagoController^ objGestorPago = gcnew PagoController();
+	listaPagos = objGestorPago->buscarPagosxEstado(estadobuscar);
+	mostrarGrilla(listaPagos);
 }
 };
 }

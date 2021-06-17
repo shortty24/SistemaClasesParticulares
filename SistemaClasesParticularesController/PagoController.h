@@ -6,9 +6,12 @@ namespace SistemaClasesParticularesController {
 	using namespace System;
 	public ref class PagoController {
 	private:
-		List<Pago^>^ listaPago;
+		List<Pago^>^ listaPagos;
 	public:
 		PagoController();
+
+		List<Pago^>^ buscarPagosxEstado(String^ estado);
+
 	};
 
 }

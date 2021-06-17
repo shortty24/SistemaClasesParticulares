@@ -2,9 +2,13 @@
 
 using namespace SistemaClasesParticularesModel;
 
-Pago::Pago(String^ fechaPago, String^ objEstado, Inscripcion^ objInscripcion, Administrador^ objAdministrador) {
-	this->fechaPago = fechaPago;
-	this->objEstado = objEstado;
+Pago::Pago(Inscripcion^ objInscripcion, String^ estadopago, String^ horaPago, String^ fechaPago, String^ codigoPago, String^ estadoclase) {
+
 	this->objInscripcion = objInscripcion;
-	this->objAdministrador = objAdministrador;
+	this->estadopago = estadopago;
+	this->horaPago = horaPago;
+	this->fechaPago = fechaPago;
+	this->codigoPago = codigoPago;
+	this->estadoclase = estadoclase;
+
 }
