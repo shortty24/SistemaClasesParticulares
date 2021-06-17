@@ -92,3 +92,37 @@ Horario^ HorarioController::buscarHorarioxDia(String^ diaBuscar) {
 	}
 	return objHorarioEncontrado;
 }
+void HorarioController::editaHorarioxProfesor(String^ dniProfesorEditar, String^ nombreDelCursoEditar, String^ diaEditar, String^ horaInicio, String^ horasPedidas) {
+	List<String^>^ listaTextoHorario = gcnew List<String^>();
+	array<String^>^ lineas = File::ReadAllLines("Horarios.txt");
+	String^ separadores = ";";
+	int indice = Convert::ToInt32(horaInicio);
+	for each (String ^ lineaHorario in lineas) {
+		array<String^>^ palabras = lineaHorario->Split(separadores->ToCharArray());
+		String^ dni = palabras[0];
+		String^ nombreCurso = palabras[1];
+		String^ dia = palabras[2];
+		List<String^>^ horasxDia = gcnew List<String^>();
+		for (int i = 3; i < 27; i++) {
+			horasxDia->Add(palabras[i]);
+		}
+		int indice = Convert::ToInt32(horaInicio);
+		if (dni == dniProfesorEditar && nombreCurso == nombreDelCursoEditar && dia == diaEditar) {
+			if (horasPedidas == "1") {
+				horasxDia[indice] = "-";
+			}
+			else if (horasPedidas == "2") {
+				horasxDia[indice] = "-";
+				horasxDia[indice+1] = "-";
+			}
+		}
+		String^ lineaTexto;
+		lineaTexto = dni + ";" + nombreCurso + ";" + dia;
+		for (int j = 0; j < (horasxDia->Count); j++) {
+			lineaTexto = lineaTexto + ";" + horasxDia[j];
+		}
+
+		listaTextoHorario->Add(lineaTexto);
+	}
+	File::WriteAllLines("Horarios.txt", listaTextoHorario);
+}
