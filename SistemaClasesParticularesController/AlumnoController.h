@@ -10,6 +10,7 @@ namespace SistemaClasesParticularesController {
 		public:
 			AlumnoController();
 			Alumno^ buscaAlumno(String^ usuarioAlumno);
+			Alumno^ buscaAlumnoxDNI(String^ dniAlumno);
 			/*hola*/
 	};
 }

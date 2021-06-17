@@ -9,6 +9,7 @@ namespace SistemaClasesParticularesController {
 		List<Inscripcion^>^ listaInscripcion;
 	public:
 		InscripcionController();
+		List<Inscripcion^>^ InscripcionesxAlumno(String^ datoAlumno);
 	};
 
 }

@@ -8,6 +8,8 @@ namespace SistemaClasesParticularesView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace SistemaClasesParticularesController;
+	using namespace SistemaClasesParticularesModel;
 
 	/// <summary>
 	/// Summary for frmPago
@@ -18,6 +20,14 @@ namespace SistemaClasesParticularesView {
 		frmPago(void)
 		{
 			InitializeComponent();
+			//
+			//TODO: Add the constructor code here
+			//
+		}
+		frmPago(String^ codigoIns)
+		{
+			InitializeComponent();
+			this->codigoIns = codigoIns;
 			//
 			//TODO: Add the constructor code here
 			//
@@ -39,6 +49,7 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ textBox2;
+	private: String^ codigoIns;
 	protected:
 
 	private:
@@ -116,6 +127,7 @@ namespace SistemaClasesParticularesView {
 			this->Controls->Add(this->label1);
 			this->Name = L"frmPago";
 			this->Text = L"frmPago";
+			this->Load += gcnew System::EventHandler(this, &frmPago::frmPago_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -123,5 +135,8 @@ namespace SistemaClasesParticularesView {
 #pragma endregion
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	};
+	private: System::Void frmPago_Load(System::Object^ sender, System::EventArgs^ e) {
+		this->textBox1->Text = codigoIns;
+	}
+};
 }
