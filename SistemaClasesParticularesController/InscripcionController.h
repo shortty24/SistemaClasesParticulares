@@ -10,6 +10,7 @@ namespace SistemaClasesParticularesController {
 	public:
 		InscripcionController();
 		List<Inscripcion^>^ InscripcionesxAlumno(String^ datoAlumno);
+		void GuardarInscripcion(String^ diaNuevo, String^ horaInicioNuevo, String^ tiempoPedidoNuevo, String^ nombreDelCursoNuevo, String^ dniProfesorNuevo, String^ dniAlumnoNuevo, String^ fechaInscripcionNuevo, String^ horaInscripcionNuevo);
 	};
 
 }

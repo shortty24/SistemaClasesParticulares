@@ -25,11 +25,12 @@ namespace SistemaClasesParticularesView {
 			//TODO: agregar código de constructor aquí
 			//
 		}
-		frmInscripcion(String^ dniProfesor, String^ nombreDelCurso)
+		frmInscripcion(String^ dniProfesor, String^ nombreDelCurso, Alumno^ objAlumno)
 		{
 			InitializeComponent();
 			this->dniProfesor = dniProfesor;
 			this->nombreDelCurso = nombreDelCurso;
+			this->objAlumno = objAlumno;
 			//
 			//TODO: agregar código de constructor aquí
 			//
@@ -72,6 +73,7 @@ namespace SistemaClasesParticularesView {
 
 	private: String^ dniProfesor;
 	private: String^ nombreDelCurso;
+	private: Alumno^ objAlumno;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
@@ -252,7 +254,36 @@ private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e)
 }
 private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 }
+private: String^ fechaDeClase(String^ diaClase) {
+	String^ fecha;
+	if (diaClase == "Lunes") {
+		fecha = "21/06/2021";
+	}
+	else if (diaClase == "Martes") {
+		fecha = "22/06/2021";
+	}
+	else if (diaClase == "Miércoles") {
+		fecha = "23/06/2021";
+	}
+	else if (diaClase == "Jueves") {
+		fecha = "24/06/2021";
+	}
+	else if (diaClase == "Viernes") {
+		fecha = "25/06/2021";
+	}
+	else if (diaClase == "Sábado") {
+		fecha = "26/06/2021";
+	}
+	else if (diaClase == "Domingo") {
+		fecha = "27/06/2021";
+	}
+	return fecha;
+}
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	InscripcionController^ gestorInscripcion = gcnew InscripcionController();
+
+	gestorInscripcion->GuardarInscripcion(fechaDeClase(this->comboBox1->Text), this->comboBox2->Text, this->comboBox3->Text, nombreDelCurso, dniProfesor,objAlumno->dni,"17/06/2021","12:30");
+	this->Close();
 }
 private: System::Void frmInscripcion_Load(System::Object^ sender, System::EventArgs^ e) {
 	HorarioController^ gestorHorario = gcnew HorarioController();
