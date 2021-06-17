@@ -87,6 +87,12 @@ namespace SistemaClasesParticularesView {
 
 
 
+
+
+
+
+
+
 	private:
 		/// <summary>
 		/// Variable del diseñador necesaria.
@@ -149,6 +155,7 @@ namespace SistemaClasesParticularesView {
 			this->button5->TabIndex = 18;
 			this->button5->Text = L"Buscar";
 			this->button5->UseVisualStyleBackColor = true;
+			this->button5->Click += gcnew System::EventHandler(this, &frmProgramarClase::button5_Click);
 			// 
 			// label3
 			// 
@@ -192,9 +199,9 @@ namespace SistemaClasesParticularesView {
 			this->label1->AutoSize = true;
 			this->label1->Location = System::Drawing::Point(32, 29);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(40, 13);
+			this->label1->Size = System::Drawing::Size(32, 13);
 			this->label1->TabIndex = 0;
-			this->label1->Text = L"Estado";
+			this->label1->Text = L"Pago";
 			this->label1->Click += gcnew System::EventHandler(this, &frmProgramarClase::label1_Click);
 			// 
 			// dataGridView1
@@ -232,7 +239,7 @@ namespace SistemaClasesParticularesView {
 			// 
 			// Column5
 			// 
-			this->Column5->HeaderText = L"Estado";
+			this->Column5->HeaderText = L"Pago";
 			this->Column5->Name = L"Column5";
 			// 
 			// Column6
@@ -260,6 +267,7 @@ namespace SistemaClasesParticularesView {
 			this->button2->TabIndex = 5;
 			this->button2->Text = L"Enviar Clase";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &frmProgramarClase::button2_Click);
 			// 
 			// textBox2
 			// 
@@ -285,6 +293,7 @@ namespace SistemaClasesParticularesView {
 			this->button3->TabIndex = 6;
 			this->button3->Text = L"Validar";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &frmProgramarClase::button3_Click);
 			// 
 			// button4
 			// 
@@ -294,6 +303,7 @@ namespace SistemaClasesParticularesView {
 			this->button4->TabIndex = 7;
 			this->button4->Text = L"No Validado";
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &frmProgramarClase::button4_Click);
 			// 
 			// frmProgramarClase
 			// 
@@ -326,10 +336,10 @@ private: System::Void groupBox1_Enter(System::Object^ sender, System::EventArgs^
 private: System::Void frmProgramarClase_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	String^ estadobuscar = this->comboBox2->Text;
+	String^ estadopagobuscar = this->comboBox2->Text;
 	List<Pago^>^ listaPagos;
 	PagoController^ objGestorPago = gcnew PagoController();
-	listaPagos = objGestorPago->buscarPagosxEstado(estadobuscar);
+	listaPagos = objGestorPago->buscarPagosxEstado(estadopagobuscar);
 	mostrarGrilla(listaPagos);
 }
 
@@ -347,6 +357,55 @@ private: void mostrarGrilla(List<Pago^>^ listaPagos) {
 
 		this->dataGridView1->Rows->Add(fila);
 	}
+}
+private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ estadoclasebuscar = this->comboBox1->Text;
+	List<Pago^>^ listaPagos;
+	PagoController^ objGestorPago = gcnew PagoController();
+	listaPagos = objGestorPago->buscarClasesxEstado(estadoclasebuscar);
+	mostrarGrilla(listaPagos);
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
+	String^ codigopago = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
+
+	String^ dnialumno = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[1]->Value->ToString();
+
+	ClaseController^ objGestorClase = gcnew ClaseController();
+	//objGestorClase->crearclasetxt(dnialumno);
+
+	PagoController^ objGestorPago = gcnew PagoController();
+	objGestorPago->aprobarPago(codigopago);
+
+
+	MessageBox::Show("El Pago ha sido validado con éxito !!!");
+
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
+	String^ codigopago = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
+
+	PagoController^ objGestorPago = gcnew PagoController();
+	objGestorPago->desaprobarPago(codigopago);
+	MessageBox::Show("El Pago no ha sido validado !!!");
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
+	String^ codigopago = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
+
+	String^ dnialumno = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[1]->Value->ToString();
+
+	PagoController^ objGestorPago = gcnew PagoController();
+	objGestorPago->programarclase(codigopago);
+
+	String^ linkclase = this->textBox2->Text;
+	ClaseController^ objGestorClase = gcnew ClaseController();
+	objGestorClase->enviarlink(linkclase,dnialumno);
+
+	MessageBox::Show("El link de la clase ha sido enviado !!!");
+
+
+
 }
 };
 }

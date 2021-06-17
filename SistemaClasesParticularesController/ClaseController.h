@@ -15,6 +15,12 @@ namespace SistemaClasesParticularesController {
 		Curso^ buscarCursoxNombreCurso(String^ cursoBuscar);
 		Inscripcion^ buscarInscripcionxHoraxFecha(String^ horaBuscar, String^ fechaBuscar);
 
+		void enviarlink(String^ linkclase,String^ dnialumno);
+		//void crearclasetxt(String^ dnialumno);
+		
+		
+		void CargarClaseDesdeArchivo();
+
 	};
 
 }
