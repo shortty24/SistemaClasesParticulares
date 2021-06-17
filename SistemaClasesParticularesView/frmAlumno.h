@@ -689,6 +689,25 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	dniProfesor = gestorProfesor->obtenerdnixNombreCompleto(nombreProfSeleccionado);
 	frmInscripcion^ ventanaInscripcion = gcnew frmInscripcion(dniProfesor, nombreDelCurso, AlumnoLogeado);
 	ventanaInscripcion->ShowDialog();
+
+	InscripcionController^ gestorInscripcion = gcnew InscripcionController();
+	List<Inscripcion^>^ listaInsc = gestorInscripcion->InscripcionesxAlumno(AlumnoLogeado->dni);
+	this->dataGridView6->Rows->Clear();
+
+	for (int i = 0; i < listaInsc->Count; i++) {
+		Inscripcion^ objInsc = listaInsc[i];
+		Profesor^ objProfesor = gestorProfesor->buscaProfesor(objInsc->objCurso->usuarioProfesor);
+		array<String^>^ fila = gcnew array<String^>(7);
+		fila[0] = objInsc->codigoIns;
+		fila[1] = objInsc->objCurso->nombreCurso;
+		fila[2] = objProfesor->objNombre + " " + objProfesor->objApellidoPaterno + " " + objProfesor->objApellidoMaterno;
+		fila[3] = objInsc->fechaClase;
+		fila[4] = objInsc->horaInicio + ":00";
+		fila[5] = Convert::ToString(objInsc->tiempoReserva);
+		int operacionMonto = Convert::ToInt32(fila[5]) * Convert::ToInt32(objInsc->objCurso->precioCurso);
+		fila[6] = Convert::ToString(operacionMonto) + " soles";
+		this->dataGridView6->Rows->Add(fila);
+	}
 }
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 }

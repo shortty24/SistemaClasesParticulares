@@ -281,8 +281,11 @@ private: String^ fechaDeClase(String^ diaClase) {
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	InscripcionController^ gestorInscripcion = gcnew InscripcionController();
-
 	gestorInscripcion->GuardarInscripcion(fechaDeClase(this->comboBox1->Text), this->comboBox2->Text, this->comboBox3->Text, nombreDelCurso, dniProfesor,objAlumno->dni,"17/06/2021","12:30");
+
+	HorarioController^ gestorHorario = gcnew HorarioController();
+	gestorHorario->editaHorarioxProfesor(dniProfesor, nombreDelCurso, this->comboBox1->Text,this->comboBox2->Text, this->comboBox3->Text);
+
 	this->Close();
 }
 private: System::Void frmInscripcion_Load(System::Object^ sender, System::EventArgs^ e) {
