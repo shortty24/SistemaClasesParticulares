@@ -20,3 +20,10 @@ Inscripcion::Inscripcion(Alumno^ objAlumno, Curso^ objCurso, String^ horaInscrip
 	this->codigoIns = codigoIns;
 }
 
+Inscripcion::Inscripcion(Alumno^ objAlumno, String^ codigoIns, int tiempoReserva, String^ horaInicio) {
+	this->objAlumno = objAlumno;
+	this->codigoIns = codigoIns;
+	this->tiempoReserva = tiempoReserva;
+	this->horaInicio = horaInicio;
+
+}

@@ -1,5 +1,5 @@
 #include "PagoController.h"
-#include "InscripcionController.h"
+
 
 using namespace SistemaClasesParticularesController;
 using namespace System;
@@ -23,33 +23,59 @@ List<Pago^>^ PagoController::buscarPagosxEstado(String^ estadoBuscar) {
 		String^ codigopago = palabras[4];
 		String^ estadoclase = palabras[5];
 		if (estadopago->ToUpper() == estadoBuscar->ToUpper()) {
-			Pago^ objPago = gcnew Pago(codigodeinscripcion, estadopago, horapago, fechapago, codigopago, estadoclase);
+			Pago^ objPago = gcnew Pago(objinscripcion, estadopago, horapago, fechapago, codigopago, estadoclase);
 			listaPagosEncontrados->Add(objPago);
 		}
 	}
 	return listaPagosEncontrados;
 }
 
-List<Inscripcion^>^ InscripcionController::buscarIncscripcionxcodigo(String^ codigoBuscar) {
-	List<Inscripcion^>^ listaInscripcionesEncontradas = gcnew List<Inscripcion^>();
+Inscripcion^ PagoController::buscarIncscripcionxcodigo(String^ codigoBuscar) {
+	Inscripcion^ objInscripcionEncontrada;
 	array<String^>^ lineas = File::ReadAllLines("Inscripciones.txt");
 	String^ separadores = ";";
-	for each (String ^ lineaInscripciones in lineas) {
-		array<String^>^ palabras = lineaInscripciones->Split(separadores->ToCharArray());
+	for each (String ^ lineaInscripcion in lineas) {
+		array<String^>^ palabras = lineaInscripcion->Split(separadores->ToCharArray());
 		String^ dniAlumno = palabras[0];
+		Alumno^ objAlumno = buscarAlumnoxDNI(dniAlumno);
 		String^ dniProfesor = palabras[1];
 		String^ curso = palabras[2];
 		String^ horainscripcion = palabras[3];
 		String^ fechainscripcion = palabras[4];
-		String^ duraciondeclase = palabras[5];
+		int duraciondeclase = Convert::ToInt32(palabras[5]);
 		String^ horadeclase = palabras[6];
 		String^ fechaclase = palabras[7];
 		String^ codigodeinscripcion = palabras[8];
 		if (codigodeinscripcion->ToUpper() == codigoBuscar->ToUpper()) {
-			Inscripcion^ objInscripcion = gcnew InscripcionparaPago(Alumno ^ objAlumno, String ^ fechaInscripcion, int tiempoReserva);
-			listaInscripcionesEncontradas->Add(objInscripcion);
-			
+			objInscripcionEncontrada = gcnew Inscripcion(objAlumno, codigodeinscripcion, duraciondeclase, horadeclase);
+			 
+				break;
 		}
 	}
-	return listaInscripcionesEncontradas;
+	return objInscripcionEncontrada;
+}
+
+Alumno^ PagoController::buscarAlumnoxDNI(String^ dniAlumno) {
+	Alumno^ objAlumnoEncontrado;
+	array<String^>^ lineas = File::ReadAllLines("Personas.txt");
+
+	String^ separadores = ";";
+	for each (String ^ lineaPersonas in lineas) {
+		array<String^>^ palabras = lineaPersonas->Split(separadores->ToCharArray());
+		String^ perfil = palabras[0];
+		String^ dniPersona = palabras[1];
+		String^ usuario = palabras[2];
+		String^ contrasenha = palabras[3];
+		String^ apellidoPaterno = palabras[4];
+		String^ apellidoMaterno = palabras[5];
+		String^ nombre = palabras[6];
+
+		if (perfil == "A") {
+			if (dniPersona == dniAlumno) {
+				objAlumnoEncontrado = gcnew Alumno(dniPersona, usuario, contrasenha, apellidoPaterno, apellidoMaterno, nombre);
+				break;
+			}
+		}
+	}
+	return objAlumnoEncontrado;
 }

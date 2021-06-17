@@ -8,7 +8,7 @@ namespace SistemaClasesParticularesModel {
 
 	public ref class Pago {
 
-	private:
+	public:
 		//int codigo; No entiendo a qué se refiere
 		Inscripcion^ objInscripcion;
 		String^ estadopago;

@@ -40,3 +40,6 @@ List<Inscripcion^>^ InscripcionController::InscripcionesxAlumno(String^ datoAlum
 	}
 	return this->listaInscripcion;
 }
+
+
+

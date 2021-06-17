@@ -10,6 +10,7 @@ namespace SistemaClasesParticularesController {
 	public:
 		InscripcionController();
 		List<Inscripcion^>^ InscripcionesxAlumno(String^ datoAlumno);
+		
 	};
 
 }

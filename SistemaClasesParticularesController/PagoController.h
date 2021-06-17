@@ -11,6 +11,8 @@ namespace SistemaClasesParticularesController {
 		PagoController();
 
 		List<Pago^>^ buscarPagosxEstado(String^ estado);
+		Inscripcion^ buscarIncscripcionxcodigo(String^ codigoBuscar);
+		Alumno^ buscarAlumnoxDNI(String^ dniAlumno);
 
 	};
 
