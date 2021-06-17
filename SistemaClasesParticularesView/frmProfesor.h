@@ -1,8 +1,8 @@
 #pragma once
 
 #include "frmEditarAccesoProfesor.h"
-#include "frmNuevoHorario.h"
-#include "frmEditarHorario.h"
+#include "frmModificarHorario.h"
+
 
 namespace SistemaClasesParticularesView {
 
@@ -161,19 +161,34 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column16;
 private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column17;
 private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column18;
 private: System::Windows::Forms::GroupBox^ groupBox8;
-private: System::Windows::Forms::Button^ button19;
-private: System::Windows::Forms::Button^ button17;
-private: System::Windows::Forms::Button^ button9;
-private: System::Windows::Forms::DataGridView^ dataGridView6;
-private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column19;
-private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column20;
-private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column21;
+
+
+
+
+
+
+
 private: System::Windows::Forms::TextBox^ textBox1;
 private: System::Windows::Forms::Label^ label1;
 private: System::Windows::Forms::Label^ label2;
 private: System::Windows::Forms::ComboBox^ comboBox2;
 private: System::Windows::Forms::Button^ button10;
 private: System::Windows::Forms::TextBox^ textBox2;
+private: System::Windows::Forms::Button^ button17;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -291,13 +306,7 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
 			this->groupBox8 = (gcnew System::Windows::Forms::GroupBox());
-			this->button19 = (gcnew System::Windows::Forms::Button());
 			this->button17 = (gcnew System::Windows::Forms::Button());
-			this->button9 = (gcnew System::Windows::Forms::Button());
-			this->dataGridView6 = (gcnew System::Windows::Forms::DataGridView());
-			this->Column19 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column20 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column21 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->groupBox6 = (gcnew System::Windows::Forms::GroupBox());
 			this->textBox14 = (gcnew System::Windows::Forms::TextBox());
 			this->label13 = (gcnew System::Windows::Forms::Label());
@@ -327,7 +336,6 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			this->groupBox3->SuspendLayout();
 			this->tabPage3->SuspendLayout();
 			this->groupBox8->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView6))->BeginInit();
 			this->groupBox6->SuspendLayout();
 			this->groupBox5->SuspendLayout();
 			this->SuspendLayout();
@@ -339,7 +347,7 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			this->tabPage2->Location = System::Drawing::Point(4, 22);
 			this->tabPage2->Name = L"tabPage2";
 			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage2->Size = System::Drawing::Size(787, 476);
+			this->tabPage2->Size = System::Drawing::Size(765, 490);
 			this->tabPage2->TabIndex = 1;
 			this->tabPage2->Text = L"Actividades";
 			this->tabPage2->UseVisualStyleBackColor = true;
@@ -524,7 +532,7 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			this->tabControl1->Multiline = true;
 			this->tabControl1->Name = L"tabControl1";
 			this->tabControl1->SelectedIndex = 0;
-			this->tabControl1->Size = System::Drawing::Size(795, 502);
+			this->tabControl1->Size = System::Drawing::Size(773, 516);
 			this->tabControl1->TabIndex = 0;
 			// 
 			// tabPage1
@@ -535,7 +543,7 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			this->tabPage1->Location = System::Drawing::Point(4, 22);
 			this->tabPage1->Name = L"tabPage1";
 			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage1->Size = System::Drawing::Size(787, 476);
+			this->tabPage1->Size = System::Drawing::Size(765, 490);
 			this->tabPage1->TabIndex = 0;
 			this->tabPage1->Text = L"Perfil";
 			this->tabPage1->UseVisualStyleBackColor = true;
@@ -645,7 +653,7 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			this->tabPage5->Controls->Add(this->groupBox3);
 			this->tabPage5->Location = System::Drawing::Point(4, 22);
 			this->tabPage5->Name = L"tabPage5";
-			this->tabPage5->Size = System::Drawing::Size(787, 476);
+			this->tabPage5->Size = System::Drawing::Size(765, 490);
 			this->tabPage5->TabIndex = 4;
 			this->tabPage5->Text = L"Quejas y/o recomendaciones";
 			this->tabPage5->UseVisualStyleBackColor = true;
@@ -657,7 +665,7 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			this->groupBox4->Controls->Add(this->textBox10);
 			this->groupBox4->Controls->Add(this->button14);
 			this->groupBox4->Controls->Add(this->button15);
-			this->groupBox4->Location = System::Drawing::Point(417, 64);
+			this->groupBox4->Location = System::Drawing::Point(407, 32);
 			this->groupBox4->Name = L"groupBox4";
 			this->groupBox4->Size = System::Drawing::Size(340, 403);
 			this->groupBox4->TabIndex = 1;
@@ -728,7 +736,7 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			this->groupBox3->Controls->Add(this->comboBox2);
 			this->groupBox3->Controls->Add(this->button10);
 			this->groupBox3->Controls->Add(this->textBox2);
-			this->groupBox3->Location = System::Drawing::Point(28, 64);
+			this->groupBox3->Location = System::Drawing::Point(18, 32);
 			this->groupBox3->Name = L"groupBox3";
 			this->groupBox3->Size = System::Drawing::Size(359, 403);
 			this->groupBox3->TabIndex = 0;
@@ -799,78 +807,30 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			this->tabPage3->Location = System::Drawing::Point(4, 22);
 			this->tabPage3->Name = L"tabPage3";
 			this->tabPage3->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage3->Size = System::Drawing::Size(787, 476);
+			this->tabPage3->Size = System::Drawing::Size(765, 490);
 			this->tabPage3->TabIndex = 2;
 			this->tabPage3->Text = L"Configuración";
 			this->tabPage3->UseVisualStyleBackColor = true;
 			// 
 			// groupBox8
 			// 
-			this->groupBox8->Controls->Add(this->button19);
 			this->groupBox8->Controls->Add(this->button17);
-			this->groupBox8->Controls->Add(this->button9);
-			this->groupBox8->Controls->Add(this->dataGridView6);
 			this->groupBox8->Location = System::Drawing::Point(359, 46);
 			this->groupBox8->Name = L"groupBox8";
-			this->groupBox8->Size = System::Drawing::Size(410, 391);
+			this->groupBox8->Size = System::Drawing::Size(174, 97);
 			this->groupBox8->TabIndex = 20;
 			this->groupBox8->TabStop = false;
 			this->groupBox8->Text = L"Horario";
 			// 
-			// button19
-			// 
-			this->button19->Location = System::Drawing::Point(254, 335);
-			this->button19->Name = L"button19";
-			this->button19->Size = System::Drawing::Size(75, 23);
-			this->button19->TabIndex = 3;
-			this->button19->Text = L"Eliminar";
-			this->button19->UseVisualStyleBackColor = true;
-			// 
 			// button17
 			// 
-			this->button17->Location = System::Drawing::Point(148, 335);
+			this->button17->Location = System::Drawing::Point(19, 40);
 			this->button17->Name = L"button17";
-			this->button17->Size = System::Drawing::Size(75, 23);
+			this->button17->Size = System::Drawing::Size(106, 23);
 			this->button17->TabIndex = 2;
-			this->button17->Text = L"Modificar";
+			this->button17->Text = L"Modificar horario";
 			this->button17->UseVisualStyleBackColor = true;
-			// 
-			// button9
-			// 
-			this->button9->Location = System::Drawing::Point(46, 335);
-			this->button9->Name = L"button9";
-			this->button9->Size = System::Drawing::Size(75, 23);
-			this->button9->TabIndex = 1;
-			this->button9->Text = L"Añadir";
-			this->button9->UseVisualStyleBackColor = true;
-			this->button9->Click += gcnew System::EventHandler(this, &frmProfesor::button9_Click);
-			// 
-			// dataGridView6
-			// 
-			this->dataGridView6->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView6->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
-				this->Column19,
-					this->Column20, this->Column21
-			});
-			this->dataGridView6->Location = System::Drawing::Point(23, 50);
-			this->dataGridView6->Name = L"dataGridView6";
-			this->dataGridView6->Size = System::Drawing::Size(361, 262);
-			this->dataGridView6->TabIndex = 0;
-			// 
-			// Column19
-			// 
-			this->Column19->HeaderText = L"día";
-			this->Column19->Name = L"Column19";
-			// 
-			// Column20
-			// 
-			this->Column20->HeaderText = L"hora de inicio";
-			this->Column20->Name = L"Column20";
-			// 
-			// Column21
-			// 
-			this->Column21->HeaderText = L"hora final";
-			this->Column21->Name = L"Column21";
+			this->button17->Click += gcnew System::EventHandler(this, &frmProfesor::button17_Click);
 			// 
 			// groupBox6
 			// 
@@ -939,14 +899,14 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			this->groupBox5->Controls->Add(this->label15);
 			this->groupBox5->Location = System::Drawing::Point(37, 86);
 			this->groupBox5->Name = L"groupBox5";
-			this->groupBox5->Size = System::Drawing::Size(273, 142);
+			this->groupBox5->Size = System::Drawing::Size(273, 149);
 			this->groupBox5->TabIndex = 18;
 			this->groupBox5->TabStop = false;
 			this->groupBox5->Text = L"Contacto";
 			// 
 			// button16
 			// 
-			this->button16->Location = System::Drawing::Point(114, 113);
+			this->button16->Location = System::Drawing::Point(114, 120);
 			this->button16->Name = L"button16";
 			this->button16->Size = System::Drawing::Size(55, 23);
 			this->button16->TabIndex = 14;
@@ -1000,7 +960,7 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(832, 513);
+			this->ClientSize = System::Drawing::Size(788, 540);
 			this->Controls->Add(this->tabControl1);
 			this->Name = L"frmProfesor";
 			this->Text = L"Profesor";
@@ -1025,7 +985,6 @@ private: System::Windows::Forms::TextBox^ textBox2;
 			this->tabPage3->ResumeLayout(false);
 			this->tabPage3->PerformLayout();
 			this->groupBox8->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView6))->EndInit();
 			this->groupBox6->ResumeLayout(false);
 			this->groupBox6->PerformLayout();
 			this->groupBox5->ResumeLayout(false);
@@ -1066,8 +1025,8 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 			array<String^>^ fila = gcnew array<String^>(3);
 			fila[0] = horarioDisponible->dia;
 			String^ limInferior;
-
-			horarioDisponible->horasDisponibles->ForEach(Comparison)
+			
+			horarioDisponible->horasDisponibles->;
 
 			fila[1] = horarioDisponible->horasDisponibles->
 			fila[2] = horarioDisponible
@@ -1112,8 +1071,8 @@ private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ 
 
 		String^ UsuarioProfesorEditar = this->textBox14->Text;
 		String^ ContrasenhaProfesorEditar = this->textBox13->Text;
-		frmEditarAccesoProfesor^ ventanaEditarAccesoProfesor= gcnew frmEditarAccesoProfesor(UsuarioProfesorEditar, ContrasenhaProfesorEditar);
-		ventanaEditarAccesoProfesor->ShowDialog();
+		//frmEditarAccesoProfesor^ ventanaEditarAccesoProfesor= gcnew frmEditarAccesoProfesor(UsuarioProfesorEditar, ContrasenhaProfesorEditar);
+		//ventanaEditarAccesoProfesor->ShowDialog();
 		/*PartidoPoliticoController^ gestorPartidoPolitico = gcnew PartidoPoliticoController();
 		gestorPartidoPolitico->CargarPartidosDesdeArchivo();
 		List<PartidoPolitico^>^ objListaPartidos = gestorPartidoPolitico->obtenerListaPartidos();
@@ -1121,8 +1080,8 @@ private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ 
 	}
 
 private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
-	frmNuevoHorario^ ventanaNuevoHorario= gcnew frmNuevoHorario();
-	ventanaNuevoHorario->ShowDialog();
+	//frmNuevoHorario^ ventanaNuevoHorario= gcnew frmNuevoHorario();
+	//ventanaNuevoHorario->ShowDialog();
 	/*PartidoPoliticoController^ gestorPartidoPolitico = gcnew PartidoPoliticoController();
 	gestorPartidoPolitico->CargarPartidosDesdeArchivo();
 	List<PartidoPolitico^>^ objListaPartidos = gestorPartidoPolitico->obtenerListaPartidos();
@@ -1133,6 +1092,16 @@ private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e
 }
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	
+}
+private: System::Void button17_Click(System::Object^ sender, System::EventArgs^ e) {
+	//int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
+	//int codigoPartidoEditar = Convert::ToInt32(this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString());
+	frmModificarHorario^ ventanaModificarHorario= gcnew frmModificarHorario(ProfesorLogeado->dni);
+	ventanaModificarHorario->ShowDialog();
+	/*PartidoPoliticoController^ gestorPartidoPolitico = gcnew PartidoPoliticoController();
+	gestorPartidoPolitico->CargarPartidosDesdeArchivo();
+	List<PartidoPolitico^>^ objListaPartidos = gestorPartidoPolitico->obtenerListaPartidos();
+	mostrarGrilla(objListaPartidos);*/
 }
 };
 }
