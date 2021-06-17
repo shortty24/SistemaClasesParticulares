@@ -16,6 +16,7 @@ namespace SistemaClasesParticularesController {
 		List<Quejas^>^ buscarQuejasxEstado(String^ estado);
 
 		void CargarQuejasDesdeArchivo();
+		void generarQuejaxAlumno(String^ dniProfesorQueja, String^ dniAlumnoQueja, String^ motivo);
 	};
 
 }

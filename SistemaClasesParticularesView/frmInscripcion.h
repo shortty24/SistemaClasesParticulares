@@ -285,7 +285,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 	HorarioController^ gestorHorario = gcnew HorarioController();
 	gestorHorario->editaHorarioxProfesor(dniProfesor, nombreDelCurso, this->comboBox1->Text,this->comboBox2->Text, this->comboBox3->Text);
-
+	MessageBox::Show("Se realizó la inscripción con éxito.");
 	this->Close();
 }
 private: System::Void frmInscripcion_Load(System::Object^ sender, System::EventArgs^ e) {

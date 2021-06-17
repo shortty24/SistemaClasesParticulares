@@ -127,3 +127,14 @@ List<Quejas^>^ QuejasController::buscarQuejasxEstado(String^ estadoBuscar) {
 	}
 	return listaQuejasEncontrados;
 }
+
+void QuejasController::generarQuejaxAlumno(String^ dniProfesorQueja, String^ dniAlumnoQueja, String^ motivo) {
+	CargarQuejasDesdeArchivo();
+	array<String^>^ lineasArchivoQuejas = gcnew array<String^>(this->listaQuejas->Count + 1);
+	for (int i = 0; i < this->listaQuejas->Count; i++) {
+		Quejas^ objQuejas = this->listaQuejas[i];
+		lineasArchivoQuejas[i] = objQuejas->DniAgresor + ";" + objQuejas->Queja + ";" + objQuejas->DniAgreviado + ";" + objQuejas->Estado;
+	}
+	lineasArchivoQuejas[this->listaQuejas->Count] = dniProfesorQueja + ";" + motivo + ";" + dniAlumnoQueja + ";" + "Por Revisar";
+	File::WriteAllLines("Quejas.txt", lineasArchivoQuejas);
+}

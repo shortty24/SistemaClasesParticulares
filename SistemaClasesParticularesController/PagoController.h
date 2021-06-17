@@ -21,7 +21,8 @@ namespace SistemaClasesParticularesController {
 		void programarclase(String^ estadoclase);
 
 		void CargarPagoDesdeArchivo();
-
+		void crearNuevoPago(String^ codigoInscNuevo, String^ horaPagoNuevo, String^ fechaPagoNuevo, String^ codigoPagoNuevo);
+		List<Pago^>^ buscarPagosxAlumno(String^ dniAlumnoBuscar);
 	};
 
 }

@@ -90,6 +90,7 @@ namespace SistemaClasesParticularesView {
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"Verificar";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &frmPago::button1_Click);
 			// 
 			// textBox1
 			// 
@@ -138,5 +139,11 @@ namespace SistemaClasesParticularesView {
 	private: System::Void frmPago_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->textBox1->Text = codigoIns;
 	}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	PagoController^ gestorPago = gcnew PagoController();
+	gestorPago->crearNuevoPago(codigoIns, "5:00", "17/06/2021", this->textBox2->Text);
+	MessageBox::Show("Se envió el código con éxito.");
+	this->Close();
+}
 };
 }

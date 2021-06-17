@@ -176,6 +176,32 @@ void ClaseController::enviarlink(String^ linkclase, String^ dnialumno) {
 
 }
 
+List<Clase^>^ ClaseController::ClasesProgramadasxAlumno(String^ dniAlumnoBuscar) {
+	List<Clase^>^ listaClasesProgramadas = gcnew List<Clase^>();
+	array<String^>^ lineas = File::ReadAllLines("Clases.txt");
+
+	String^ separadores = ";";
+	for each (String ^ lineaClase in lineas) {
+		array<String^>^ palabras = lineaClase->Split(separadores->ToCharArray());
+		String^ dniAlumno = palabras[0];
+		Alumno^ objAlumno = buscarAlumnoxDNI(dniAlumno);
+		String^ dniProfesor = palabras[1];
+		Profesor^ objProfesor = buscarProfesorxDNI(dniProfesor);
+		String^ curso = palabras[2];
+		Curso^ objCurso = buscarCursoxNombreCurso(curso);
+		String^ hora = palabras[3];
+		String^ fecha = palabras[4];
+		Inscripcion^ objInscripcion = buscarInscripcionxHoraxFecha(hora, fecha);
+		String^ link = palabras[5];
+
+		if (dniAlumno == dniAlumnoBuscar) {
+			Clase^ objClaseProgramada = gcnew Clase(objAlumno, objProfesor, objCurso, hora, fecha, link);
+			listaClasesProgramadas->Add(objClaseProgramada);
+		}
+
+	}
+	return listaClasesProgramadas;
+}
 
 
 
