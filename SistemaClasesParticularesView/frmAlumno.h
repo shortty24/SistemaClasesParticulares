@@ -535,9 +535,9 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column15;
 			// comboBox2
 			// 
 			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
-				L"CalculoI", L"FisicaI", L"FisicaII", L"CalculoII",
-					L"Agresion verbal", L"No se presento a la clase", L"No dicto los temas pedidos"
+			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) {
+				L"Agresion verbal", L"No se presento a la clase",
+					L"No dicto los temas pedidos"
 			});
 			this->comboBox2->Location = System::Drawing::Point(30, 57);
 			this->comboBox2->Name = L"comboBox2";

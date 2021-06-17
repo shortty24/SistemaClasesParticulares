@@ -33,12 +33,16 @@ int LogeoController::VerificarSiUsuarioExiste(String^ textBox1, String^ textBox2
 			//usuarioAlumno = textBox1;
 			}
 			else if (ID == "P") {
-				if (VerificarValidacionCV(dni) == "no" ) {
+				if (VerificarValidacionCV(dni) == "PorVerificar") {
 					Existe = 4;
 				}
-				else {
+				else if (VerificarValidacionCV(dni) == "Desaprobado") {
+					Existe = 5;
+				}
+				else if(VerificarValidacionCV(dni)=="Aprobado") {
 					Existe = 2;
 				}
+				
 
 
 			}

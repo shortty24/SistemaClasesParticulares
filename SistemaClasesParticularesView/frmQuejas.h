@@ -151,7 +151,7 @@ namespace SistemaClasesParticularesView {
 			// comboBox2
 			// 
 			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Bloqueado", L"No Bloqueado" });
+			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Por Revisar", L"Bloqueado", L"No Bloqueado" });
 			this->comboBox2->Location = System::Drawing::Point(117, 83);
 			this->comboBox2->Name = L"comboBox2";
 			this->comboBox2->Size = System::Drawing::Size(187, 21);
