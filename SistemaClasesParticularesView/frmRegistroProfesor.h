@@ -61,6 +61,7 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::TextBox^ textBox10;
 	private: System::Windows::Forms::TextBox^ textBox9;
 	private: System::Windows::Forms::TextBox^ textBox8;
+	private: System::Windows::Forms::Label^ label11;
 
 
 	private:
@@ -98,6 +99,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox10 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
+			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -212,9 +214,12 @@ namespace SistemaClasesParticularesView {
 			// textBox2
 			// 
 			this->textBox2->Location = System::Drawing::Point(340, 154);
+			this->textBox2->MaxLength = 8;
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(130, 20);
 			this->textBox2->TabIndex = 16;
+			this->textBox2->TextChanged += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox2_TextChanged);
+			this->textBox2->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &frmRegistroProfesor::textBox2_KeyPress);
 			// 
 			// textBox1
 			// 
@@ -269,9 +274,11 @@ namespace SistemaClasesParticularesView {
 			// textBox10
 			// 
 			this->textBox10->Location = System::Drawing::Point(221, 53);
+			this->textBox10->MaxLength = 9;
 			this->textBox10->Name = L"textBox10";
 			this->textBox10->Size = System::Drawing::Size(100, 20);
 			this->textBox10->TabIndex = 2;
+			this->textBox10->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &frmRegistroProfesor::textBox10_KeyPress);
 			// 
 			// textBox9
 			// 
@@ -288,11 +295,21 @@ namespace SistemaClasesParticularesView {
 			this->textBox8->TabIndex = 0;
 			this->textBox8->TextChanged += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox8_TextChanged);
 			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Location = System::Drawing::Point(476, 261);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(168, 13);
+			this->label11->TabIndex = 32;
+			this->label11->Text = L"(...@gmail.com o ...@hotmail.com)";
+			// 
 			// frmRegistroProfesor
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(718, 477);
+			this->Controls->Add(this->label11);
 			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label7);
@@ -311,6 +328,7 @@ namespace SistemaClasesParticularesView {
 			this->Controls->Add(this->textBox1);
 			this->Name = L"frmRegistroProfesor";
 			this->Text = L"frmRegistroProfesor";
+			this->Load += gcnew System::EventHandler(this, &frmRegistroProfesor::frmRegistroProfesor_Load);
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
 			this->ResumeLayout(false);
@@ -322,40 +340,46 @@ namespace SistemaClasesParticularesView {
 	}
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	RegistroController^ objGestor = gcnew RegistroController();
-	int Valor = objGestor->VerificarSiUsuarioRepite(textBox1->Text);
+	int UsuarioUsado = objGestor->VerificarSiUsuarioRepite(textBox1->Text);
+	int DniUsado = objGestor->VerificarSiDniRepite(textBox2->Text);
 	if (textBox1->Text != "" && textBox2->Text != "" && textBox3->Text != "" && textBox4->Text != "" && textBox5->Text != "" && textBox6->Text != "" && textBox7->Text != "" && textBox8->Text != "" && textBox9->Text != "") {
 		String^ CodigoUsuario = "P";
-		if (Valor == 0) { // Indica que dicho nombre de usuario todavía no se ha usado
+		if (UsuarioUsado == 0) { // Indica que dicho nombre de usuario todavía no se ha usado
 			String^ Usuario = this->textBox1->Text;
 			String^ DNI = this->textBox2->Text;
-			String^ Nombre = this->textBox3->Text;
-			String^ ApellidoPaterno = this->textBox4->Text;
-			String^ ApellidoMaterno = this->textBox5->Text;
-			String^ Correo = this->textBox6->Text;
-			if (Email_Valido(Correo) == true) {
-				String^ Contrasenha = this->textBox7->Text;
-				String^ CodigoMinedu = this->textBox8->Text;
-				String^ Empresa = this->textBox9->Text;
-				String^ NumeroEmpresa = this->textBox10->Text;
-				String^ Validacion = "no";
-				Persona^ objPersona = gcnew Persona(CodigoUsuario, DNI, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre, Correo);
-				CV^ objCV = gcnew CV(DNI, CodigoMinedu, Empresa, NumeroEmpresa, Validacion);
-				RegistroController^ objRegistro = gcnew RegistroController();
-				objRegistro->GuardarNuevoUsuarioEnArchivo(objPersona);
-				objRegistro->GuardarNuevoCV(objCV);
-				MessageBox::Show("Se ha registrado con éxito. Su CV estará en revisión");
-				this->Close();
-			
+			if (DniUsado == 0) { // Indica que dicho Dni todavía no se ha usado
+				String^ Nombre = this->textBox3->Text;
+				String^ ApellidoPaterno = this->textBox4->Text;
+				String^ ApellidoMaterno = this->textBox5->Text;
+				String^ Correo = this->textBox6->Text;
+				if (Email_Valido(Correo) == true) {
+					String^ Contrasenha = this->textBox7->Text;
+					String^ CodigoMinedu = this->textBox8->Text;
+					String^ Empresa = this->textBox9->Text;
+					String^ NumeroEmpresa = this->textBox10->Text;
+					String^ Validacion = "PorVerificar";
+					Persona^ objPersona = gcnew Persona(CodigoUsuario, DNI, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre, Correo);
+					CV^ objCV = gcnew CV(DNI, CodigoMinedu, Empresa, NumeroEmpresa, Validacion);
+					RegistroController^ objRegistro = gcnew RegistroController();
+					objRegistro->GuardarNuevoUsuarioEnArchivo(objPersona);
+					objRegistro->GuardarNuevoCV(objCV);
+					MessageBox::Show("Se ha registrado con éxito. Se revisará su CV para que se pueda loguear");
+					this->Close();
+
+				}
+				else {
+
+					MessageBox::Show("El correo ingresado no existe, por favor ingreselo nuevamente");
+
+				}
+
 			}
 			else {
-			
-				MessageBox::Show("El correo ingresado no existe, por favor ingreselo nuevamente");
-			
+				MessageBox::Show("El DNI ingresado ya se encuentra en uso, por favor ingrese otro DNI");
 			}
-	
 		}
 		else { // El nombre de usuario ya fue usado
-			MessageBox::Show("El usuario que ha ingresado ya existe, por favor ingrese otro nombre de usuario");
+			MessageBox::Show("El nombre de Usuario ingresado ya se encuentra en uso, por favor ingrese otro nombre");
 		}
 	}
 	else {
@@ -384,6 +408,24 @@ private: System::Boolean Email_Valido(String^Email) {
 }
 	
 private: System::Void textBox8_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox10_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+
+	if ((e->KeyChar >= 32 && e->KeyChar <= 47) || (e->KeyChar >= 58 && e->KeyChar <= 255)) {
+		MessageBox::Show("Solo números", "Alerta", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+		e->Handled = true;
+	}
+}
+private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox2_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+
+	if ((e->KeyChar >= 32 && e->KeyChar <= 47) || (e->KeyChar >= 58 && e->KeyChar <= 255)) {
+		MessageBox::Show("Solo números", "Alerta", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+		e->Handled = true;
+	}
+}
+private: System::Void frmRegistroProfesor_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

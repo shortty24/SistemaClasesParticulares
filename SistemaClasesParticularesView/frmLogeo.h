@@ -162,6 +162,12 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	else if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 4) {
 		MessageBox::Show("Profesor registrado, pero aún falta que el administrador valide su CV");
 	}
+	else if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 5) {
+		MessageBox::Show("Su CV ha sido rechazado por falsedad de datos");
+	}
+	else if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 6) {
+		MessageBox::Show("Su cuenta está bloqueada");
+	}
 	else {
 		MessageBox::Show("Usuario y/o contraseña son incorrectos");
 	}

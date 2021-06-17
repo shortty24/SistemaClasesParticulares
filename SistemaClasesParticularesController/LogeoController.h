@@ -12,6 +12,7 @@ namespace SistemaClasesParticularesController {
 		//List < Persona^ >^ listaPersonas;
 		int Existe;
 		String^ Verificacion;
+		String^ Estado;
 		//String^ usuarioAlumno;
 
 	public:
@@ -21,5 +22,6 @@ namespace SistemaClasesParticularesController {
 		//String^ VerificarValidacionCV(String^ DniProfesor);
 		//String^ obtenerUsuario();
 		String^ VerificarValidacionCV(String^ DNI);
+		String^ VerificarEstadoUsuario(String^ DNI); // Se verifica si está bloqueado o no
 	};
 }

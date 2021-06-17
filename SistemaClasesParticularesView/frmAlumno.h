@@ -535,9 +535,9 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column15;
 			// comboBox2
 			// 
 			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
-				L"CalculoI", L"FisicaI", L"FisicaII", L"CalculoII",
-					L"Agresion verbal", L"No se presento a la clase", L"No dicto los temas pedidos"
+			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) {
+				L"Agresion verbal", L"No se presento a la clase",
+					L"No dicto los temas pedidos"
 			});
 			this->comboBox2->Location = System::Drawing::Point(30, 57);
 			this->comboBox2->Name = L"comboBox2";
@@ -719,6 +719,27 @@ private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ 
 	List<Curso^>^ listaCursosDisponibles = gestorDatosCurso->CursosDisponibles();
 	mostrarGrillaxLista(listaCursosDisponibles);
 
+	InscripcionController^ gestorInscripcion = gcnew InscripcionController();
+	List<Inscripcion^>^ listaInsc = gestorInscripcion->InscripcionesxAlumno(AlumnoLogeado->dni);
+	this->dataGridView6->Rows->Clear();
+
+	ProfesorController^ gestorProfesor = gcnew ProfesorController();
+	for (int i = 0; i < listaInsc->Count; i++) {
+		Inscripcion^ objInsc = listaInsc[i];
+		Profesor^ objProfesor = gestorProfesor->buscaProfesor(objInsc->objCurso->usuarioProfesor);
+		array<String^>^ fila = gcnew array<String^>(7);
+		fila[0] = objInsc->codigoIns;
+		fila[1] = objInsc-> objCurso -> nombreCurso; 
+		fila[2] = objProfesor->objNombre + " " + objProfesor->objApellidoPaterno + " " + objProfesor->objApellidoMaterno;
+		fila[3] = objInsc->fechaClase;
+		fila[4] = objInsc->horaInicio + ":00";
+		fila[5] = Convert::ToString(objInsc->tiempoReserva);
+		int operacionMonto = Convert::ToInt32(fila[5]) * Convert::ToInt32(objInsc->objCurso->precioCurso);
+		fila[6] = Convert::ToString(operacionMonto) + " soles";
+		this->dataGridView6->Rows->Add(fila);
+	}
+
+
 
 	this->dataGridView2->Rows->Clear();
 	
@@ -756,7 +777,9 @@ private: System::Void dataGridView3_CellContentClick(System::Object^ sender, Sys
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
-	frmPago^ ventanaPago = gcnew frmPago();
+	int posicionFilaSeleccionada = this->dataGridView6->SelectedRows[0]->Index;
+	String^ codigoSeleccionado = this->dataGridView6->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
+	frmPago^ ventanaPago = gcnew frmPago(codigoSeleccionado);
 	ventanaPago->ShowDialog();
 }
 private: System::Void textBox1_TextChanged_1(System::Object^ sender, System::EventArgs^ e) {

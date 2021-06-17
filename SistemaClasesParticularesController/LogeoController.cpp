@@ -9,6 +9,7 @@ LogeoController::LogeoController() {
 
 	//this->listaPersonas = gcnew List<Persona^>();
 	this->Existe = Existe;
+	this->Estado = Estado;
 	this->Verificacion = Verificacion;
 	//this->usuarioAlumno = usuarioAlumno;
 }
@@ -29,16 +30,28 @@ int LogeoController::VerificarSiUsuarioExiste(String^ textBox1, String^ textBox2
 		//this->listaPersonas->Add(objPersona);
 		if (textBox1 == Usuario && textBox2 == Contrasenha) {
 			if (ID == "A") {
-				Existe = 1;
+				if (VerificarEstadoUsuario(dni) == "No Bloqueado") {
+					Existe = 1;
+				}
+				else {
+					Existe = 6;
+				}
 			//usuarioAlumno = textBox1;
 			}
 			else if (ID == "P") {
-				if (VerificarValidacionCV(dni) == "no" ) {
+				if (VerificarValidacionCV(dni) == "PorVerificar") {
 					Existe = 4;
 				}
-				else {
+				else if (VerificarValidacionCV(dni) == "Desaprobado") {
+					Existe = 5;
+				}
+				else if (VerificarEstadoUsuario(dni) =="Bloqueado" ) {
+					Existe = 6;
+				}
+				else if(VerificarValidacionCV(dni)=="Aprobado" && VerificarEstadoUsuario(dni)=="No Bloqueado") {
 					Existe = 2;
 				}
+				
 
 
 			}
@@ -63,8 +76,8 @@ int LogeoController::VerificarSiUsuarioExiste(String^ textBox1, String^ textBox2
 String^ LogeoController::VerificarValidacionCV(String^ DNI) {
 	array<String^>^ lineas = File::ReadAllLines("CVs.txt");
 	String^ separadores = ";";
-	for each (String ^ lineaPersona in lineas) {
-		array<String^>^ palabras = lineaPersona->Split(separadores->ToCharArray());
+	for each (String ^ lineaCV in lineas) {
+		array<String^>^ palabras = lineaCV->Split(separadores->ToCharArray());
 		//String^ ID = palabras[0];
 		String^ dniProfesor = palabras[0];
 		String^ CodigoMinedu = palabras[1];
@@ -77,4 +90,21 @@ String^ LogeoController::VerificarValidacionCV(String^ DNI) {
 		}
 	}
 	return Verificacion;
+}
+String^ LogeoController::VerificarEstadoUsuario(String^ DNI) {
+	array<String^>^ lineas = File::ReadAllLines("Quejas.txt");
+	String^ separadores = ";";
+	for each (String ^ lineaQueja in lineas) {
+		array<String^>^ palabras = lineaQueja->Split(separadores->ToCharArray());
+		String^ dniAgresor = palabras[0];
+		String^ EstadoUsuario = palabras[3];
+		if (DNI == dniAgresor) {
+			Estado = EstadoUsuario;
+			break;
+		}
+		else {
+			Estado = "No Bloqueado";
+		}
+	}
+	return Estado;
 }

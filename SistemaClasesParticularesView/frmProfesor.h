@@ -775,7 +775,7 @@ private: System::Windows::Forms::Button^ button17;
 			this->comboBox2->FormattingEnabled = true;
 			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) {
 				L"Agresion verbal", L"No se presento a la clase",
-					L"No dicto los temas pedidos"
+					L""
 			});
 			this->comboBox2->Location = System::Drawing::Point(27, 52);
 			this->comboBox2->Name = L"comboBox2";

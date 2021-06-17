@@ -1,2 +1,2 @@
-72348122;No se presento a la clase;42248643;Bloqueado
-43248547;Agresion verbal;72238113;No Bloqueado
+72348122;No se presento a la clase;42248643;No Bloqueado
+42248643;Agresion verbal;72238113;Bloqueado
