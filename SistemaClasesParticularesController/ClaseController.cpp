@@ -1,4 +1,5 @@
 #include "ClaseController.h"
+#include "PagoController.h"
 
 using namespace SistemaClasesParticularesController;
 using namespace System;
@@ -160,7 +161,7 @@ void ClaseController::enviarlink(String^ linkclase, String^ dnialumno) {
 	CargarClaseDesdeArchivo();
 	for (int i = 0; i < this->listaClases->Count; i++) {
 		Clase^ objClase = this->listaClases[i];
-		if (objClase->objAlumno->dni == dnialumno) {
+		if ((objClase->objAlumno->dni == dnialumno) && (objClase->objLink == "-")) {
 			this->listaClases[i]->objLink = linkclase;
 			break;
 		}
@@ -204,5 +205,22 @@ List<Clase^>^ ClaseController::ClasesProgramadasxAlumno(String^ dniAlumnoBuscar)
 }
 
 
+void ClaseController::crearclasetxt(String^ codigopago) {
+	this->listaClases->Clear();
+	CargarClaseDesdeArchivo();
 
+	array<String^>^ lineasArchivoClases = gcnew array<String^>(this->listaClases->Count+1);
+	for (int i = 0; i < this->listaClases->Count; i++) {
+		Clase^ objClase = this->listaClases[i];
+		lineasArchivoClases[i] = objClase->objAlumno->dni + ";" + objClase->objProfesor->dni + ";" + objClase->objCurso->nombreCurso + ";" + objClase->horaClase + ";" + objClase->fechaClase + ";" + objClase->objLink;
+	}
+
+	PagoController^ objGestorPago = gcnew PagoController();
+	Inscripcion^ objInscripcion = objGestorPago->buscarIncscripcionxcodigocompleta(codigopago);
+		lineasArchivoClases[this->listaClases->Count] = objInscripcion->objAlumno->dni + ";" + objInscripcion->objCurso->objProfesor->dni + ";" + objInscripcion->objCurso->nombreCurso + ";" + objInscripcion->horaInicio + ";" + objInscripcion->fechaClase + ";" + "-";
+	
+	/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
+	File::WriteAllLines("Clases.txt", lineasArchivoClases);
+
+}
 

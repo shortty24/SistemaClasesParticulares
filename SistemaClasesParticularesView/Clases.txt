@@ -1,3 +1,4 @@
 72348122;42248643;CalculoI;8;20/07/2021;https://pucp.zoom.us/987122
-72238113;42248643;CalculoI;13;25/07/2021;https://pucp.zoom.us/231513
+72238113;42248643;CalculoI;13;25/07/2021;https://pucp.zoom.us/002187
 72145159;42248643;CalculoI;12;31/07/2021;https://pucp.zoom.us/002186
+72238113;42248643;CalculoI;10;21/06/2021;https://pucp.zoom.us/002185

@@ -369,10 +369,10 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
 	String^ codigopago = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
 
-	String^ dnialumno = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[1]->Value->ToString();
 
 	ClaseController^ objGestorClase = gcnew ClaseController();
-	//objGestorClase->crearclasetxt(dnialumno);
+	objGestorClase->crearclasetxt(codigopago);
+
 
 	PagoController^ objGestorPago = gcnew PagoController();
 	objGestorPago->aprobarPago(codigopago);
@@ -393,14 +393,15 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
 	String^ codigopago = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
 
-	String^ dnialumno = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[1]->Value->ToString();
 
 	PagoController^ objGestorPago = gcnew PagoController();
 	objGestorPago->programarclase(codigopago);
 
 	String^ linkclase = this->textBox2->Text;
 	ClaseController^ objGestorClase = gcnew ClaseController();
-	objGestorClase->enviarlink(linkclase,dnialumno);
+	Inscripcion^ objInscripcion = objGestorPago->buscarIncscripcionxcodigocompleta(codigopago);
+	
+	objGestorClase->enviarlink(linkclase, objInscripcion->objAlumno->dni);
 
 	MessageBox::Show("El link de la clase ha sido enviado !!!");
 

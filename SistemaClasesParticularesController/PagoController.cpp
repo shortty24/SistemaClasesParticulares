@@ -216,3 +216,122 @@ List<Pago^>^ PagoController::buscarPagosxAlumno(String^ dniAlumnoBuscar) {
 	}
 	return listaPagosEncontrados;
 }
+
+
+Inscripcion^ PagoController::buscarIncscripcionxcodigopago(String^ codigoPago) {
+	Inscripcion^ objInscripcionEncontrada;
+	array<String^>^ lineas = File::ReadAllLines("Pagos.txt");
+	String^ separadores = ";";
+	for each (String ^ lineaPagos in lineas) {
+		array<String^>^ palabras = lineaPagos->Split(separadores->ToCharArray());
+		String^ codigodeinscripcion = palabras[0];
+		Inscripcion^ objinscripcion = buscarIncscripcionxcodigo(codigodeinscripcion);
+		String^ estadopago = palabras[1];
+		String^ horapago = palabras[2];
+		String^ fechapago = palabras[3];
+		String^ codigopago = palabras[4];
+		String^ estadoclase = palabras[5];
+		if (codigopago->ToUpper() == codigoPago->ToUpper()) {
+			objInscripcionEncontrada = objinscripcion;
+			break;
+
+		}
+	}
+	return objInscripcionEncontrada;
+}
+
+
+Inscripcion^ PagoController::buscarIncscripcionxcodigocompleta(String^ codigoBuscar) {
+	Inscripcion^ objInscripcionEncontrada;
+	Pago^ objPago;
+	array<String^>^ lineas = File::ReadAllLines("Pagos.txt");
+	String^ separadores = ";";
+	for each (String ^ lineaPagos in lineas) {
+		array<String^>^ palabras = lineaPagos->Split(separadores->ToCharArray());
+		String^ codigodeinscripcion = palabras[0];
+		Inscripcion^ objinscripcion = buscarIncscripcionxcodigopagocompleto(codigodeinscripcion);
+		String^ estadopago = palabras[1];
+		String^ horapago = palabras[2];
+		String^ fechapago = palabras[3];
+		String^ codigopago = palabras[4];
+		String^ estadoclase = palabras[5];
+		if (codigopago->ToUpper() == codigoBuscar->ToUpper()) {
+			objPago = gcnew Pago(objinscripcion, estadopago, horapago, fechapago, codigopago, estadoclase);
+			objInscripcionEncontrada = objPago->objInscripcion;
+			break;
+
+		}
+	}
+	
+	return objInscripcionEncontrada;
+}
+
+
+Inscripcion^ PagoController::buscarIncscripcionxcodigopagocompleto(String^ codigoinscripcion) {
+	Inscripcion^ objInscripcionEncontrada;
+	array<String^>^ lineas = File::ReadAllLines("Inscripciones.txt");
+	String^ separadores = ";";
+	for each (String ^ lineaInscripcion in lineas) {
+		array<String^>^ palabras = lineaInscripcion->Split(separadores->ToCharArray());
+		String^ dniAlumno = palabras[0];
+		Alumno^ objAlumno = buscarAlumnoxDNI(dniAlumno);
+		String^ dniProfesor = palabras[1];
+		String^ curso = palabras[2];
+		Curso^ objCurso = buscarCursoxNombreCurso(curso);
+		String^ horainscripcion = palabras[3];
+		String^ fechainscripcion = palabras[4];
+		int duraciondeclase = Convert::ToInt32(palabras[5]);
+		String^ horadeclase = palabras[6];
+		String^ fechaclase = palabras[7];
+		String^ codigodeinscripcion = palabras[8];
+		if (codigodeinscripcion->ToUpper() == codigoinscripcion->ToUpper()) {
+			objInscripcionEncontrada = gcnew Inscripcion(objAlumno, objCurso, horainscripcion, fechainscripcion, duraciondeclase, horadeclase, fechaclase, codigodeinscripcion);
+
+			break;
+		}
+	}
+	return objInscripcionEncontrada;
+}
+
+Curso^ PagoController::buscarCursoxNombreCurso(String^ cursoBuscar) {
+	Curso^ objCursoEncontrado;
+	array<String^>^ lineas = File::ReadAllLines("CursosDisponibles.txt");
+
+	String^ separadores = ";";
+	for each (String ^ lineaPersonas in lineas) {
+		array<String^>^ palabras = lineaPersonas->Split(separadores->ToCharArray());
+		String^ curso = palabras[0];
+		String^ tarifa = palabras[1];
+		String^ dificultad = palabras[2];
+		String^ usuario = palabras[3];
+		Profesor^ objProfesor = buscaProfesor(usuario);
+
+		if (cursoBuscar == curso) {
+			objCursoEncontrado = gcnew Curso(curso, dificultad, objProfesor);
+
+			break;
+		}
+	}
+	return objCursoEncontrado;
+}
+
+Profesor^ PagoController::buscaProfesor(String^ usuarioProfesor) {
+	Profesor^ objProfesorEncontrado;
+	array<String^>^ lineas = File::ReadAllLines("Personas.txt");
+	String^ separadores = ";";
+	for each (String ^ lineaProfesor in lineas) {
+		array<String^>^ palabras = lineaProfesor->Split(separadores->ToCharArray());
+		String^ dni = palabras[1];
+		String^ usuario = palabras[2];
+		String^ contrasenha = palabras[3];
+		String^ apellidoPaterno = palabras[4];
+		String^ apellidoMaterno = palabras[5];
+		String^ nombre = palabras[6];
+
+		if (usuario == usuarioProfesor) {
+			objProfesorEncontrado = gcnew Profesor(dni, usuario, contrasenha, apellidoPaterno, apellidoMaterno, nombre);
+			break;
+		}
+	}
+	return objProfesorEncontrado;
+}
