@@ -8,10 +8,35 @@ ReporteController::ReporteController(){
 
 	this->ListaAlumnos = gcnew List<Alumno^>();
 	this->ListaProfesores = gcnew List<Profesor^>();
+	this->ListaQuejasResueltas = gcnew List<Quejas^>();
+	this->ListaQuejasNoResueltas = gcnew List<Quejas^>();
+
 
 }
 
+void ReporteController::CargarQuejasDesdeArchivo() {
 
+		array<String^>^ lineas = File::ReadAllLines("Quejas.txt");
+		String^ separadores = ";";
+		for each (String ^ lineaQueja in lineas) {
+			array<String^>^ palabras = lineaQueja->Split(separadores->ToCharArray());
+			String^ dniAgresor = palabras[0];
+			String^ Queja = palabras[1];
+			String^ DniAgreviado = palabras[2];
+			String^ EstadoUsuario = palabras[3];
+
+		if (EstadoUsuario == "Bloqueado" | EstadoUsuario == "No Bloqueado") {
+			Quejas^ objQuejasResueltas = gcnew Quejas(dniAgresor, Queja, DniAgreviado, EstadoUsuario);
+			this->ListaQuejasResueltas->Add(objQuejasResueltas);
+			;
+		}
+		else {
+			Quejas^ objQuejasNoResueltas = gcnew Quejas(dniAgresor, Queja, DniAgreviado, EstadoUsuario);
+			this->ListaQuejasNoResueltas->Add(objQuejasNoResueltas);
+
+		}
+		}
+}
 void ReporteController::CargarPersonasDesdeArchivo() {
 
 	array<String^>^ lineas = File::ReadAllLines("Personas.txt");
@@ -41,10 +66,16 @@ void ReporteController::CargarPersonasDesdeArchivo() {
 int ReporteController::ObtenerCantidadProfesores() {
 	
 	return this->ListaProfesores->Count;
-	
 }
 int ReporteController::ObtenerCantidadAlumnos() {
 
 	return this->ListaAlumnos->Count;
+}
+int ReporteController::ObtenerCantidadQuejasResueltas(){
 
+	return this->ListaQuejasResueltas->Count;
+}
+int ReporteController::ObtenerCantidadQuejasNoResueltas() {
+
+	return this->ListaQuejasNoResueltas->Count;
 }

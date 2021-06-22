@@ -61,14 +61,16 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::TextBox^ textBox10;
 	private: System::Windows::Forms::TextBox^ textBox9;
 	private: System::Windows::Forms::TextBox^ textBox8;
-	private: System::Windows::Forms::Label^ label11;
+	private: System::Windows::Forms::ErrorProvider^ epError;
+	private: System::ComponentModel::IContainer^ components;
+
 
 
 	private:
 		/// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -77,6 +79,7 @@ namespace SistemaClasesParticularesView {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
@@ -99,8 +102,9 @@ namespace SistemaClasesParticularesView {
 			this->textBox10 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
-			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->epError = (gcnew System::Windows::Forms::ErrorProvider(this->components));
 			this->groupBox1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->epError))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button1
@@ -128,6 +132,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox7->Name = L"textBox7";
 			this->textBox7->Size = System::Drawing::Size(130, 20);
 			this->textBox7->TabIndex = 27;
+			this->textBox7->Validated += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox7_Validated);
 			// 
 			// label6
 			// 
@@ -144,6 +149,8 @@ namespace SistemaClasesParticularesView {
 			this->textBox6->Name = L"textBox6";
 			this->textBox6->Size = System::Drawing::Size(130, 20);
 			this->textBox6->TabIndex = 25;
+			this->textBox6->TextChanged += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox6_TextChanged);
+			this->textBox6->Validated += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox6_Validated);
 			// 
 			// label5
 			// 
@@ -196,6 +203,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(130, 20);
 			this->textBox5->TabIndex = 19;
+			this->textBox5->Validated += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox5_Validated);
 			// 
 			// textBox4
 			// 
@@ -203,6 +211,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(130, 20);
 			this->textBox4->TabIndex = 18;
+			this->textBox4->Validated += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox4_Validated);
 			// 
 			// textBox3
 			// 
@@ -210,6 +219,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(130, 20);
 			this->textBox3->TabIndex = 17;
+			this->textBox3->Validated += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox3_Validated);
 			// 
 			// textBox2
 			// 
@@ -220,6 +230,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox2->TabIndex = 16;
 			this->textBox2->TextChanged += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox2_TextChanged);
 			this->textBox2->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &frmRegistroProfesor::textBox2_KeyPress);
+			this->textBox2->Validated += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox2_Validated);
 			// 
 			// textBox1
 			// 
@@ -228,6 +239,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox1->Size = System::Drawing::Size(130, 20);
 			this->textBox1->TabIndex = 15;
 			this->textBox1->TextChanged += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox1_TextChanged);
+			this->textBox1->Validated += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox1_Validated);
 			// 
 			// groupBox1
 			// 
@@ -279,6 +291,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox10->Size = System::Drawing::Size(100, 20);
 			this->textBox10->TabIndex = 2;
 			this->textBox10->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &frmRegistroProfesor::textBox10_KeyPress);
+			this->textBox10->Validated += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox10_Validated);
 			// 
 			// textBox9
 			// 
@@ -286,6 +299,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox9->Name = L"textBox9";
 			this->textBox9->Size = System::Drawing::Size(100, 20);
 			this->textBox9->TabIndex = 1;
+			this->textBox9->Validated += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox9_Validated);
 			// 
 			// textBox8
 			// 
@@ -294,22 +308,17 @@ namespace SistemaClasesParticularesView {
 			this->textBox8->Size = System::Drawing::Size(100, 20);
 			this->textBox8->TabIndex = 0;
 			this->textBox8->TextChanged += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox8_TextChanged);
+			this->textBox8->Validated += gcnew System::EventHandler(this, &frmRegistroProfesor::textBox8_Validated);
 			// 
-			// label11
+			// epError
 			// 
-			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(476, 261);
-			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(168, 13);
-			this->label11->TabIndex = 32;
-			this->label11->Text = L"(...@gmail.com o ...@hotmail.com)";
+			this->epError->ContainerControl = this;
 			// 
 			// frmRegistroProfesor
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(718, 477);
-			this->Controls->Add(this->label11);
 			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label7);
@@ -331,6 +340,7 @@ namespace SistemaClasesParticularesView {
 			this->Load += gcnew System::EventHandler(this, &frmRegistroProfesor::frmRegistroProfesor_Load);
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->epError))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -389,7 +399,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Boolean Email_Valido(String^Email) {
-		String^ Validando = "\\w+([-+.']\\w+)*@(gmail|hotmail)\\.com";
+		String^ Validando = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
 		if (Regex::IsMatch(Email, Validando))
 		{
 			if (Regex::Replace(Email, Validando, String::Empty)->Length == 0)
@@ -426,6 +436,108 @@ private: System::Void textBox2_KeyPress(System::Object^ sender, System::Windows:
 	}
 }
 private: System::Void frmRegistroProfesor_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox1_Validated(System::Object^ sender, System::EventArgs^ e) {
+
+	if (textBox1->Text->Trim() == "") {
+		epError->SetError(textBox1, "Campo Obligatorio");
+		textBox1->Focus();
+	}
+	else {
+		epError->Clear();
+	}
+}
+private: System::Void textBox2_Validated(System::Object^ sender, System::EventArgs^ e) {
+
+	if (textBox2->Text->Trim() == "") {
+		epError->SetError(textBox2, "Campo Obligatorio");
+		textBox2->Focus();
+	}
+	else {
+		epError->Clear();
+	}
+}
+private: System::Void textBox3_Validated(System::Object^ sender, System::EventArgs^ e) {
+
+	if (textBox3->Text->Trim() == "") {
+		epError->SetError(textBox3, "Campo Obligatorio");
+		textBox3->Focus();
+	}
+	else {
+		epError->Clear();
+	}
+}
+private: System::Void textBox4_Validated(System::Object^ sender, System::EventArgs^ e) {
+
+	if (textBox4->Text->Trim() == "") {
+		epError->SetError(textBox4, "Campo Obligatorio");
+		textBox4->Focus();
+	}
+	else {
+		epError->Clear();
+	}
+}
+private: System::Void textBox5_Validated(System::Object^ sender, System::EventArgs^ e) {
+
+	if (textBox5->Text->Trim() == "") {
+		epError->SetError(textBox5, "Campo Obligatorio");
+		textBox5->Focus();
+	}
+	else {
+		epError->Clear();
+	}
+}
+private: System::Void textBox6_Validated(System::Object^ sender, System::EventArgs^ e) {
+
+	if (textBox6->Text->Trim() == "") {
+		epError->SetError(textBox6, "Campo Obligatorio");
+		textBox6->Focus();
+	}
+	else {
+		epError->Clear();
+	}
+}
+private: System::Void textBox7_Validated(System::Object^ sender, System::EventArgs^ e) {
+
+	if (textBox7->Text->Trim() == "") {
+		epError->SetError(textBox7, "Campo Obligatorio");
+		textBox7->Focus();
+	}
+	else {
+		epError->Clear();
+	}
+}
+private: System::Void textBox8_Validated(System::Object^ sender, System::EventArgs^ e) {
+
+	   if (textBox8->Text->Trim() == "") {
+		   epError->SetError(textBox8, "Campo Obligatorio");
+		   textBox8->Focus();
+	   }
+	   else {
+		   epError->Clear();
+	   }
+}
+private: System::Void textBox9_Validated(System::Object^ sender, System::EventArgs^ e) {
+
+	if (textBox9->Text->Trim() == "") {
+		epError->SetError(textBox9, "Campo Obligatorio");
+		textBox9->Focus();
+	}
+	else {
+		epError->Clear();
+	}
+}
+private: System::Void textBox10_Validated(System::Object^ sender, System::EventArgs^ e) {
+
+	if (textBox10->Text->Trim() == "") {
+		epError->SetError(textBox10, "Campo Obligatorio");
+		textBox10->Focus();
+	}
+	else {
+		epError->Clear();
+	}
+}
+private: System::Void textBox6_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

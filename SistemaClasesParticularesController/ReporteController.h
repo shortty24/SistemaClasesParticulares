@@ -9,12 +9,18 @@ namespace SistemaClasesParticularesController {
 	private:
 		List<Alumno^>^ ListaAlumnos;
 		List<Profesor^>^ ListaProfesores;
+		List<Quejas^>^ ListaQuejasResueltas;
+		List<Quejas^>^ ListaQuejasNoResueltas;
 
 	public:
 			ReporteController();
 			void CargarPersonasDesdeArchivo();
+			void CargarQuejasDesdeArchivo();
 			int ObtenerCantidadProfesores();
 			int ObtenerCantidadAlumnos();
+			int ObtenerCantidadQuejasResueltas();
+			int ObtenerCantidadQuejasNoResueltas();
+
 
 	};
 }
