@@ -113,6 +113,7 @@
   <ItemGroup>
     <ClInclude Include="Alumno.h" />
     <ClInclude Include="Administrador.h" />
+    <ClInclude Include="BonusAlumno.h" />
     <ClInclude Include="CV.h" />
     <ClInclude Include="Curso.h" />
     <ClInclude Include="Clase.h" />
@@ -127,6 +128,7 @@
   <ItemGroup>
     <ClCompile Include="Administrador.cpp" />
     <ClCompile Include="Alumno.cpp" />
+    <ClCompile Include="BonusAlumno.cpp" />
     <ClCompile Include="Clase.cpp" />
     <ClCompile Include="Curso.cpp" />
     <ClCompile Include="CV.cpp" />

@@ -6,3 +6,4 @@ P;43248547;Victor98;acvd125;Alva;Campos;Victor;Victor98@gmail.com
 P;41248543;Felipe15;Fqr159;Rojas;Quispe;Felipe;Felipe15@gmail.com
 M;40048142;Juan10;mpato321;Corrales;Garcia;Juan;Juan10@gmail.com
 P;45814974;Axel105;axelbc145;Baldes;Corrales;Axel;Axel12@gmail.com
+A;70154984;gonzalo41;dwal156;Peraltes;Monre;Gonzalo;gonza_2@gmail.com

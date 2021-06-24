@@ -320,9 +320,12 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 				String^ Correo = this->textBox6->Text;
 				if (Email_Valido(Correo) == true) {
 					String^ Contrasenha = this->textBox7->Text;
+					String^ EstadoBonus = "No Canjeado";
 					Persona^ objPersona = gcnew Persona(CodigoUsuario, DNI, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre, Correo);
+					BonusAlumno^ objBonus = gcnew BonusAlumno(DNI, EstadoBonus);
 					RegistroController^ objRegistro = gcnew RegistroController();
 					objRegistro->GuardarNuevoUsuarioEnArchivo(objPersona);
+					objRegistro->GuardarNuevoBonusAlumnoEnArchivo(objBonus);
 					MessageBox::Show("Se ha registrado con éxito");
 					this->Close();
 				}

@@ -51,6 +51,9 @@
     <ClInclude Include="ReporteUsuarios.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="BonusAlumno.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Administrador.cpp">
@@ -87,6 +90,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="ReporteUsuarios.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="BonusAlumno.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
