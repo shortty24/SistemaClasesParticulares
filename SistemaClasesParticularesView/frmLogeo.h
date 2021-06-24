@@ -51,6 +51,12 @@ namespace SistemaClasesParticularesView {
 	private: Alumno^ AlumnoLogeado;
 	private: Profesor^ ProfesorLogeado;
 
+
+
+
+
+
+
 	private:
 		/// <summary>
 		/// Variable del diseñador necesaria.
@@ -101,6 +107,7 @@ namespace SistemaClasesParticularesView {
 			// 
 			this->textBox2->Location = System::Drawing::Point(310, 219);
 			this->textBox2->Name = L"textBox2";
+			this->textBox2->PasswordChar = '*';
 			this->textBox2->Size = System::Drawing::Size(100, 20);
 			this->textBox2->TabIndex = 3;
 			this->textBox2->TextChanged += gcnew System::EventHandler(this, &frmLogeo::textBox2_TextChanged);
@@ -180,6 +187,8 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 }
 private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
