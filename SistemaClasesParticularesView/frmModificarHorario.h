@@ -376,54 +376,56 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 
 		List<String^>^ listaHoras = gcnew List<String^>();
+		array<String^>^ listaHorariosModificados = gcnew array<String^>(this->listaHorario->Count);
+		String^ lineaTexto;
 
 		for (int i = 0; i < listaHorario->Count; i++) {
 			Horario^ objHorario = listaHorario[i];
 
-			//String^ lineaTexto;
-			//lineaTexto = objHorario->dniProfesor[i] + ";" + objHorario->curso[i] + ";" + objHorario->dia[i] ;
 			if (this->groupBox15->Text == objHorario->dia) {
 				for (int j = 0; j < 24; j++) {
-					//String^ selection1 = checkedListBox1->Checked
-					//String^ selection1 = checkedListBox1->CheckedItems[j]->ToString();
 					if (checkedListBox1->GetItemChecked(j)) {
-						//if (selection1 != "") {
-							listaHoras->Add(Convert::ToString(j));
+						listaHoras->Add(Convert::ToString(j));
 					}
 					else {
-							listaHoras->Add("-");
-					}
-					//}
-
-				}
-			}
-
-			String^ lineaTexto;
-			lineaTexto = objHorario->dniProfesor + ";" + objHorario->curso + ";" + objHorario->dia;
-
-			
-			for (int k = 0; k < 24; k++) {
-				lineaTexto = lineaTexto + ";" + listaHoras[k];
-
-			}
-
-			array<String^>^ lineasArchivoPersonas = gcnew array<String^>(listaHorarioProfesores->Count);
-			for (int i = 0; i < listaHorarioProfesores->Count; i++) {
-				Horario^ objHorario = listaHorarioProfesores[i];
-				if ((objHorario->dniProfesor == this->dniProfesor) && (objHorario->dia == this->groupBox15->Text)) {
-					lineasArchivoPersonas[i] = lineaTexto;
-				}
-				else {
-					
-					lineasArchivoPersonas[i] = objHorario->dniProfesor + ";" + objHorario->curso + ";" + objHorario->dia;
-					for (int j = 0; j < objHorario->horasDisponibles->Count; j++) {
-						lineasArchivoPersonas[i] = lineasArchivoPersonas[i] + ";" + objHorario->horasDisponibles[j];
+						listaHoras->Add("-");
 					}
 				}
+
+				lineaTexto = objHorario->dniProfesor + ";" + objHorario->curso + ";" + objHorario->dia;
+
+				for (int k = 0; k < 24; k++) {
+					lineaTexto = lineaTexto + ";" + listaHoras[k];
+				}
 			}
+			else {
+				lineaTexto = objHorario->dniProfesor + ";" + objHorario->curso + ";" + objHorario->dia;
+				for (int l = 0; l < objHorario->horasDisponibles->Count; l++) {
+					lineaTexto = lineaTexto + ";" + objHorario->horasDisponibles[l];
+				}
+			}
+
+			listaHorariosModificados[i] = lineaTexto;
+		}
+		int m = 0;
+		array<String^>^ lineasArchivoPersonas = gcnew array<String^>(listaHorarioProfesores->Count);
+		for (int i = 0; i < listaHorarioProfesores->Count; i++) {
+			Horario^ objHorario = listaHorarioProfesores[i];
+			if ((objHorario->dniProfesor == this->dniProfesor) && (objHorario->dia == this->groupBox15->Text)) {
+				lineasArchivoPersonas[i] = listaHorariosModificados[m];
+				m++;
+			}
+			else {
+				lineasArchivoPersonas[i] = objHorario->dniProfesor + ";" + objHorario->curso + ";" + objHorario->dia;
+				for (int j = 0; j < objHorario->horasDisponibles->Count; j++) {
+					lineasArchivoPersonas[i] = lineasArchivoPersonas[i] + ";" + objHorario->horasDisponibles[j];
+				}
+			}
+
 			File::WriteAllLines("Horarios.txt", lineasArchivoPersonas);
 			//listaHorarioProfesor->Add(lineaTexto);
 		}
+		
 		//File::WriteAllLines("Horarios.txt", listaHorarioProfesor);
 
 
