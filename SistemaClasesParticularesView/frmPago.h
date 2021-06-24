@@ -50,13 +50,17 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: String^ codigoIns;
+	private: System::Windows::Forms::Timer^ horafecha;
+
+	private: System::ComponentModel::IContainer^ components;
+	private: DateTime horaFechaTReal;
 	protected:
 
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -65,11 +69,13 @@ namespace SistemaClasesParticularesView {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->horafecha = (gcnew System::Windows::Forms::Timer(this->components));
 			this->SuspendLayout();
 			// 
 			// label1
@@ -116,6 +122,11 @@ namespace SistemaClasesParticularesView {
 			this->textBox2->Size = System::Drawing::Size(114, 20);
 			this->textBox2->TabIndex = 4;
 			// 
+			// horafecha
+			// 
+			this->horafecha->Enabled = true;
+			this->horafecha->Tick += gcnew System::EventHandler(this, &frmPago::horafecha_Tick);
+			// 
 			// frmPago
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -138,12 +149,18 @@ namespace SistemaClasesParticularesView {
 	}
 	private: System::Void frmPago_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->textBox1->Text = codigoIns;
+		//MessageBox::Show(Convert::ToString(horaFechaTReal.Now.ToShortDateString()));
 	}
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	PagoController^ gestorPago = gcnew PagoController();
-	gestorPago->crearNuevoPago(codigoIns, "5:00", "17/06/2021", this->textBox2->Text);
+	String^ horaPagoTR = Convert::ToString(horaFechaTReal.Now.ToShortTimeString());
+	String^ fechaPagoTR = Convert::ToString(horaFechaTReal.Now.ToShortDateString());
+	gestorPago->crearNuevoPago(codigoIns, horaPagoTR, fechaPagoTR, this->textBox2->Text);
 	MessageBox::Show("Se envió el código con éxito.");
 	this->Close();
+}
+private: System::Void horafecha_Tick(System::Object^ sender, System::EventArgs^ e) {
+	
 }
 };
 }
