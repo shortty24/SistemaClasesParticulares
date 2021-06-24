@@ -12,7 +12,7 @@ namespace SistemaClasesParticularesController {
 		int Repite;
 		List < Persona^ >^ listaPersonas;
 		List < CV^ >^ listaCV;
-		List<BonusAlumno^>^ listaBonus;
+		List <BonusAlumno^>^ listaBonus;
 
 	public:
 		RegistroController();
