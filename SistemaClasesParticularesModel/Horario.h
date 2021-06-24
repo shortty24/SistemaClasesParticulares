@@ -9,8 +9,10 @@ namespace SistemaClasesParticularesModel {
 		public:
 			String^ dniProfesor;
 			String^ dia;
+			String^ curso;
 			List<String^>^ horasDisponibles;
 	    public:
 			Horario(String^ dniProfesor, String^ dia, List<String^>^ horasDisponibles);
+			Horario(String^ dniProfesor, String^ dia, List<String^>^ horasDisponibles, String^ curso);
 	};
 }

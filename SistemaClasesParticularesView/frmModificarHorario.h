@@ -11,6 +11,7 @@ namespace SistemaClasesParticularesView {
 	using namespace System::Drawing;
 	using namespace SistemaClasesParticularesController;
 	using namespace SistemaClasesParticularesModel;
+	using namespace System::IO;
 
 	/// <summary>
 	/// Summary for frmModificarHorario
@@ -29,6 +30,7 @@ namespace SistemaClasesParticularesView {
 		{
 			InitializeComponent();
 			this->dniProfesor = dniProfesor;
+			
 			//
 			//TODO: Add the constructor code here
 			//
@@ -253,9 +255,8 @@ namespace SistemaClasesParticularesView {
 			// 
 			this->checkedListBox1->FormattingEnabled = true;
 			this->checkedListBox1->Items->AddRange(gcnew cli::array< System::Object^  >(24) {
-				L"0-1", L"1-2", L"2-3", L"3-4", L"4-5", L"5-6",
-					L"6-7", L"7-8", L"8-9", L"9-10", L"10-11", L"11-12", L"12-13", L"13-14", L"14-15", L"15-16", L"16-17", L"17-18", L"18-19", L"19-20",
-					L"20-21", L"21-22", L"22-23", L"23-0"
+				L"0", L"1", L"2", L"3", L"4", L"5", L"6",
+					L"7", L"8", L"9", L"10", L"11", L"12", L"13", L"14", L"15", L"16", L"17", L"18", L"19", L"20", L"21", L"22", L"23"
 			});
 			this->checkedListBox1->Location = System::Drawing::Point(6, 21);
 			this->checkedListBox1->Name = L"checkedListBox1";
@@ -271,6 +272,7 @@ namespace SistemaClasesParticularesView {
 			this->button1->TabIndex = 35;
 			this->button1->Text = L"Grabar";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &frmModificarHorario::button1_Click);
 			// 
 			// frmModificarHorario
 			// 
@@ -300,6 +302,7 @@ namespace SistemaClasesParticularesView {
 		}
 #pragma endregion
 	private: System::Void frmModificarHorario_Load(System::Object^ sender, System::EventArgs^ e) {
+
 		HorarioController^ objGestorHorario = gcnew HorarioController();
 		List<Horario^>^ listaHorario = objGestorHorario->HorarioxProfesor(this->dniProfesor);
 
@@ -322,55 +325,220 @@ namespace SistemaClasesParticularesView {
 			else if (this->groupBox11->Text == objHorario->dia) {
 				for (int l = 0; l < objHorario->horasDisponibles->Count; l++) {
 					if (objHorario->horasDisponibles[l] != "-") {
-						this->checkedListBox2->SetItemChecked(l, true);
+						this->checkedListBox3->SetItemChecked(l, true);
 					}
 				}
 			}
 			else if (this->groupBox14->Text == objHorario->dia) {
 				for (int m = 0; m < objHorario->horasDisponibles->Count; m++) {
 					if (objHorario->horasDisponibles[m] != "-") {
-						this->checkedListBox2->SetItemChecked(m, true);
+						this->checkedListBox6->SetItemChecked(m, true);
 					}
 				}
 			}
 			else if (this->groupBox12->Text == objHorario->dia) {
 				for (int n = 0; n < objHorario->horasDisponibles->Count; n++) {
 					if (objHorario->horasDisponibles[n] != "-") {
-						this->checkedListBox2->SetItemChecked(n, true);
+						this->checkedListBox5->SetItemChecked(n, true);
 					}
 				}
 			}
 			else if (this->groupBox10->Text == objHorario->dia) {
 				for (int o = 0; o < objHorario->horasDisponibles->Count; o++) {
 					if (objHorario->horasDisponibles[o] != "-") {
-						this->checkedListBox2->SetItemChecked(o, true);
+						this->checkedListBox4->SetItemChecked(o, true);
 					}
 				}
 			}
 			else if (this->groupBox9->Text == objHorario->dia) {
 				for (int p = 0; p < objHorario->horasDisponibles->Count; p++) {
 					if (objHorario->horasDisponibles[p] != "-") {
-						this->checkedListBox2->SetItemChecked(p, true);
+						this->checkedListBox7->SetItemChecked(p, true);
 					}
 				}
 			}
+			this->listaHorario = listaHorario;
+
 		}
-		
-
-
-		/*if (this->groupBox15->Text == objHorario->dia) {
-			for (int i = 0; i < objHorario->horasDisponibles->Count; i++) {
-				this->checkedListBox1->SetItemChecked(1, true);	
-			}
-		}*/
-		/*this->textBox1->Text = Convert::ToString(objPartido->codigo);
-		this->textBox2->Text = objPartido->nombre;
-		this->textBox3->Text = objPartido->simbolo;
-		this->textBox4->Text = objPartido->fechaFundacion;
-		this->listaMiembros = objPartido->listaAlumnos;
-		mostrarGrilla(this->listaMiembros);*/
 	}
 private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	List<String^>^ listaHorarioProfesor = gcnew List<String^>();
+	HorarioController^ objGestorHorario = gcnew HorarioController();
+	//objGestorHorario->CargarHorariosDesdeArchivo();
+
+	List<Horario^>^ listaHorarioProfesores = objGestorHorario->CargarHorariosDesdeArchivo();
+
+	//List<Horario^>^ listaHorarioProfesor = gcnew List<Horario^>();
+	//List<Horario^>^ listaHorario = objGestorHorario->HorarioxProfesor(this->dniProfesor);
+
+
+		List<String^>^ listaHoras = gcnew List<String^>();
+
+		for (int i = 0; i < listaHorario->Count; i++) {
+			Horario^ objHorario = listaHorario[i];
+
+			//String^ lineaTexto;
+			//lineaTexto = objHorario->dniProfesor[i] + ";" + objHorario->curso[i] + ";" + objHorario->dia[i] ;
+			if (this->groupBox15->Text == objHorario->dia) {
+				for (int j = 0; j < 24; j++) {
+					//String^ selection1 = checkedListBox1->Checked
+					//String^ selection1 = checkedListBox1->CheckedItems[j]->ToString();
+					if (checkedListBox1->GetItemChecked(j)) {
+						//if (selection1 != "") {
+							listaHoras->Add(Convert::ToString(j));
+					}
+					else {
+							listaHoras->Add("-");
+					}
+					//}
+
+				}
+			}
+
+			String^ lineaTexto;
+			lineaTexto = objHorario->dniProfesor + ";" + objHorario->curso + ";" + objHorario->dia;
+
+			
+			for (int k = 0; k < 24; k++) {
+				lineaTexto = lineaTexto + ";" + listaHoras[k];
+
+			}
+
+			array<String^>^ lineasArchivoPersonas = gcnew array<String^>(listaHorarioProfesores->Count);
+			for (int i = 0; i < listaHorarioProfesores->Count; i++) {
+				Horario^ objHorario = listaHorarioProfesores[i];
+				if ((objHorario->dniProfesor == this->dniProfesor) && (objHorario->dia == this->groupBox15->Text)) {
+					lineasArchivoPersonas[i] = lineaTexto;
+				}
+				else {
+					
+					lineasArchivoPersonas[i] = objHorario->dniProfesor + ";" + objHorario->curso + ";" + objHorario->dia;
+					for (int j = 0; j < objHorario->horasDisponibles->Count; j++) {
+						lineasArchivoPersonas[i] = lineasArchivoPersonas[i] + ";" + objHorario->horasDisponibles[j];
+					}
+				}
+			}
+			File::WriteAllLines("Horarios.txt", lineasArchivoPersonas);
+			//listaHorarioProfesor->Add(lineaTexto);
+		}
+		//File::WriteAllLines("Horarios.txt", listaHorarioProfesor);
+
+
+
+		/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
+		//File::WriteAllLines("Personas.txt", lineasArchivoPersonas);
+
+		/*if (dni == this->dniProfesor) {
+			//for (int i = 0; i < listaHorario->Count; i++) {
+			//Horario^ objHorario;
+			if (this->groupBox15->Text == dia) {
+				for (int j = 0; j < listaHoras->Count; j++) {
+					if (listaHoras[j] != "-") {
+						this->checkedListBox1->SetItemChecked(j, true);
+					}
+				}
+			}
+			else if (this->groupBox13->Text == dia) {
+				for (int k = 0; k < listaHoras->Count; k++) {
+					if (listaHoras[k] != "-") {
+						this->checkedListBox2->SetItemChecked(k, true);
+					}
+				}
+			}
+			else if (this->groupBox11->Text == dia) {
+				for (int l = 0; l < listaHoras->Count; l++) {
+					if (listaHoras[l] != "-") {
+						this->checkedListBox3->SetItemChecked(l, true);
+					}
+				}
+			}
+			else if (this->groupBox14->Text == dia) {
+				for (int m = 0; m < listaHoras->Count; m++) {
+					if (listaHoras[m] != "-") {
+						this->checkedListBox6->SetItemChecked(m, true);
+					}
+				}
+			}
+			else if (this->groupBox12->Text == dia) {
+				for (int n = 0; n < listaHoras->Count; n++) {
+					if (listaHoras[n] != "-") {
+						this->checkedListBox5->SetItemChecked(n, true);
+					}
+				}
+			}
+			else if (this->groupBox10->Text == dia) {
+				for (int o = 0; o < listaHoras->Count; o++) {
+					if (listaHoras[o] != "-") {
+						this->checkedListBox4->SetItemChecked(o, true);
+					}
+				}
+			}
+			else if (this->groupBox9->Text == dia) {
+				for (int p = 0; p < listaHoras->Count; p++) {
+					if (listaHoras[p] != "-") {
+						this->checkedListBox7->SetItemChecked(p, true);
+					}
+				}
+			}
+
+		}*/
+
+		/*String^ lineaTexto;
+		lineaTexto = dni + ";" + nombreCurso + ";" + dia;
+		for (int j = 0; j < (horasxDia->Count); j++) {
+			lineaTexto = lineaTexto + ";" + horasxDia[j];
+		}*/
+
+		//listaHorarioProfesor->Add(lineaTexto);
+	//}
+	
+		
+		/*else if (this->groupBox13->Text == objHorario->dia) {
+			for (int k = 0; k < this->checkedListBox2->CheckedItems->Count; k++)
+			{
+				String^ selection2 = checkedListBox2->CheckedItems[k]->ToString();
+			}
+		}
+		else if (this->groupBox11->Text == objHorario->dia) {
+			for (int l = 0; l < this->checkedListBox3->CheckedItems->Count; l++)
+			{
+				String^ selection3 = checkedListBox3->CheckedItems[l]->ToString();
+			}
+		}
+		else if (this->groupBox14->Text == objHorario->dia) {
+			for (int m = 0; m < this->checkedListBox6->CheckedItems->Count; m++)
+			{
+				String^ selection4 = checkedListBox6->CheckedItems[m]->ToString();
+			}
+		}
+		else if (this->groupBox12->Text == objHorario->dia) {
+			for (int n = 0; n < this->checkedListBox5->CheckedItems->Count; n++)
+			{
+				String^ selection5 = checkedListBox5->CheckedItems[n]->ToString();
+			}
+		}
+		else if (this->groupBox10->Text == objHorario->dia) {
+			for (int o = 0; o < this->checkedListBox4->CheckedItems->Count; o++)
+			{
+				String^ selection6 = checkedListBox4->CheckedItems[o]->ToString();
+			}
+		}
+		else if (this->groupBox9->Text == objHorario->dia) {
+			for (int p = 0; p < this->checkedListBox7->CheckedItems->Count; p++)
+			{
+				String^ selection7 = checkedListBox7->CheckedItems[p]->ToString();
+			}
+		}*/
+	//}
+	
+
+	//HorarioController^ objGestorHorario = gcnew HorarioController();
+	//objGestorHorario->EditarHorarioDisponibilidad(this->dniProfesor, listaHoras);
+	MessageBox::Show("El horario ha sido modificado con éxito");
+	this->Close();
 }
 };
 }
