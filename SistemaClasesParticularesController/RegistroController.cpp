@@ -10,6 +10,7 @@ RegistroController::RegistroController() {
 	this->Repite = Repite;
 	this->listaPersonas = gcnew List<Persona^>();
 	this->listaCV = gcnew List<CV^>();
+	this->listaBonus = gcnew List<BonusAlumno^>();
 }
 
 void RegistroController::CargarPersonasDesdeArchivo() {
@@ -49,7 +50,19 @@ void RegistroController::CargarCVsDesdeArchivo() {
 		this->listaCV->Add(objCV);
 	}
 }
+void RegistroController::CargarBonusDesdeArchivo() {
+	this->listaBonus->Clear();
+	array<String^>^ lineas = File::ReadAllLines("Bonus.txt");
 
+	String^ separadores = ";";
+	for each (String ^ lineaBonus in lineas) {
+		array<String^>^ palabras = lineaBonus->Split(separadores->ToCharArray());
+		String^ DNI = palabras[0];
+		String^ EstadoBonus = palabras[1];
+		BonusAlumno^ objBonus = gcnew BonusAlumno(DNI,EstadoBonus);
+		this->listaBonus->Add(objBonus);
+	}
+}
 
 void RegistroController::GuardarNuevoUsuarioEnArchivo(Persona^ objPersona) {
 		this->listaPersonas->Clear();
@@ -68,6 +81,22 @@ void RegistroController::GuardarNuevoUsuarioEnArchivo(Persona^ objPersona) {
 		File::WriteAllLines("Personas.txt", lineasArchivoPersonas);	
 }
 
+void RegistroController::GuardarNuevoBonusAlumnoEnArchivo(BonusAlumno^ objBonus) {
+	this->listaBonus->Clear();
+	CargarBonusDesdeArchivo();
+	this->listaBonus->Add(objBonus);
+	array<String^>^ lineasArchivoBonus = gcnew array<String^>(this->listaBonus->Count);
+	for (int i = 0; i < this->listaBonus->Count; i++) {
+		BonusAlumno^ objBonus = this->listaBonus[i];
+		lineasArchivoBonus[i] = objBonus->DniAlumno + ";" + objBonus->Estado ;
+
+	}
+
+	/*Aquí ya mi array de lineasArchivoBonus esta OK, con la información a grabar*/
+	File::WriteAllLines("Bonus.txt", lineasArchivoBonus);
+
+}
+
 void RegistroController::GuardarNuevoCV(CV^ objCV) {
 	this->listaCV->Clear();
 	//this->listaProfesores->Clear();
@@ -81,7 +110,7 @@ void RegistroController::GuardarNuevoCV(CV^ objCV) {
 
 	}
 
-	/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
+	/*Aquí ya mi array de lineasArchivoCV esta OK, con la información a grabar*/
 	File::WriteAllLines("CVs.txt", lineasArchivoCV);
 }
 int RegistroController::VerificarSiUsuarioRepite(String^ textBox1) {

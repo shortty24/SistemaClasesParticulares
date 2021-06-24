@@ -12,6 +12,7 @@ namespace SistemaClasesParticularesController {
 		int Repite;
 		List < Persona^ >^ listaPersonas;
 		List < CV^ >^ listaCV;
+		List<BonusAlumno^>^ listaBonus;
 
 	public:
 		RegistroController();
@@ -20,7 +21,9 @@ namespace SistemaClasesParticularesController {
 		int VerificarSiUsuarioRepite(String^ textBox1);
 		int VerificarSiDniRepite(String^ textBox2);
 		void GuardarNuevoUsuarioEnArchivo(Persona^objPersona);
+		void GuardarNuevoBonusAlumnoEnArchivo(BonusAlumno^ objBonus);
 		void CargarCVsDesdeArchivo();
+		void CargarBonusDesdeArchivo();
 		void GuardarNuevoCV(CV^ objCV);
 
 	};
