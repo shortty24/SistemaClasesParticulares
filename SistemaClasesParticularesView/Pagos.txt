@@ -1,4 +1,4 @@
-1;por procesar;4:30;20/07/2021;QWE3DD;pendiente
+1;por procesar;4:30;20/07/2021;QWE3DD;programada
 2;no validado;4:30;20/07/2021;VRD21F;pendiente
 3;validado;20:10;31/07/2021;Z0D3FE;programada
 4;validado;5:00;17/06/2021;JHYUI;programada
@@ -8,3 +8,4 @@
 8;validado;19:58;24/06/2021;SDFSD;pendiente
 10;validado;19:58;24/06/2021;TRYR;pendiente
 11;validado;19:58;24/06/2021;ERTET;pendiente
+12;validado;21:25;24/06/2021;JIYUO;programada
