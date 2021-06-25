@@ -118,19 +118,19 @@ namespace SistemaClasesParticularesView {
 
 
 
-	private: System::Windows::Forms::GroupBox^ groupBox6;
-	private: System::Windows::Forms::TextBox^ textBox14;
-	private: System::Windows::Forms::Label^ label13;
 
-	private: System::Windows::Forms::TextBox^ textBox13;
-	private: System::Windows::Forms::Button^ button18;
-	private: System::Windows::Forms::Label^ label14;
+
+
+
+
+
+
 	private: System::Windows::Forms::GroupBox^ groupBox5;
 	private: System::Windows::Forms::TextBox^ textBox12;
 
 	private: System::Windows::Forms::Label^ label11;
-	private: System::Windows::Forms::TextBox^ textBox15;
-	private: System::Windows::Forms::Label^ label15;
+
+
 	private: Persona^ Usuario;
 	private: Persona^ Contrasenha;
 
@@ -175,6 +175,15 @@ private: System::Windows::Forms::ComboBox^ comboBox2;
 private: System::Windows::Forms::Button^ button10;
 private: System::Windows::Forms::TextBox^ textBox2;
 private: System::Windows::Forms::Button^ button17;
+private: System::Windows::Forms::DataGridView^ dataGridView2;
+private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
+private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
+private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column19;
+private: System::Windows::Forms::Button^ button9;
+private: System::Windows::Forms::ComboBox^ comboBox1;
+private: System::Windows::Forms::TextBox^ textBox5;
+private: System::Windows::Forms::Label^ label6;
+private: System::Windows::Forms::Label^ label5;
 
 
 
@@ -307,18 +316,19 @@ private: System::Windows::Forms::Button^ button17;
 			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
 			this->groupBox8 = (gcnew System::Windows::Forms::GroupBox());
 			this->button17 = (gcnew System::Windows::Forms::Button());
-			this->groupBox6 = (gcnew System::Windows::Forms::GroupBox());
-			this->textBox14 = (gcnew System::Windows::Forms::TextBox());
-			this->label13 = (gcnew System::Windows::Forms::Label());
-			this->textBox13 = (gcnew System::Windows::Forms::TextBox());
-			this->button18 = (gcnew System::Windows::Forms::Button());
-			this->label14 = (gcnew System::Windows::Forms::Label());
 			this->groupBox5 = (gcnew System::Windows::Forms::GroupBox());
+			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column19 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->button9 = (gcnew System::Windows::Forms::Button());
 			this->button16 = (gcnew System::Windows::Forms::Button());
 			this->textBox12 = (gcnew System::Windows::Forms::TextBox());
 			this->label11 = (gcnew System::Windows::Forms::Label());
-			this->textBox15 = (gcnew System::Windows::Forms::TextBox());
-			this->label15 = (gcnew System::Windows::Forms::Label());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->tabPage2->SuspendLayout();
 			this->groupBox2->SuspendLayout();
@@ -336,8 +346,8 @@ private: System::Windows::Forms::Button^ button17;
 			this->groupBox3->SuspendLayout();
 			this->tabPage3->SuspendLayout();
 			this->groupBox8->SuspendLayout();
-			this->groupBox6->SuspendLayout();
 			this->groupBox5->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// tabPage2
@@ -801,7 +811,6 @@ private: System::Windows::Forms::Button^ button17;
 			// tabPage3
 			// 
 			this->tabPage3->Controls->Add(this->groupBox8);
-			this->tabPage3->Controls->Add(this->groupBox6);
 			this->tabPage3->Controls->Add(this->groupBox5);
 			this->tabPage3->Controls->Add(this->label9);
 			this->tabPage3->Location = System::Drawing::Point(4, 22);
@@ -815,7 +824,7 @@ private: System::Windows::Forms::Button^ button17;
 			// groupBox8
 			// 
 			this->groupBox8->Controls->Add(this->button17);
-			this->groupBox8->Location = System::Drawing::Point(359, 46);
+			this->groupBox8->Location = System::Drawing::Point(483, 86);
 			this->groupBox8->Name = L"groupBox8";
 			this->groupBox8->Size = System::Drawing::Size(174, 97);
 			this->groupBox8->TabIndex = 20;
@@ -832,120 +841,122 @@ private: System::Windows::Forms::Button^ button17;
 			this->button17->UseVisualStyleBackColor = true;
 			this->button17->Click += gcnew System::EventHandler(this, &frmProfesor::button17_Click);
 			// 
-			// groupBox6
-			// 
-			this->groupBox6->Controls->Add(this->textBox14);
-			this->groupBox6->Controls->Add(this->label13);
-			this->groupBox6->Controls->Add(this->textBox13);
-			this->groupBox6->Controls->Add(this->button18);
-			this->groupBox6->Controls->Add(this->label14);
-			this->groupBox6->Location = System::Drawing::Point(37, 264);
-			this->groupBox6->Name = L"groupBox6";
-			this->groupBox6->Size = System::Drawing::Size(273, 131);
-			this->groupBox6->TabIndex = 19;
-			this->groupBox6->TabStop = false;
-			this->groupBox6->Text = L"Acceso";
-			// 
-			// textBox14
-			// 
-			this->textBox14->Location = System::Drawing::Point(86, 23);
-			this->textBox14->Name = L"textBox14";
-			this->textBox14->ReadOnly = true;
-			this->textBox14->Size = System::Drawing::Size(172, 20);
-			this->textBox14->TabIndex = 13;
-			// 
-			// label13
-			// 
-			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(13, 69);
-			this->label13->Name = L"label13";
-			this->label13->Size = System::Drawing::Size(67, 13);
-			this->label13->TabIndex = 9;
-			this->label13->Text = L"Contraseña :";
-			// 
-			// textBox13
-			// 
-			this->textBox13->Location = System::Drawing::Point(86, 66);
-			this->textBox13->Name = L"textBox13";
-			this->textBox13->ReadOnly = true;
-			this->textBox13->Size = System::Drawing::Size(172, 20);
-			this->textBox13->TabIndex = 10;
-			// 
-			// button18
-			// 
-			this->button18->Location = System::Drawing::Point(114, 102);
-			this->button18->Name = L"button18";
-			this->button18->Size = System::Drawing::Size(55, 23);
-			this->button18->TabIndex = 11;
-			this->button18->Text = L"Editar";
-			this->button18->UseVisualStyleBackColor = true;
-			this->button18->Click += gcnew System::EventHandler(this, &frmProfesor::button18_Click);
-			// 
-			// label14
-			// 
-			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(30, 30);
-			this->label14->Name = L"label14";
-			this->label14->Size = System::Drawing::Size(46, 13);
-			this->label14->TabIndex = 12;
-			this->label14->Text = L"Usuaio :";
-			// 
 			// groupBox5
 			// 
+			this->groupBox5->Controls->Add(this->comboBox1);
+			this->groupBox5->Controls->Add(this->textBox5);
+			this->groupBox5->Controls->Add(this->label6);
+			this->groupBox5->Controls->Add(this->label5);
+			this->groupBox5->Controls->Add(this->dataGridView2);
+			this->groupBox5->Controls->Add(this->button9);
 			this->groupBox5->Controls->Add(this->button16);
 			this->groupBox5->Controls->Add(this->textBox12);
 			this->groupBox5->Controls->Add(this->label11);
-			this->groupBox5->Controls->Add(this->textBox15);
-			this->groupBox5->Controls->Add(this->label15);
 			this->groupBox5->Location = System::Drawing::Point(37, 86);
 			this->groupBox5->Name = L"groupBox5";
-			this->groupBox5->Size = System::Drawing::Size(273, 149);
+			this->groupBox5->Size = System::Drawing::Size(373, 312);
 			this->groupBox5->TabIndex = 18;
 			this->groupBox5->TabStop = false;
-			this->groupBox5->Text = L"Contacto";
+			this->groupBox5->Text = L"Añadir Cursos";
+			// 
+			// comboBox1
+			// 
+			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Baja", L"Media", L"Alta" });
+			this->comboBox1->Location = System::Drawing::Point(101, 65);
+			this->comboBox1->Name = L"comboBox1";
+			this->comboBox1->Size = System::Drawing::Size(157, 21);
+			this->comboBox1->TabIndex = 21;
+			// 
+			// textBox5
+			// 
+			this->textBox5->Location = System::Drawing::Point(101, 96);
+			this->textBox5->Name = L"textBox5";
+			this->textBox5->Size = System::Drawing::Size(157, 20);
+			this->textBox5->TabIndex = 25;
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(17, 99);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(79, 13);
+			this->label6->TabIndex = 24;
+			this->label6->Text = L"Tarifa por hora:";
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(38, 68);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(57, 13);
+			this->label5->TabIndex = 22;
+			this->label5->Text = L"Dificultad :";
+			// 
+			// dataGridView2
+			// 
+			this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
+				this->Column5,
+					this->Column6, this->Column19
+			});
+			this->dataGridView2->Location = System::Drawing::Point(18, 131);
+			this->dataGridView2->Name = L"dataGridView2";
+			this->dataGridView2->Size = System::Drawing::Size(349, 121);
+			this->dataGridView2->TabIndex = 21;
+			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"Curso";
+			this->Column5->Name = L"Column5";
+			// 
+			// Column6
+			// 
+			this->Column6->HeaderText = L"Dificultad";
+			this->Column6->Name = L"Column6";
+			// 
+			// Column19
+			// 
+			this->Column19->HeaderText = L"Tarifa";
+			this->Column19->Name = L"Column19";
+			// 
+			// button9
+			// 
+			this->button9->Location = System::Drawing::Point(155, 270);
+			this->button9->Name = L"button9";
+			this->button9->Size = System::Drawing::Size(55, 23);
+			this->button9->TabIndex = 15;
+			this->button9->Text = L"Eliminar";
+			this->button9->UseVisualStyleBackColor = true;
+			this->button9->Click += gcnew System::EventHandler(this, &frmProfesor::button9_Click_1);
 			// 
 			// button16
 			// 
-			this->button16->Location = System::Drawing::Point(114, 120);
+			this->button16->Location = System::Drawing::Point(285, 50);
 			this->button16->Name = L"button16";
-			this->button16->Size = System::Drawing::Size(55, 23);
+			this->button16->Size = System::Drawing::Size(55, 48);
 			this->button16->TabIndex = 14;
-			this->button16->Text = L"Editar";
+			this->button16->Text = L"Añadir";
 			this->button16->UseVisualStyleBackColor = true;
+			this->button16->Click += gcnew System::EventHandler(this, &frmProfesor::button16_Click);
 			// 
 			// textBox12
 			// 
-			this->textBox12->Location = System::Drawing::Point(86, 37);
+			this->textBox12->HideSelection = false;
+			this->textBox12->Location = System::Drawing::Point(101, 37);
 			this->textBox12->Name = L"textBox12";
-			this->textBox12->ReadOnly = true;
-			this->textBox12->Size = System::Drawing::Size(172, 20);
+			this->textBox12->Size = System::Drawing::Size(157, 20);
 			this->textBox12->TabIndex = 7;
 			// 
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(32, 44);
+			this->label11->Location = System::Drawing::Point(56, 39);
 			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(44, 13);
+			this->label11->Size = System::Drawing::Size(40, 13);
 			this->label11->TabIndex = 6;
-			this->label11->Text = L"Correo :";
-			// 
-			// textBox15
-			// 
-			this->textBox15->Location = System::Drawing::Point(86, 80);
-			this->textBox15->Name = L"textBox15";
-			this->textBox15->ReadOnly = true;
-			this->textBox15->Size = System::Drawing::Size(172, 20);
-			this->textBox15->TabIndex = 16;
-			// 
-			// label15
-			// 
-			this->label15->AutoSize = true;
-			this->label15->Location = System::Drawing::Point(30, 87);
-			this->label15->Name = L"label15";
-			this->label15->Size = System::Drawing::Size(45, 13);
-			this->label15->TabIndex = 15;
-			this->label15->Text = L"Celular :";
+			this->label11->Text = L"Curso :";
+			this->label11->Click += gcnew System::EventHandler(this, &frmProfesor::label11_Click);
 			// 
 			// label9
 			// 
@@ -985,10 +996,9 @@ private: System::Windows::Forms::Button^ button17;
 			this->tabPage3->ResumeLayout(false);
 			this->tabPage3->PerformLayout();
 			this->groupBox8->ResumeLayout(false);
-			this->groupBox6->ResumeLayout(false);
-			this->groupBox6->PerformLayout();
 			this->groupBox5->ResumeLayout(false);
 			this->groupBox5->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
 			this->ResumeLayout(false);
 
 		}
@@ -1018,22 +1028,19 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 		}
 	}
 
-	/*private: void mostrarGrillaHorario(List<Horario^>^ objHorario) {
-		this->dataGridView1->Rows->Clear();
-		for (int i = 0; i < objHorario->Count; i++) {
-			Horario^ horarioDisponible= objHorario[i];
+	private: void mostrarGrillaCursos(List<Curso^>^ objCurso) {
+		this->dataGridView2->Rows->Clear();
+		for (int i = 0; i < objCurso->Count; i++) {
+			Curso^ CursoEnsenhado = objCurso[i];
 			array<String^>^ fila = gcnew array<String^>(3);
-			fila[0] = horarioDisponible->dia;
-			String^ limInferior;
-			
-			horarioDisponible->horasDisponibles->;
+			fila[0] = CursoEnsenhado->nombreCurso;
+			fila[1] = CursoEnsenhado->dificultad;
+			fila[2] = CursoEnsenhado->precioCurso;
 
-			fila[1] = horarioDisponible->horasDisponibles->
-			fila[2] = horarioDisponible
-
-			this->dataGridView1->Rows->Add(fila);
+			this->dataGridView2->Rows->Add(fila);
 		}
-	}*/
+	}
+
 
 	private: System::Void frmProfesor_Load(System::Object^ sender, System::EventArgs^ e) {
 		/*ProfesorController^ gestorDatosAlumno = gcnew ProfesorController();
@@ -1053,24 +1060,27 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 		listaClasesProgramadas = objGestorLista->ClasesProgramadas(ProfesorLogeado->dni);
 		mostrarGrillaClases(listaClasesProgramadas);
 
+		//TAB QUEJAS Y/O RECOMENDACIÓN
 		this->textBox1->Text = ProfesorLogeado->dni;
 
-		this->textBox14->Text=ProfesorLogeado->objUsuario;
-		this->textBox13->Text = ProfesorLogeado->objContrasenha;
-
+		//TAB CONFIGURACIÓN
 		List<Horario^>^ listaHorarioDisponible;
 		HorarioController^ objGestorHorario = gcnew HorarioController();
 		listaHorarioDisponible = objGestorHorario->HorarioxProfesor(ProfesorLogeado->dni);
 		//mostrarGrillaHorario(listaHorarioDisponible);
 
+		List<Curso^>^ listaCursos;
+		CursoController^ objGestorCurso = gcnew CursoController();
+		listaCursos = objGestorCurso->CursosxUsusarioProfesor(ProfesorLogeado->objUsuario);
+		mostrarGrillaCursos(listaCursos);
 	}
 
 private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 	private: System::Void button18_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		String^ UsuarioProfesorEditar = this->textBox14->Text;
-		String^ ContrasenhaProfesorEditar = this->textBox13->Text;
+		//String^ UsuarioProfesorEditar = this->textBox14->Text;
+		//String^ ContrasenhaProfesorEditar = this->textBox13->Text;
 		//frmEditarAccesoProfesor^ ventanaEditarAccesoProfesor= gcnew frmEditarAccesoProfesor(UsuarioProfesorEditar, ContrasenhaProfesorEditar);
 		//ventanaEditarAccesoProfesor->ShowDialog();
 		/*PartidoPoliticoController^ gestorPartidoPolitico = gcnew PartidoPoliticoController();
@@ -1102,6 +1112,22 @@ private: System::Void button17_Click(System::Object^ sender, System::EventArgs^ 
 	gestorPartidoPolitico->CargarPartidosDesdeArchivo();
 	List<PartidoPolitico^>^ objListaPartidos = gestorPartidoPolitico->obtenerListaPartidos();
 	mostrarGrilla(objListaPartidos);*/
+}
+private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+	private: System::Void button16_Click(System::Object^ sender, System::EventArgs^ e) {
+		String^ CursoParaAñadir = this->textBox12->Text;
+		String^ Dificultad = this->comboBox1->Text;
+		String^ Precio = this->textBox5->Text;
+		Curso^ objCurso = gcnew Curso(CursoParaAñadir, Precio, Dificultad, ProfesorLogeado->objUsuario);
+		CursoController^ objGestorCurso = gcnew CursoController();
+		objGestorCurso->AñadirCurso(objCurso);
+		MessageBox::Show("El curso se ha sido añadido con éxito");
+		List<Curso^>^ listaCursos = objGestorCurso->CursosxUsusarioProfesor(ProfesorLogeado->objUsuario);
+		mostrarGrillaCursos(listaCursos);
+		
+	}
+private: System::Void button9_Click_1(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

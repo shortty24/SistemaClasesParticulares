@@ -2,3 +2,5 @@ CalculoI;50;Baja;Raul05
 FisicaI;40;Media;Victor98
 FisicaII;60;Baja;Victor98
 CalculoII;60;Media;Felipe15
+Matemáticas;50;Media;Raul05
+Termodinámica;100;Alta;Raul05
