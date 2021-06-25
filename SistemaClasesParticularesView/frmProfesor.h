@@ -151,15 +151,15 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column11;
 private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
 private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
-private: System::Windows::Forms::GroupBox^ groupBox7;
-private: System::Windows::Forms::DataGridView^ dataGridView5;
-private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column12;
-private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
-private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column14;
-private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column15;
-private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column16;
-private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column17;
-private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column18;
+
+
+
+
+
+
+
+
+
 private: System::Windows::Forms::GroupBox^ groupBox8;
 
 
@@ -282,15 +282,6 @@ private: System::Windows::Forms::Label^ label5;
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
-			this->groupBox7 = (gcnew System::Windows::Forms::GroupBox());
-			this->dataGridView5 = (gcnew System::Windows::Forms::DataGridView());
-			this->Column12 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column13 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column14 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column15 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column16 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column17 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column18 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->dataGridView4 = (gcnew System::Windows::Forms::DataGridView());
 			this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -336,8 +327,6 @@ private: System::Windows::Forms::Label^ label5;
 			this->groupBox1->SuspendLayout();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
-			this->groupBox7->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView5))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView4))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->tabPage5->SuspendLayout();
@@ -547,7 +536,6 @@ private: System::Windows::Forms::Label^ label5;
 			// 
 			// tabPage1
 			// 
-			this->tabPage1->Controls->Add(this->groupBox7);
 			this->tabPage1->Controls->Add(this->dataGridView4);
 			this->tabPage1->Controls->Add(this->pictureBox1);
 			this->tabPage1->Location = System::Drawing::Point(4, 22);
@@ -557,63 +545,6 @@ private: System::Windows::Forms::Label^ label5;
 			this->tabPage1->TabIndex = 0;
 			this->tabPage1->Text = L"Perfil";
 			this->tabPage1->UseVisualStyleBackColor = true;
-			// 
-			// groupBox7
-			// 
-			this->groupBox7->Controls->Add(this->dataGridView5);
-			this->groupBox7->Location = System::Drawing::Point(6, 190);
-			this->groupBox7->Name = L"groupBox7";
-			this->groupBox7->Size = System::Drawing::Size(765, 210);
-			this->groupBox7->TabIndex = 17;
-			this->groupBox7->TabStop = false;
-			this->groupBox7->Text = L"Horario de disponibilidad";
-			// 
-			// dataGridView5
-			// 
-			this->dataGridView5->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView5->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
-				this->Column12,
-					this->Column13, this->Column14, this->Column15, this->Column16, this->Column17, this->Column18
-			});
-			this->dataGridView5->Location = System::Drawing::Point(6, 26);
-			this->dataGridView5->Name = L"dataGridView5";
-			this->dataGridView5->Size = System::Drawing::Size(753, 163);
-			this->dataGridView5->TabIndex = 0;
-			// 
-			// Column12
-			// 
-			this->Column12->HeaderText = L"lunes";
-			this->Column12->Name = L"Column12";
-			// 
-			// Column13
-			// 
-			this->Column13->HeaderText = L"martes";
-			this->Column13->Name = L"Column13";
-			// 
-			// Column14
-			// 
-			this->Column14->HeaderText = L"miércoles";
-			this->Column14->Name = L"Column14";
-			// 
-			// Column15
-			// 
-			this->Column15->HeaderText = L"jueves";
-			this->Column15->Name = L"Column15";
-			// 
-			// Column16
-			// 
-			this->Column16->HeaderText = L"viernes";
-			this->Column16->Name = L"Column16";
-			// 
-			// Column17
-			// 
-			this->Column17->HeaderText = L"sábado";
-			this->Column17->Name = L"Column17";
-			// 
-			// Column18
-			// 
-			this->Column18->HeaderText = L"domingo";
-			this->Column18->Name = L"Column18";
 			// 
 			// dataGridView4
 			// 
@@ -983,8 +914,6 @@ private: System::Windows::Forms::Label^ label5;
 			this->groupBox1->PerformLayout();
 			this->tabControl1->ResumeLayout(false);
 			this->tabPage1->ResumeLayout(false);
-			this->groupBox7->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView5))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView4))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->tabPage5->ResumeLayout(false);
