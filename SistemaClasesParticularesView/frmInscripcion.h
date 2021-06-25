@@ -74,10 +74,16 @@ namespace SistemaClasesParticularesView {
 	private: String^ dniProfesor;
 	private: String^ nombreDelCurso;
 	private: Alumno^ objAlumno;
+	private: DateTime horafechaTRInsc;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
+	private: System::Windows::Forms::Timer^ horaFechaR;
+	private: System::Windows::Forms::GroupBox^ groupBox2;
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Button^ button2;
+	private: System::ComponentModel::IContainer^ components;
 	protected:
 
 
@@ -88,7 +94,7 @@ namespace SistemaClasesParticularesView {
 		/// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -97,7 +103,12 @@ namespace SistemaClasesParticularesView {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
@@ -106,12 +117,13 @@ namespace SistemaClasesParticularesView {
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->horaFechaR = (gcnew System::Windows::Forms::Timer(this->components));
+			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->groupBox1->SuspendLayout();
+			this->groupBox2->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// dataGridView1
@@ -126,6 +138,26 @@ namespace SistemaClasesParticularesView {
 			this->dataGridView1->Size = System::Drawing::Size(558, 118);
 			this->dataGridView1->TabIndex = 5;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &frmInscripcion::dataGridView1_CellContentClick);
+			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"Curso";
+			this->Column1->Name = L"Column1";
+			// 
+			// Column4
+			// 
+			this->Column4->HeaderText = L"Dificultad";
+			this->Column4->Name = L"Column4";
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"Profesor";
+			this->Column2->Name = L"Column2";
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Precio por hora";
+			this->Column3->Name = L"Column3";
 			// 
 			// groupBox1
 			// 
@@ -200,7 +232,7 @@ namespace SistemaClasesParticularesView {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(255, 362);
+			this->button1->Location = System::Drawing::Point(254, 344);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(103, 39);
 			this->button1->TabIndex = 2;
@@ -208,31 +240,50 @@ namespace SistemaClasesParticularesView {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &frmInscripcion::button1_Click);
 			// 
-			// Column1
+			// horaFechaR
 			// 
-			this->Column1->HeaderText = L"Curso";
-			this->Column1->Name = L"Column1";
+			this->horaFechaR->Enabled = true;
+			this->horaFechaR->Tick += gcnew System::EventHandler(this, &frmInscripcion::horaFechaR_Tick);
 			// 
-			// Column4
+			// groupBox2
 			// 
-			this->Column4->HeaderText = L"Dificultad";
-			this->Column4->Name = L"Column4";
+			this->groupBox2->Controls->Add(this->button2);
+			this->groupBox2->Controls->Add(this->label4);
+			this->groupBox2->Location = System::Drawing::Point(45, 402);
+			this->groupBox2->Name = L"groupBox2";
+			this->groupBox2->Size = System::Drawing::Size(601, 113);
+			this->groupBox2->TabIndex = 7;
+			this->groupBox2->TabStop = false;
+			this->groupBox2->Text = L"Bono de Ingreso";
 			// 
-			// Column2
+			// label4
 			// 
-			this->Column2->HeaderText = L"Profesor";
-			this->Column2->Name = L"Column2";
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(24, 25);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(480, 26);
+			this->label4->TabIndex = 0;
+			this->label4->Text = L"Para todos los nuevos usuarios, pueden reclamar una primera asesoría completament"
+				L"e GRATIS, \r\npero la duración debe ser de 1 HORA. Para inscribirse con este bono,"
+				L" hacer click al siguiente botón:\r\n";
+			this->label4->Click += gcnew System::EventHandler(this, &frmInscripcion::label4_Click);
 			// 
-			// Column3
+			// button2
 			// 
-			this->Column3->HeaderText = L"Precio por hora";
-			this->Column3->Name = L"Column3";
+			this->button2->Location = System::Drawing::Point(209, 54);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(103, 46);
+			this->button2->TabIndex = 1;
+			this->button2->Text = L"Inscripción con Bono";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &frmInscripcion::button2_Click);
 			// 
 			// frmInscripcion
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(670, 481);
+			this->ClientSize = System::Drawing::Size(670, 531);
+			this->Controls->Add(this->groupBox2);
 			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->button1);
@@ -242,6 +293,8 @@ namespace SistemaClasesParticularesView {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
+			this->groupBox2->ResumeLayout(false);
+			this->groupBox2->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
@@ -280,8 +333,10 @@ private: String^ fechaDeClase(String^ diaClase) {
 	return fecha;
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ horaInsTR = Convert::ToString(horafechaTRInsc.Now.ToShortTimeString());
+	String^ fechaInsTR = Convert::ToString(horafechaTRInsc.Now.ToShortDateString());
 	InscripcionController^ gestorInscripcion = gcnew InscripcionController();
-	gestorInscripcion->GuardarInscripcion(fechaDeClase(this->comboBox1->Text), this->comboBox2->Text, this->comboBox3->Text, nombreDelCurso, dniProfesor,objAlumno->dni,"17/06/2021","12:30");
+	gestorInscripcion->GuardarInscripcion(fechaDeClase(this->comboBox1->Text), this->comboBox2->Text, this->comboBox3->Text, nombreDelCurso, dniProfesor,objAlumno->dni, fechaInsTR, horaInsTR);
 
 	HorarioController^ gestorHorario = gcnew HorarioController();
 	gestorHorario->editaHorarioxProfesor(dniProfesor, nombreDelCurso, this->comboBox1->Text,this->comboBox2->Text, this->comboBox3->Text);
@@ -350,6 +405,34 @@ private: System::Void comboBox2_SelectedIndexChanged(System::Object^ sender, Sys
 	}
 }
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+}
+private: System::Void horaFechaR_Tick(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ horaInsTR = Convert::ToString(horafechaTRInsc.Now.ToShortTimeString());
+	String^ fechaInsTR = Convert::ToString(horafechaTRInsc.Now.ToShortDateString());
+	InscripcionController^ gestorInscripcion = gcnew InscripcionController();
+	PagoController^ gestorPago = gcnew PagoController();
+	if (gestorInscripcion->EstadoBonoxAlumno(objAlumno->dni) == "No Canjeado") {
+		if (this->comboBox3->Text == "1") {
+			gestorInscripcion->GuardarInscripcion(fechaDeClase(this->comboBox1->Text), this->comboBox2->Text, this->comboBox3->Text, nombreDelCurso, dniProfesor, objAlumno->dni, fechaInsTR, horaInsTR);
+			HorarioController^ gestorHorario = gcnew HorarioController();
+			gestorHorario->editaHorarioxProfesor(dniProfesor, nombreDelCurso, this->comboBox1->Text, this->comboBox2->Text, this->comboBox3->Text);
+			String^ codigoIns = gestorInscripcion->codigoInsxProfesorxDiaxHora(dniProfesor, fechaDeClase(this->comboBox1->Text), this->comboBox2->Text);
+			gestorPago->crearNuevoPago(codigoIns, horaInsTR, fechaInsTR, "BONO");
+			gestorInscripcion->ModificaEstadoBonoxAlumno(objAlumno->dni);
+			MessageBox::Show("Se realizó la inscripción con éxito.");
+			this->Close();
+		}
+		else {
+			MessageBox::Show("Solo puede canjear el bono con 1 HORA de asesoría.");
+		}
+	}
+	else {
+		MessageBox::Show("Usted ya reclamó su bono.");
+	}
 }
 };
 }
