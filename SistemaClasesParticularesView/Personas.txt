@@ -7,3 +7,4 @@ P;41248543;Felipe15;Fqr159;Rojas;Quispe;Felipe;Felipe15@gmail.com
 M;40048142;Juan10;mpato321;Corrales;Garcia;Juan;Juan10@gmail.com
 P;45814974;Axel105;axelbc145;Baldes;Corrales;Axel;Axel12@gmail.com
 A;70154984;gonzalo41;dwal156;Peraltes;Monre;Gonzalo;gonza_2@gmail.com
+P;25369874;Pedro12;uyi20;Mallqui;Castro;Julian;asdsad@gmail.com
