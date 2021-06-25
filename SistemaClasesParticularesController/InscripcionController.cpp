@@ -71,3 +71,65 @@ void InscripcionController::GuardarInscripcion(String^ diaNuevo, String^ horaIni
 	listaTextoInscrip->Add(lineaAgregar);
 	File::WriteAllLines("Inscripciones.txt", listaTextoInscrip);
 }
+
+String^ InscripcionController::EstadoBonoxAlumno(String^ dniAlumnoBuscar) {
+	array<String^>^ lineas = File::ReadAllLines("Bonus.txt");
+
+	String^ separadores = ";";
+	String^ estado;
+	for each (String ^ lineaInscripcion in lineas) {
+		array<String^>^ palabras = lineaInscripcion->Split(separadores->ToCharArray());
+		String^ dniAlumno = palabras[0];
+		String^ estadoBono = palabras[1];
+		if (dniAlumno == dniAlumnoBuscar) {
+			estado = estadoBono;
+			break;
+		}
+	}
+	return estado;
+
+}
+void InscripcionController::ModificaEstadoBonoxAlumno(String^ dniAlumnoBuscar) {
+	List<String^>^ listaTextoBonos = gcnew List<String^>();
+	array<String^>^ lineas = File::ReadAllLines("Bonus.txt");
+
+	String^ separadores = ";";
+	String^ lineaAgregar;
+	for each (String ^ lineaInscripcion in lineas) {
+		array<String^>^ palabras = lineaInscripcion->Split(separadores->ToCharArray());
+		String^ dniAlumno = palabras[0];
+		String^ estadoBono = palabras[1];
+
+		if (dniAlumno == dniAlumnoBuscar) {
+			estadoBono = "Canjeado";
+		}
+		lineaAgregar = dniAlumno + ";" + estadoBono;
+		listaTextoBonos->Add(lineaAgregar);
+		File::WriteAllLines("Bonus.txt", listaTextoBonos);
+	}
+
+}
+String^ InscripcionController::codigoInsxProfesorxDiaxHora(String^ dniProfesorBuscar, String^ diafechaClase,String^horaInicioBuscar){
+	array<String^>^ lineas = File::ReadAllLines("Inscripciones.txt");
+
+	String^ separadores = ";";
+	String^ codigoInsEncontrado;
+	for each (String ^ lineaInscripcion in lineas) {
+		array<String^>^ palabras = lineaInscripcion->Split(separadores->ToCharArray());
+		String^ dniAlumno = palabras[0];
+		String^ dniProfesor = palabras[1];
+		String^ nombreCurso = palabras[2];
+		String^ horaInscripion = palabras[3];
+		String^ fechaInscripion = palabras[4];
+		int horasPedidas = Convert::ToInt32(palabras[5]);
+		String^ horaInicio = palabras[6];
+		String^ fechaClase = palabras[7];
+		String^ codigoIns = palabras[8];
+
+		if (dniProfesorBuscar == dniProfesor && diafechaClase == fechaClase && horaInicioBuscar == horaInicio) {
+			codigoInsEncontrado = codigoIns;
+			break;
+		}
+	}
+	return codigoInsEncontrado;
+}

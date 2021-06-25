@@ -772,6 +772,21 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		fila[6] = Convert::ToString(operacionMonto) + " soles";
 		this->dataGridView6->Rows->Add(fila);
 	}
+
+	PagoController^ gestorPago = gcnew PagoController();
+	List<Pago^>^ listaPagosAlumno = gestorPago->buscarPagosxAlumno(AlumnoLogeado->dni);
+	listaPagosAlumno = gestorPago->buscarPagosxAlumno(AlumnoLogeado->dni);
+	this->dataGridView5->Rows->Clear();
+	for (int i = 0; i < listaPagosAlumno->Count; i++) {
+		Pago^ objPago1 = listaPagosAlumno[i];
+		array<String^>^ fila = gcnew array<String^>(4);
+		fila[0] = objPago1->objInscripcion->codigoIns;
+		fila[1] = objPago1->estadopago;
+		fila[2] = objPago1->horaPago;
+		fila[3] = objPago1->fechaPago;
+
+		this->dataGridView5->Rows->Add(fila);
+	}
 }
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 }
