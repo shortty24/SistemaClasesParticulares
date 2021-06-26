@@ -5,7 +5,7 @@
 using namespace SistemaClasesParticularesController;
 using namespace System;
 using namespace System::IO;
-
+//Comentario Inscripcion
 InscripcionController::InscripcionController() {
 	this->listaInscripcion = gcnew List<Inscripcion^>();
 }
