@@ -16,7 +16,7 @@ namespace SistemaClasesParticularesController {
 		Inscripcion^ buscarInscripcionxHoraxFecha(String^ horaBuscar, String^ fechaBuscar);
 		Pago^ buscarPagoxcodigoPago(String^ codigoinscripcionpago);
 		Inscripcion^ buscarInscripcionxcodigo(String^ codigoinscripcion);
-		void enviarlink(String^ linkclase,String^ dnialumno);
+		void enviarlink(String^ linkclase,String^ codigoIns);
 		List<Clase^>^ ClasesProgramadasxAlumno(String^ dniAlumnoBuscar);
 		void crearclasetxt(String^ codigopago);
 		
