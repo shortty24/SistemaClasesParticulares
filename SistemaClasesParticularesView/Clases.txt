@@ -1,11 +1,11 @@
-72348122;42248643;CalculoI;8;20/07/2021;https://pucp.zoom.us/987122
-72238113;42248643;CalculoI;13;25/07/2021;https://pucp.zoom.us/002187
-72145159;42248643;CalculoI;12;31/07/2021;https://pucp.zoom.us/002186
-72238113;42248643;CalculoI;10;21/06/2021;https://pucp.zoom.us/002185
-72145159;43248547;FisicaII;13;27/06/2021;-
-72145159;43248547;FisicaII;18;27/06/2021;-
-72145159;43248547;FisicaI;13;26/06/2021;-
-72145159;43248547;FisicaII;14;27/06/2021;-
-72145159;43248547;FisicaI;12;26/06/2021;-
-72145159;43248547;FisicaII;20;27/06/2021;-
-72348122;41248543;CalculoII;11;23/06/2021;LINK-ZOOM
+72348122;42248643;CalculoI;8;20/07/2021;https://pucp.zoom.us/987122;1;programada;por pagar al profe
+72238113;42248643;CalculoI;13;25/07/2021;https://pucp.zoom.us/002187;2;programada;por pagar al profe
+72145159;42248643;CalculoI;12;31/07/2021;https://pucp.zoom.us/002186;3;programada;por pagar al profe
+72238113;42248643;CalculoI;10;21/06/2021;https://pucp.zoom.us/002185;4;programada;por pagar al profe
+72145159;43248547;FisicaII;13;27/06/2021;-;5;programada;por pagar al profe
+72145159;43248547;FisicaII;18;27/06/2021;-;6;programada;por pagar al profe
+72145159;43248547;FisicaI;13;26/06/2021;-;7;programada;por pagar al profe
+72145159;43248547;FisicaII;14;27/06/2021;-;8;programada;por pagar al profe
+72145159;43248547;FisicaI;12;26/06/2021;-;10;programada;por pagar al profe
+72145159;43248547;FisicaII;20;27/06/2021;-;11;programada;por pagar al profe
+
