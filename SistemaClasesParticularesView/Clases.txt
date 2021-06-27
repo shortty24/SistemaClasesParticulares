@@ -8,4 +8,3 @@
 72145159;43248547;FisicaII;14;27/06/2021;-;8;programada;por pagar al profe
 72145159;43248547;FisicaI;12;26/06/2021;-;10;programada;por pagar al profe
 72145159;43248547;FisicaII;20;27/06/2021;-;11;programada;por pagar al profe
-
