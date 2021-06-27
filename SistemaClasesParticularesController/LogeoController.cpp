@@ -31,8 +31,8 @@ int LogeoController::VerificarSiUsuarioExiste(String^ textBox1, String^ textBox2
 		String^ TipoUser = safe_cast<String^>(objData["TipoUsuario"]);
 		String^ Dni = safe_cast<String^>(objData["DNI"]);
 		objData->Close();
+		EstadoUsuario = VerificarEstadoUsuario(Dni);
 		if (TipoUser == "A") {
-			EstadoUsuario = VerificarEstadoUsuario(Dni);
 			if (EstadoUsuario == "No Bloqueado") {
 				Existe = 1; // Alumno sí está en base de datos y no está bloqueado
 			}
