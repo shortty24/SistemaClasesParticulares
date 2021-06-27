@@ -414,7 +414,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	ClaseController^ objGestorClase = gcnew ClaseController();
 	Inscripcion^ objInscripcion = objGestorPago->buscarIncscripcionxcodigocompleta(codigopago);
 	
-	objGestorClase->enviarlink(linkclase, objInscripcion->objAlumno->dni);
+	objGestorClase->enviarlink(linkclase, objInscripcion->codigoIns);
 
 	MessageBox::Show("El link de la clase ha sido enviado !!!");
 
