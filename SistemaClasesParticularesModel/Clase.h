@@ -23,10 +23,13 @@ namespace SistemaClasesParticularesModel {
 			//Inscripcion^ objInscripcion;
 			Curso^ objCurso;
 			Pago^ objPago;
+			String^ estadopagoprofesor;
+			
 
 		public:
 			//Clase();
 			//Clase(String^ objLink, Profesor^ objProfesor, Administrador^ objAdministrador, Curso^ objCurso, Pago^ objPago);
 			Clase(Alumno^ objAlumno, Profesor^ objProfesor, Curso^ objCurso, String^ horaClase, String^ fechaClase, String^ objLink);
+			Clase(Alumno^ objAlumno, Profesor^ objProfesor, Curso^ objCurso, String^ horaClase, String^ fechaClase, String^ objLink, Pago^objPago, String^ estadopagoprofesor);
 	};
 }

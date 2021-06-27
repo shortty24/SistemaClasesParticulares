@@ -36,6 +36,58 @@ List<Clase^>^ ClaseController::ClasesProgramadas(String^ dniProfesorBuscar){
 	return listaClasesProgramadas;
 }
 
+Pago^ ClaseController::buscarPagoxcodigoPago(String^ codigopago) {
+	Pago^ objPagoEncontrado;
+	array<String^>^ lineas = File::ReadAllLines("Pagos.txt");
+
+	String^ separadores = ";";
+	for each (String ^ lineaPersonas in lineas) {
+		array<String^>^ palabras = lineaPersonas->Split(separadores->ToCharArray());
+		String^ codigoinscripcion = palabras[0];
+		Inscripcion^ objInscripcion = buscarInscripcionxcodigo(codigoinscripcion);
+		String^ estadopago = palabras[1];
+		String^ horaPago = palabras[2];
+		String^ fechaPago = palabras[3];
+		String^ codigoPago = palabras[4];
+		String^ estadoclase = palabras[5];
+
+		if (codigoinscripcion == codigopago) {
+			objPagoEncontrado = gcnew Pago(objInscripcion, estadopago, horaPago, fechaPago, codigoPago, estadoclase);
+			
+			break;
+		}
+	}
+	return objPagoEncontrado;
+}
+
+Inscripcion^ ClaseController::buscarInscripcionxcodigo(String^ codigoinscripcion) {
+	Inscripcion^ objInscripEncontrado;
+	array<String^>^ lineas = File::ReadAllLines("Inscripciones.txt");
+
+	String^ separadores = ";";
+	for each (String ^ lineaPersonas in lineas) {
+		array<String^>^ palabras = lineaPersonas->Split(separadores->ToCharArray());
+		String^ dniAlumno = palabras[0];
+		Alumno^ objAlumno = buscarAlumnoxDNI(dniAlumno);
+		String^ dniProfesor = palabras[1];
+		Profesor^ objProfesor = buscarProfesorxDNI(dniProfesor);
+		String^ curso = palabras[2];
+		Curso^ objCurso = buscarCursoxNombreCurso(curso);
+		String^ horaInscripcion = palabras[3];
+		String^ fechaInscripcion = palabras[4];
+		int tiempoReserva = Convert::ToInt32(palabras[5]);
+		String^ horaClase = palabras[6];
+		String^ fechaClase = palabras[7];
+		int codigo = Convert::ToInt32(palabras[8]);
+
+		if (codigo == Convert::ToInt32(codigoinscripcion)) {
+			objInscripEncontrado = gcnew Inscripcion(objAlumno, objCurso, horaInscripcion, fechaInscripcion, tiempoReserva, horaClase, fechaClase, palabras[8]);
+			break;
+		}
+	}
+	return objInscripEncontrado;
+}
+
 Alumno^ ClaseController::buscarAlumnoxDNI(String^ dniAlumno) {
 	Alumno^ objAlumnoEncontrado;
 	array<String^>^ lineas = File::ReadAllLines("Personas.txt");
@@ -150,18 +202,23 @@ void ClaseController::CargarClaseDesdeArchivo() {
 		String^ horaclase = palabras[3];
 		String^ fecha = palabras[4];
 		String^ link = palabras[5];
-		Clase^ objClase = gcnew Clase(objAlumno, objProfesor, objCurso, horaclase, fecha, link);
+		String^ codigopago = palabras[6];
+		String^ estadoclase = palabras[7];
+		Pago^ objPago = buscarPagoxcodigoPago(codigopago);
+		String^ estadopagoprofesor = palabras[8];
+
+		Clase^ objClase = gcnew Clase(objAlumno, objProfesor, objCurso, horaclase, fecha, link, objPago, estadopagoprofesor);
 		this->listaClases->Add(objClase);
 	}
 }
 
 
-void ClaseController::enviarlink(String^ linkclase, String^ dnialumno) {
+void ClaseController::enviarlink(String^ linkclase, String^ codigoIns) {
 	this->listaClases->Clear();
 	CargarClaseDesdeArchivo();
 	for (int i = 0; i < this->listaClases->Count; i++) {
 		Clase^ objClase = this->listaClases[i];
-		if ((objClase->objAlumno->dni == dnialumno) && (objClase->objLink == "-")) {
+		if ((objClase->objPago->objInscripcion->codigoIns == codigoIns) && (objClase->objLink == "-")) {
 			this->listaClases[i]->objLink = linkclase;
 			break;
 		}
@@ -170,7 +227,7 @@ void ClaseController::enviarlink(String^ linkclase, String^ dnialumno) {
 	array<String^>^ lineasArchivoClases = gcnew array<String^>(this->listaClases->Count);
 	for (int i = 0; i < this->listaClases->Count; i++) {
 		Clase^ objClase = this->listaClases[i];
-		lineasArchivoClases[i] = objClase->objAlumno->dni + ";" + objClase->objProfesor->dni + ";" + objClase->objCurso->nombreCurso + ";" + objClase->horaClase + ";" + objClase->fechaClase + ";" + objClase->objLink;
+		lineasArchivoClases[i] = objClase->objAlumno->dni + ";" + objClase->objProfesor->dni + ";" + objClase->objCurso->nombreCurso + ";" + objClase->horaClase + ";" + objClase->fechaClase + ";" + objClase->objLink + ";" + objClase->objPago->objInscripcion->codigoIns + ";" + objClase->objPago->estadoclase + ";" + objClase->estadopagoprofesor;
 	}
 	/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
 	File::WriteAllLines("Clases.txt", lineasArchivoClases);
@@ -212,12 +269,12 @@ void ClaseController::crearclasetxt(String^ codigopago) {
 	array<String^>^ lineasArchivoClases = gcnew array<String^>(this->listaClases->Count+1);
 	for (int i = 0; i < this->listaClases->Count; i++) {
 		Clase^ objClase = this->listaClases[i];
-		lineasArchivoClases[i] = objClase->objAlumno->dni + ";" + objClase->objProfesor->dni + ";" + objClase->objCurso->nombreCurso + ";" + objClase->horaClase + ";" + objClase->fechaClase + ";" + objClase->objLink;
+		lineasArchivoClases[i] = objClase->objAlumno->dni + ";" + objClase->objProfesor->dni + ";" + objClase->objCurso->nombreCurso + ";" + objClase->horaClase + ";" + objClase->fechaClase + ";" + objClase->objLink + ";" + objClase->objPago->objInscripcion->codigoIns + ";" + objClase->objPago->estadoclase + ";" + objClase->estadopagoprofesor;
 	}
 
 	PagoController^ objGestorPago = gcnew PagoController();
 	Inscripcion^ objInscripcion = objGestorPago->buscarIncscripcionxcodigocompleta(codigopago);
-		lineasArchivoClases[this->listaClases->Count] = objInscripcion->objAlumno->dni + ";" + objInscripcion->objCurso->objProfesor->dni + ";" + objInscripcion->objCurso->nombreCurso + ";" + objInscripcion->horaInicio + ";" + objInscripcion->fechaClase + ";" + "-";
+		lineasArchivoClases[this->listaClases->Count] = objInscripcion->objAlumno->dni + ";" + objInscripcion->objCurso->objProfesor->dni + ";" + objInscripcion->objCurso->nombreCurso + ";" + objInscripcion->horaInicio + ";" + objInscripcion->fechaClase + ";" + "-" + ";" +objInscripcion->codigoIns +";" + "programada" +";" + "por pagar al profe";
 	
 	/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
 	File::WriteAllLines("Clases.txt", lineasArchivoClases);

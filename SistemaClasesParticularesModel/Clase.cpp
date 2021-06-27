@@ -26,3 +26,13 @@ Clase::Clase(Alumno^ objAlumno, Profesor^ objProfesor, Curso^ objCurso, String^ 
 	this->fechaClase = fechaClase;
 	this->objLink = objLink;
 }
+Clase::Clase(Alumno^ objAlumno, Profesor^ objProfesor, Curso^ objCurso, String^ horaClase, String^ fechaClase, String^ objLink, Pago^ objPago, String^ estadopagoprofesor) {
+	this->objAlumno = objAlumno;
+	this->objProfesor = objProfesor;
+	this->objCurso = objCurso;
+	this->horaClase = horaClase;
+	this->fechaClase = fechaClase;
+	this->objLink = objLink;
+	this->objPago = objPago;
+	this->estadopagoprofesor = estadopagoprofesor;
+}
