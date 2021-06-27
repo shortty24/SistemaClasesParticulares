@@ -36,6 +36,34 @@ List<Clase^>^ ClaseController::ClasesProgramadas(String^ dniProfesorBuscar){
 	return listaClasesProgramadas;
 }
 
+List<Clase^>^ ClaseController::ClasesProgramadasxNombrexDia(String^ dniProfesorBuscar, String^ nombreBuscar, String^ fechaBuscar) {
+	List<Clase^>^ listaClasesProgramadasxNombrexDia = gcnew List<Clase^>();
+	array<String^>^ lineas = File::ReadAllLines("Clases.txt");
+
+	String^ separadores = ";";
+	for each (String ^ lineaClase in lineas) {
+		array<String^>^ palabras = lineaClase->Split(separadores->ToCharArray());
+		String^ dniAlumno = palabras[0];
+		Alumno^ objAlumno = buscarAlumnoxDNI(dniAlumno);
+		String^ dniProfesor = palabras[1];
+		Profesor^ objProfesor = buscarProfesorxDNI(dniProfesor);
+		String^ curso = palabras[2];
+		Curso^ objCurso = buscarCursoxNombreCurso(curso);
+		String^ hora = palabras[3];
+		String^ fecha = palabras[4];
+		Inscripcion^ objInscripcion = buscarInscripcionxHoraxFecha(hora, fecha);
+		String^ link = palabras[5];
+
+		if (dniProfesor == dniProfesorBuscar) {
+			if((objAlumno->objNombre==nombreBuscar) ||(objAlumno->objApellidoPaterno==nombreBuscar) || (objAlumno->objApellidoMaterno==nombreBuscar) || (fecha == fechaBuscar)) {
+				Clase^ objClaseProgramada = gcnew Clase(objAlumno, objProfesor, objCurso, hora, fecha, link);
+				listaClasesProgramadasxNombrexDia->Add(objClaseProgramada);
+			}
+		}
+	}
+	return listaClasesProgramadasxNombrexDia;
+}
+
 Pago^ ClaseController::buscarPagoxcodigoPago(String^ codigopago) {
 	Pago^ objPagoEncontrado;
 	array<String^>^ lineas = File::ReadAllLines("Pagos.txt");
