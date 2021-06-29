@@ -805,14 +805,25 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 private: void mostrarGrillaxLista(List<Curso^>^ listaCursos) {
 	this->dataGridView1->Rows->Clear();
 	ProfesorController^ gestorProfesor = gcnew ProfesorController();
+	QuejasController^ gestorQuejas = gcnew QuejasController();
+	CVController^ gestorCV = gcnew CVController();
 	for (int i = 0; i < listaCursos->Count; i++) {
 		Curso^ objCurso = listaCursos[i];
+		Profesor^ objProfesor = gestorProfesor->buscaProfesor(objCurso->usuarioProfesor);
+		if ((gestorCV->EstadoCV(objProfesor->dni) == 1) && (gestorQuejas->ProfesorBloqueado(objProfesor->dni) == 0)) {
+			array<String^>^ fila = gcnew array<String^>(4);
+			fila[0] = objCurso->nombreCurso;
+			fila[1] = objCurso->dificultad;
+			fila[2] = objProfesor->objNombre + " " + objProfesor->objApellidoPaterno + " " + objProfesor->objApellidoMaterno;
+			this->dataGridView1->Rows->Add(fila);
+		}
+		/*Curso^ objCurso = listaCursos[i];
 		Profesor^ objProfesor = gestorProfesor->buscaProfesor(objCurso->usuarioProfesor);
 		array<String^>^ fila = gcnew array<String^>(4);
 		fila[0] = objCurso->nombreCurso;
 		fila[1] = objCurso->dificultad;
 		fila[2] = objProfesor->objNombre + " " + objProfesor->objApellidoPaterno + " " + objProfesor->objApellidoMaterno;
-		this->dataGridView1->Rows->Add(fila);
+		this->dataGridView1->Rows->Add(fila);*/
 	}
 }
 private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ e) {

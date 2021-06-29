@@ -127,3 +127,25 @@ String^ CVController::obtenerEmpresaRef(String^ dniProfesor) {
 	}
 	return nombreEmpresa;
 }
+
+int CVController::EstadoCV(String^ dniProfe) {
+	List<CV^>^ listaCVsEncontrados = gcnew List<CV^>();
+	array<String^>^ lineas = File::ReadAllLines("CVs.txt");
+	String^ separadores = ";";
+	int aprobado = 0;
+	for each (String ^ lineaCVs in lineas) {
+		array<String^>^ palabras = lineaCVs->Split(separadores->ToCharArray());
+		String^ dniprofesor = palabras[0];
+		String^ codigoMinedu = palabras[1];
+		String^ empresa = palabras[2];
+		String^ celuempresa = palabras[3];
+		String^ verificacion = palabras[4];
+		if (dniprofesor == dniProfe) {
+			if (verificacion == "Aprobado") {
+				aprobado = 1;
+			}
+			break;
+		}
+	}
+	return aprobado;
+}
