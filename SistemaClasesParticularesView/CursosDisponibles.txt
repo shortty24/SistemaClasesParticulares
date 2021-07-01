@@ -6,3 +6,4 @@ Matemáticas;50;Media;Raul05
 Termodinámica;100;Alta;Raul05
 CálculoDiferencial;60;Media;Raul05
 CálculoI;50;Media;Pedro12
+

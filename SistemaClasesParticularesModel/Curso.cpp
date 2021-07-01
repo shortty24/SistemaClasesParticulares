@@ -14,3 +14,10 @@ Curso::Curso(String^ nombreCurso, String^ dificultad, Profesor^ objProfesor) {
 	this->dificultad = dificultad;
 	this->objProfesor = objProfesor;
 }
+
+Curso::Curso(String^ nombreCurso, String^ dificultad, Profesor^ objProfesor, String^ precioCurso) {
+	this->nombreCurso = nombreCurso;
+	this->dificultad = dificultad;
+	this->objProfesor = objProfesor;
+	this->precioCurso = precioCurso;
+}

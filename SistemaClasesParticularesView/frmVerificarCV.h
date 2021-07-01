@@ -252,10 +252,28 @@ namespace SistemaClasesParticularesView {
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
 		String^ dniseleccionado = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
+		String^ estadoCV = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[4]->Value->ToString();
 
-		CVController^ objGestorCV = gcnew CVController();
-		objGestorCV->aprobarCV(dniseleccionado);
-		MessageBox::Show("El CV ha sido aprobado con éxito !!!");
+		if (estadoCV == "PorVerificar") {
+			CVController^ objGestorCV = gcnew CVController();
+			objGestorCV->aprobarCV(dniseleccionado);
+			SaldoController^ objGestorProfesor = gcnew SaldoController();
+			objGestorProfesor->crearsaldo(dniseleccionado);
+			MessageBox::Show("El CV ha sido aprobado con éxito !!!");
+		}
+
+		else if (estadoCV == "Aprobado") {
+			MessageBox::Show("El CV ya se ha designado como APROBADO !!!");
+		}
+
+		else if (estadoCV == "Desaprobado") {
+			CVController^ objGestorCV = gcnew CVController();
+			objGestorCV->aprobarCV(dniseleccionado);
+			SaldoController^ objGestorProfesor = gcnew SaldoController();
+			objGestorProfesor->crearsaldo(dniseleccionado);
+			MessageBox::Show("El CV ha sido aprobado con éxito !!!");
+		}
+
 			
 	}
 private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -301,10 +319,24 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
 	String^ dniseleccionado = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
+	String^ estadoCV = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[4]->Value->ToString();
 
-	CVController^ objGestorCV = gcnew CVController();
-	objGestorCV->desaprobarCV(dniseleccionado);
-	MessageBox::Show("El CV ha sido desaprobado con éxito !!!");
+	if (estadoCV == "PorVerificar") {
+		CVController^ objGestorCV = gcnew CVController();
+		objGestorCV->desaprobarCV(dniseleccionado);
+		MessageBox::Show("El CV ha sido desaprobado con éxito !!!");
+	
+	}
+	else if (estadoCV == "Aprobado") {
+		CVController^ objGestorCV = gcnew CVController();
+		objGestorCV->desaprobarCV(dniseleccionado);
+		MessageBox::Show("El CV ha sido desaprobado con éxito !!!");
+	}
+
+	else if (estadoCV == "Desaprobado") {
+		MessageBox::Show("El CV ya se ha designado como DESAPROBADO !!!");
+	}
+
 
 }
 };

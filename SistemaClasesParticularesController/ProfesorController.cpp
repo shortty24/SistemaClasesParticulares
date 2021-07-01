@@ -5,7 +5,7 @@ using namespace SistemaClasesParticularesController;
 using namespace System::IO;
 
 ProfesorController::ProfesorController() {
-	
+	this->listaProfesores = gcnew List<Profesor^>();
 }
 Profesor^ ProfesorController::buscaProfesor(String^ usuarioProfesor) {
 	Profesor^ objProfesorEncontrado;
@@ -88,3 +88,6 @@ Profesor^ ProfesorController::buscaProfesorxDNI(String^ dniProfe) {
 	}
 	return objProfesorEncontrado;
 }
+
+
+

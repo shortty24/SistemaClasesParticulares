@@ -307,7 +307,7 @@ Curso^ PagoController::buscarCursoxNombreCurso(String^ cursoBuscar) {
 		Profesor^ objProfesor = buscaProfesor(usuario);
 
 		if (cursoBuscar == curso) {
-			objCursoEncontrado = gcnew Curso(curso, dificultad, objProfesor);
+			objCursoEncontrado = gcnew Curso(curso, dificultad, objProfesor, tarifa);
 
 			break;
 		}
@@ -335,3 +335,4 @@ Profesor^ PagoController::buscaProfesor(String^ usuarioProfesor) {
 	}
 	return objProfesorEncontrado;
 }
+

@@ -5,6 +5,7 @@
 
 #include "Administrador.h"
 #include "CV.h"
+#include "Saldo.h"
 
 namespace SistemaClasesParticularesModel {
 	//para usar la clase list (no olvidar poner todo junto en especial ::)
@@ -21,6 +22,7 @@ namespace SistemaClasesParticularesModel {
 			//se crea una listaCursos que sería un objeto del tipo lista de objeto cursos ( listaCursos sería un arreglo dinámico)
 			//CV^ objCV;
 			Administrador^ objAdministrador;
+			int saldo;
 
 		public:
 			//Profesor();
