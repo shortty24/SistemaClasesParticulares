@@ -15,7 +15,7 @@ namespace SistemaClasesParticularesController {
 		void desaprobarCV(String^ dniseleccionado);
 
 		List<CV^>^ buscarCV(String^ dniBuscar);
-
+		int EstadoCV(String^ dniProfe);
 		void CargarCVDesdeArchivo();
 	};
 

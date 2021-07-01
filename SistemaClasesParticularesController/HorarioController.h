@@ -13,7 +13,8 @@ namespace SistemaClasesParticularesController {
 			List<Horario^>^ HorarioxProfesorxCurso (String^ dniProfesor, String^ nombreDelCurso);
 			List<Horario^>^ HorarioxProfesor(String^ dniProfesorBuscar);
 			Horario^ buscarHorarioxDia(String^ diaBuscar);
-			void editaHorarioxProfesor(String^ dniProfesorEditar, String^ nombreDelCursoEditar, String^ diaEditar, String^ horaInicio, String^ horasPedidas);
+			void editaHorarioxProfesor(String^ dniProfesorEditar, String^ diaEditar, String^ horaInicio, String^ horasPedidas);
+			List<Horario^>^ HorarioxProfesorInscripcion(String^ dniProfesor);
 			//void EditarHorarioDisponibilidad(String^ dniProfesor, List<String^>^ listaHorasDisponibilidad);
 	};
 }

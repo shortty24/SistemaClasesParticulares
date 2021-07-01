@@ -19,6 +19,7 @@ namespace SistemaClasesParticularesController {
 		void enviarlink(String^ linkclase,String^ codigoIns);
 		List<Clase^>^ ClasesProgramadasxAlumno(String^ dniAlumnoBuscar);
 		void crearclasetxt(String^ codigopago);
+		List<Clase^>^ ClasesProgramadasxNombrexDia(String^ dniProfesorBuscar, String^ nombreBuscar, String^ fechaBuscar);
 		
 		void aprobarPago(String^ codigopago);
 		void CargarClaseDesdeArchivo();

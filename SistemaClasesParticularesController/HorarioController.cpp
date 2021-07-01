@@ -119,7 +119,7 @@ Horario^ HorarioController::buscarHorarioxDia(String^ diaBuscar) {
 	}
 	return objHorarioEncontrado;
 }
-void HorarioController::editaHorarioxProfesor(String^ dniProfesorEditar, String^ nombreDelCursoEditar, String^ diaEditar, String^ horaInicio, String^ horasPedidas) {
+void HorarioController::editaHorarioxProfesor(String^ dniProfesorEditar, String^ diaEditar, String^ horaInicio, String^ horasPedidas) {
 	List<String^>^ listaTextoHorario = gcnew List<String^>();
 	array<String^>^ lineas = File::ReadAllLines("Horarios.txt");
 	String^ separadores = ";";
@@ -134,7 +134,7 @@ void HorarioController::editaHorarioxProfesor(String^ dniProfesorEditar, String^
 			horasxDia->Add(palabras[i]);
 		}
 		int indice = Convert::ToInt32(horaInicio);
-		if (dni == dniProfesorEditar && nombreCurso == nombreDelCursoEditar && dia == diaEditar) {
+		if (dni == dniProfesorEditar && dia == diaEditar) {
 			if (horasPedidas == "1") {
 				horasxDia[indice] = "-";
 			}
@@ -152,6 +152,39 @@ void HorarioController::editaHorarioxProfesor(String^ dniProfesorEditar, String^
 		listaTextoHorario->Add(lineaTexto);
 	}
 	File::WriteAllLines("Horarios.txt", listaTextoHorario);
+}
+
+List<Horario^>^ HorarioController::HorarioxProfesorInscripcion(String^ dniProfesor) {
+	List<Horario^>^ HorarioProfesor = gcnew List<Horario^>();
+	array<String^>^ lineas = File::ReadAllLines("Horarios.txt");
+	/*List<String^>^ horasPosibles;
+	for (int i = 0; i < 23; i++) {
+		String^ horaTexto;
+		horaTexto = Convert::ToString(i);
+		horasPosibles->Add(horaTexto);
+	}*/
+	String^ separadores = ";";
+	for each (String ^ lineaHorario in lineas) {
+		array<String^>^ palabras = lineaHorario->Split(separadores->ToCharArray());
+		String^ dni = palabras[0];
+		String^ nombreCurso = palabras[1];
+		String^ dia = palabras[2];
+		List<String^>^ horasxDia = gcnew List<String^>();
+		for (int i = 3; i < 27; i++) {
+			for (int j = 0; j < 24; j++) {
+				String^ convertido = Convert::ToString(j);
+				if (palabras[i] == convertido) {
+					horasxDia->Add(palabras[i]);
+					//break;
+				}
+			}
+		}
+		Horario^ objHorario = gcnew Horario(dni, dia, horasxDia);
+		if (dni == dniProfesor) {
+			HorarioProfesor->Add(objHorario);
+		}
+	}
+	return HorarioProfesor;
 }
 
 /*void HorarioController::EditarHorarioDisponibilidad(String^ dniProfesor, List<String^>^ listaHorasDisponibilidad) {
