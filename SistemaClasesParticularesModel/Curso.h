@@ -20,6 +20,7 @@ namespace SistemaClasesParticularesModel {
 	public:
 		Curso(String^ nombreCurso, String^ precioCurso, String^ dificultad, String^ usuarioProfesor);
 		Curso(String^ nombreCurso, String^ dificultad, Profesor^ objProfesor);
+		Curso(String^ nombreCurso, String^ dificultad, Profesor^ objProfesor, String^ precioCurso);
 
 		//Curso(String^ objTema, int dificultad);
 	};

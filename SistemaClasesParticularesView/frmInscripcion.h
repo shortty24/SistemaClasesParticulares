@@ -307,30 +307,72 @@ private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e)
 }
 private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 }
+private: int valorDelDia(String^ dia) {
+	int valorDia;
+	if (dia == "Monday") {
+		valorDia = 1;
+	}
+	else if (dia == "Tuesday") {
+		valorDia = 2;
+	}
+	else if (dia == "Wednesday") {
+		valorDia = 3;
+	}
+	else if (dia == "Thursday") {
+		valorDia = 4;
+	}
+	else if (dia == "Friday") {
+		valorDia = 5;
+	}
+	else if (dia == "Saturday") {
+		valorDia = 6;
+	}
+	else if (dia == "Sunday") {
+		valorDia = 7;
+	}
+	return valorDia;
+}
 private: String^ fechaDeClase(String^ diaClase) {
-	String^ fecha;
+	String^ diaTraduc;
+	int diferenciaValor;
 	if (diaClase == "Lunes") {
-		fecha = "21/06/2021";
+		diaTraduc = "Monday";
 	}
 	else if (diaClase == "Martes") {
-		fecha = "22/06/2021";
+		diaTraduc = "Tuesday";
 	}
 	else if (diaClase == "Miércoles") {
-		fecha = "23/06/2021";
+		diaTraduc = "Wednesday";
 	}
 	else if (diaClase == "Jueves") {
-		fecha = "24/06/2021";
+		diaTraduc = "Thursday";
 	}
 	else if (diaClase == "Viernes") {
-		fecha = "25/06/2021";
+		diaTraduc = "Friday";
 	}
 	else if (diaClase == "Sábado") {
-		fecha = "26/06/2021";
+		diaTraduc = "Saturday";
 	}
 	else if (diaClase == "Domingo") {
-		fecha = "27/06/2021";
+		diaTraduc = "Sunday";
 	}
-	return fecha;
+
+	String^ diaHoy = Convert::ToString(horafechaTRInsc.Now.DayOfWeek);
+	String^ fechaClase;
+	diferenciaValor = valorDelDia(diaTraduc) - valorDelDia(diaHoy);
+	if (diaHoy == diaTraduc) {
+		fechaClase = Convert::ToString(horafechaTRInsc.Now.AddDays(Convert::ToDouble(7)).ToShortDateString());
+	}
+	else {
+		if (diferenciaValor > 0) {
+			fechaClase = Convert::ToString(horafechaTRInsc.Now.AddDays(Convert::ToDouble(diferenciaValor)).ToShortDateString());
+		}
+		else if (diferenciaValor < 0) {
+			int valorReal = 7 + diferenciaValor;
+			fechaClase = Convert::ToString(horafechaTRInsc.Now.AddDays(Convert::ToDouble(valorReal)).ToShortDateString());
+		}
+	}
+	return fechaClase;
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ horaInsTR = Convert::ToString(horafechaTRInsc.Now.ToShortTimeString());
@@ -339,13 +381,13 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	gestorInscripcion->GuardarInscripcion(fechaDeClase(this->comboBox1->Text), this->comboBox2->Text, this->comboBox3->Text, nombreDelCurso, dniProfesor,objAlumno->dni, fechaInsTR, horaInsTR);
 
 	HorarioController^ gestorHorario = gcnew HorarioController();
-	gestorHorario->editaHorarioxProfesor(dniProfesor, nombreDelCurso, this->comboBox1->Text,this->comboBox2->Text, this->comboBox3->Text);
+	gestorHorario->editaHorarioxProfesor(dniProfesor, this->comboBox1->Text,this->comboBox2->Text, this->comboBox3->Text);
 	MessageBox::Show("Se realizó la inscripción con éxito.");
 	this->Close();
 }
 private: System::Void frmInscripcion_Load(System::Object^ sender, System::EventArgs^ e) {
 	HorarioController^ gestorHorario = gcnew HorarioController();
-	List<Horario^>^ listaHorarios = gestorHorario->HorarioxProfesorxCurso(dniProfesor, nombreDelCurso);
+	List<Horario^>^ listaHorarios = gestorHorario->HorarioxProfesorInscripcion(dniProfesor);
 	this->comboBox1->Items->Clear();
 	for (int i = 0; i < listaHorarios->Count; i++) {
 		this->comboBox1->Items->Add(listaHorarios[i]->dia);
@@ -365,7 +407,7 @@ private: System::Void frmInscripcion_Load(System::Object^ sender, System::EventA
 }
 private: System::Void comboBox1_SelectedIndexChanged_2(System::Object^ sender, System::EventArgs^ e) {
 	HorarioController^ gestorHorario = gcnew HorarioController();
-	List<Horario^>^ listaHorarios = gestorHorario->HorarioxProfesorxCurso(dniProfesor, nombreDelCurso);
+	List<Horario^>^ listaHorarios = gestorHorario->HorarioxProfesorInscripcion(dniProfesor);
 	List<String^>^ horasxDia;
 	for (int i = 0; i < listaHorarios->Count; i++) {
 		this->comboBox2->Items->Clear();
@@ -377,13 +419,12 @@ private: System::Void comboBox1_SelectedIndexChanged_2(System::Object^ sender, S
 			break;
 		}
 	}
-
 }
 private: System::Void comboBox3_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void comboBox2_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 	HorarioController^ gestorHorario = gcnew HorarioController();
-	List<Horario^>^ listaHorarios = gestorHorario->HorarioxProfesorxCurso(dniProfesor, nombreDelCurso);
+	List<Horario^>^ listaHorarios = gestorHorario->HorarioxProfesorInscripcion(dniProfesor);
 	List<String^>^ horasxDia;
 	for (int i = 0; i < listaHorarios->Count; i++) {
 		this->comboBox3->Items->Clear();
@@ -419,7 +460,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		if (this->comboBox3->Text == "1") {
 			gestorInscripcion->GuardarInscripcion(fechaDeClase(this->comboBox1->Text), this->comboBox2->Text, this->comboBox3->Text, nombreDelCurso, dniProfesor, objAlumno->dni, fechaInsTR, horaInsTR);
 			HorarioController^ gestorHorario = gcnew HorarioController();
-			gestorHorario->editaHorarioxProfesor(dniProfesor, nombreDelCurso, this->comboBox1->Text, this->comboBox2->Text, this->comboBox3->Text);
+			gestorHorario->editaHorarioxProfesor(dniProfesor, this->comboBox1->Text, this->comboBox2->Text, this->comboBox3->Text);
 			String^ codigoIns = gestorInscripcion->codigoInsxProfesorxDiaxHora(dniProfesor, fechaDeClase(this->comboBox1->Text), this->comboBox2->Text);
 			gestorPago->crearNuevoPago(codigoIns, horaInsTR, fechaInsTR, "BONO");
 			gestorInscripcion->ModificaEstadoBonoxAlumno(objAlumno->dni);

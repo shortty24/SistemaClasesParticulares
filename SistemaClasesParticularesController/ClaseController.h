@@ -22,7 +22,10 @@ namespace SistemaClasesParticularesController {
 		List<Clase^>^ ClasesProgramadasxAlumno(String^ dniAlumnoBuscar);
 		void crearclasetxt(String^ codigopago);
 		List<Clase^>^ ClasesProgramadasxNombrexDia(String^ dniProfesorBuscar, String^ nombreBuscar, String^ fechaBuscar);
+		
+		void aprobarPago(String^ codigopago);
 		void CargarClaseDesdeArchivo();
+		List<Clase^>^ buscarPagosProfesorxEstado(String^ estado);
 
 	};
 

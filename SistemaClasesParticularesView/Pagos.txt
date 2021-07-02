@@ -1,11 +1,12 @@
-1;por procesar;4:30;20/07/2021;QWE3DD;programada
-2;no validado;4:30;20/07/2021;VRD21F;pendiente
+1;validado;4:30;20/07/2021;QWE3DD;programada
+2;validado;4:30;20/07/2021;VRD21F;programada
 3;validado;20:10;31/07/2021;Z0D3FE;programada
 4;validado;5:00;17/06/2021;JHYUI;programada
 5;validado;19:57;24/06/2021;GDFGR;programada
 6;validado;19:57;24/06/2021;SDGDSG;programada
-7;validado;19:57;24/06/2021;SDFSDF;pendiente
-8;validado;19:58;24/06/2021;SDFSD;pendiente
-10;validado;19:58;24/06/2021;TRYR;pendiente
-11;validado;19:58;24/06/2021;ERTET;pendiente
+7;validado;19:57;24/06/2021;SDFSDF;programada
+8;no validado;19:58;24/06/2021;SDFSD;pendiente
+10;no validado;19:58;24/06/2021;TRYR;pendiente
+11;por procesar;19:58;24/06/2021;ERTET;pendiente
 12;validado;21:25;24/06/2021;JIYUO;programada
+13;por procesar;13:41;29/06/2021;HGYR;pendiente

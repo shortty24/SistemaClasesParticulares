@@ -270,12 +270,28 @@ namespace SistemaClasesParticularesView {
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+
 		int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
 		String^ dniagresor = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
+		String^ estadoqueja = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[3]->Value->ToString();
 
-		QuejasController^ objGestorCV = gcnew QuejasController();
-		objGestorCV->Procede(dniagresor);
-		MessageBox::Show("Se ha determinado un Bloqueo !!!");
+		if (estadoqueja == "Por Revisar") {
+			QuejasController^ objGestorCV = gcnew QuejasController();
+			objGestorCV->Procede(dniagresor);
+			MessageBox::Show("Se ha determinado un Bloqueo !!!");
+		}
+
+		else if (estadoqueja == "Bloqueado") {
+			MessageBox::Show("Ya se había determinado un Bloqueo !!!");
+		}
+
+		else if (estadoqueja == "No Bloqueado") {
+			QuejasController^ objGestorCV = gcnew QuejasController();
+			objGestorCV->Procede(dniagresor);
+			MessageBox::Show("Se ha determinado un Bloqueo !!!");
+		}
+
+
 	}
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ dniagresor = this->textBox1->Text;
@@ -328,10 +344,24 @@ private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
 	String^ dniagresor = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
+	String^ estadoqueja = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[3]->Value->ToString();
 
-	QuejasController^ objGestorCV = gcnew QuejasController();
-	objGestorCV->NoProcede(dniagresor);
-	MessageBox::Show("Se ha determinado un No Bloqueo !!!");
+
+	if (estadoqueja == "Por Revisar") {
+		QuejasController^ objGestorCV = gcnew QuejasController();
+		objGestorCV->NoProcede(dniagresor);
+		MessageBox::Show("Se ha determinado un No Bloqueo !!!");
+	}
+	else if (estadoqueja == "Bloqueado") {
+		
+		QuejasController^ objGestorCV = gcnew QuejasController();
+		objGestorCV->NoProcede(dniagresor);
+		MessageBox::Show("Se ha determinado un No Bloqueo !!!");
+	}
+
+	else if (estadoqueja == "No Bloqueado") {
+		MessageBox::Show("Ya se había determinado un No Bloqueo !!!");
+	}
 }
 };
 }

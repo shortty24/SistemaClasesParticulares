@@ -105,6 +105,7 @@ namespace SistemaClasesParticularesView {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(114, 20);
 			this->textBox1->TabIndex = 2;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &frmPago::textBox1_TextChanged);
 			// 
 			// label2
 			// 
@@ -161,6 +162,8 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 }
 private: System::Void horafecha_Tick(System::Object^ sender, System::EventArgs^ e) {
 	
+}
+private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

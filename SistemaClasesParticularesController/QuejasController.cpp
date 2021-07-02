@@ -150,3 +150,23 @@ void QuejasController::generarQuejaxProfesor(String^ dniProfesorQueja, String^ d
 	lineasArchivoQuejas[this->listaQuejas->Count] = dniProfesorQueja + ";" + motivo + ";" + dniAlumnoQueja + ";" + "Por Revisar";
 	File::WriteAllLines("Quejas.txt", lineasArchivoQuejas);
 }
+
+int QuejasController::ProfesorBloqueado(String^ dniBuscar) {
+	array<String^>^ lineas = File::ReadAllLines("Quejas.txt");
+	String^ separadores = ";";
+	int bloqueado = 0;
+	for each (String ^ lineaQuejas in lineas) {
+		array<String^>^ palabras = lineaQuejas->Split(separadores->ToCharArray());
+		String^ dniagresor = palabras[0];
+		String^ queja = palabras[1];
+		String^ dniagraviado = palabras[2];
+		String^ estado = palabras[3];
+		if (dniagresor == dniBuscar) {
+			if (estado == "Bloqueado") {
+				bloqueado = 1;
+				break;
+			}
+		}
+	}
+	return bloqueado;
+}

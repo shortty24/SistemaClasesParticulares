@@ -391,8 +391,58 @@ void ClaseController::crearclasetxt(String^ codigopago) {
 
 	PagoController^ objGestorPago = gcnew PagoController();
 	Inscripcion^ objInscripcion = objGestorPago->buscarIncscripcionxcodigocompleta(codigopago);
-		lineasArchivoClases[this->listaClases->Count] = objInscripcion->objAlumno->dni + ";" + objInscripcion->objCurso->objProfesor->dni + ";" + objInscripcion->objCurso->nombreCurso + ";" + objInscripcion->horaInicio + ";" + objInscripcion->fechaClase + ";" + "-" + ";" +objInscripcion->codigoIns +";" + "programada" +";" + "por pagar al profe";
+		lineasArchivoClases[this->listaClases->Count] = objInscripcion->objAlumno->dni + ";" + objInscripcion->objCurso->objProfesor->dni + ";" + objInscripcion->objCurso->nombreCurso + ";" + objInscripcion->horaInicio + ";" + objInscripcion->fechaClase + ";" + "-" + ";" +objInscripcion->codigoIns +";" + "pendiente" +";" + "por pagar";
 	
+	/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
+	File::WriteAllLines("Clases.txt", lineasArchivoClases);
+
+}
+
+List<Clase^>^ ClaseController::buscarPagosProfesorxEstado(String^ estadoBuscar) {
+	List<Clase^>^ listaClasesEncontrados = gcnew List<Clase^>();
+	array<String^>^ lineas = File::ReadAllLines("Clases.txt");
+	String^ separadores = ";";
+	for each (String ^ lineaClases in lineas) {
+		array<String^>^ palabras = lineaClases->Split(separadores->ToCharArray());
+		String^ dnialumno = palabras[0];
+		Alumno^ objAlumno = buscarAlumnoxDNI(dnialumno);
+		String^ dniprofesor = palabras[1];
+		Profesor^ objProfesor = buscarProfesorxDNI(dniprofesor);
+		String^ curso = palabras[2];
+		Curso^ objCurso = buscarCursoxNombreCurso(curso);
+		String^ horaclase = palabras[3];
+		String^ fecha = palabras[4];
+		String^ link = palabras[5];
+		String^ codigopago = palabras[6];
+		String^ estadoclase = palabras[7];
+		Pago^ objPago = buscarPagoxcodigoPago(codigopago);
+		String^ estadopagoprofesor = palabras[8];
+
+		if (estadopagoprofesor->ToUpper() == estadoBuscar->ToUpper()) {
+			Clase^ objClase = gcnew Clase(objAlumno, objProfesor, objCurso, horaclase, fecha, link, objPago, estadopagoprofesor);
+			listaClasesEncontrados->Add(objClase);
+		}
+	}
+	return listaClasesEncontrados;
+}
+
+
+void ClaseController::aprobarPago(String^ codigopago) {
+	this->listaClases->Clear();
+	CargarClaseDesdeArchivo();
+	for (int i = 0; i < this->listaClases->Count; i++) {
+		Clase^ objClase = this->listaClases[i];
+		if ((objClase->objPago->codigoPago == codigopago) && (objClase->estadopagoprofesor == "por pagar")){
+			this->listaClases[i]->estadopagoprofesor = "cancelado";
+			break;
+		}
+	}
+
+	array<String^>^ lineasArchivoClases = gcnew array<String^>(this->listaClases->Count);
+	for (int i = 0; i < this->listaClases->Count; i++) {
+		Clase^ objClase = this->listaClases[i];
+		lineasArchivoClases[i] = objClase->objAlumno->dni + ";" + objClase->objProfesor->dni + ";" + objClase->objCurso->nombreCurso + ";" + objClase->objPago->objInscripcion->horaInicio + ";" + objClase->objPago->objInscripcion->fechaClase + ";" + objClase->objLink + ";" + objClase->objPago->objInscripcion->codigoIns + ";" + objClase->objPago->estadoclase + ";" + objClase->estadopagoprofesor;
+	}
 	/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
 	File::WriteAllLines("Clases.txt", lineasArchivoClases);
 

@@ -17,6 +17,7 @@ namespace SistemaClasesParticularesController {
 
 		void CargarQuejasDesdeArchivo();
 		void generarQuejaxAlumno(String^ dniProfesorQueja, String^ dniAlumnoQueja, String^ motivo);
+		int ProfesorBloqueado(String^ dniBuscar);
 		void generarQuejaxProfesor(String^ dniProfesorQueja, String^ dniAlumnoQueja, String^ motivo);
 	};
 

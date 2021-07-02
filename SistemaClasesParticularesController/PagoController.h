@@ -22,6 +22,7 @@ namespace SistemaClasesParticularesController {
 		void aprobarPago(String^ codigopago);
 		void desaprobarPago(String^ codigopago);
 
+
 		void programarclase(String^ estadoclase);
 
 		void CargarPagoDesdeArchivo();
