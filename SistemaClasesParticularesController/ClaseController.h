@@ -10,6 +10,8 @@ namespace SistemaClasesParticularesController {
 	public:
 		ClaseController();
 		List<Clase^>^ ClasesProgramadas(String^ dniProfesorBuscar);
+		//List<Clase^>^ ClasesProgramadasOrdenada(List<String^>^ fechas, String^ dniProfesorBuscar);
+		List<int>^ ObtenerDiaMesAnho(String^ fecha);
 		Alumno^ buscarAlumnoxDNI(String^ dniAlumno);
 		Profesor^ buscarProfesorxDNI(String^ dniProfesor);
 		Curso^ buscarCursoxNombreCurso(String^ cursoBuscar);

@@ -26,14 +26,103 @@ List<Clase^>^ ClaseController::ClasesProgramadas(String^ dniProfesorBuscar){
 		String^ fecha = palabras[4];
 		Inscripcion^ objInscripcion = buscarInscripcionxHoraxFecha(hora, fecha);
 		String^ link = palabras[5];
-		
+		String^ codigopago = palabras[6];
+		String^ estadoclase = palabras[7];
+		Pago^ objPago = buscarPagoxcodigoPago(codigopago);
+		String^ estadopagoprofesor = palabras[8];
+
+
 		if (dniProfesor == dniProfesorBuscar) {
-			Clase^ objClaseProgramada = gcnew Clase(objAlumno, objProfesor, objCurso, hora, fecha, link);
+			Clase^ objClaseProgramada = gcnew Clase(objAlumno, objProfesor, objCurso, hora, fecha, link, objPago, estadopagoprofesor);
+			listaClasesProgramadas->Add(objClaseProgramada);
+		}	
+	}
+
+	
+	return listaClasesProgramadas;
+}
+
+/*List<Clase^>^ ClaseController::ClasesProgramadasOrdenada(List<String^>^ fechas, String^ dniProfesorBuscar) {
+	List<Clase^>^ listaClasesOrdenadas = gcnew List<Clase^>();
+	List<String^>^ fechasABuscar = fechas;
+	array<String^>^ lineas = File::ReadAllLines("Clases.txt");
+
+	String^ separadores = ";";
+	for each (String ^ lineaClase in lineas) {
+		array<String^>^ palabras = lineaClase->Split(separadores->ToCharArray());
+		String^ dniAlumno = palabras[0];
+		Alumno^ objAlumno = buscarAlumnoxDNI(dniAlumno);
+		String^ dniProfesor = palabras[1];
+		Profesor^ objProfesor = buscarProfesorxDNI(dniProfesor);
+		String^ curso = palabras[2];
+		Curso^ objCurso = buscarCursoxNombreCurso(curso);
+		String^ hora = palabras[3];
+		String^ fecha = palabras[4];
+		Inscripcion^ objInscripcion = buscarInscripcionxHoraxFecha(hora, fecha);
+		String^ link = palabras[5];
+		String^ codigopago = palabras[6];
+		String^ estadoclase = palabras[7];
+		Pago^ objPago = buscarPagoxcodigoPago(codigopago);
+		String^ estadopagoprofesor = palabras[8];
+
+		if (dniProfesor == dniProfesorBuscar) {
+			int DiaAComparar;
+			int MesAComparar;
+			int AnhoAComparar;
+
+			List<int>^ DiaMesAnhoAComparar = ObtenerDiaMesAnho(fecha);
+			for each (int elemento in DiaMesAnhoAComparar) {
+				array<int>^ DiaMesAnhoACompararArray = DiaMesAnhoAComparar->ToArray();
+				DiaAComparar = DiaMesAnhoACompararArray[0];
+				MesAComparar = DiaMesAnhoACompararArray[1];
+				AnhoAComparar = DiaMesAnhoACompararArray[2];
+
+			}
+
+			for each(String^ lineaFecha in fechasABuscar) {
+				//array<String^>^ lineaFecha = fechasABuscar->ToArray();
+				
+				List<int>^ DiaMesAnhoAComparar = ObtenerDiaMesAnho(lineaFecha);
+				int Dia;
+				int Mes;
+				int Anho;
+
+				for each (int elemento in DiaMesAnhoAComparar){
+					array<int>^ DiaMesAnhoACompararArray = DiaMesAnhoAComparar->ToArray();
+					Dia = DiaMesAnhoACompararArray[0];
+					Mes = DiaMesAnhoACompararArray[1];
+					Anho = DiaMesAnhoACompararArray[2];
+				}	
+
+				if (AnhoAComparar != Anho) {
+					if (AnhoAComparar < Anho) {
+						
+					}
+				}
+			}
+
+			Clase^ objClaseProgramada = gcnew Clase(objAlumno, objProfesor, objCurso, hora, fecha, link, objPago, estadopagoprofesor);
 			listaClasesProgramadas->Add(objClaseProgramada);
 		}
-		
-	}	
+	}
+
+
 	return listaClasesProgramadas;
+}*/
+
+List<int>^ ClaseController::ObtenerDiaMesAnho(String^ fecha) {
+	List<int>^ DiaMesAnho= gcnew List<int>();
+
+	String^ separadores = "/";
+	array<String^>^ palabras = fecha->Split(separadores->ToCharArray());
+	String^ dia = palabras[0];
+	String^ mes = palabras[1];
+	String^ anho= palabras[2];
+
+	for (int i=0; i < 3; i++) {
+		DiaMesAnho->Add(Convert::ToInt32(palabras[i]));
+	}
+	return DiaMesAnho;
 }
 
 List<Clase^>^ ClaseController::ClasesProgramadasxNombrexDia(String^ dniProfesorBuscar, String^ nombreBuscar, String^ fechaBuscar) {
