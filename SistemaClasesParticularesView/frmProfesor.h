@@ -827,11 +827,11 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 		ClaseController^ objGestorLista = gcnew ClaseController();
 		listaClasesProgramadas = objGestorLista->ClasesProgramadas(ProfesorLogeado->dni);
 		
-		List<String^>^ fechas;
+		/*List<String^>^ fechas;
 		for (int i = 0; i < listaClasesProgramadas->Count; i++) {	
 			Clase^ objClase = listaClasesProgramadas[i];
 			fechas->Add(objClase->fechaClase);
-		}
+		}*/
 		
 		//List<Clase^>^ listaClasesProgramadasOrdenada;
 		//listaClasesProgramadasOrdenada = objGestorLista->ClasesProgramadasOrdenadas(fechas, ProfesorLogeado->dni);
