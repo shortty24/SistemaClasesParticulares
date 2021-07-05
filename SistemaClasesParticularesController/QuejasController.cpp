@@ -9,8 +9,15 @@ using namespace System::IO;
 
 QuejasController::QuejasController() {
 	this->listaQuejas = gcnew List<Quejas^>();
+	this->objConexion = gcnew SqlConnection();
 }
-
+void QuejasController::AbrirConexion() {
+	this->objConexion->ConnectionString = "Server=200.16.7.140;DataBase=a20165855;User ID=a20165855;Password=h7b3EJcM;";
+	this->objConexion->Open();
+}
+void QuejasController::CerrarConexion() {
+	this->objConexion->Close();
+}
 List<Quejas^>^ QuejasController::obtenerListaQuejas() {
 	return this->listaQuejas;
 }
@@ -140,15 +147,14 @@ void QuejasController::generarQuejaxAlumno(String^ dniProfesorQueja, String^ dni
 }
 
 
-void QuejasController::generarQuejaxProfesor(String^ dniProfesorQueja, String^ dniAlumnoQueja, String^ motivo) {
-	CargarQuejasDesdeArchivo();
-	array<String^>^ lineasArchivoQuejas = gcnew array<String^>(this->listaQuejas->Count + 1);
-	for (int i = 0; i < this->listaQuejas->Count; i++) {
-		Quejas^ objQuejas = this->listaQuejas[i];
-		lineasArchivoQuejas[i] = objQuejas->DniAgresor + ";" + objQuejas->Queja + ";" + objQuejas->DniAgreviado + ";" + objQuejas->Estado;
-	}
-	lineasArchivoQuejas[this->listaQuejas->Count] = dniProfesorQueja + ";" + motivo + ";" + dniAlumnoQueja + ";" + "Por Revisar";
-	File::WriteAllLines("Quejas.txt", lineasArchivoQuejas);
+void QuejasController::generarQuejaxProfesor(String^ dniAgresor, String^ dniAgraviado, String^ motivo) {
+
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "Insert into Quejas values ('" + dniAgresor + "','" + motivo + "','" + dniAgraviado + "','" + "Por Revisar" "');";
+	objQuery->ExecuteNonQuery();
+	CerrarConexion();
 }
 
 int QuejasController::ProfesorBloqueado(String^ dniBuscar) {

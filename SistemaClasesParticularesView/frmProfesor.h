@@ -171,7 +171,7 @@ private: System::Windows::Forms::GroupBox^ groupBox8;
 private: System::Windows::Forms::TextBox^ textBox1;
 private: System::Windows::Forms::Label^ label1;
 private: System::Windows::Forms::Label^ label2;
-private: System::Windows::Forms::ComboBox^ comboBox2;
+
 private: System::Windows::Forms::Button^ button10;
 private: System::Windows::Forms::TextBox^ textBox2;
 private: System::Windows::Forms::Button^ button17;
@@ -185,6 +185,7 @@ private: System::Windows::Forms::TextBox^ textBox5;
 private: System::Windows::Forms::Label^ label6;
 private: System::Windows::Forms::Label^ label5;
 private: System::Windows::Forms::TextBox^ textBox4;
+private: System::Windows::Forms::TextBox^ textBox6;
 
 
 
@@ -284,10 +285,10 @@ private: System::Windows::Forms::TextBox^ textBox4;
 			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->tabPage5 = (gcnew System::Windows::Forms::TabPage());
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
+			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
 			this->button10 = (gcnew System::Windows::Forms::Button());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
@@ -511,10 +512,10 @@ private: System::Windows::Forms::TextBox^ textBox4;
 			// 
 			// groupBox3
 			// 
+			this->groupBox3->Controls->Add(this->textBox6);
 			this->groupBox3->Controls->Add(this->textBox1);
 			this->groupBox3->Controls->Add(this->label1);
 			this->groupBox3->Controls->Add(this->label2);
-			this->groupBox3->Controls->Add(this->comboBox2);
 			this->groupBox3->Controls->Add(this->button10);
 			this->groupBox3->Controls->Add(this->textBox2);
 			this->groupBox3->Location = System::Drawing::Point(18, 32);
@@ -523,6 +524,15 @@ private: System::Windows::Forms::TextBox^ textBox4;
 			this->groupBox3->TabIndex = 0;
 			this->groupBox3->TabStop = false;
 			this->groupBox3->Text = L"Quejas :";
+			// 
+			// textBox6
+			// 
+			this->textBox6->Location = System::Drawing::Point(27, 35);
+			this->textBox6->Multiline = true;
+			this->textBox6->Name = L"textBox6";
+			this->textBox6->Size = System::Drawing::Size(205, 56);
+			this->textBox6->TabIndex = 17;
+			this->textBox6->TextChanged += gcnew System::EventHandler(this, &frmProfesor::textBox6_TextChanged);
 			// 
 			// textBox1
 			// 
@@ -551,15 +561,6 @@ private: System::Windows::Forms::TextBox^ textBox4;
 			this->label2->TabIndex = 14;
 			this->label2->Text = L"DNI Agresor :";
 			// 
-			// comboBox2
-			// 
-			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Agresion verbal", L"No se presento a la clase" });
-			this->comboBox2->Location = System::Drawing::Point(27, 52);
-			this->comboBox2->Name = L"comboBox2";
-			this->comboBox2->Size = System::Drawing::Size(202, 21);
-			this->comboBox2->TabIndex = 13;
-			// 
 			// button10
 			// 
 			this->button10->Location = System::Drawing::Point(128, 273);
@@ -573,6 +574,7 @@ private: System::Windows::Forms::TextBox^ textBox4;
 			// textBox2
 			// 
 			this->textBox2->Location = System::Drawing::Point(27, 133);
+			this->textBox2->MaxLength = 8;
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(133, 20);
 			this->textBox2->TabIndex = 11;
@@ -922,8 +924,11 @@ private: System::Void dataGridView1_CellContentClick(System::Object^ sender, Sys
 }
 private: System::Void button10_Click(System::Object^ sender, System::EventArgs^ e) {
 	QuejasController^ gestorQueja = gcnew QuejasController();
-	gestorQueja->generarQuejaxProfesor(this->textBox2->Text, this->textBox1->Text, this->comboBox2->Text);
+	gestorQueja->generarQuejaxProfesor(this->textBox2->Text, this->textBox1->Text, this->textBox6->Text);
 	MessageBox::Show("Se realizó la queja con éxito.");
+	this->textBox6->Clear();
+}
+private: System::Void textBox6_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
