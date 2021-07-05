@@ -8,6 +8,14 @@ using namespace System::IO;
 //Comentario Inscripcion
 InscripcionController::InscripcionController() {
 	this->listaInscripcion = gcnew List<Inscripcion^>();
+	this->objConexion = gcnew SqlConnection();
+}
+void InscripcionController::AbrirConexion() {
+	this->objConexion->ConnectionString = "Server=200.16.7.140;DataBase=a20165855;User ID=a20165855;Password=h7b3EJcM;";
+	this->objConexion->Open();
+}
+void InscripcionController::CerrarConexion() {
+	this->objConexion->Close();
 }
 
 List<Inscripcion^>^ InscripcionController::InscripcionesxAlumno(String^ datoAlumno) {
@@ -38,6 +46,39 @@ List<Inscripcion^>^ InscripcionController::InscripcionesxAlumno(String^ datoAlum
 			this->listaInscripcion->Add(objIns);
 		}
 	}
+	return this->listaInscripcion;
+}
+
+List<Inscripcion^>^ InscripcionController::InscripcionesxAlumno_BD(String^ datoAlumno) {
+	this->listaInscripcion->Clear();
+	AbrirConexion();
+	SqlCommand^ objQuery1 = gcnew SqlCommand();
+	objQuery1->Connection = this->objConexion;
+	objQuery1->CommandText = "select * from InscripcionesProyecto where DNI='" + datoAlumno + "';";
+	SqlDataReader^ objData1 = objQuery1->ExecuteReader();
+	while (objData1->Read()) {
+		String^ dniAlumno = safe_cast<String^>(objData1["DNIAlumno"]);
+		String^ dniProfesor = safe_cast<String^>(objData1["DNIProfesor"]);
+		String^ nombreCurso = safe_cast<String^>(objData1["Curso"]);
+		String^ horaInscripion = safe_cast<String^>(objData1["HoraInscripcion"]);
+		String^ fechaInscripion = safe_cast<String^>(objData1["FechaInscripcion"]);
+		int horasPedidas = safe_cast<int>(objData1["HorasPedidas"]);
+		String^ horaInicio = safe_cast<String^>(objData1["HoraClase"]);
+		String^ fechaClase = safe_cast<String^>(objData1["FechaClase"]);
+		int codigoIns = safe_cast<int>(objData1["CodigoInscripcion"]);
+		String^ codigoString = Convert::ToString(codigoIns);
+
+		AlumnoController^ gestorAlumno = gcnew AlumnoController();
+		Alumno^ objAlumno = gestorAlumno->buscaAlumnoxDNI(dniAlumno);
+		ProfesorController^ gestorProfesor = gcnew ProfesorController();
+		Profesor^ objProfesor = gestorProfesor->buscaProfesorxDNI(dniProfesor);
+		CursoController^ gestorCurso = gcnew CursoController();
+		Curso^ objCurso = gestorCurso->CursoDisponiblexNombrexProfesor(nombreCurso, objProfesor->objUsuario);
+		Inscripcion^ objIns = gcnew Inscripcion (objAlumno, objCurso, horaInscripion, fechaInscripion, horasPedidas, horaInicio, fechaClase, codigoString);
+		this->listaInscripcion->Add(objIns);
+	}
+	objData1->Close();
+	CerrarConexion();
 	return this->listaInscripcion;
 }
 
@@ -72,6 +113,16 @@ void InscripcionController::GuardarInscripcion(String^ diaNuevo, String^ horaIni
 	File::WriteAllLines("Inscripciones.txt", listaTextoInscrip);
 }
 
+void InscripcionController::GuardarInscripcion_BD(String^ diaNuevo, String^ horaInicioNuevo, String^ tiempoPedidoNuevo, String^ nombreDelCursoNuevo, String^ dniProfesorNuevo, String^ dniAlumnoNuevo, String^ fechaInscripcionNuevo, String^ horaInscripcionNuevo) {
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	int horasPedidas = Convert::ToInt32(tiempoPedidoNuevo);
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "Insert into InscripcionesProyecto(DNIAlumno,DNIProfesor,Curso,HoraInscripcion,FechaInscripcion,HorasPedidas,HoraClase,FechaClase) values ('" + dniAlumnoNuevo + "','" + dniProfesorNuevo + "','" + nombreDelCursoNuevo + "','" + horaInscripcionNuevo + "','" + fechaInscripcionNuevo + "','" + tiempoPedidoNuevo + "','" + horaInicioNuevo + "','" + diaNuevo + "');";
+	objQuery->ExecuteNonQuery();
+	CerrarConexion();
+}
+
 String^ InscripcionController::EstadoBonoxAlumno(String^ dniAlumnoBuscar) {
 	array<String^>^ lineas = File::ReadAllLines("Bonus.txt");
 
@@ -88,6 +139,20 @@ String^ InscripcionController::EstadoBonoxAlumno(String^ dniAlumnoBuscar) {
 	}
 	return estado;
 
+}
+String^ InscripcionController::EstadoBonoxAlumno_BD(String^ dniAlumnoBuscar) {
+	AbrirConexion();
+	String^ estado;
+	SqlCommand^ objQuery1 = gcnew SqlCommand();
+	objQuery1->Connection = this->objConexion;
+	objQuery1->CommandText = "select * from Bonus where DNI='" + dniAlumnoBuscar + "';";
+	SqlDataReader^ objData1 = objQuery1->ExecuteReader();
+	if (objData1->Read()) {
+		estado = safe_cast<String^>(objData1["Estado"]);
+	}
+	objData1->Close();
+	CerrarConexion();
+	return estado;
 }
 void InscripcionController::ModificaEstadoBonoxAlumno(String^ dniAlumnoBuscar) {
 	List<String^>^ listaTextoBonos = gcnew List<String^>();
@@ -108,6 +173,13 @@ void InscripcionController::ModificaEstadoBonoxAlumno(String^ dniAlumnoBuscar) {
 		File::WriteAllLines("Bonus.txt", listaTextoBonos);
 	}
 
+}
+void InscripcionController::ModificaEstadoBonoxAlumno_BD(String^ dniAlumnoBuscar) {
+	AbrirConexion();
+	String^ estado;
+	SqlCommand^ objQuery1 = gcnew SqlCommand();
+	objQuery1->Connection = this->objConexion;
+	objQuery1->CommandText = "update Bonus set Estado = 'Canjeado' where DNI='" + dniAlumnoBuscar + "';";
 }
 String^ InscripcionController::codigoInsxProfesorxDiaxHora(String^ dniProfesorBuscar, String^ diafechaClase,String^horaInicioBuscar){
 	array<String^>^ lineas = File::ReadAllLines("Inscripciones.txt");

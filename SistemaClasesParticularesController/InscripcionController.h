@@ -4,9 +4,11 @@ namespace SistemaClasesParticularesController {
 	using namespace System::Collections::Generic;
 	using namespace SistemaClasesParticularesModel;
 	using namespace System;
+	using namespace System::Data::SqlClient;
 	public ref class InscripcionController {
 	private:
 		List<Inscripcion^>^ listaInscripcion;
+		SqlConnection^ objConexion;
 	public:
 		InscripcionController();
 		List<Inscripcion^>^ InscripcionesxAlumno(String^ datoAlumno);
@@ -14,6 +16,12 @@ namespace SistemaClasesParticularesController {
 		String^ InscripcionController::EstadoBonoxAlumno(String^ dniAlumnoBuscar);
 		void InscripcionController::ModificaEstadoBonoxAlumno(String^ dniAlumnoBuscar);
 		String^ InscripcionController::codigoInsxProfesorxDiaxHora(String^ dniProfesorBuscar, String^ diafechaClase, String^ horaInicioBuscar);
+		void AbrirConexion();
+		void CerrarConexion();
+		List<Inscripcion^>^ InscripcionesxAlumno_BD(String^ datoAlumno);
+		void GuardarInscripcion_BD(String^ diaNuevo, String^ horaInicioNuevo, String^ tiempoPedidoNuevo, String^ nombreDelCursoNuevo, String^ dniProfesorNuevo, String^ dniAlumnoNuevo, String^ fechaInscripcionNuevo, String^ horaInscripcionNuevo);
+		String^ EstadoBonoxAlumno_BD(String^ dniAlumnoBuscar);
+		void ModificaEstadoBonoxAlumno_BD(String^ dniAlumnoBuscar);
 	};
 
 }
