@@ -3,9 +3,11 @@ namespace SistemaClasesParticularesController {
 	using namespace System::Collections::Generic;
 	using namespace SistemaClasesParticularesModel;
 	using namespace System;
+	using namespace System::Data::SqlClient;
 	public ref class CursoController {
 	private:
 		List<Curso^>^ listaCursos;
+		SqlConnection^ objConexion;
 	public:
 		CursoController();
 		void CargarCursosDesdeArchivo();
@@ -14,6 +16,9 @@ namespace SistemaClasesParticularesController {
 		Curso^ CursoDisponiblexNombrexProfesor(String^ nombreDelCurso, String^ usuarioProfe);
 		List<Curso^>^ CursosxUsusarioProfesor(String^ usuarioProfesor);
 		void AñadirCurso(Curso^ objCurso);
+
+		void AbrirConexion();
+		void CerrarConexion();
 	};
 
 }

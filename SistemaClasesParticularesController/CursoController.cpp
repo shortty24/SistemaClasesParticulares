@@ -6,7 +6,19 @@ using namespace System::IO;
 
 CursoController::CursoController() {
 	this->listaCursos = gcnew List<Curso^>();
+	this->objConexion = gcnew SqlConnection();
 }
+
+void CursoController::AbrirConexion() {
+	/*La cadena conexion está compuesto de: Servidor BD, nombre de BD, usuario de BD y contraseña de BD*/
+	this->objConexion->ConnectionString = "Server=200.16.7.140;DataBase=a20165855;User ID=a20165855;Password=h7b3EJcM;";
+	this->objConexion->Open(); /*Ya establecí la conexión con la BD*/
+}
+
+void CursoController::CerrarConexion() {
+	this->objConexion->Close();
+}
+
 
 void CursoController::CargarCursosDesdeArchivo() {
 	this->listaCursos->Clear();

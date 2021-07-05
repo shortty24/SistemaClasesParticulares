@@ -36,6 +36,28 @@ Profesor^ ProfesorController::buscaProfesor(String^ usuarioProfesor) {
 	CerrarConexion();
 	return objProfesorEncontrado;
 }
+
+Profesor^ ProfesorController::buscaProfesorxDNI_BD(String^ dniProfesor) {
+	AbrirConexion();
+	Profesor^ objProfesorEncontrado;
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from Personas where DNI='" + dniProfesor + "';";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+	if (objData->Read()) {
+		String^ dni = safe_cast<String^>(objData["DNI"]);
+		String^ usuario = safe_cast<String^>(objData["Usuario"]);
+		String^ contrasenha = safe_cast<String^>(objData["Contrasenha"]);
+		String^ apellidoPaterno = safe_cast<String^>(objData["ApellidoPaterno"]);
+		String^ apellidoMaterno = safe_cast<String^>(objData["ApellidoMaterno"]);
+		String^ nombre = safe_cast<String^>(objData["Nombre"]);
+		objData->Close();
+		objProfesorEncontrado = gcnew Profesor(dni, usuario, contrasenha, apellidoPaterno, apellidoMaterno, nombre);
+	}
+	CerrarConexion();
+	return objProfesorEncontrado;
+}
+
 String^ ProfesorController::obtenerUsuarioxNombreCompleto(String^ nombreCompleto) {
 	String^ usuarioEncontrado;
 	array<String^>^ lineas = File::ReadAllLines("Personas.txt");

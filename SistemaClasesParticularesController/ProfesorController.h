@@ -19,7 +19,7 @@ namespace SistemaClasesParticularesController {
 			Profesor^ buscaProfesorxDNI(String^ dniProfe);
 			void AbrirConexion();
 			void CerrarConexion();
-
+			Profesor^ buscaProfesorxDNI_BD(String^ dniProfesor);
 
 	};
 }

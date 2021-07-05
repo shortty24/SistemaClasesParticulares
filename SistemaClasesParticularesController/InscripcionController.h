@@ -16,12 +16,16 @@ namespace SistemaClasesParticularesController {
 		String^ InscripcionController::EstadoBonoxAlumno(String^ dniAlumnoBuscar);
 		void InscripcionController::ModificaEstadoBonoxAlumno(String^ dniAlumnoBuscar);
 		String^ InscripcionController::codigoInsxProfesorxDiaxHora(String^ dniProfesorBuscar, String^ diafechaClase, String^ horaInicioBuscar);
+
 		void AbrirConexion();
 		void CerrarConexion();
 		List<Inscripcion^>^ InscripcionesxAlumno_BD(String^ datoAlumno);
 		void GuardarInscripcion_BD(String^ diaNuevo, String^ horaInicioNuevo, String^ tiempoPedidoNuevo, String^ nombreDelCursoNuevo, String^ dniProfesorNuevo, String^ dniAlumnoNuevo, String^ fechaInscripcionNuevo, String^ horaInscripcionNuevo);
 		String^ EstadoBonoxAlumno_BD(String^ dniAlumnoBuscar);
 		void ModificaEstadoBonoxAlumno_BD(String^ dniAlumnoBuscar);
+		Profesor^ buscaProfesorxDNI_BD(String^ dniProfesor);
+		Alumno^ buscaAlumnoxDNI_BD(String^ dniAlumno);
+		Inscripcion^ buscarInscripcionxcodigo_BD(int codigoInscripcion);
 	};
 
 }

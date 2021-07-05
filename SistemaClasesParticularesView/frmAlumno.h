@@ -755,7 +755,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	ventanaInscripcion->ShowDialog();
 
 	InscripcionController^ gestorInscripcion = gcnew InscripcionController();
-	List<Inscripcion^>^ listaInsc = gestorInscripcion->InscripcionesxAlumno(AlumnoLogeado->dni);
+	List<Inscripcion^>^ listaInsc = gestorInscripcion->InscripcionesxAlumno_BD(AlumnoLogeado->dni);
 	this->dataGridView6->Rows->Clear();
 
 	for (int i = 0; i < listaInsc->Count; i++) {
@@ -774,8 +774,8 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	}
 
 	PagoController^ gestorPago = gcnew PagoController();
-	List<Pago^>^ listaPagosAlumno = gestorPago->buscarPagosxAlumno(AlumnoLogeado->dni);
-	listaPagosAlumno = gestorPago->buscarPagosxAlumno(AlumnoLogeado->dni);
+	List<Pago^>^ listaPagosAlumno = gestorPago->buscarPagosxAlumno_BD(AlumnoLogeado->dni);
+	//listaPagosAlumno = gestorPago->buscarPagosxAlumno(AlumnoLogeado->dni);
 	this->dataGridView5->Rows->Clear();
 	for (int i = 0; i < listaPagosAlumno->Count; i++) {
 		Pago^ objPago1 = listaPagosAlumno[i];
@@ -832,7 +832,7 @@ private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ 
 	mostrarGrillaxLista(listaCursosDisponibles);
 
 	InscripcionController^ gestorInscripcion = gcnew InscripcionController();
-	List<Inscripcion^>^ listaInsc = gestorInscripcion->InscripcionesxAlumno(AlumnoLogeado->dni);
+	List<Inscripcion^>^ listaInsc = gestorInscripcion->InscripcionesxAlumno_BD(AlumnoLogeado->dni);
 	this->dataGridView6->Rows->Clear();
 
 	ProfesorController^ gestorProfesor = gcnew ProfesorController();
@@ -867,7 +867,7 @@ private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ 
 	}
 
 	PagoController^ gestorPago = gcnew PagoController();
-	List<Pago^>^ listaPagosAlumno = gestorPago->buscarPagosxAlumno(AlumnoLogeado->dni);
+	List<Pago^>^ listaPagosAlumno = gestorPago->buscarPagosxAlumno_BD(AlumnoLogeado->dni);
 
 	this->dataGridView5->Rows->Clear();
 	for (int i = 0; i < listaPagosAlumno->Count; i++) {
