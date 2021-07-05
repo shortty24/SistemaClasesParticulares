@@ -64,7 +64,6 @@ namespace SistemaClasesParticularesView {
 			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
 			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
 			System::Windows::Forms::DataVisualization::Charting::Legend^ legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->chart2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
@@ -92,10 +91,6 @@ namespace SistemaClasesParticularesView {
 			this->chart2->Legends->Add(legend2);
 			this->chart2->Location = System::Drawing::Point(470, 12);
 			this->chart2->Name = L"chart2";
-			series1->ChartArea = L"ChartArea1";
-			series1->Legend = L"Legend1";
-			series1->Name = L"Series1";
-			this->chart2->Series->Add(series1);
 			this->chart2->Size = System::Drawing::Size(350, 300);
 			this->chart2->TabIndex = 1;
 			this->chart2->Text = L"chart2";
@@ -125,8 +120,8 @@ namespace SistemaClasesParticularesView {
 	private: System::Void frmReporteUsuarios_Load(System::Object^ sender, System::EventArgs^ e) {
 		
 		ReporteController^ objGestorReporte = gcnew ReporteController();
-		objGestorReporte->CargarPersonasDesdeArchivo();
-		objGestorReporte->CargarQuejasDesdeArchivo();
+		//objGestorReporte->CargarPersonasDesdeArchivo();
+		//objGestorReporte->CargarQuejasDesdeArchivo();
 		//Los vectores con los datos
 		array<String^>^ series1 = { "Alumnos","Profesores"};
 		array<String^>^ series2 = { "Resueltas","No Resueltas" };

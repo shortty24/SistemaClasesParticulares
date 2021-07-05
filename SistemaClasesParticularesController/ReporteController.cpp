@@ -6,15 +6,25 @@ using namespace System::IO;
 
 ReporteController::ReporteController(){
 
-	this->ListaAlumnos = gcnew List<Alumno^>();
-	this->ListaProfesores = gcnew List<Profesor^>();
-	this->ListaQuejasResueltas = gcnew List<Quejas^>();
-	this->ListaQuejasNoResueltas = gcnew List<Quejas^>();
-
-
+	this->CantidadAlumnos = CantidadAlumnos;
+	this->CantidadProfesores = CantidadProfesores;
+	this->CantidadQuejasResueltas = CantidadQuejasResueltas;
+	this->CantidadQuejasNoResueltas = CantidadQuejasNoResueltas;
+	//this->ListaAlumnos = gcnew List<Alumno^>();
+	//this->ListaProfesores = gcnew List<Profesor^>();
+	//this->ListaQuejasResueltas = gcnew List<Quejas^>();
+	//this->ListaQuejasNoResueltas = gcnew List<Quejas^>();
+	this->objConexion = gcnew SqlConnection();
+}
+void ReporteController::AbrirConexion() {
+	this->objConexion->ConnectionString = "Server=200.16.7.140;DataBase=a20165855;User ID=a20165855;Password=h7b3EJcM;";
+	this->objConexion->Open();
+}
+void ReporteController::CerrarConexion() {
+	this->objConexion->Close();
 }
 
-void ReporteController::CargarQuejasDesdeArchivo() {
+/*void ReporteController::CargarQuejasDesdeArchivo() {
 
 		array<String^>^ lineas = File::ReadAllLines("Quejas.txt");
 		String^ separadores = ";";
@@ -36,8 +46,8 @@ void ReporteController::CargarQuejasDesdeArchivo() {
 
 		}
 		}
-}
-void ReporteController::CargarPersonasDesdeArchivo() {
+}*/
+/*void ReporteController::CargarPersonasDesdeArchivo() {
 
 	array<String^>^ lineas = File::ReadAllLines("Personas.txt");
 	String^ separadores = ";";
@@ -62,20 +72,58 @@ void ReporteController::CargarPersonasDesdeArchivo() {
 			this->ListaProfesores->Add(objProfesor);
 		}
 	}
-}
+}*/
 int ReporteController::ObtenerCantidadProfesores() {
 	
-	return this->ListaProfesores->Count;
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select count(TipoUsuario) from Personas where TipoUsuario='P';";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+	if (objData->Read()) {
+		CantidadProfesores = safe_cast<int>(objData[0]);
+	}
+	objData->Close();
+	CerrarConexion();
+	return CantidadProfesores;
 }
 int ReporteController::ObtenerCantidadAlumnos() {
 
-	return this->ListaAlumnos->Count;
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select count(TipoUsuario) from Personas where TipoUsuario='A';";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+	if (objData->Read()) {
+		CantidadAlumnos = safe_cast<int>(objData[0]);
+	}
+	objData->Close();
+	CerrarConexion();
+	return CantidadAlumnos;
 }
 int ReporteController::ObtenerCantidadQuejasResueltas(){
-
-	return this->ListaQuejasResueltas->Count;
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select count(Estado) from Quejas where Estado='No Bloqueado' or Estado='Bloqueado';";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+	if (objData->Read()) {
+		CantidadQuejasResueltas = safe_cast<int>(objData[0]);
+	}
+	objData->Close();
+	CerrarConexion();
+	return CantidadQuejasResueltas;
 }
 int ReporteController::ObtenerCantidadQuejasNoResueltas() {
-
-	return this->ListaQuejasNoResueltas->Count;
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select count(Estado) from Quejas where Estado='Por revisar';";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+	if (objData->Read()) {
+		CantidadQuejasNoResueltas = safe_cast<int>(objData[0]);
+	}
+	objData->Close();
+	CerrarConexion();
+	return CantidadQuejasNoResueltas;
 }
