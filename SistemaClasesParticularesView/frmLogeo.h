@@ -149,7 +149,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 1) {
 		AlumnoController^ objGestorAlumno = gcnew AlumnoController();
 
-		AlumnoLogeado = objGestorAlumno->buscaAlumno(textBox1->Text);
+		AlumnoLogeado = objGestorAlumno->buscaAlumnoBD(textBox1->Text);
 		frmAlumno^ ventanaAlumno = gcnew frmAlumno(this->AlumnoLogeado);
 		ventanaAlumno->Show();
 	}
