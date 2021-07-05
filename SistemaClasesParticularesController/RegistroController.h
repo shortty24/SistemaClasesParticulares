@@ -23,8 +23,8 @@ namespace SistemaClasesParticularesController {
 		//void RegistroNuevoAlumno(String^ textBox1, String^ textBox2, String^ textBox3, String^ textBox4, String^ textBox5, String^ textBox6, String^ textBox7);
 		int VerificarSiUsuarioRepite(String^ textBox1);
 		int VerificarSiDniRepite(String^ textBox2);
-		void GuardarNuevoUsuarioEnArchivo(Persona^objPersona);
-		void GuardarNuevoBonusAlumnoEnArchivo(BonusAlumno^ objBonus);
+		void GuardarNuevoUsuarioEnBD(Persona^objPersona);
+		void GuardarNuevoBonusAlumnoEnBD(BonusAlumno^ objBonus);
 		//void CargarCVsDesdeArchivo();
 		//void CargarBonusDesdeArchivo();
 		void GuardarNuevoCV(CV^ objCV);

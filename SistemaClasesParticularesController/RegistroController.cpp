@@ -20,7 +20,7 @@ void RegistroController::AbrirConexion() {
 void RegistroController::CerrarConexion() {
 	this->objConexion->Close();
 }
-void RegistroController::GuardarNuevoUsuarioEnArchivo(Persona^ objPersona) {
+void RegistroController::GuardarNuevoUsuarioEnBD(Persona^ objPersona) {
 		AbrirConexion();
 		SqlCommand^ objQuery = gcnew SqlCommand();
 		objQuery->Connection = this->objConexion;
@@ -29,7 +29,7 @@ void RegistroController::GuardarNuevoUsuarioEnArchivo(Persona^ objPersona) {
 		CerrarConexion();
 }
 
-void RegistroController::GuardarNuevoBonusAlumnoEnArchivo(BonusAlumno^ objBonus) {
+void RegistroController::GuardarNuevoBonusAlumnoEnBD(BonusAlumno^ objBonus) {
 	AbrirConexion();
 	SqlCommand^ objQuery = gcnew SqlCommand();
 	objQuery->Connection = this->objConexion;
