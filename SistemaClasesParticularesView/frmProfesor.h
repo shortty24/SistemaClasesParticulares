@@ -554,10 +554,7 @@ private: System::Windows::Forms::TextBox^ textBox4;
 			// comboBox2
 			// 
 			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) {
-				L"Agresion verbal", L"No se presento a la clase",
-					L"No dicto los temas pedidos"
-			});
+			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Agresion verbal", L"No se presento a la clase" });
 			this->comboBox2->Location = System::Drawing::Point(27, 52);
 			this->comboBox2->Name = L"comboBox2";
 			this->comboBox2->Size = System::Drawing::Size(202, 21);
@@ -809,8 +806,6 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 
 
 	private: System::Void frmProfesor_Load(System::Object^ sender, System::EventArgs^ e) {
-		/*ProfesorController^ gestorDatosAlumno = gcnew ProfesorController();
-		LogeoController^ gestorLogeo = gcnew LogeoController();*/
 
 		this->dataGridView4->Rows->Clear();
 
@@ -825,7 +820,7 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 		//TAB ACTIVIDADES
 		List<Clase^>^ listaClasesProgramadas;
 		ClaseController^ objGestorLista = gcnew ClaseController();
-		listaClasesProgramadas = objGestorLista->ClasesProgramadas(ProfesorLogeado->dni);
+		listaClasesProgramadas = objGestorLista->ClasesProgramadasxProfesorBD(ProfesorLogeado->dni);
 		
 		/*List<String^>^ fechas;
 		for (int i = 0; i < listaClasesProgramadas->Count; i++) {	

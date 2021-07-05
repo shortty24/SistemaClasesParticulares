@@ -4,14 +4,23 @@ namespace SistemaClasesParticularesController {
 	using namespace System::Collections::Generic;
 	using namespace SistemaClasesParticularesModel;
 	using namespace System;
+	using namespace System::Data::SqlClient;
+
 	public ref class ClaseController {
 	private:
 		List<Clase^>^ listaClases;
+		SqlConnection^ objConexion;
+
 	public:
 		ClaseController();
+		/*Métodos con base de datos*/
+		void AbrirConexion();
+		void CerrarConexion();
+		List<Clase^>^ ClasesProgramadasxProfesorBD(String^ dniProfesorBuscar);
+
+
+		/*Métodos con archivos .txt*/
 		List<Clase^>^ ClasesProgramadas(String^ dniProfesorBuscar);
-		//List<Clase^>^ ClasesProgramadasOrdenada(List<String^>^ fechas, String^ dniProfesorBuscar);
-		List<int>^ ObtenerDiaMesAnho(String^ fecha);
 		Alumno^ buscarAlumnoxDNI(String^ dniAlumno);
 		Profesor^ buscarProfesorxDNI(String^ dniProfesor);
 		Curso^ buscarCursoxNombreCurso(String^ cursoBuscar);
