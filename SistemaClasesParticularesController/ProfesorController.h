@@ -16,13 +16,14 @@ namespace SistemaClasesParticularesController {
 			/*Métodos con base de datos*/
 			void AbrirConexion();
 			void CerrarConexion();
+			Profesor^ buscaProfesorxDNI_BD(String^ dniProfesor);
+			String^ obtenerUsuarioxNombreCompleto_BD(String^ nombreCompleto);
 
 			/*Métodos con archivos .txt*/
 			Profesor^ buscaProfesor(String^ usuarioProfesor);
 			String^ obtenerUsuarioxNombreCompleto(String^ nombreCompleto);
 			String^ obtenerdnixNombreCompleto(String^ nombreCompleto);
 			Profesor^ buscaProfesorxDNI(String^ dniProfe);
-			Profesor^ buscaProfesorxDNI_BD(String^ dniProfesor);
 
 	};
 }

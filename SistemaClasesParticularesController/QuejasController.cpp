@@ -176,3 +176,20 @@ int QuejasController::ProfesorBloqueado(String^ dniBuscar) {
 	}
 	return bloqueado;
 }
+int QuejasController::ProfesorBloqueado_BD(String^ dniBuscar) {
+	AbrirConexion();
+	int bloqueado = 0;
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from Quejas where DniAgresor='" + dniBuscar + "';";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+	if (objData->Read()) {
+		String^ Estado = safe_cast<String^>(objData["Estado"]);
+		if (Estado == "Bloqueado") {
+			bloqueado = 1;
+		}
+	}
+	objData->Close();
+	CerrarConexion();
+	return bloqueado;
+}

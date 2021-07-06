@@ -25,6 +25,7 @@ namespace SistemaClasesParticularesController {
 		Curso^ CursoDisponiblexNombrexProfesor_BD(String^ nombreDelCurso, String^ usuarioProfe);
 		List<Curso^>^ CursosxUsusarioProfesorBD(String^ usuarioProfesor);
 		void AñadirCursoBD(Curso^ objCurso);
+		List<Curso^>^ CursosDisponibles_BD();
 	};
 
 }

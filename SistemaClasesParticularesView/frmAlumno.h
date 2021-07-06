@@ -810,7 +810,7 @@ private: void mostrarGrillaxLista(List<Curso^>^ listaCursos) {
 	for (int i = 0; i < listaCursos->Count; i++) {
 		Curso^ objCurso = listaCursos[i];
 		Profesor^ objProfesor = gestorProfesor->buscaProfesor(objCurso->usuarioProfesor);
-		if ((gestorCV->EstadoCV(objProfesor->dni) == 1) && (gestorQuejas->ProfesorBloqueado(objProfesor->dni) == 0)) {
+		if ((gestorCV->EstadoCV_BD(objProfesor->dni) == 1) && (gestorQuejas->ProfesorBloqueado_BD(objProfesor->dni) == 0)) {
 			array<String^>^ fila = gcnew array<String^>(4);
 			fila[0] = objCurso->nombreCurso;
 			fila[1] = objCurso->dificultad;
@@ -828,7 +828,7 @@ private: void mostrarGrillaxLista(List<Curso^>^ listaCursos) {
 }
 private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ e) {
 	CursoController^ gestorDatosCurso = gcnew CursoController();
-	List<Curso^>^ listaCursosDisponibles = gestorDatosCurso->CursosDisponibles();
+	List<Curso^>^ listaCursosDisponibles = gestorDatosCurso->CursosDisponibles_BD();
 	mostrarGrillaxLista(listaCursosDisponibles);
 
 	InscripcionController^ gestorInscripcion = gcnew InscripcionController();
@@ -838,7 +838,7 @@ private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ 
 	ProfesorController^ gestorProfesor = gcnew ProfesorController();
 	for (int i = 0; i < listaInsc->Count; i++) {
 		Inscripcion^ objInsc = listaInsc[i];
-		Profesor^ objProfesor = gestorProfesor->buscaProfesor(objInsc->objCurso->usuarioProfesor);
+		Profesor^ objProfesor = gestorProfesor->buscaProfesor(objInsc->objCurso->usuarioProfesor);//BD
 		array<String^>^ fila = gcnew array<String^>(7);
 		fila[0] = objInsc->codigoIns;
 		fila[1] = objInsc-> objCurso -> nombreCurso; 
@@ -904,7 +904,7 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	String^ nombreProfSeleccionado = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[2]->Value->ToString();
 	ProfesorController^ gestorProfesor = gcnew ProfesorController();
 	String^ usuarioProfesor;
-	usuarioProfesor = gestorProfesor->obtenerUsuarioxNombreCompleto(nombreProfSeleccionado);
+	usuarioProfesor = gestorProfesor->obtenerUsuarioxNombreCompleto_BD(nombreProfSeleccionado);
 	frmInfoProfesorCurso^ ventanaInfoProfesor = gcnew frmInfoProfesorCurso(usuarioProfesor);
 	ventanaInfoProfesor->ShowDialog();
 }
@@ -922,7 +922,7 @@ private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e
 	frmPago^ ventanaPago = gcnew frmPago(codigoSeleccionado);
 	int coincide = 0;
 	PagoController^ gestorPago = gcnew PagoController();
-	List<Pago^>^ listaPagosAlumno = gestorPago->buscarPagosxAlumno(AlumnoLogeado->dni);
+	List<Pago^>^ listaPagosAlumno = gestorPago->buscarPagosxAlumno_BD(AlumnoLogeado->dni);
 	for (int i = 0; i < listaPagosAlumno->Count; i++) {
 		Pago^ objPago = listaPagosAlumno[i];
 		if (objPago->objInscripcion->codigoIns == codigoSeleccionado) {
@@ -936,7 +936,7 @@ private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e
 	else {
 		ventanaPago->ShowDialog();
 
-		listaPagosAlumno = gestorPago->buscarPagosxAlumno(AlumnoLogeado->dni);
+		listaPagosAlumno = gestorPago->buscarPagosxAlumno_BD(AlumnoLogeado->dni);
 		this->dataGridView5->Rows->Clear();
 		for (int i = 0; i < listaPagosAlumno->Count; i++) {
 			Pago^ objPago1 = listaPagosAlumno[i];

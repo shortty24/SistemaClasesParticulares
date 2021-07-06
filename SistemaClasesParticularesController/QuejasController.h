@@ -14,6 +14,8 @@ namespace SistemaClasesParticularesController {
 		QuejasController();
 		void AbrirConexion();
 		void CerrarConexion();
+		int ProfesorBloqueado_BD(String^ dniBuscar);
+
 		List<Quejas^>^ obtenerListaQuejas();
 		void Procede(String^ dniseleccionado);
 		void NoProcede(String^ dniseleccionado);

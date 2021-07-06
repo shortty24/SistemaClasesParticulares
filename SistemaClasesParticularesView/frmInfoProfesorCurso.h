@@ -166,7 +166,7 @@ private: System::Void frmInfoProfesorCurso_Load(System::Object^ sender, System::
 	ProfesorController^ objGestorProfesor = gcnew ProfesorController();
 	Profesor^ objProfesor = objGestorProfesor->buscaProfesor(usuarioSeleccionado);
 	CVController^ objGestorCV = gcnew CVController();
-	String^ empresaProf = objGestorCV->obtenerEmpresaRef(objProfesor->dni);
+	String^ empresaProf = objGestorCV->obtenerEmpresaRef_BD(objProfesor->dni);
 	this->textBox1->Text = objProfesor->objUsuario;
 	this->textBox2->Text = objProfesor->objNombre + " " + objProfesor->objApellidoPaterno + " " + objProfesor -> objApellidoMaterno;
 	this->textBox3->Text = empresaProf;

@@ -7,6 +7,16 @@ using namespace System::IO;
 
 CVController::CVController() {
 	this->listaCV = gcnew List<CV^>();
+	this->objConexion = gcnew SqlConnection();
+}
+
+void CVController::AbrirConexion() {
+	/*La cadena de conexión está compuesto de: Servidor de BD, nombre de BD, usuario BD, password BD*/
+	this->objConexion->ConnectionString = "Server=200.16.7.140;DataBase=a20165855;User ID=a20165855;Password=h7b3EJcM;";
+	this->objConexion->Open();/*Ya establecí conexión con la BD*/
+}
+void CVController::CerrarConexion() {
+	this->objConexion->Close();
 }
 
 void CVController::CargarCVDesdeArchivo() {
@@ -128,6 +138,22 @@ String^ CVController::obtenerEmpresaRef(String^ dniProfesor) {
 	return nombreEmpresa;
 }
 
+String^ CVController::obtenerEmpresaRef_BD(String^ dniProfesor) {
+	AbrirConexion();
+	String^ nombreEmpresa;
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from CVs where DNI='" + dniProfesor + "';";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+	if (objData->Read()) {
+		String^ Empresa = safe_cast<String^>(objData["Empresa"]);
+		nombreEmpresa = Empresa;
+	}
+	objData->Close();
+	CerrarConexion();
+	return nombreEmpresa;
+}
+
 int CVController::EstadoCV(String^ dniProfe) {
 	List<CV^>^ listaCVsEncontrados = gcnew List<CV^>();
 	array<String^>^ lineas = File::ReadAllLines("CVs.txt");
@@ -147,5 +173,23 @@ int CVController::EstadoCV(String^ dniProfe) {
 			break;
 		}
 	}
+	return aprobado;
+}
+
+int CVController::EstadoCV_BD(String^ dniProfe) {
+	AbrirConexion();
+	int aprobado = 0;
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from CVs where DNI='" + dniProfe + "';";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+	if (objData->Read()) {
+		String^ EstadoCV = safe_cast<String^>(objData["EstadoCV"]);
+		if (EstadoCV == "Aprobado") {
+			aprobado = 1;
+		}
+	}
+	objData->Close();
+	CerrarConexion();
 	return aprobado;
 }
