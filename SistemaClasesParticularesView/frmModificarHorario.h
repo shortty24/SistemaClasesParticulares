@@ -384,13 +384,6 @@ private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sende
 		HorarioController^ objGestorHorario = gcnew HorarioController();
 		List<Horario^>^ listaHorarioProfesores = objGestorHorario->CargarHorariosDesdeArchivoBD();
 		List<String^>^ listaHoras = gcnew List<String^>(); //para la opción de que Lista Horario sí tenga elemento en el txt
-		List<String^>^ listaHoras1 = gcnew List<String^>();
-		List<String^>^ listaHoras2 = gcnew List<String^>();
-		List<String^>^ listaHoras3 = gcnew List<String^>();
-		List<String^>^ listaHoras4 = gcnew List<String^>();
-		List<String^>^ listaHoras5 = gcnew List<String^>();
-		List<String^>^ listaHoras6 = gcnew List<String^>();
-		List<String^>^ listaHoras7 = gcnew List<String^>();
 		String^ lineaTexto;
 		
 
@@ -410,13 +403,6 @@ private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sende
 							listaHoras->Add("-");
 						}
 					}
-
-					lineaTexto = objHorario->dniProfesor + ";" + objHorario->dia;
-
-					for (int k = 0; k < 24; k++) {
-						lineaTexto = lineaTexto + ";" + listaHoras[k];
-					}
-					listaHoras->Clear();
 				}
 				else if (this->groupBox13->Text == objHorario->dia) {
 					for (int j = 0; j < 24; j++) {
@@ -427,13 +413,6 @@ private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sende
 							listaHoras->Add("-");
 						}
 					}
-
-					lineaTexto = objHorario->dniProfesor + ";" + objHorario->dia;
-
-					for (int k = 0; k < 24; k++) {
-						lineaTexto = lineaTexto + ";" + listaHoras[k];
-					}
-					listaHoras->Clear();
 				}
 				else if (this->groupBox11->Text == objHorario->dia) {
 					for (int j = 0; j < 24; j++) {
@@ -444,13 +423,6 @@ private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sende
 							listaHoras->Add("-");
 						}
 					}
-
-					lineaTexto = objHorario->dniProfesor + ";" + objHorario->dia;
-
-					for (int k = 0; k < 24; k++) {
-						lineaTexto = lineaTexto + ";" + listaHoras[k];
-					}
-					listaHoras->Clear();
 				}
 				else if (this->groupBox14->Text == objHorario->dia) {
 					for (int j = 0; j < 24; j++) {
@@ -461,13 +433,6 @@ private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sende
 							listaHoras->Add("-");
 						}
 					}
-
-					lineaTexto = objHorario->dniProfesor + ";" + objHorario->dia;
-
-					for (int k = 0; k < 24; k++) {
-						lineaTexto = lineaTexto + ";" + listaHoras[k];
-					}
-					listaHoras->Clear();
 				}
 				else if (this->groupBox12->Text == objHorario->dia) {
 					for (int j = 0; j < 24; j++) {
@@ -478,13 +443,6 @@ private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sende
 							listaHoras->Add("-");
 						}
 					}
-
-					lineaTexto = objHorario->dniProfesor + ";" + objHorario->dia;
-
-					for (int k = 0; k < 24; k++) {
-						lineaTexto = lineaTexto + ";" + listaHoras[k];
-					}
-					listaHoras->Clear();
 				}
 				else if (this->groupBox10->Text == objHorario->dia) {
 					for (int j = 0; j < 24; j++) {
@@ -495,13 +453,6 @@ private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sende
 							listaHoras->Add("-");
 						}
 					}
-
-					lineaTexto = objHorario->dniProfesor +  ";" + objHorario->dia;
-
-					for (int k = 0; k < 24; k++) {
-						lineaTexto = lineaTexto + ";" + listaHoras[k];
-					}
-					listaHoras->Clear();
 				}
 				else if (this->groupBox9->Text == objHorario->dia) {
 					for (int j = 0; j < 24; j++) {
@@ -512,24 +463,17 @@ private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sende
 							listaHoras->Add("-");
 						}
 					}
-
-					lineaTexto = objHorario->dniProfesor + ";" + objHorario->dia;
-
-					for (int k = 0; k < 24; k++) {
-						lineaTexto = lineaTexto + ";" + listaHoras[k];
-					}
-					listaHoras->Clear();
-				}
-				else {
-					lineaTexto = objHorario->dniProfesor + ";" + objHorario->dia;
-					for (int l = 0; l < objHorario->horasDisponibles->Count; l++) {
-						lineaTexto = lineaTexto + ";" + objHorario->horasDisponibles[l];
-					}
 				}
 
+				lineaTexto = objHorario->dniProfesor + ";" + objHorario->dia;
+
+				for (int k = 0; k < 24; k++) {
+					lineaTexto = lineaTexto + ";" + listaHoras[k];
+				}
+
+				listaHoras->Clear();
 				listaHorariosModificados1[i] = lineaTexto;
 			}
-
 
 			int m = 0;
 			array<String^>^ lineasArchivoPersonas = gcnew array<String^>(listaHorarioProfesores->Count);
@@ -545,29 +489,26 @@ private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sende
 						lineasArchivoPersonas[i] = lineasArchivoPersonas[i] + ";" + objHorario->horasDisponibles[j];
 					}
 				}
-				//File::WriteAllLines("Horarios.txt", lineasArchivoPersonas);
 			}
 			objGestorHorario->actualizarHorariosBD(lineasArchivoPersonas);	
 		}
 		else {
-			array<String^>^ listaHorariosModificados2 = gcnew array<String^>(7);
-			//int m = 0;
 			for (int i = 0; i < 7; i++) {
 				if ((i == 0)) {
 					if (checkedListBox1->CheckedItems->Count != 0){
 						for (int j = 0; j < 24; j++) {
 							if (checkedListBox1->GetItemChecked(j)) {
-								listaHoras1->Add(Convert::ToString(j));
+								listaHoras->Add(Convert::ToString(j));
 							}
 							else {
-								listaHoras1->Add("-");
+								listaHoras->Add("-");
 							}
 						}
 
 						lineaTexto = this->dniProfesor + ";" + this->groupBox15->Text;
 
 						for (int k = 0; k < 24; k++) {
-							lineaTexto = lineaTexto + ";" + listaHoras1[k];
+							lineaTexto = lineaTexto + ";" + listaHoras[k];
 						}
 						listaHoras->Clear();
 					}
@@ -584,18 +525,19 @@ private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sende
 					if (checkedListBox2->CheckedItems->Count != 0){
 						for (int j = 0; j < 24; j++) {
 							if (checkedListBox2->GetItemChecked(j)) {
-								listaHoras2->Add(Convert::ToString(j));
+								listaHoras->Add(Convert::ToString(j));
 							}
 							else {
-								listaHoras2->Add("-");
+								listaHoras->Add("-");
 							}
 						}
 
 						lineaTexto = this->dniProfesor + ";" + this->groupBox13->Text;
 
 						for (int k = 0; k < 24; k++) {
-							lineaTexto = lineaTexto + ";" + listaHoras2[k];
+							lineaTexto = lineaTexto + ";" + listaHoras[k];
 						}
+						listaHoras->Clear();
 					}
 					else {
 						lineaTexto = this->dniProfesor + ";" + this->groupBox13->Text;
@@ -610,17 +552,17 @@ private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sende
 					if (checkedListBox3->CheckedItems->Count != 0){
 						for (int j = 0; j < 24; j++) {
 							if (checkedListBox3->GetItemChecked(j)) {
-								listaHoras3->Add(Convert::ToString(j));
+								listaHoras->Add(Convert::ToString(j));
 							}
 							else {
-								listaHoras3->Add("-");
+								listaHoras->Add("-");
 							}
 						}
 
 						lineaTexto = this->dniProfesor + ";" + this->groupBox11->Text;
 
 						for (int k = 0; k < 24; k++) {
-							lineaTexto = lineaTexto + ";" + listaHoras3[k];
+							lineaTexto = lineaTexto + ";" + listaHoras[k];
 						}
 						listaHoras->Clear();
 					}
@@ -638,17 +580,17 @@ private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sende
 					if (checkedListBox6->CheckedItems->Count != 0){
 						for (int j = 0; j < 24; j++) {
 							if (checkedListBox6->GetItemChecked(j)) {
-								listaHoras4->Add(Convert::ToString(j));
+								listaHoras->Add(Convert::ToString(j));
 							}
 							else {
-								listaHoras4->Add("-");
+								listaHoras->Add("-");
 							}
 						}
 
 						lineaTexto = this->dniProfesor + ";" + this->groupBox14->Text;
 
 						for (int k = 0; k < 24; k++) {
-							lineaTexto = lineaTexto + ";" + listaHoras4[k];
+							lineaTexto = lineaTexto + ";" + listaHoras[k];
 						}
 						listaHoras->Clear();
 					}
@@ -666,17 +608,17 @@ private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sende
 					if (checkedListBox5->CheckedItems->Count != 0){
 						for (int j = 0; j < 24; j++) {
 							if (checkedListBox5->GetItemChecked(j)) {
-								listaHoras5->Add(Convert::ToString(j));
+								listaHoras->Add(Convert::ToString(j));
 							}
 							else {
-								listaHoras5->Add("-");
+								listaHoras->Add("-");
 							}
 						}
 
 						lineaTexto = this->dniProfesor + ";" + this->groupBox12->Text;
 
 						for (int k = 0; k < 24; k++) {
-							lineaTexto = lineaTexto + ";" + listaHoras5[k];
+							lineaTexto = lineaTexto + ";" + listaHoras[k];
 						}
 						listaHoras->Clear();
 					}
@@ -695,17 +637,17 @@ private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sende
 					if (checkedListBox4->CheckedItems->Count != 0){
 						for (int j = 0; j < 24; j++) {
 							if (checkedListBox4->GetItemChecked(j)) {
-								listaHoras6->Add(Convert::ToString(j));
+								listaHoras->Add(Convert::ToString(j));
 							}
 							else {
-								listaHoras6->Add("-");
+								listaHoras->Add("-");
 							}
 						}
 
 						lineaTexto = this->dniProfesor + ";" + this->groupBox10->Text;
 
 						for (int k = 0; k < 24; k++) {
-							lineaTexto = lineaTexto + ";" + listaHoras6[k];
+							lineaTexto = lineaTexto + ";" + listaHoras[k];
 						}
 						listaHoras->Clear();
 					}
@@ -723,17 +665,17 @@ private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sende
 					if (checkedListBox7->CheckedItems->Count != 0){
 						for (int j = 0; j < 24; j++) {
 							if (checkedListBox7->GetItemChecked(j)) {
-								listaHoras7->Add(Convert::ToString(j));
+								listaHoras->Add(Convert::ToString(j));
 							}
 							else {
-								listaHoras7->Add("-");
+								listaHoras->Add("-");
 							}
 						}
 
 						lineaTexto = this->dniProfesor + ";" + this->groupBox9->Text;
 
 						for (int k = 0; k < 24; k++) {
-							lineaTexto = lineaTexto + ";" + listaHoras7[k];
+							lineaTexto = lineaTexto + ";" + listaHoras[k];
 						}
 						listaHoras->Clear();
 					}

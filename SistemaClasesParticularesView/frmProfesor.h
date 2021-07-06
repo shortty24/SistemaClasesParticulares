@@ -811,7 +811,7 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 
 		this->dataGridView4->Rows->Clear();
 
-		//TAB PERFIL
+		/*TAB PERFIL*/
 		array<String^>^ fila = gcnew array<String^>(4);
 		fila[0] = ProfesorLogeado->dni;
 		fila[1] = ProfesorLogeado->objNombre;
@@ -819,38 +819,21 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 		fila[3] = ProfesorLogeado->objApellidoMaterno;
 		this->dataGridView4->Rows->Add(fila);
 
-		//TAB ACTIVIDADES
+		/*TAB ACTIVIDADES*/
 		List<Clase^>^ listaClasesProgramadas;
 		ClaseController^ objGestorLista = gcnew ClaseController();
 		listaClasesProgramadas = objGestorLista->ClasesProgramadasxProfesorBD(ProfesorLogeado->dni);
-		
-		/*List<String^>^ fechas;
-		for (int i = 0; i < listaClasesProgramadas->Count; i++) {	
-			Clase^ objClase = listaClasesProgramadas[i];
-			fechas->Add(objClase->fechaClase);
-		}*/
-		
-		//List<Clase^>^ listaClasesProgramadasOrdenada;
-		//listaClasesProgramadasOrdenada = objGestorLista->ClasesProgramadasOrdenadas(fechas, ProfesorLogeado->dni);
-
-		//objGestorLista->OrdenarLista(fechas, listaClasesProgramadas);
 
 		mostrarGrillaClases(listaClasesProgramadas);
 
-		//TAB QUEJAS Y/O RECOMENDACIÓN
+		/*TAB QUEJAS Y/O RECOMENDACIÓN*/
 		this->textBox1->Text = ProfesorLogeado->dni;
 		
 
-		//TAB CONFIGURACIÓN
-		/*
-		List<Horario^>^ listaHorarioDisponible;
-		HorarioController^ objGestorHorario = gcnew HorarioController();
-		listaHorarioDisponible = objGestorHorario->HorarioxProfesorBD(ProfesorLogeado->dni);
-		*/
-
+		/*TAB CONFIGURACIÓN*/
 		List<Curso^>^ listaCursos;
 		CursoController^ objGestorCurso = gcnew CursoController();
-		listaCursos = objGestorCurso->CursosxUsusarioProfesor(ProfesorLogeado->objUsuario);
+		listaCursos = objGestorCurso->CursosxUsusarioProfesorBD(ProfesorLogeado->objUsuario);
 		mostrarGrillaCursos(listaCursos);
 	}
 
@@ -895,9 +878,10 @@ private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e
 		String^ Precio = this->textBox5->Text;
 		Curso^ objCurso = gcnew Curso(CursoParaAñadir, Precio, Dificultad, ProfesorLogeado->objUsuario);
 		CursoController^ objGestorCurso = gcnew CursoController();
-		objGestorCurso->AñadirCurso(objCurso);
+		objGestorCurso->AñadirCursoBD(objCurso);
 		MessageBox::Show("El curso se ha sido añadido con éxito");
-		List<Curso^>^ listaCursos = objGestorCurso->CursosxUsusarioProfesor(ProfesorLogeado->objUsuario);
+
+		List<Curso^>^ listaCursos = objGestorCurso->CursosxUsusarioProfesorBD(ProfesorLogeado->objUsuario);
 		mostrarGrillaCursos(listaCursos);
 	}
 
