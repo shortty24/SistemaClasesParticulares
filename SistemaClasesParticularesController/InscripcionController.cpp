@@ -266,6 +266,7 @@ void InscripcionController::ModificaEstadoBonoxAlumno_BD(String^ dniAlumnoBuscar
 	SqlCommand^ objQuery1 = gcnew SqlCommand();
 	objQuery1->Connection = this->objConexion;
 	objQuery1->CommandText = "update Bonus set Estado = 'Canjeado' where DNI='" + dniAlumnoBuscar + "';";
+	objQuery1->ExecuteNonQuery();
 	CerrarConexion();
 }
 String^ InscripcionController::codigoInsxProfesorxDiaxHora(String^ dniProfesorBuscar, String^ diafechaClase,String^horaInicioBuscar){

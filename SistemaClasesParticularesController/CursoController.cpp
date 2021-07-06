@@ -114,6 +114,28 @@ List<Curso^>^ CursoController::CursosDisponibles_BD() {
 	return this->listaCursos;
 }
 
+List<Curso^>^ CursoController::CursosDisponiblesxNombre_BD(String^ nombreDelCurso) {
+	this->listaCursos->Clear();
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from CursosDisponiblesProyecto;";
+	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
+	while (objData->Read()) {
+		String^ NombreCurso = safe_cast<String^>(objData[0]);
+		String^ PrecioCurso = safe_cast<String^>(objData[1]);
+		String^ Dificultad = safe_cast<String^>(objData[2]);
+		String^ UsuarioProfesor = safe_cast<String^>(objData[3]);
+		if (NombreCurso == nombreDelCurso) {
+			Curso^ objCurso = gcnew Curso(NombreCurso, PrecioCurso, Dificultad, UsuarioProfesor);
+			this->listaCursos->Add(objCurso);
+		}
+	}
+	objData->Close();
+	CerrarConexion();
+
+	return this->listaCursos;
+}
 
 /*Métodos con archivos .txt*/
 void CursoController::CargarCursosDesdeArchivo() {
@@ -167,6 +189,7 @@ List<Curso^>^ CursoController::CursosDisponiblesxNombre(String^ nombreDelCurso) 
 	}
 	return this->listaCursos;
 }
+
 Curso^ CursoController::CursoDisponiblexNombrexProfesor(String^ nombreDelCurso, String^ usuarioProfe) {
 	Curso^ cursoEncontrado;
 	array<String^>^ lineas = File::ReadAllLines("CursosDisponibles.txt");

@@ -18,6 +18,7 @@ namespace SistemaClasesParticularesController {
 			void CerrarConexion();
 			Profesor^ buscaProfesorxDNI_BD(String^ dniProfesor);
 			String^ obtenerUsuarioxNombreCompleto_BD(String^ nombreCompleto);
+			String^ obtenerdnixNombreCompleto_BD(String^ nombreCompleto);
 
 			/*Métodos con archivos .txt*/
 			Profesor^ buscaProfesor(String^ usuarioProfesor);

@@ -146,6 +146,14 @@ void QuejasController::generarQuejaxAlumno(String^ dniProfesorQueja, String^ dni
 	File::WriteAllLines("Quejas.txt", lineasArchivoQuejas);
 }
 
+void QuejasController::generarQuejaxAlumno_BD(String^ dniProfesorQueja, String^ dniAlumnoQueja, String^ motivo) {
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "Insert into Quejas values ('" + dniProfesorQueja + "','" + motivo + "','" + dniAlumnoQueja + "','" + "Por Revisar" "');";
+	objQuery->ExecuteNonQuery();
+	CerrarConexion();
+}
 
 void QuejasController::generarQuejaxProfesor(String^ dniAgresor, String^ dniAgraviado, String^ motivo) {
 

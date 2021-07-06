@@ -750,7 +750,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	String^ nombreDelCurso = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
 	ProfesorController^ gestorProfesor = gcnew ProfesorController();
 	String^ dniProfesor;
-	dniProfesor = gestorProfesor->obtenerdnixNombreCompleto(nombreProfSeleccionado);
+	dniProfesor = gestorProfesor->obtenerdnixNombreCompleto_BD(nombreProfSeleccionado);
 	frmInscripcion^ ventanaInscripcion = gcnew frmInscripcion(dniProfesor, nombreDelCurso, AlumnoLogeado);
 	ventanaInscripcion->ShowDialog();
 
@@ -760,7 +760,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 
 	for (int i = 0; i < listaInsc->Count; i++) {
 		Inscripcion^ objInsc = listaInsc[i];
-		Profesor^ objProfesor = gestorProfesor->buscaProfesor(objInsc->objCurso->usuarioProfesor);
+		Profesor^ objProfesor = gestorProfesor->buscaProfesor(objInsc->objCurso->usuarioProfesor);//BD
 		array<String^>^ fila = gcnew array<String^>(7);
 		fila[0] = objInsc->codigoIns;
 		fila[1] = objInsc->objCurso->nombreCurso;
@@ -793,13 +793,13 @@ private: System::Void dataGridView1_CellContentClick(System::Object^ sender, Sys
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ nombreSeleccinado = this->comboBox1->Text;
 	CursoController^ gestorDatosCurso = gcnew CursoController();
-	List<Curso^>^ listaCursosSeleccionados = gestorDatosCurso->CursosDisponiblesxNombre(nombreSeleccinado);
+	List<Curso^>^ listaCursosSeleccionados = gestorDatosCurso->CursosDisponiblesxNombre_BD(nombreSeleccinado);
 
 	mostrarGrillaxLista(listaCursosSeleccionados);
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 	QuejasController^ gestorQueja = gcnew QuejasController();
-	gestorQueja->generarQuejaxAlumno(this->textBox2->Text,this->textBox1->Text, this->comboBox2->Text);
+	gestorQueja->generarQuejaxAlumno_BD(this->textBox2->Text,this->textBox1->Text, this->comboBox2->Text);
 	MessageBox::Show("Se realizó la queja con éxito.");
 }
 private: void mostrarGrillaxLista(List<Curso^>^ listaCursos) {
