@@ -840,9 +840,11 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 		
 
 		//TAB CONFIGURACIÓN
+		/*
 		List<Horario^>^ listaHorarioDisponible;
 		HorarioController^ objGestorHorario = gcnew HorarioController();
-		listaHorarioDisponible = objGestorHorario->HorarioxProfesor(ProfesorLogeado->dni);
+		listaHorarioDisponible = objGestorHorario->HorarioxProfesorBD(ProfesorLogeado->dni);
+		*/
 
 		List<Curso^>^ listaCursos;
 		CursoController^ objGestorCurso = gcnew CursoController();
@@ -852,25 +854,9 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 
 private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ e) {
 }
-	private: System::Void button18_Click(System::Object^ sender, System::EventArgs^ e) {
-
-		//String^ UsuarioProfesorEditar = this->textBox14->Text;
-		//String^ ContrasenhaProfesorEditar = this->textBox13->Text;
-		//frmEditarAccesoProfesor^ ventanaEditarAccesoProfesor= gcnew frmEditarAccesoProfesor(UsuarioProfesorEditar, ContrasenhaProfesorEditar);
-		//ventanaEditarAccesoProfesor->ShowDialog();
-		/*PartidoPoliticoController^ gestorPartidoPolitico = gcnew PartidoPoliticoController();
-		gestorPartidoPolitico->CargarPartidosDesdeArchivo();
-		List<PartidoPolitico^>^ objListaPartidos = gestorPartidoPolitico->obtenerListaPartidos();
-		mostrarGrilla(objListaPartidos);*/
-	}
-
+private: System::Void button18_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
-	//frmNuevoHorario^ ventanaNuevoHorario= gcnew frmNuevoHorario();
-	//ventanaNuevoHorario->ShowDialog();
-	/*PartidoPoliticoController^ gestorPartidoPolitico = gcnew PartidoPoliticoController();
-	gestorPartidoPolitico->CargarPartidosDesdeArchivo();
-	List<PartidoPolitico^>^ objListaPartidos = gestorPartidoPolitico->obtenerListaPartidos();
-	mostrarGrilla(objListaPartidos);*/
 }
 
 private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -889,21 +875,18 @@ private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e
 	}  
 	
 }
-private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	
+
+private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {	
 }
-private: System::Void button17_Click(System::Object^ sender, System::EventArgs^ e) {
-	//int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
-	//int codigoPartidoEditar = Convert::ToInt32(this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString());
-	frmModificarHorario^ ventanaModificarHorario= gcnew frmModificarHorario(ProfesorLogeado->dni);
-	ventanaModificarHorario->ShowDialog();
-	/*PartidoPoliticoController^ gestorPartidoPolitico = gcnew PartidoPoliticoController();
-	gestorPartidoPolitico->CargarPartidosDesdeArchivo();
-	List<PartidoPolitico^>^ objListaPartidos = gestorPartidoPolitico->obtenerListaPartidos();
-	mostrarGrilla(objListaPartidos);*/
-}
+
+	private: System::Void button17_Click(System::Object^ sender, System::EventArgs^ e) {
+		frmModificarHorario^ ventanaModificarHorario= gcnew frmModificarHorario(ProfesorLogeado->dni);
+		ventanaModificarHorario->ShowDialog();
+	}
+
 private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e) {
 }
+
 	private: System::Void button16_Click(System::Object^ sender, System::EventArgs^ e) {
 		String^ CursoParaAñadir = this->textBox12->Text;
 		String^ Dificultad = this->comboBox1->Text;
@@ -914,8 +897,8 @@ private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e
 		MessageBox::Show("El curso se ha sido añadido con éxito");
 		List<Curso^>^ listaCursos = objGestorCurso->CursosxUsusarioProfesor(ProfesorLogeado->objUsuario);
 		mostrarGrillaCursos(listaCursos);
-		
 	}
+
 private: System::Void button9_Click_1(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {

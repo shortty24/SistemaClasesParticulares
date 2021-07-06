@@ -20,41 +20,6 @@ void PagoController::CerrarConexion() {
 	this->objConexion->Close();
 }
 
-/*Pago^ PagoController::buscarPagoxCodigoPagoBD(String^ CodigoClase) {
-	Pago^ objPagoEncontrado;
-	AbrirConexion();
-	SqlCommand^ objQuery = gcnew SqlCommand();
-	objQuery->Connection = this->objConexion;
-	objQuery->CommandText = "select * from PagosProyecto where = " + dniProfesorBuscar + ";";
-	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader
-	while (objData->Read()) {
-		String^ DNIAlumno = safe_cast<String^>(objData[0]);
-		String^ DNIProfesor = safe_cast<String^>(objData[1]);
-		String^ Curso = safe_cast<String^>(objData[2]);
-		String^ HoraClase = safe_cast<String^>(objData[3]);
-		String^ FechaClase = safe_cast<String^>(objData[4]);
-		String^ Link = safe_cast<String^>(objData[5]);
-		int CodigoClase = safe_cast<int>(objData[6]);
-		Pago^ objPago = buscarPagoxcodigoPagoBD(CodigoClase);
-		String^ EstadoLink = safe_cast<String^>(objData[7]);
-		String^ EstadoPagoProfesor = safe_cast<String^>(objData[8]);
-
-		String^ codigoinscripcion = palabras[0];
-		Inscripcion^ objInscripcion = buscarInscripcionxcodigo(codigoinscripcion);
-		String^ estadopago = palabras[1];
-		String^ horaPago = palabras[2];
-		String^ fechaPago = palabras[3];
-		String^ codigoPago = palabras[4];
-		String^ estadoclase = palabras[5];
-
-		Clase^ objClase = gcnew Clase(DNIAlumno, DNIProfesor, Curso, HoraClase, FechaClase, Link, CodigoClase, EstadoLink, EstadoPagoProfesor);
-		listaClases->Add(objClase);
-	}
-	objData->Close();
-	CerrarConexion();
-
-	return objPagoEncontrado;
-}*/
 
 /*Métdos con archivos .txt*/
 List<Pago^>^ PagoController::buscarClasesxEstado(String^ estadoBuscar) {
