@@ -17,6 +17,7 @@ namespace SistemaClasesParticularesController {
 		Curso^ CursoDisponiblexNombrexProfesor(String^ nombreDelCurso, String^ usuarioProfe);
 		List<Curso^>^ CursosxUsusarioProfesor(String^ usuarioProfesor);
 		void AñadirCurso(Curso^ objCurso);
+		Curso^ buscarCursoxNombreCursoBD(String^ cursoBuscar);
 
 		/*Métodos con base de datos*/
 		void AbrirConexion();

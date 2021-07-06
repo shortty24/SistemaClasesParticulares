@@ -55,82 +55,21 @@ namespace SistemaClasesParticularesView {
 
 	private: System::Windows::Forms::TabPage^ tabPage2;
 	private: System::Windows::Forms::GroupBox^ groupBox2;
-
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
-
-
-
-
 	private: System::Windows::Forms::GroupBox^ groupBox1;
 	private: System::Windows::Forms::Button^ button8;
-
-
-
-
-
-
-
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::TextBox^ textBox3;
 	private: System::Windows::Forms::Label^ label3;
-
-
-
-
-
-
 	private: System::Windows::Forms::TabControl^ tabControl1;
-
 	private: System::Windows::Forms::TabPage^ tabPage1;
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::TabPage^ tabPage3;
-
-
-
 	private: System::Windows::Forms::TabPage^ tabPage5;
-
 	private: System::Windows::Forms::GroupBox^ groupBox3;
-
 	private: System::Windows::Forms::Label^ label9;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::GroupBox^ groupBox5;
 	private: System::Windows::Forms::TextBox^ textBox12;
-
 	private: System::Windows::Forms::Label^ label11;
-
-
 	private: Persona^ Usuario;
 	private: Persona^ Contrasenha;
 
@@ -747,6 +686,7 @@ private: System::Windows::Forms::TextBox^ textBox6;
 			this->Name = L"frmProfesor";
 			this->Text = L"Profesor";
 			this->Load += gcnew System::EventHandler(this, &frmProfesor::frmProfesor_Load);
+			this->Shown += gcnew System::EventHandler(this, &frmProfesor::frmProfesor_Shown);
 			this->tabPage2->ResumeLayout(false);
 			this->groupBox2->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
@@ -809,9 +749,8 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 
 	private: System::Void frmProfesor_Load(System::Object^ sender, System::EventArgs^ e) {
 
-		this->dataGridView4->Rows->Clear();
-
 		/*TAB PERFIL*/
+		this->dataGridView4->Rows->Clear();
 		array<String^>^ fila = gcnew array<String^>(4);
 		fila[0] = ProfesorLogeado->dni;
 		fila[1] = ProfesorLogeado->objNombre;
@@ -819,12 +758,13 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 		fila[3] = ProfesorLogeado->objApellidoMaterno;
 		this->dataGridView4->Rows->Add(fila);
 
+
 		/*TAB ACTIVIDADES*/
-		List<Clase^>^ listaClasesProgramadas;
+		List<Clase^>^ listaClasesProgramadas;	
 		ClaseController^ objGestorLista = gcnew ClaseController();
 		listaClasesProgramadas = objGestorLista->ClasesProgramadasxProfesorBD(ProfesorLogeado->dni);
-
 		mostrarGrillaClases(listaClasesProgramadas);
+
 
 		/*TAB QUEJAS Y/O RECOMENDACIÓN*/
 		this->textBox1->Text = ProfesorLogeado->dni;
@@ -835,6 +775,7 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 		CursoController^ objGestorCurso = gcnew CursoController();
 		listaCursos = objGestorCurso->CursosxUsusarioProfesorBD(ProfesorLogeado->objUsuario);
 		mostrarGrillaCursos(listaCursos);
+
 	}
 
 private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -897,5 +838,13 @@ private: System::Void button10_Click(System::Object^ sender, System::EventArgs^ 
 }
 private: System::Void textBox6_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
+	private: System::Void frmProfesor_Shown(System::Object^ sender, System::EventArgs^ e) {
+		/*VENTANA EMERGENTE*/
+		ClaseController^ objGestorClase = gcnew ClaseController();
+		Clase^ objClase = objGestorClase->obtenerProximaClase();
+		MessageBox::Show("Recuerde que el " + objClase->fechaClase + " tiene una clase programada con el alumno " + objClase->objAlumno->objNombre + " " + objClase->objAlumno->objApellidoPaterno +
+			" " + objClase->objAlumno->objApellidoMaterno + " a las " + objClase->horaClase + ":00 horas");
+
+	}
 };
 }

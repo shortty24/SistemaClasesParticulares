@@ -13,12 +13,15 @@ namespace SistemaClasesParticularesController {
 			SqlConnection^ objConexion;
 		public:
 			ProfesorController();
+			/*Métodos con base de datos*/
+			void AbrirConexion();
+			void CerrarConexion();
+
+			/*Métodos con archivos .txt*/
 			Profesor^ buscaProfesor(String^ usuarioProfesor);
 			String^ obtenerUsuarioxNombreCompleto(String^ nombreCompleto);
 			String^ obtenerdnixNombreCompleto(String^ nombreCompleto);
 			Profesor^ buscaProfesorxDNI(String^ dniProfe);
-			void AbrirConexion();
-			void CerrarConexion();
 			Profesor^ buscaProfesorxDNI_BD(String^ dniProfesor);
 
 	};

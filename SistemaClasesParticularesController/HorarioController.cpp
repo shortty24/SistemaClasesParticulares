@@ -195,6 +195,7 @@ void HorarioController::insertarHorariosBD(String^ lineaTexto){
 }
 
 
+
 /*Métodos con archivos .txt*/
 List<Horario^>^ HorarioController::CargarHorariosDesdeArchivo() {
 	List<Horario^>^ listaHorarios = gcnew List<Horario^>();

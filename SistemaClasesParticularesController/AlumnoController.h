@@ -11,11 +11,15 @@ namespace SistemaClasesParticularesController {
 			SqlConnection^ objConexion;
 		public:
 			AlumnoController();
-			Alumno^ buscaAlumno(String^ usuarioAlumno);
-			Alumno^ buscaAlumnoxDNI(String^ dniAlumno);
+			/*Métodos con base de datos*/
 			void AbrirConexion();
 			void CerrarConexion();
 			Alumno^ buscaAlumnoBD(String^ usuarioAlumno);
 			Alumno^ buscaAlumnoxDNI_BD(String^ dniAlumno);
+
+			/*Métodos con archivos .txt*/
+			Alumno^ buscaAlumno(String^ usuarioAlumno);
+			Alumno^ buscaAlumnoxDNI(String^ dniAlumno);
+
 	};
 }

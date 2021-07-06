@@ -70,7 +70,26 @@ void CursoController::AñadirCursoBD(Curso^ objCurso) {
 	CerrarConexion();
 }
 
+Curso^ CursoController::buscarCursoxNombreCursoBD(String^ cursoBuscar) {
+	Curso^ objCurso;
+	AbrirConexion();
+	Profesor^ objProfesorEncontrado;
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from CursosDisponiblesProyecto where NombreCurso='" + cursoBuscar + "';";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+	if (objData->Read()) {
+		String^ NombreCurso = safe_cast<String^>(objData[0]);
+		String^ PrecioCurso = safe_cast<String^>(objData[1]);
+		String^ Dificultad = safe_cast<String^>(objData[2]);
+		String^ UsuarioProfesor = safe_cast<String^>(objData[3]);
 
+		objCurso = gcnew Curso(NombreCurso, PrecioCurso, Dificultad, UsuarioProfesor);
+	}
+	objData->Close();
+	CerrarConexion();
+	return objCurso;
+}
 
 
 /*Métodos con archivos .txt*/

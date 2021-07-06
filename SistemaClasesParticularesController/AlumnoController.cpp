@@ -16,6 +16,7 @@ void AlumnoController::AbrirConexion() {
 void AlumnoController::CerrarConexion() {
 	this->objConexion->Close();
 }
+
 Alumno^ AlumnoController::buscaAlumno(String^usuarioAlumno) {
 	Alumno^ objAlumnoEncontrado;
 	array<String^>^ lineas = File::ReadAllLines("Personas.txt");

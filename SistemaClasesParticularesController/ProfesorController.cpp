@@ -30,9 +30,10 @@ Profesor^ ProfesorController::buscaProfesor(String^ usuarioProfesor) {
 		String^ apellidoPaterno = safe_cast<String^>(objData["ApellidoPaterno"]);
 		String^ apellidoMaterno = safe_cast<String^>(objData["ApellidoMaterno"]);
 		String^ nombre = safe_cast<String^>(objData["Nombre"]);
-		objData->Close();
+		
 		objProfesorEncontrado = gcnew Profesor(dni, usuario, contrasenha, apellidoPaterno, apellidoMaterno, nombre);
 	}
+	objData->Close();
 	CerrarConexion();
 	return objProfesorEncontrado;
 }
