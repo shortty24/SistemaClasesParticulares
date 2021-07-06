@@ -17,8 +17,7 @@ namespace SistemaClasesParticularesController {
 			void CerrarConexion();
 			List<Horario^>^ CargarHorariosDesdeArchivoBD();
 			List<Horario^>^ HorarioxProfesorBD(String^ dniProfesorBuscar);
-			void actualizarHorariosBD(List<String^>^ listaHorarios);
-			void actualizarHorariosBD2(array<String^>^ listaHorarios);
+			void actualizarHorariosBD(array<String^>^ listaHorarios);
 			void insertarHorariosBD(String^ lineaTexto);
 
 			/*Métodos con archivos .txt*/
