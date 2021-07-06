@@ -58,7 +58,7 @@ List<Clase^>^ ClaseController::ClasesProgramadasxProfesorBD(String^ dniProfesorB
 	return listaClases;
 }
 
-Clase^ ClaseController::obtenerProximaClase() {
+Clase^ ClaseController::obtenerProximaClase(String^ DniProfesor) {
 	AlumnoController^ objGestorClase = gcnew AlumnoController();
 	ProfesorController^ objGestorProfesor = gcnew ProfesorController();
 	CursoController^ objGestorCurso = gcnew CursoController();
@@ -66,7 +66,7 @@ Clase^ ClaseController::obtenerProximaClase() {
 	AbrirConexion();
 	SqlCommand^ objQuery = gcnew SqlCommand();
 	objQuery->Connection = this->objConexion;
-	objQuery->CommandText = "select TOP 1 * from ClasesProyecto where EstadoPagoProfesor='cancelado' order by FechaClase;";
+	objQuery->CommandText = "select TOP 1 * from ClasesProyecto where DNIProfesor= '" + DniProfesor+ "'and EstadoPagoProfesor='cancelado' order by FechaClase;;";
 	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
 	while (objData->Read()) {
 		String^ DNIAlumno = safe_cast<String^>(objData[0]);

@@ -841,10 +841,11 @@ private: System::Void textBox6_TextChanged(System::Object^ sender, System::Event
 	private: System::Void frmProfesor_Shown(System::Object^ sender, System::EventArgs^ e) {
 		/*VENTANA EMERGENTE*/
 		ClaseController^ objGestorClase = gcnew ClaseController();
-		Clase^ objClase = objGestorClase->obtenerProximaClase();
-		MessageBox::Show("Recuerde que el " + objClase->fechaClase + " tiene una clase programada con el alumno " + objClase->objAlumno->objNombre + " " + objClase->objAlumno->objApellidoPaterno +
-			" " + objClase->objAlumno->objApellidoMaterno + " a las " + objClase->horaClase + ":00 horas");
-
+		Clase^ objClase = objGestorClase->obtenerProximaClase(ProfesorLogeado->dni);
+		if (objClase != nullptr) {
+			MessageBox::Show("Recuerde que el " + objClase->fechaClase + " tiene una clase programada con el alumno " + objClase->objAlumno->objNombre + " " + objClase->objAlumno->objApellidoPaterno +
+				" " + objClase->objAlumno->objApellidoMaterno + " a las " + objClase->horaClase + ":00 horas");
+		}
 	}
 };
 }
