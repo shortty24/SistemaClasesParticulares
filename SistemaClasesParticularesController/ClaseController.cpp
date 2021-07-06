@@ -1,5 +1,8 @@
 #include "ClaseController.h"
 #include "PagoController.h"
+#include "CursoController.h"
+#include "AlumnoController.h"
+#include "ProfesorController.h"
 
 using namespace SistemaClasesParticularesController;
 using namespace System;
@@ -341,6 +344,40 @@ List<Clase^>^ ClaseController::ClasesProgramadasxAlumno(String^ dniAlumnoBuscar)
 
 	}
 	return listaClasesProgramadas;
+}
+
+List<Clase^>^ ClaseController::ClasesProgramadasxAlumno_BD(String^ dniAlumnoBuscar) {
+	List<Clase^>^ listaClases = gcnew List<Clase^>();
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from ClasesProyecto where DNIAlumno= " + dniAlumnoBuscar + ";";
+	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
+	while (objData->Read()) {
+		String^ DNIAlumno = safe_cast<String^>(objData[0]);
+		String^ DNIProfesor = safe_cast<String^>(objData[1]);
+		String^ NombreCurso = safe_cast<String^>(objData[2]);
+		String^ HoraClase = safe_cast<String^>(objData[3]);
+		DateTime FechaClase = safe_cast<DateTime>(objData[4]);
+		String^ fechaInsTR = Convert::ToString(FechaClase.ToShortDateString());
+		String^ Link = safe_cast<String^>(objData[5]);
+		int CodigoClase = safe_cast<int>(objData[6]);
+		String^ EstadoLink = safe_cast<String^>(objData[7]);
+		String^ EstadoPagoProfesor = safe_cast<String^>(objData[8]);
+
+		AlumnoController^ gestorAlumno = gcnew AlumnoController();
+		Alumno^ objAlumno = gestorAlumno->buscaAlumnoxDNI_BD(DNIAlumno);
+		ProfesorController^ gestorProfesor = gcnew ProfesorController();
+		Profesor^ objProfesor = gestorProfesor->buscaProfesorxDNI_BD(DNIProfesor);//con BD
+		CursoController^ gestorCurso = gcnew CursoController();
+		Curso^ objCurso = gestorCurso->CursoDisponiblexNombrexProfesor_BD(NombreCurso, objProfesor->objUsuario);
+		Clase^ objClase = gcnew Clase(objAlumno, objProfesor, objCurso, HoraClase, fechaInsTR, Link);
+		listaClases->Add(objClase);
+	}
+	objData->Close();
+	CerrarConexion();
+
+	return listaClases;
 }
 
 

@@ -852,7 +852,7 @@ private: System::Void frmAlumno_Load(System::Object^ sender, System::EventArgs^ 
 	}
 
 	ClaseController^ gestorClase = gcnew ClaseController();
-	List<Clase^>^ listaClasesProgramadas = gestorClase->ClasesProgramadasxAlumno(AlumnoLogeado->dni);
+	List<Clase^>^ listaClasesProgramadas = gestorClase->ClasesProgramadasxAlumno_BD(AlumnoLogeado->dni);
 	this->dataGridView7->Rows->Clear();
 	for (int i = 0; i < listaClasesProgramadas->Count; i++) {
 		Clase^ objClase = listaClasesProgramadas[i];

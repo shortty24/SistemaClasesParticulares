@@ -159,7 +159,7 @@ Inscripcion^ InscripcionController::buscarInscripcionxcodigo_BD(int codigoInscri
 		ProfesorController^ gestorProfesor = gcnew ProfesorController();
 		Profesor^ objProfesor = gestorProfesor->buscaProfesorxDNI_BD(dniProfesor);//con BD
 		CursoController^ gestorCurso = gcnew CursoController();
-		Curso^ objCurso = gestorCurso->CursoDisponiblexNombrexProfesor(nombreCurso, objProfesor->objUsuario);
+		Curso^ objCurso = gestorCurso->CursoDisponiblexNombrexProfesor_BD(nombreCurso, objProfesor->objUsuario);
 		Inscripcion^ objIns = gcnew Inscripcion(objAlumno, objCurso, horaInscripcion, fechaInscripcionString, horasPedidas, horaInicio, fechaClaseString, codigoString);
 		objetoEncontrado = objIns;
 	}

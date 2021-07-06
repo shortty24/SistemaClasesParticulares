@@ -19,6 +19,7 @@ namespace SistemaClasesParticularesController {
 
 		void AbrirConexion();
 		void CerrarConexion();
+		Curso^ CursoDisponiblexNombrexProfesor_BD(String^ nombreDelCurso, String^ usuarioProfe);
 	};
 
 }

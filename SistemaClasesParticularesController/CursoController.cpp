@@ -90,6 +90,27 @@ Curso^ CursoController::CursoDisponiblexNombrexProfesor(String^ nombreDelCurso, 
 	return cursoEncontrado;
 }
 
+Curso^ CursoController::CursoDisponiblexNombrexProfesor_BD(String^ nombreDelCurso, String^ usuarioProfe) {
+	Curso^ cursoEncontrado;
+	AbrirConexion();
+	Inscripcion^ objetoEncontrado;
+	SqlCommand^ objQuery1 = gcnew SqlCommand();
+	objQuery1->Connection = this->objConexion;
+	objQuery1->CommandText = "select * from CursosDisponiblesProyecto where NombreCurso='" + nombreDelCurso + "'and UsuarioProfesor='"+ usuarioProfe + "';";
+	SqlDataReader^ objData1 = objQuery1->ExecuteReader();
+	if (objData1->Read()) {
+		String^ nombreCurso = safe_cast<String^>(objData1["NombreCurso"]);
+		String^ precio = safe_cast<String^>(objData1["PrecioCurso"]);
+		String^ dificultad = safe_cast<String^>(objData1["Dificultad"]);
+		String^ usuarioProfesor = safe_cast<String^>(objData1["UsuarioProfesor"]);
+		Curso^ objCurso = gcnew Curso(nombreCurso, precio, dificultad, usuarioProfesor);
+		cursoEncontrado = objCurso;
+	}
+	objData1->Close();
+	CerrarConexion();
+	return cursoEncontrado;
+}
+
 List<Curso^>^ CursoController::CursosxUsusarioProfesor(String^ usuarioProfesorBuscar) {
 	this->listaCursos->Clear();
 	array<String^>^ lineas = File::ReadAllLines("CursosDisponibles.txt");
