@@ -6,7 +6,19 @@ using namespace System::IO;
 
 CursoController::CursoController() {
 	this->listaCursos = gcnew List<Curso^>();
+	this->objConexion = gcnew SqlConnection();
 }
+
+void CursoController::AbrirConexion() {
+	/*La cadena conexion está compuesto de: Servidor BD, nombre de BD, usuario de BD y contraseña de BD*/
+	this->objConexion->ConnectionString = "Server=200.16.7.140;DataBase=a20165855;User ID=a20165855;Password=h7b3EJcM;";
+	this->objConexion->Open(); /*Ya establecí la conexión con la BD*/
+}
+
+void CursoController::CerrarConexion() {
+	this->objConexion->Close();
+}
+
 
 void CursoController::CargarCursosDesdeArchivo() {
 	this->listaCursos->Clear();
@@ -75,6 +87,27 @@ Curso^ CursoController::CursoDisponiblexNombrexProfesor(String^ nombreDelCurso, 
 			break;
 		}
 	}
+	return cursoEncontrado;
+}
+
+Curso^ CursoController::CursoDisponiblexNombrexProfesor_BD(String^ nombreDelCurso, String^ usuarioProfe) {
+	Curso^ cursoEncontrado;
+	AbrirConexion();
+	Inscripcion^ objetoEncontrado;
+	SqlCommand^ objQuery1 = gcnew SqlCommand();
+	objQuery1->Connection = this->objConexion;
+	objQuery1->CommandText = "select * from CursosDisponiblesProyecto where NombreCurso='" + nombreDelCurso + "'and UsuarioProfesor='"+ usuarioProfe + "';";
+	SqlDataReader^ objData1 = objQuery1->ExecuteReader();
+	if (objData1->Read()) {
+		String^ nombreCurso = safe_cast<String^>(objData1["NombreCurso"]);
+		String^ precio = safe_cast<String^>(objData1["PrecioCurso"]);
+		String^ dificultad = safe_cast<String^>(objData1["Dificultad"]);
+		String^ usuarioProfesor = safe_cast<String^>(objData1["UsuarioProfesor"]);
+		Curso^ objCurso = gcnew Curso(nombreCurso, precio, dificultad, usuarioProfesor);
+		cursoEncontrado = objCurso;
+	}
+	objData1->Close();
+	CerrarConexion();
 	return cursoEncontrado;
 }
 

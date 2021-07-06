@@ -151,7 +151,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 		AlumnoLogeado = objGestorAlumno->buscaAlumnoBD(textBox1->Text);
 		frmAlumno^ ventanaAlumno = gcnew frmAlumno(this->AlumnoLogeado);
-		ventanaAlumno->Show();
+		ventanaAlumno->ShowDialog();
 	}
 	else if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 2) {
 		//MessageBox::Show(objgestor->BuscarDniProfesor(textBox1->Text));
@@ -159,12 +159,12 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 		ProfesorLogeado = objGestorProfesor->buscaProfesor(textBox1->Text);
 		frmProfesor^ ventanaProfesor = gcnew frmProfesor(this->ProfesorLogeado);
-		ventanaProfesor->Show();
+		ventanaProfesor->ShowDialog();
 	}
 	else if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 3) {
 
 		frmAdministrador^ ventanaAdministrador = gcnew frmAdministrador();
-		ventanaAdministrador->Show();
+		ventanaAdministrador->ShowDialog();
 	}
 	else if (objgestor->VerificarSiUsuarioExiste(textBox1->Text, textBox2->Text) == 4) {
 		MessageBox::Show("Profesor registrado, pero aún falta que el administrador valide su CV");

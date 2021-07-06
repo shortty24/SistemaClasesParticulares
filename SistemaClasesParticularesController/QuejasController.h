@@ -3,11 +3,17 @@ namespace SistemaClasesParticularesController {
 	using namespace System::Collections::Generic;
 	using namespace SistemaClasesParticularesModel;
 	using namespace System;
+	using namespace System::Data::SqlClient;
+
 	public ref class QuejasController {
 	private:
 		List<Quejas^>^ listaQuejas;
+		SqlConnection^ objConexion;
+
 	public:
 		QuejasController();
+		void AbrirConexion();
+		void CerrarConexion();
 		List<Quejas^>^ obtenerListaQuejas();
 		void Procede(String^ dniseleccionado);
 		void NoProcede(String^ dniseleccionado);
@@ -18,7 +24,7 @@ namespace SistemaClasesParticularesController {
 		void CargarQuejasDesdeArchivo();
 		void generarQuejaxAlumno(String^ dniProfesorQueja, String^ dniAlumnoQueja, String^ motivo);
 		int ProfesorBloqueado(String^ dniBuscar);
-		void generarQuejaxProfesor(String^ dniProfesorQueja, String^ dniAlumnoQueja, String^ motivo);
+		void generarQuejaxProfesor(String^ dniAgredidoProfesor, String^ dniAgresoAlumno, String^ motivo);
 	};
 
 }

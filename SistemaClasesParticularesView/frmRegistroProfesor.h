@@ -371,7 +371,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 					Persona^ objPersona = gcnew Persona(CodigoUsuario, DNI, Usuario, Contrasenha, ApellidoPaterno, ApellidoMaterno, Nombre, Correo);
 					CV^ objCV = gcnew CV(DNI, CodigoMinedu, Empresa, NumeroEmpresa, Validacion);
 					RegistroController^ objRegistro = gcnew RegistroController();
-					objRegistro->GuardarNuevoUsuarioEnArchivo(objPersona);
+					objRegistro->GuardarNuevoUsuarioEnBD(objPersona);
 					objRegistro->GuardarNuevoCV(objCV);
 					MessageBox::Show("Se ha registrado con éxito. Se revisará su CV para que se pueda loguear");
 					this->Close();
