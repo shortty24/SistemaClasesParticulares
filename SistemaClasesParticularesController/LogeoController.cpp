@@ -85,7 +85,7 @@ String^ LogeoController::VerificarEstadoUsuario(String^ DNI) {
 
 	SqlCommand^ objQuery2 = gcnew SqlCommand();
 	objQuery2->Connection = this->objConexion;
-	objQuery2->CommandText = "select * from Quejas where DniAgresor='" + DNI + "';";
+	objQuery2->CommandText = "select * from Quejas where DniAgresor='" + DNI + "' and Estado= 'Bloqueado';";
 	SqlDataReader^ objData2 = objQuery2->ExecuteReader();
 	if (objData2->Read()) {
 		Estado = safe_cast<String^>(objData2["Estado"]);
