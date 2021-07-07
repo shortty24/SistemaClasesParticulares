@@ -36,6 +36,7 @@ namespace SistemaClasesParticularesController {
 		void aprobarPago(String^ codigopago);
 		void CargarClaseDesdeArchivo();
 		List<Clase^>^ buscarPagosProfesorxEstado(String^ estado);
+		Clase^ obtenerProximaClaseAlumno_BD(String^ DniAlumno);
 
 	};
 

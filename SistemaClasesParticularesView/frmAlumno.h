@@ -706,6 +706,7 @@ private: System::Windows::Forms::TextBox^ textBox3;
 			this->Name = L"frmAlumno";
 			this->Text = L"frmAlumno";
 			this->Load += gcnew System::EventHandler(this, &frmAlumno::frmAlumno_Load);
+			this->Shown += gcnew System::EventHandler(this, &frmAlumno::frmAlumno_Shown);
 			this->tabPage5->ResumeLayout(false);
 			this->groupBox4->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
@@ -946,6 +947,15 @@ private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void textBox1_TextChanged_1(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void groupBox2_Enter(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void frmAlumno_Shown(System::Object^ sender, System::EventArgs^ e) {
+	/*VENTANA EMERGENTE*/
+	ClaseController^ objGestorClase = gcnew ClaseController();
+	Clase^ objClase = objGestorClase->obtenerProximaClaseAlumno_BD(AlumnoLogeado->dni);
+	if (objClase != nullptr) {
+		MessageBox::Show("Recuerde que el " + objClase->fechaClase + " tiene una clase programada con el profesor " + objClase->objProfesor->objNombre + " " + objClase->objProfesor->objApellidoPaterno +
+			" " + objClase->objProfesor->objApellidoMaterno + " del curso " + objClase->objCurso->nombreCurso +" a las " + objClase->horaClase + ":00 horas");
+	}
 }
 };
 }

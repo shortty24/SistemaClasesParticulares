@@ -90,6 +90,37 @@ Clase^ ClaseController::obtenerProximaClase(String^ DniProfesor) {
 	return objClase;
 }
 
+Clase^ ClaseController::obtenerProximaClaseAlumno_BD(String^ DniAlumno) {
+	AlumnoController^ objGestorClase = gcnew AlumnoController();
+	ProfesorController^ objGestorProfesor = gcnew ProfesorController();
+	CursoController^ objGestorCurso = gcnew CursoController();
+	Clase^ objClase = nullptr;
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select TOP 1 * from ClasesProyecto where DNIAlumno= '" + DniAlumno + "' order by FechaClase;";
+	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
+	if (objData->Read()) {
+		String^ DNIAlumno = safe_cast<String^>(objData[0]);
+		Alumno^ objAlumno = objGestorClase->buscaAlumnoxDNI_BD(DNIAlumno);
+		String^ DNIProfesor = safe_cast<String^>(objData[1]);
+		Profesor^ objProfesor = objGestorProfesor->buscaProfesorxDNI_BD(DNIProfesor);
+		String^ NombreCurso = safe_cast<String^>(objData[2]);
+		Curso^ objCurso = objGestorCurso->buscarCursoxNombreCursoBD(NombreCurso);
+		String^ HoraClase = safe_cast<String^>(objData[3]);
+		DateTime FechaClase = safe_cast<DateTime>(objData[4]);
+		String^ fechaInsTR = Convert::ToString(FechaClase.ToShortDateString());
+		String^ Link = safe_cast<String^>(objData[5]);
+		int CodigoClase = safe_cast<int>(objData[6]);
+		String^ EstadoLink = safe_cast<String^>(objData[7]);
+		String^ EstadoPagoProfesor = safe_cast<String^>(objData[8]);
+
+		objClase = gcnew Clase(objAlumno, objProfesor, objCurso, HoraClase, fechaInsTR, Link);
+	}
+	objData->Close();
+	CerrarConexion();
+	return objClase;
+}
 
 /*Métodos con archivos .txt*/
 List<Clase^>^ ClaseController::ClasesProgramadas(String^ dniProfesorBuscar){
