@@ -242,6 +242,7 @@ namespace SistemaClasesParticularesView {
 			this->Controls->Add(this->dataGridView1);
 			this->Name = L"frmVerificarCV";
 			this->Text = L"frmVerificarCV";
+			this->Load += gcnew System::EventHandler(this, &frmVerificarCV::frmVerificarCV_Load);
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
@@ -338,6 +339,8 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	}
 
 
+}
+private: System::Void frmVerificarCV_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
