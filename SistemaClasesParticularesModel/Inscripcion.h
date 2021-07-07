@@ -25,5 +25,6 @@ namespace SistemaClasesParticularesModel {
 			Inscripcion(Alumno^ objAlumno, Curso^ objCurso, String^ horaInscripcion, String^ fechaInscripcion, int tiempoReserva);
 			Inscripcion(Alumno^ objAlumno, Curso^ objCurso, String^ horaInscripcion, String^ fechaInscripcion, int tiempoReserva, String^ horaInicio, String^ fechaClase, String^ codigoIns);
 			Inscripcion(Alumno^ objAlumno, String^ codigoIns, int tiempoReserva, String^ horaInicio);
+			Inscripcion(String^ codigoIns);
 	};
 }

@@ -123,6 +123,7 @@
     <ClInclude Include="Profesor.h" />
     <ClInclude Include="Persona.h" />
     <ClInclude Include="Quejas.h" />
+    <ClInclude Include="ReporteCursos.h" />
     <ClInclude Include="ReporteUsuarios.h" />
     <ClInclude Include="Saldo.h" />
   </ItemGroup>
@@ -139,6 +140,7 @@
     <ClCompile Include="Persona.cpp" />
     <ClCompile Include="Profesor.cpp" />
     <ClCompile Include="Quejas.cpp" />
+    <ClCompile Include="ReporteCursos.cpp" />
     <ClCompile Include="ReporteUsuarios.cpp" />
     <ClCompile Include="Saldo.cpp" />
   </ItemGroup>

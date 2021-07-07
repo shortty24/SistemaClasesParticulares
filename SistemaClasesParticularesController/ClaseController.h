@@ -19,6 +19,9 @@ namespace SistemaClasesParticularesController {
 		List<Clase^>^ ClasesProgramadasxProfesorBD(String^ dniProfesorBuscar);
 		List<Clase^>^ ClasesProgramadasxAlumno_BD(String^ dniAlumnoBuscar);
 		Clase^ obtenerProximaClase(String^ DniProfesor);
+		Clase^ obtenerClaseSeleccionadaBD(int posicionFilaSeleccionada);
+		void actualizarClaseBD(Clase^ ClaseSeleccionada);
+		List<String^>^ obtenerListaCursosPedidos(String^ dniProfesorBuscar);
 
 		/*Métodos con archivos .txt*/
 		List<Clase^>^ ClasesProgramadas(String^ dniProfesorBuscar);

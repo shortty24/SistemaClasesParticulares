@@ -15,6 +15,7 @@ namespace SistemaClasesParticularesController {
 		/*Métodos con base de datos*/
 		void AbrirConexion();
 		void CerrarConexion();
+		Pago^ buscarPagoxCodigoBD(int CodigoClase);
 		//Pago^ buscarPagoxCodigoPagoBD(String^ CodigoClase);
 
 		/*Métodos con archivos .txt*/

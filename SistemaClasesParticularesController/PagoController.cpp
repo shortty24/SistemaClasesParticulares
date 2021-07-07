@@ -23,6 +23,31 @@ void PagoController::CerrarConexion() {
 	this->objConexion->Close();
 }
 
+Pago^ PagoController::buscarPagoxCodigoBD(int CodigoClase) {
+	Pago^ objPago;
+	AbrirConexion();
+	Alumno^ objAlumnoEncontrado;
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from PagosProyecto where CodigoInscripcion ='"+ CodigoClase +"';";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+	if (objData->Read()) {
+		String^ CodigoInscripcion = Convert::ToString(safe_cast<int>(objData[0]));
+		Inscripcion^ objInscripcion= gcnew Inscripcion(CodigoInscripcion);
+		String^ EstadoPagoClase = safe_cast<String^>(objData[1]);
+		String^ HoraPago = Convert::ToString(safe_cast<TimeSpan>(objData[2]));
+		DateTime FechaPago = safe_cast<DateTime>(objData[3]);
+		String^ FechaPagoString= Convert::ToString(FechaPago.ToShortDateString());
+		String^ CodigoPago = safe_cast<String^>(objData[4]);
+		String^ EstadoLink = safe_cast<String^>(objData[5]);
+
+		objPago = gcnew Pago(objInscripcion, EstadoPagoClase, HoraPago, FechaPagoString, CodigoPago, EstadoLink);
+	}
+	objData->Close();
+	CerrarConexion();
+	return objPago;
+}
+
 
 /*Métdos con archivos .txt*/
 List<Pago^>^ PagoController::buscarClasesxEstado(String^ estadoBuscar) {

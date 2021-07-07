@@ -5,9 +5,10 @@ namespace SistemaClasesParticularesController {
 	using namespace SistemaClasesParticularesModel;
 	using namespace System;
 	using namespace System::Data::SqlClient;
+
 	public ref class AlumnoController{
 		private:
-			List < Alumno^ >^ listaAlumnos;
+			List<Alumno^>^ listaAlumnos;
 			SqlConnection^ objConexion;
 		public:
 			AlumnoController();
@@ -16,6 +17,7 @@ namespace SistemaClasesParticularesController {
 			void CerrarConexion();
 			Alumno^ buscaAlumnoBD(String^ usuarioAlumno);
 			Alumno^ buscaAlumnoxDNI_BD(String^ dniAlumno);
+			List<Alumno^>^ buscarAlumnosPotencialesAQuejaBD(String^ dniProfesor);
 
 			/*Métodos con archivos .txt*/
 			Alumno^ buscaAlumno(String^ usuarioAlumno);

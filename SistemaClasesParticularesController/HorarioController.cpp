@@ -70,6 +70,7 @@ List<Horario^>^ HorarioController::HorarioxProfesorBD(String^ dniProfesorBuscar)
 
 	return listaHorarioProfesor;
 }
+
 void HorarioController::actualizarHorariosBD(array<String^>^ listaHorarios) {
 	AbrirConexion();
 	SqlCommand^ objQuery = gcnew SqlCommand();

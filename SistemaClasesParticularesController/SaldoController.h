@@ -3,11 +3,20 @@ namespace SistemaClasesParticularesController {
 	using namespace System::Collections::Generic;
 	using namespace SistemaClasesParticularesModel;
 	using namespace System;
+	using namespace System::Data::SqlClient;
+
 	public ref class SaldoController {
-	private:
+	public:
 		List<Saldo^>^ listaSaldo;
+		SqlConnection^ objConexion;
+
+
 	public:
 		SaldoController();
+		void AbrirConexion();
+		void CerrarConexion();
+		String^ obtenerSaldoBD(String^ DNIProfesor);
+
 		void pagarprofesor(int saldoaumentado, String^ dniprofesor);
 		List<Saldo^>^ obtenerListaSaldos();
 		void crearsaldo(String^ dniseleccionado);
