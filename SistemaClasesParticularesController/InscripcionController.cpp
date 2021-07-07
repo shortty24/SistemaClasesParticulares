@@ -6,10 +6,12 @@ using namespace SistemaClasesParticularesController;
 using namespace System;
 using namespace System::IO;
 //Comentario Inscripcion
+
 InscripcionController::InscripcionController() {
 	this->listaInscripcion = gcnew List<Inscripcion^>();
 	this->objConexion = gcnew SqlConnection();
 }
+
 void InscripcionController::AbrirConexion() {
 	this->objConexion->ConnectionString = "Server=200.16.7.140;DataBase=a20165855;User ID=a20165855;Password=h7b3EJcM;";
 	this->objConexion->Open();
@@ -17,6 +19,7 @@ void InscripcionController::AbrirConexion() {
 void InscripcionController::CerrarConexion() {
 	this->objConexion->Close();
 }
+
 
 List<Inscripcion^>^ InscripcionController::InscripcionesxAlumno(String^ datoAlumno) {
 	this->listaInscripcion->Clear();

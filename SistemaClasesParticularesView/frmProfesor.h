@@ -780,7 +780,7 @@ private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
 			this->chart1->Name = L"chart1";
 			series1->ChartArea = L"ChartArea1";
 			series1->Legend = L"Legend1";
-			series1->Name = L"Cursos";
+			series1->Name = L"Cursos Pedidos";
 			this->chart1->Series->Add(series1);
 			this->chart1->Size = System::Drawing::Size(731, 431);
 			this->chart1->TabIndex = 0;
@@ -917,10 +917,10 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 		}
 
 		for (int i = 0; i < listaReporteCursos->Count; i++) {
-			this->chart1->Series["Cursos"]->Points->Add(listaReporteCursos[i]->cantidad);
-			this->chart1->Series["Cursos"]->Points[i]->AxisLabel = listaReporteCursos[i]->nombreCurso;
-			this->chart1->Series["Cursos"]->Points[i]->LegendText = listaReporteCursos[i]->nombreCurso;
-			this->chart1->Series["Cursos"]->Points[i]->Label = Convert::ToString(listaReporteCursos[i]->cantidad);
+			this->chart1->Series["Cursos Pedidos"]->Points->Add(listaReporteCursos[i]->cantidad);
+			this->chart1->Series["Cursos Pedidos"]->Points[i]->AxisLabel = listaReporteCursos[i]->nombreCurso;
+			this->chart1->Series["Cursos Pedidos"]->Points[i]->LegendText = listaReporteCursos[i]->nombreCurso;
+			this->chart1->Series["Cursos Pedidos"]->Points[i]->Label = Convert::ToString(listaReporteCursos[i]->cantidad);
 		}
 	}
 
@@ -971,8 +971,18 @@ private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e
 		mostrarGrillaCursos(listaCursos);
 	}
 
-private: System::Void button9_Click_1(System::Object^ sender, System::EventArgs^ e) {
-}
+	private: System::Void button9_Click_1(System::Object^ sender, System::EventArgs^ e) {
+		int posicionFilaSeleccionada = this->dataGridView2->SelectedRows[0]->Index;
+		String^ curso = this->dataGridView2->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
+		CursoController^ objGestorCurso = gcnew CursoController();
+		objGestorCurso->EliminarCursoBD(ProfesorLogeado->objUsuario, curso);
+
+		MessageBox::Show("El curso se ha eliminado con éxito");
+
+		List<Curso^>^ listaCursos = objGestorCurso->CursosxUsusarioProfesorBD(ProfesorLogeado->objUsuario);
+		mostrarGrillaCursos(listaCursos);
+	}
+
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 }
 

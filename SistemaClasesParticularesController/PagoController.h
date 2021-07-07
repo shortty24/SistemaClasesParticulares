@@ -16,6 +16,11 @@ namespace SistemaClasesParticularesController {
 		void AbrirConexion();
 		void CerrarConexion();
 		Pago^ buscarPagoxCodigoBD(int CodigoClase);
+		List<Pago^>^ buscarPagosxEstadoBD(String^ estadoBuscar);
+		List<Pago^>^ buscarClasesxEstadoBD(String^ estadoclasebuscar);
+		int buscarIncscripcionxcodigocompletaBD(String^ codigopago);
+		void aprobarPagoBD(String^ codigopago);
+
 		//Pago^ buscarPagoxCodigoPagoBD(String^ CodigoClase);
 
 		/*Métodos con archivos .txt*/

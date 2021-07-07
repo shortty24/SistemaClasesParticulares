@@ -19,6 +19,7 @@ namespace SistemaClasesParticularesController {
 		void AñadirCurso(Curso^ objCurso);
 		Curso^ buscarCursoxNombreCursoBD(String^ cursoBuscar);
 		List<String^>^ ListaNombreCursos_BD();
+		void EliminarCursoBD(String^ UsuarioProfesor,String^ curso);
 
 		/*Métodos con base de datos*/
 		void AbrirConexion();

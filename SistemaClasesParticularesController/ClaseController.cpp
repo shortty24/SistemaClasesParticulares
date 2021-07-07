@@ -188,6 +188,22 @@ List<String^>^ ClaseController::obtenerListaCursosPedidos(String^ dniProfesorBus
 	return listaCurso;
 }
 
+void ClaseController::crearclaseBD(String^ codigopago) {
+	PagoController^ objGestorPago = gcnew PagoController();
+	int Inscripcion = objGestorPago->buscarIncscripcionxcodigocompletaBD(codigopago);
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+
+	objQuery->Connection = this->objConexion;
+
+
+	objQuery->CommandText = "UPDATE ClasesProyecto SET  Link= '-', EstadoLink='pendiente', EstadoPagoProfesor='por pagar' where CodigoClase='"+ Inscripcion +"';";
+
+	objQuery->ExecuteNonQuery();
+
+	CerrarConexion();
+}
+
 
 /*Métodos con archivos .txt*/
 List<Clase^>^ ClaseController::ClasesProgramadas(String^ dniProfesorBuscar){
@@ -518,17 +534,24 @@ void ClaseController::crearclasetxt(String^ codigopago) {
 	array<String^>^ lineasArchivoClases = gcnew array<String^>(this->listaClases->Count+1);
 	for (int i = 0; i < this->listaClases->Count; i++) {
 		Clase^ objClase = this->listaClases[i];
-		lineasArchivoClases[i] = objClase->objAlumno->dni + ";" + objClase->objProfesor->dni + ";" + objClase->objCurso->nombreCurso + ";" + objClase->horaClase + ";" + objClase->fechaClase + ";" + objClase->objLink + ";" + objClase->objPago->objInscripcion->codigoIns + ";" + objClase->objPago->estadoclase + ";" + objClase->estadopagoprofesor;
+		lineasArchivoClases[i] = objClase->objAlumno->dni + ";" + objClase->objProfesor->dni + ";" + objClase->objCurso->nombreCurso + ";" + objClase->horaClase + 
+								";" + objClase->fechaClase + ";" + objClase->objLink + ";" + objClase->objPago->objInscripcion->codigoIns + ";" + objClase->objPago->estadoclase + 
+								";" + objClase->estadopagoprofesor;
 	}
 
 	PagoController^ objGestorPago = gcnew PagoController();
+
+
 	Inscripcion^ objInscripcion = objGestorPago->buscarIncscripcionxcodigocompleta(codigopago);
-		lineasArchivoClases[this->listaClases->Count] = objInscripcion->objAlumno->dni + ";" + objInscripcion->objCurso->objProfesor->dni + ";" + objInscripcion->objCurso->nombreCurso + ";" + objInscripcion->horaInicio + ";" + objInscripcion->fechaClase + ";" + "-" + ";" +objInscripcion->codigoIns +";" + "pendiente" +";" + "por pagar";
+		lineasArchivoClases[this->listaClases->Count] = objInscripcion->objAlumno->dni + ";" + objInscripcion->objCurso->objProfesor->dni + ";" + objInscripcion->objCurso->nombreCurso + 
+														";" + objInscripcion->horaInicio + ";" + objInscripcion->fechaClase + ";" + "-" + ";" +objInscripcion->codigoIns +";" + "pendiente" +
+														";" + "por pagar";
 	
 	/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
 	File::WriteAllLines("Clases.txt", lineasArchivoClases);
 
 }
+
 
 List<Clase^>^ ClaseController::buscarPagosProfesorxEstado(String^ estadoBuscar) {
 	List<Clase^>^ listaClasesEncontrados = gcnew List<Clase^>();

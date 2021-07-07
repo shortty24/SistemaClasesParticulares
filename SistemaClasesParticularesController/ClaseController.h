@@ -22,6 +22,8 @@ namespace SistemaClasesParticularesController {
 		Clase^ obtenerClaseSeleccionadaBD(int posicionFilaSeleccionada);
 		void actualizarClaseBD(Clase^ ClaseSeleccionada);
 		List<String^>^ obtenerListaCursosPedidos(String^ dniProfesorBuscar);
+		void crearclaseBD(String^ codigopago);
+
 
 		/*Métodos con archivos .txt*/
 		List<Clase^>^ ClasesProgramadas(String^ dniProfesorBuscar);
