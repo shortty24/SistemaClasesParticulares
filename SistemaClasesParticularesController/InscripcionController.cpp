@@ -204,7 +204,7 @@ void InscripcionController::GuardarInscripcion_BD(String^ diaNuevo, String^ hora
 	SqlCommand^ objQuery = gcnew SqlCommand();
 	int horasPedidas = Convert::ToInt32(tiempoPedidoNuevo);
 	objQuery->Connection = this->objConexion;
-	objQuery->CommandText = "Insert into InscripcionesProyecto(DNIAlumno,DNIProfesor,Curso,HoraInscripcion,FechaInscripcion,HorasPedidas,HoraClase,FechaClase) values ('" + dniAlumnoNuevo + "','" + dniProfesorNuevo + "','" + nombreDelCursoNuevo + "','" + horaInscripcionNuevo + "','" + fechaInscripcionNuevo + "','" + tiempoPedidoNuevo + "','" + horaInicioNuevo + "','" + diaNuevo + "');";
+	objQuery->CommandText = "Insert into InscripcionesProyecto(DNIAlumno,DNIProfesor,Curso,HoraInscripcion,FechaInscripcion,HorasPedidas,HoraClase,FechaClase) values ('" + dniAlumnoNuevo + "','" + dniProfesorNuevo + "','" + nombreDelCursoNuevo + "','" + horaInscripcionNuevo + "','" + fechaInscripcionNuevo + "','" + tiempoPedidoNuevo + "','" + horaInicioNuevo + ":00" + "','" + diaNuevo + "');";
 	objQuery->ExecuteNonQuery();
 	CerrarConexion();
 }
@@ -292,4 +292,20 @@ String^ InscripcionController::codigoInsxProfesorxDiaxHora(String^ dniProfesorBu
 		}
 	}
 	return codigoInsEncontrado;
+}
+String^ InscripcionController::codigoInsxProfesorxDiaxHora_BD(String^ dniProfesorBuscar, String^ diafechaClase, String^ horaInicioBuscar) {
+	AbrirConexion();
+	String^ codigo;
+	SqlCommand^ objQuery1 = gcnew SqlCommand();
+	objQuery1->Connection = this->objConexion;
+	objQuery1->CommandText = "select * from InscripcionesProyecto where DNIProfesor='" + dniProfesorBuscar + "' and FechaClase ='"+ diafechaClase + "' and HoraClase='" + horaInicioBuscar + ":00"+ "';";
+	SqlDataReader^ objData1 = objQuery1->ExecuteReader();
+	if (objData1->Read()) {
+		int codigoIns = safe_cast<int>(objData1["CodigoInscripcion"]);
+		String^ codigoString = Convert::ToString(codigoIns);
+		codigo = codigoString;
+	}
+	objData1->Close();
+	CerrarConexion();
+	return codigo;
 }

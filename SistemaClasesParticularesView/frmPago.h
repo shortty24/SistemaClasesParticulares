@@ -156,7 +156,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	PagoController^ gestorPago = gcnew PagoController();
 	String^ horaPagoTR = Convert::ToString(horaFechaTReal.Now.ToShortTimeString());
 	String^ fechaPagoTR = Convert::ToString(horaFechaTReal.Now.ToShortDateString());
-	gestorPago->crearNuevoPago(codigoIns, horaPagoTR, fechaPagoTR, this->textBox2->Text);
+	gestorPago->crearNuevoPago_BD(codigoIns, horaPagoTR, fechaPagoTR, this->textBox2->Text);
 	MessageBox::Show("Se envió el código con éxito.");
 	this->Close();
 }

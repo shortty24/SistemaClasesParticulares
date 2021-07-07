@@ -341,6 +341,22 @@ void HorarioController::editaHorarioxProfesor(String^ dniProfesorEditar, String^
 	}
 	File::WriteAllLines("Horarios.txt", listaTextoHorario);
 }
+void HorarioController::editaHorarioxProfesor_BD(String^ dniProfesorEditar, String^ diaEditar, String^ horaInicio, String^ horasPedidas) {
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	int horaInicioint = Convert::ToInt32(horaInicio);
+	objQuery->Connection = this->objConexion;
+	if (horasPedidas == "1") {
+		objQuery->CommandText = "update HorariosProyecto set ID" + horaInicio + "='-' where DNIProfesor='" + dniProfesorEditar + "' and Dia='" + diaEditar + "';";
+	}
+	else if (horasPedidas == "2") {
+		objQuery->CommandText = "update HorariosProyecto set ID" + horaInicio + "='-',ID" + Convert::ToString(horaInicioint + 1) + "='-'" + " where DNIProfesor='" + dniProfesorEditar + "' and Dia='" + diaEditar + "';";
+	}
+	objQuery->ExecuteNonQuery();
+	CerrarConexion();
+
+}
+
 
 List<Horario^>^ HorarioController::HorarioxProfesorInscripcion(String^ dniProfesor) {
 	List<Horario^>^ HorarioProfesor = gcnew List<Horario^>();
@@ -372,6 +388,38 @@ List<Horario^>^ HorarioController::HorarioxProfesorInscripcion(String^ dniProfes
 			HorarioProfesor->Add(objHorario);
 		}
 	}
+	return HorarioProfesor;
+}
+
+List<Horario^>^ HorarioController::HorarioxProfesorInscripcion_BD(String^ dniProfesor) {
+	List<Horario^>^ HorarioProfesor = gcnew List<Horario^>();
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from HorariosProyecto where DNIProfesor='" + dniProfesor + "';";
+	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
+	while (objData->Read()) {
+		List<String^>^ horasxDia = gcnew List<String^>();
+		String^ dni = safe_cast<String^>(objData["DNIProfesor"]);
+		String^ dia = safe_cast<String^>(objData["Dia"]);
+		String^ hora;
+		for (int i = 2; i < 26; i++) {
+			hora = safe_cast<String^>(objData[i]);
+			for (int j = 0; j < 24; j++) {
+				String^ convertido = Convert::ToString(j);
+				if (hora == convertido) {
+					horasxDia->Add(hora);
+					//break;
+				}
+			}
+
+		}
+		Horario^ objHorario = gcnew Horario(dni, dia, horasxDia);
+		HorarioProfesor->Add(objHorario);
+	}
+	objData->Close();
+	CerrarConexion();
+
 	return HorarioProfesor;
 }
 

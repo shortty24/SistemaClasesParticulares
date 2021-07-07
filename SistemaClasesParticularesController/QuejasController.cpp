@@ -191,7 +191,7 @@ int QuejasController::ProfesorBloqueado_BD(String^ dniBuscar) {
 	objQuery->Connection = this->objConexion;
 	objQuery->CommandText = "select * from Quejas where DniAgresor='" + dniBuscar + "';";
 	SqlDataReader^ objData = objQuery->ExecuteReader();
-	if (objData->Read()) {
+	while (objData->Read()) {
 		String^ Estado = safe_cast<String^>(objData["Estado"]);
 		if (Estado == "Bloqueado") {
 			bloqueado = 1;
