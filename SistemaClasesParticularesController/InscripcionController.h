@@ -26,6 +26,7 @@ namespace SistemaClasesParticularesController {
 		Profesor^ buscaProfesorxDNI_BD(String^ dniProfesor);
 		Alumno^ buscaAlumnoxDNI_BD(String^ dniAlumno);
 		Inscripcion^ buscarInscripcionxcodigo_BD(int codigoInscripcion);
+		String^ codigoInsxProfesorxDiaxHora_BD(String^ dniProfesorBuscar, String^ diafechaClase, String^ horaInicioBuscar);
 	};
 
 }

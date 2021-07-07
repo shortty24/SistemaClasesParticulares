@@ -137,6 +137,32 @@ List<Curso^>^ CursoController::CursosDisponiblesxNombre_BD(String^ nombreDelCurs
 	return this->listaCursos;
 }
 
+List<String^>^ CursoController::ListaNombreCursos_BD() {
+	List<String^>^ listaNombreCursos = gcnew List<String^>();
+	int repite = 0;
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from CursosDisponiblesProyecto;";
+	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
+	while (objData->Read()) {
+		repite = 0;
+		String^ NombreCurso = safe_cast<String^>(objData[0]);
+		for (int i = 0; i < listaNombreCursos->Count; i++) {
+			if (NombreCurso == listaNombreCursos[i]) {
+				repite = 1;
+			}
+		}
+		if (repite == 0) {
+			listaNombreCursos->Add(NombreCurso);
+		}
+	}
+	objData->Close();
+	CerrarConexion();
+
+	return listaNombreCursos;
+}
+
 /*Métodos con archivos .txt*/
 void CursoController::CargarCursosDesdeArchivo() {
 	this->listaCursos->Clear();

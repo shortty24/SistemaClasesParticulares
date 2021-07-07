@@ -378,24 +378,24 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	String^ horaInsTR = Convert::ToString(horafechaTRInsc.Now.ToShortTimeString());
 	String^ fechaInsTR = Convert::ToString(horafechaTRInsc.Now.ToShortDateString());
 	InscripcionController^ gestorInscripcion = gcnew InscripcionController();
-	gestorInscripcion->GuardarInscripcion(fechaDeClase(this->comboBox1->Text), this->comboBox2->Text, this->comboBox3->Text, nombreDelCurso, dniProfesor,objAlumno->dni, fechaInsTR, horaInsTR);
+	gestorInscripcion->GuardarInscripcion_BD(fechaDeClase(this->comboBox1->Text), this->comboBox2->Text, this->comboBox3->Text, nombreDelCurso, dniProfesor,objAlumno->dni, fechaInsTR, horaInsTR);
 
 	HorarioController^ gestorHorario = gcnew HorarioController();
-	gestorHorario->editaHorarioxProfesor(dniProfesor, this->comboBox1->Text,this->comboBox2->Text, this->comboBox3->Text);
+	gestorHorario->editaHorarioxProfesor_BD(dniProfesor, this->comboBox1->Text,this->comboBox2->Text, this->comboBox3->Text);
 	MessageBox::Show("Se realizó la inscripción con éxito.");
 	this->Close();
 }
 private: System::Void frmInscripcion_Load(System::Object^ sender, System::EventArgs^ e) {
 	HorarioController^ gestorHorario = gcnew HorarioController();
-	List<Horario^>^ listaHorarios = gestorHorario->HorarioxProfesorInscripcion(dniProfesor);
+	List<Horario^>^ listaHorarios = gestorHorario->HorarioxProfesorInscripcion_BD(dniProfesor);
 	this->comboBox1->Items->Clear();
 	for (int i = 0; i < listaHorarios->Count; i++) {
 		this->comboBox1->Items->Add(listaHorarios[i]->dia);
 	}
 	ProfesorController^ gestorProfesor = gcnew ProfesorController();
-	Profesor^ profesorEncontrado = gestorProfesor->buscaProfesorxDNI(dniProfesor);
+	Profesor^ profesorEncontrado = gestorProfesor->buscaProfesorxDNI_BD(dniProfesor);
 	CursoController^ gestorCurso = gcnew CursoController();
-	Curso^ cursoEncontrado = gestorCurso->CursoDisponiblexNombrexProfesor(nombreDelCurso,profesorEncontrado->objUsuario);
+	Curso^ cursoEncontrado = gestorCurso->CursoDisponiblexNombrexProfesor_BD(nombreDelCurso,profesorEncontrado->objUsuario);
 	array<String^>^ fila = gcnew array<String^>(5);
 	fila[0] = cursoEncontrado->nombreCurso;
 	fila[1] = cursoEncontrado->dificultad;
@@ -407,7 +407,7 @@ private: System::Void frmInscripcion_Load(System::Object^ sender, System::EventA
 }
 private: System::Void comboBox1_SelectedIndexChanged_2(System::Object^ sender, System::EventArgs^ e) {
 	HorarioController^ gestorHorario = gcnew HorarioController();
-	List<Horario^>^ listaHorarios = gestorHorario->HorarioxProfesorInscripcion(dniProfesor);
+	List<Horario^>^ listaHorarios = gestorHorario->HorarioxProfesorInscripcion_BD(dniProfesor);
 	List<String^>^ horasxDia;
 	for (int i = 0; i < listaHorarios->Count; i++) {
 		this->comboBox2->Items->Clear();
@@ -424,7 +424,7 @@ private: System::Void comboBox3_SelectedIndexChanged(System::Object^ sender, Sys
 }
 private: System::Void comboBox2_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 	HorarioController^ gestorHorario = gcnew HorarioController();
-	List<Horario^>^ listaHorarios = gestorHorario->HorarioxProfesorInscripcion(dniProfesor);
+	List<Horario^>^ listaHorarios = gestorHorario->HorarioxProfesorInscripcion_BD(dniProfesor);
 	List<String^>^ horasxDia;
 	for (int i = 0; i < listaHorarios->Count; i++) {
 		this->comboBox3->Items->Clear();
@@ -456,14 +456,14 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	String^ fechaInsTR = Convert::ToString(horafechaTRInsc.Now.ToShortDateString());
 	InscripcionController^ gestorInscripcion = gcnew InscripcionController();
 	PagoController^ gestorPago = gcnew PagoController();
-	if (gestorInscripcion->EstadoBonoxAlumno(objAlumno->dni) == "No Canjeado") {
+	if (gestorInscripcion->EstadoBonoxAlumno_BD(objAlumno->dni) == "No Canjeado") {
 		if (this->comboBox3->Text == "1") {
-			gestorInscripcion->GuardarInscripcion(fechaDeClase(this->comboBox1->Text), this->comboBox2->Text, this->comboBox3->Text, nombreDelCurso, dniProfesor, objAlumno->dni, fechaInsTR, horaInsTR);
+			gestorInscripcion->GuardarInscripcion_BD(fechaDeClase(this->comboBox1->Text), this->comboBox2->Text, this->comboBox3->Text, nombreDelCurso, dniProfesor, objAlumno->dni, fechaInsTR, horaInsTR);
 			HorarioController^ gestorHorario = gcnew HorarioController();
-			gestorHorario->editaHorarioxProfesor(dniProfesor, this->comboBox1->Text, this->comboBox2->Text, this->comboBox3->Text);
-			String^ codigoIns = gestorInscripcion->codigoInsxProfesorxDiaxHora(dniProfesor, fechaDeClase(this->comboBox1->Text), this->comboBox2->Text);
-			gestorPago->crearNuevoPago(codigoIns, horaInsTR, fechaInsTR, "BONO");
-			gestorInscripcion->ModificaEstadoBonoxAlumno(objAlumno->dni);
+			gestorHorario->editaHorarioxProfesor_BD(dniProfesor, this->comboBox1->Text, this->comboBox2->Text, this->comboBox3->Text);
+			String^ codigoIns = gestorInscripcion->codigoInsxProfesorxDiaxHora_BD(dniProfesor, fechaDeClase(this->comboBox1->Text), this->comboBox2->Text);
+			gestorPago->crearNuevoPago_BD(codigoIns, horaInsTR, fechaInsTR, "BONO");
+			gestorInscripcion->ModificaEstadoBonoxAlumno_BD(objAlumno->dni);
 			MessageBox::Show("Se realizó la inscripción con éxito.");
 			this->Close();
 		}

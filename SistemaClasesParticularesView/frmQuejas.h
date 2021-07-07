@@ -260,6 +260,7 @@ namespace SistemaClasesParticularesView {
 			this->Controls->Add(this->dataGridView1);
 			this->Name = L"frmQuejas";
 			this->Text = L"frmQuejas";
+			this->Load += gcnew System::EventHandler(this, &frmQuejas::frmQuejas_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
@@ -276,8 +277,8 @@ namespace SistemaClasesParticularesView {
 		String^ estadoqueja = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[3]->Value->ToString();
 
 		if (estadoqueja == "Por Revisar") {
-			QuejasController^ objGestorCV = gcnew QuejasController();
-			objGestorCV->Procede(dniagresor);
+			QuejasController^ objGestorQueja = gcnew QuejasController();
+			objGestorQueja->Procede(dniagresor);
 			MessageBox::Show("Se ha determinado un Bloqueo !!!");
 		}
 
@@ -286,8 +287,8 @@ namespace SistemaClasesParticularesView {
 		}
 
 		else if (estadoqueja == "No Bloqueado") {
-			QuejasController^ objGestorCV = gcnew QuejasController();
-			objGestorCV->Procede(dniagresor);
+			QuejasController^ objGestorQueja = gcnew QuejasController();
+			objGestorQueja->Procede(dniagresor);
 			MessageBox::Show("Se ha determinado un Bloqueo !!!");
 		}
 
@@ -362,6 +363,8 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	else if (estadoqueja == "No Bloqueado") {
 		MessageBox::Show("Ya se había determinado un No Bloqueo !!!");
 	}
+}
+private: System::Void frmQuejas_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

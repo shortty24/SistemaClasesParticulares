@@ -41,6 +41,7 @@ namespace SistemaClasesParticularesController {
 		List<Pago^>^ buscarPagosxAlumno_BD(String^ dniAlumnoBuscar);
 		Inscripcion^ buscarIncscripcionxcodigo_BD(int codigoBuscar);
 		Alumno^ buscaAlumnoxDNI_BD(String^ dniAlumno);
+		void crearNuevoPago_BD(String^ codigoInscNuevo, String^ horaPagoNuevo, String^ fechaPagoNuevo, String^ codigoPagoNuevo);
 	};
 
 }

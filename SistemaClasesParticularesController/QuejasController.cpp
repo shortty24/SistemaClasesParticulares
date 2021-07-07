@@ -24,7 +24,23 @@ List<Quejas^>^ QuejasController::obtenerListaQuejas() {
 
 void QuejasController::CargarQuejasDesdeArchivo() {
 	this->listaQuejas->Clear();
-	array<String^>^ lineas = File::ReadAllLines("Quejas.txt");
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from Quejas;";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+
+	while (objData->Read()) {
+		String^ dniagresor = safe_cast<String^>(objData[0]);
+		String^ queja = safe_cast<String^>(objData[1]);
+		String^ dniagraviado = safe_cast<String^>(objData[2]);
+		String^ estado = safe_cast<String^>(objData[3]);
+		Quejas^ objQuejas = gcnew Quejas(dniagresor, queja, dniagraviado, estado);
+		this->listaQuejas->Add(objQuejas);
+	}
+	objData->Close();
+	CerrarConexion();
+	/*array<String^>^ lineas = File::ReadAllLines("Quejas.txt");
 
 	String^ separadores = ";";
 	for each (String ^ lineaQuejas in lineas) {
@@ -35,12 +51,31 @@ void QuejasController::CargarQuejasDesdeArchivo() {
 		String^ estado = palabras[3];
 		Quejas^ objQuejas = gcnew Quejas(dniagresor, queja, dniagraviado, estado);
 		this->listaQuejas->Add(objQuejas);
-	}
+	}*/
 }
 
 List<Quejas^>^ QuejasController::buscarQuejaAgresor(String^ dniBuscar) {
 	List<Quejas^>^ listaQuejasEncontrados = gcnew List<Quejas^>();
-	array<String^>^ lineas = File::ReadAllLines("Quejas.txt");
+
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from Quejas where DniAgresor= '" + dniBuscar + "';";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+
+	while (objData->Read()) {
+		String^ dniagresor = safe_cast<String^>(objData[0]);
+		String^ queja = safe_cast<String^>(objData[1]);
+		String^ dniagraviado = safe_cast<String^>(objData[2]);
+		String^ estado = safe_cast<String^>(objData[3]);
+		Quejas^ objQuejas = gcnew Quejas(dniagresor, queja, dniagraviado, estado);
+		listaQuejasEncontrados->Add(objQuejas);
+	}
+	objData->Close();
+	CerrarConexion();
+	return listaQuejasEncontrados;
+
+	/*array<String^>^ lineas = File::ReadAllLines("Quejas.txt");
 	String^ separadores = ";";
 	for each (String ^ lineaQuejas in lineas) {
 		array<String^>^ palabras = lineaQuejas->Split(separadores->ToCharArray());
@@ -53,12 +88,32 @@ List<Quejas^>^ QuejasController::buscarQuejaAgresor(String^ dniBuscar) {
 			listaQuejasEncontrados->Add(objQuejas);
 		}
 	}
-	return listaQuejasEncontrados;
+	return listaQuejasEncontrados;*/
 }
 
 List<Quejas^>^ QuejasController::buscarQuejaAgraviado(String^ dniBuscar) {
 	List<Quejas^>^ listaQuejasEncontrados = gcnew List<Quejas^>();
-	array<String^>^ lineas = File::ReadAllLines("Quejas.txt");
+
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from Quejas where DniAgredido= '" + dniBuscar + "';";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+
+	while (objData->Read()) {
+		String^ dniagresor = safe_cast<String^>(objData[0]);
+		String^ queja = safe_cast<String^>(objData[1]);
+		String^ dniagraviado = safe_cast<String^>(objData[2]);
+		String^ estado = safe_cast<String^>(objData[3]);
+		Quejas^ objQuejas = gcnew Quejas(dniagresor, queja, dniagraviado, estado);
+		listaQuejasEncontrados->Add(objQuejas);
+	}
+	objData->Close();
+	CerrarConexion();
+	return listaQuejasEncontrados;
+
+
+	/*array<String^>^ lineas = File::ReadAllLines("Quejas.txt");
 	String^ separadores = ";";
 	for each (String ^ lineaQuejas in lineas) {
 		array<String^>^ palabras = lineaQuejas->Split(separadores->ToCharArray());
@@ -71,12 +126,14 @@ List<Quejas^>^ QuejasController::buscarQuejaAgraviado(String^ dniBuscar) {
 			listaQuejasEncontrados->Add(objQuejas);
 		}
 	}
-	return listaQuejasEncontrados;
+	return listaQuejasEncontrados;*/
 }
 
 
 void QuejasController::Procede(String^ dniseleccionado) {
-	this->listaQuejas->Clear();
+
+
+	/*this->listaQuejas->Clear();
 	CargarQuejasDesdeArchivo();
 	for (int i = 0; i < this->listaQuejas->Count; i++) {
 		Quejas^ objQuejas = this->listaQuejas[i];
@@ -84,20 +141,34 @@ void QuejasController::Procede(String^ dniseleccionado) {
 			this->listaQuejas[i]->Estado = "Bloqueado";
 			break;
 		}
-	}
+	}*/
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "Update Quejas set Estado='Bloqueado' where DniAgresor='" + dniseleccionado + "';";
+	objQuery->ExecuteNonQuery();
+	CerrarConexion();
 
-	array<String^>^ lineasArchivoQuejas = gcnew array<String^>(this->listaQuejas->Count);
+	/*array<String^>^ lineasArchivoQuejas = gcnew array<String^>(this->listaQuejas->Count);
 	for (int i = 0; i < this->listaQuejas->Count; i++) {
 		Quejas^ objQuejas = this->listaQuejas[i];
 		lineasArchivoQuejas[i] = objQuejas->DniAgresor + ";" + objQuejas->Queja + ";" + objQuejas->DniAgreviado + ";" + objQuejas->Estado;
 	}
 	/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
-	File::WriteAllLines("Quejas.txt", lineasArchivoQuejas);
+	//File::WriteAllLines("Quejas.txt", lineasArchivoQuejas);
 
 }
 
 void QuejasController::NoProcede(String^ dniseleccionado) {
-	this->listaQuejas->Clear();
+
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "Update Quejas set Estado='No Bloqueado' where DniAgresor='" + dniseleccionado + "';";
+	objQuery->ExecuteNonQuery();
+	CerrarConexion();
+
+	/*this->listaQuejas->Clear();
 	CargarQuejasDesdeArchivo();
 	for (int i = 0; i < this->listaQuejas->Count; i++) {
 		Quejas^ objQuejas = this->listaQuejas[i];
@@ -113,13 +184,31 @@ void QuejasController::NoProcede(String^ dniseleccionado) {
 		lineasArchivoQuejas[i] = objQuejas->DniAgresor + ";" + objQuejas->Queja + ";" + objQuejas->DniAgreviado + ";" + objQuejas->Estado;
 	}
 	/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
-	File::WriteAllLines("Quejas.txt", lineasArchivoQuejas);
+	//File::WriteAllLines("Quejas.txt", lineasArchivoQuejas);
 
 }
 
 List<Quejas^>^ QuejasController::buscarQuejasxEstado(String^ estadoBuscar) {
 	List<Quejas^>^ listaQuejasEncontrados = gcnew List<Quejas^>();
-	array<String^>^ lineas = File::ReadAllLines("Quejas.txt");
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from Quejas where Estado= '" + estadoBuscar + "';";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+
+	while (objData->Read()) {
+		String^ dniagresor = safe_cast<String^>(objData[0]);
+		String^ queja = safe_cast<String^>(objData[1]);
+		String^ dniagraviado = safe_cast<String^>(objData[2]);
+		String^ estado = safe_cast<String^>(objData[3]);
+		Quejas^ objQuejas = gcnew Quejas(dniagresor, queja, dniagraviado, estado);
+		listaQuejasEncontrados->Add(objQuejas);
+	}
+	objData->Close();
+	CerrarConexion();
+	return listaQuejasEncontrados;
+
+	/*array<String^>^ lineas = File::ReadAllLines("Quejas.txt");
 	String^ separadores = ";";
 	for each (String ^ lineaQuejas in lineas) {
 		array<String^>^ palabras = lineaQuejas->Split(separadores->ToCharArray());
@@ -132,7 +221,7 @@ List<Quejas^>^ QuejasController::buscarQuejasxEstado(String^ estadoBuscar) {
 			listaQuejasEncontrados->Add(objQuejas);
 		}
 	}
-	return listaQuejasEncontrados;
+	return listaQuejasEncontrados;*/
 }
 
 void QuejasController::generarQuejaxAlumno(String^ dniProfesorQueja, String^ dniAlumnoQueja, String^ motivo) {
@@ -191,7 +280,7 @@ int QuejasController::ProfesorBloqueado_BD(String^ dniBuscar) {
 	objQuery->Connection = this->objConexion;
 	objQuery->CommandText = "select * from Quejas where DniAgresor='" + dniBuscar + "';";
 	SqlDataReader^ objData = objQuery->ExecuteReader();
-	if (objData->Read()) {
+	while (objData->Read()) {
 		String^ Estado = safe_cast<String^>(objData["Estado"]);
 		if (Estado == "Bloqueado") {
 			bloqueado = 1;

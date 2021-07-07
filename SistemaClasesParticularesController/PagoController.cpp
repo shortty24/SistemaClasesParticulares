@@ -285,6 +285,15 @@ void PagoController::crearNuevoPago(String^ codigoInscNuevo, String^ horaPagoNue
 	File::WriteAllLines("Pagos.txt", lineasArchivoPago);
 }
 
+void PagoController::crearNuevoPago_BD(String^ codigoInscNuevo, String^ horaPagoNuevo, String^ fechaPagoNuevo, String^ codigoPagoNuevo) {
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "Insert into PagosProyecto(CodigoInscripcion,EstadoPagoClase,HoraPago,FechaPago,CodigoPago,EstadoLink) values ('" + codigoInscNuevo + "','por procesar','" + horaPagoNuevo + "','" + fechaPagoNuevo + "','" + codigoPagoNuevo + "','pendiente');";
+	objQuery->ExecuteNonQuery();
+	CerrarConexion();
+}
+
 List<Pago^>^ PagoController::buscarPagosxAlumno(String^ dniAlumnoBuscar) {
 	List<Pago^>^ listaPagosEncontrados = gcnew List<Pago^>();
 	array<String^>^ lineas = File::ReadAllLines("Pagos.txt");
