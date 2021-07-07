@@ -776,13 +776,13 @@ private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
 			this->chart1->ChartAreas->Add(chartArea1);
 			legend1->Name = L"Legend1";
 			this->chart1->Legends->Add(legend1);
-			this->chart1->Location = System::Drawing::Point(15, 29);
+			this->chart1->Location = System::Drawing::Point(32, 29);
 			this->chart1->Name = L"chart1";
 			series1->ChartArea = L"ChartArea1";
 			series1->Legend = L"Legend1";
-			series1->Name = L"Series1";
+			series1->Name = L"Cursos";
 			this->chart1->Series->Add(series1);
-			this->chart1->Size = System::Drawing::Size(376, 431);
+			this->chart1->Size = System::Drawing::Size(731, 431);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
 			// 
@@ -916,12 +916,12 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 			m = 0;
 		}
 
-		/*for (int i = 0; i < listaReporteCursos->Count; i++) {
+		for (int i = 0; i < listaReporteCursos->Count; i++) {
 			this->chart1->Series["Cursos"]->Points->Add(listaReporteCursos[i]->cantidad);
-			this->chart1->Series["Cursos"]->Points[i]->AxisLabel = listaReporteCursos[i]->nombrePartido;
-			this->chart1->Series["Cursos"]->Points[i]->LegendText = listaReporteCursos[i]->nombrePartido;
-			this->chart1->Series["Cursos"]->Points[i]->Label = Convert::ToString(listaReporteCursos[i]->cantMiembros);
-		}*/
+			this->chart1->Series["Cursos"]->Points[i]->AxisLabel = listaReporteCursos[i]->nombreCurso;
+			this->chart1->Series["Cursos"]->Points[i]->LegendText = listaReporteCursos[i]->nombreCurso;
+			this->chart1->Series["Cursos"]->Points[i]->Label = Convert::ToString(listaReporteCursos[i]->cantidad);
+		}
 	}
 
 private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ e) {
