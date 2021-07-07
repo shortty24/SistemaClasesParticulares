@@ -18,7 +18,7 @@ namespace SistemaClasesParticularesController {
 		void CerrarConexion();
 		List<Clase^>^ ClasesProgramadasxProfesorBD(String^ dniProfesorBuscar);
 		List<Clase^>^ ClasesProgramadasxAlumno_BD(String^ dniAlumnoBuscar);
-		Clase^ obtenerProximaClase();
+		Clase^ obtenerProximaClase(String^ DniProfesor);
 
 		/*Métodos con archivos .txt*/
 		List<Clase^>^ ClasesProgramadas(String^ dniProfesorBuscar);
