@@ -19,12 +19,18 @@ namespace SistemaClasesParticularesController {
 		List<Clase^>^ ClasesProgramadasxProfesorBD(String^ dniProfesorBuscar);
 		List<Clase^>^ ClasesProgramadasxAlumno_BD(String^ dniAlumnoBuscar);
 		Clase^ obtenerProximaClase(String^ DniProfesor);
-		Clase^ obtenerClaseSeleccionadaBD(int posicionFilaSeleccionada);
+		Clase^ obtenerClaseSeleccionadaBD(int codigo);
 		void actualizarClaseBD(Clase^ ClaseSeleccionada);
 		List<String^>^ obtenerListaCursosPedidos(String^ dniProfesorBuscar);
-		void crearclaseBD(String^ codigopago);
+		void crearclaseBD(Clase^ objClase);
+		void enviarlinkBD(String^ linkclase, int codigoIns);
+		Clase^ BuscarClasexCodigoPagoBD(String^ codigopago);
+		void ProgramarClaseBD(String^ CodigoInscripcion);
+		List<Clase^>^ ClasesProgramadasxNombrexDiaBD(String^ dniProfesorBuscar, String^ nombreBuscar, String^ fechaBuscar);
+		List<Clase^>^ ClasesProgramadasxDiaBD(String^ dniProfesorBuscar, String^ fecha);
+		List<Clase^>^  ClasesProgramadasxNombreBD(String^ dniProfesorBuscar,String^ nombreAlumno);
 
-
+		
 		/*Métodos con archivos .txt*/
 		List<Clase^>^ ClasesProgramadas(String^ dniProfesorBuscar);
 		Alumno^ buscarAlumnoxDNI(String^ dniAlumno);

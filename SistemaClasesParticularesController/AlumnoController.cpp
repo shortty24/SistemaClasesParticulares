@@ -124,3 +124,24 @@ List<Alumno^>^ AlumnoController::buscarAlumnosPotencialesAQuejaBD(String^ dniPro
 
 	return listaAlumnos;
 }
+
+Alumno^ AlumnoController::buscaAlumnoxNombre_BD(String^ NombreAlumno) {
+	//AbrirConexion();
+	Alumno^ objAlumnoEncontrado;
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from Personas where Nombre='" + NombreAlumno + "' and TipoUsuario='A';";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+	if (objData->Read()) {
+		String^ dni = safe_cast<String^>(objData["DNI"]);
+		String^ usuario = safe_cast<String^>(objData["Usuario"]);
+		String^ contrasenha = safe_cast<String^>(objData["Contrasenha"]);
+		String^ apellidoPaterno = safe_cast<String^>(objData["ApellidoPaterno"]);
+		String^ apellidoMaterno = safe_cast<String^>(objData["ApellidoMaterno"]);
+		String^ nombre = safe_cast<String^>(objData["Nombre"]);
+		objData->Close();
+		objAlumnoEncontrado = gcnew Alumno(dni, usuario, contrasenha, apellidoPaterno, apellidoMaterno, nombre);
+	}
+	//CerrarConexion();
+	return objAlumnoEncontrado;
+}

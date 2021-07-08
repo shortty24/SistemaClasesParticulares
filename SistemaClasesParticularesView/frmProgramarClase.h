@@ -63,6 +63,17 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::Button^ button5;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::ComboBox^ comboBox1;
+
+
+
+
+
+
+
+	private: System::Windows::Forms::Button^ button6;
+	private: System::Windows::Forms::ComboBox^ comboBox3;
+	private: System::Windows::Forms::Button^ button7;
+	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
@@ -70,10 +81,7 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
-	private: System::Windows::Forms::Button^ button6;
-	private: System::Windows::Forms::ComboBox^ comboBox3;
-	private: System::Windows::Forms::Button^ button7;
-	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
 
 
 
@@ -118,6 +126,9 @@ namespace SistemaClasesParticularesView {
 		void InitializeComponent(void)
 		{
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
+			this->button7 = (gcnew System::Windows::Forms::Button());
+			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
@@ -125,13 +136,6 @@ namespace SistemaClasesParticularesView {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
@@ -139,9 +143,14 @@ namespace SistemaClasesParticularesView {
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->button6 = (gcnew System::Windows::Forms::Button());
-			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
-			this->button7 = (gcnew System::Windows::Forms::Button());
-			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->groupBox2->SuspendLayout();
@@ -165,6 +174,34 @@ namespace SistemaClasesParticularesView {
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Clases Faltantes";
 			this->groupBox1->Enter += gcnew System::EventHandler(this, &frmProgramarClase::groupBox1_Enter);
+			// 
+			// comboBox3
+			// 
+			this->comboBox3->FormattingEnabled = true;
+			this->comboBox3->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"por pagar", L"cancelado" });
+			this->comboBox3->Location = System::Drawing::Point(141, 100);
+			this->comboBox3->Name = L"comboBox3";
+			this->comboBox3->Size = System::Drawing::Size(187, 21);
+			this->comboBox3->TabIndex = 21;
+			// 
+			// button7
+			// 
+			this->button7->Location = System::Drawing::Point(376, 98);
+			this->button7->Name = L"button7";
+			this->button7->Size = System::Drawing::Size(75, 23);
+			this->button7->TabIndex = 20;
+			this->button7->Text = L"Buscar";
+			this->button7->UseVisualStyleBackColor = true;
+			this->button7->Click += gcnew System::EventHandler(this, &frmProgramarClase::button7_Click);
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(32, 103);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(74, 13);
+			this->label4->TabIndex = 19;
+			this->label4->Text = L"Pago Profesor";
 			// 
 			// button5
 			// 
@@ -193,6 +230,7 @@ namespace SistemaClasesParticularesView {
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(187, 21);
 			this->comboBox1->TabIndex = 16;
+			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &frmProgramarClase::comboBox1_SelectedIndexChanged);
 			// 
 			// comboBox2
 			// 
@@ -226,50 +264,15 @@ namespace SistemaClasesParticularesView {
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
 				this->Column4,
-					this->Column1, this->Column2, this->Column3, this->Column5, this->Column6, this->Column7
+					this->Column1, this->Column2, this->Column3, this->Column5, this->Column6, this->Column7, this->Column8
 			});
 			this->dataGridView1->Location = System::Drawing::Point(34, 190);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->Size = System::Drawing::Size(747, 142);
 			this->dataGridView1->TabIndex = 2;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &frmProgramarClase::dataGridView1_CellContentClick);
-			// 
-			// Column4
-			// 
-			this->Column4->HeaderText = L"Codigo de Pago";
-			this->Column4->Name = L"Column4";
-			// 
-			// Column1
-			// 
-			this->Column1->HeaderText = L"DNI alumno";
-			this->Column1->Name = L"Column1";
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"Hora Inicio";
-			this->Column2->Name = L"Column2";
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Duracion";
-			this->Column3->Name = L"Column3";
-			// 
-			// Column5
-			// 
-			this->Column5->HeaderText = L"Pago Alumno";
-			this->Column5->Name = L"Column5";
-			// 
-			// Column6
-			// 
-			this->Column6->HeaderText = L"Clase";
-			this->Column6->Name = L"Column6";
-			// 
-			// Column7
-			// 
-			this->Column7->HeaderText = L"Pago Profesor";
-			this->Column7->Name = L"Column7";
 			// 
 			// groupBox2
 			// 
@@ -339,33 +342,45 @@ namespace SistemaClasesParticularesView {
 			this->button6->UseVisualStyleBackColor = true;
 			this->button6->Click += gcnew System::EventHandler(this, &frmProgramarClase::button6_Click);
 			// 
-			// comboBox3
+			// Column4
 			// 
-			this->comboBox3->FormattingEnabled = true;
-			this->comboBox3->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"por pagar", L"cancelado" });
-			this->comboBox3->Location = System::Drawing::Point(141, 100);
-			this->comboBox3->Name = L"comboBox3";
-			this->comboBox3->Size = System::Drawing::Size(187, 21);
-			this->comboBox3->TabIndex = 21;
+			this->Column4->HeaderText = L"Codigo de Pago";
+			this->Column4->Name = L"Column4";
 			// 
-			// button7
+			// Column1
 			// 
-			this->button7->Location = System::Drawing::Point(376, 98);
-			this->button7->Name = L"button7";
-			this->button7->Size = System::Drawing::Size(75, 23);
-			this->button7->TabIndex = 20;
-			this->button7->Text = L"Buscar";
-			this->button7->UseVisualStyleBackColor = true;
-			this->button7->Click += gcnew System::EventHandler(this, &frmProgramarClase::button7_Click);
+			this->Column1->HeaderText = L"DNI alumno";
+			this->Column1->Name = L"Column1";
 			// 
-			// label4
+			// Column2
 			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(32, 103);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(74, 13);
-			this->label4->TabIndex = 19;
-			this->label4->Text = L"Pago Profesor";
+			this->Column2->HeaderText = L"Hora Inicio";
+			this->Column2->Name = L"Column2";
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Duracion";
+			this->Column3->Name = L"Column3";
+			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"Pago Alumno";
+			this->Column5->Name = L"Column5";
+			// 
+			// Column6
+			// 
+			this->Column6->HeaderText = L"Clase";
+			this->Column6->Name = L"Column6";
+			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"Pago Profesor";
+			this->Column7->Name = L"Column7";
+			// 
+			// Column8
+			// 
+			this->Column8->HeaderText = L"CodigoInscripcion";
+			this->Column8->Name = L"Column8";
 			// 
 			// frmProgramarClase
 			// 
@@ -400,6 +415,8 @@ private: System::Void frmProgramarClase_Load(System::Object^ sender, System::Eve
 }
 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->comboBox1->Text = "";
+		this->comboBox3->Text = "";
 		String^ estadopagobuscar = this->comboBox2->Text;
 		List<Pago^>^ listaPagos;
 		PagoController^ objGestorPago = gcnew PagoController();
@@ -411,18 +428,21 @@ private: void mostrarGrilla(List<Pago^>^ listaPagos) {
 	this->dataGridView1->Rows->Clear();
 	for (int i = 0; i < listaPagos->Count; i++) {
 		Pago^ objPago = listaPagos[i];
-		array<String^>^ fila = gcnew array<String^>(6);
+		array<String^>^ fila = gcnew array<String^>(8);
 		fila[0] = objPago->codigoPago;
 		fila[1] = objPago->objInscripcion->objAlumno->dni;
 		fila[2] = objPago->objInscripcion->horaInicio;
 		fila[3] = Convert::ToString(objPago->objInscripcion->tiempoReserva);
 		fila[4] = objPago->estadopago;
 		fila[5] = objPago->estadoclase;
+		fila[7] = objPago->objInscripcion->codigoIns;
 
 		this->dataGridView1->Rows->Add(fila);
 	}
 }
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->comboBox2->Text = "";
+	this->comboBox3->Text = "";
 	String^ estadoclasebuscar = this->comboBox1->Text;
 	List<Pago^>^ listaPagos;
 	PagoController^ objGestorPago = gcnew PagoController();
@@ -437,7 +457,8 @@ private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e
 
 		if (estadopagoalumno == "por procesar") {
 			ClaseController^ objGestorClase = gcnew ClaseController();
-			objGestorClase->crearclaseBD(codigopago);
+			Clase^objClase= objGestorClase->BuscarClasexCodigoPagoBD(codigopago);
+			objGestorClase->crearclaseBD(objClase);
 
 				
 			PagoController^ objGestorPago = gcnew PagoController();
@@ -466,7 +487,7 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 
 	if (estadopagoalumno == "por procesar") {
 		PagoController^ objGestorPago = gcnew PagoController();
-		objGestorPago->desaprobarPago(codigopago);
+		objGestorPago->desaprobarPagoBD(codigopago);
 		MessageBox::Show("El Pago no ha sido validado !!!");
 	}
 	else if (estadopagoalumno == "validado") {
@@ -483,17 +504,20 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	String^ codigopago = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
 	String^ estadopagoalumno = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[4]->Value->ToString();
 	String^ estadoclase = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[5]->Value->ToString();
+	String^ CodigoInscripcion = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[7]->Value->ToString();
+
 
 
 	if ((estadoclase == "pendiente") && (estadopagoalumno == "validado")) {
 		PagoController^ objGestorPago = gcnew PagoController();
-		objGestorPago->programarclase(codigopago);
+		ClaseController^ objGestorClase = gcnew ClaseController();
+		objGestorPago->programarclaseBD(CodigoInscripcion);
+		objGestorClase->ProgramarClaseBD(CodigoInscripcion);
 
 		String^ linkclase = this->textBox2->Text;
-		ClaseController^ objGestorClase = gcnew ClaseController();
-		Inscripcion^ objInscripcion = objGestorPago->buscarIncscripcionxcodigocompleta(codigopago);
+		int codigoIns = objGestorPago->buscarIncscripcionxcodigocompletaBD(codigopago);
 
-		objGestorClase->enviarlink(linkclase, objInscripcion->codigoIns);
+		objGestorClase->enviarlinkBD(linkclase, codigoIns);
 		MessageBox::Show("El link de la clase ha sido enviado !!!");
 	}
 
@@ -512,32 +536,35 @@ private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e
 	String^ estadopagoalumno = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[4]->Value->ToString();
 	String^ estadoclase = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[5]->Value->ToString();
 	String^ estadoprofesor = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[6]->Value->ToString();
-
+	String^ CodigoInscripcion = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[7]->Value->ToString();
+	
 	ClaseController^ objGestorClase = gcnew ClaseController();
 	SaldoController^ objGestorSaldo = gcnew SaldoController();
-	PagoController^ objGestorPago = gcnew PagoController();
-	Inscripcion^ objInscripcion = objGestorPago->buscarIncscripcionxcodigocompleta(codigopago);
+	InscripcionController^ objGestorInscripcion = gcnew InscripcionController();
+	Inscripcion^ objInscripcion = objGestorInscripcion->buscarInscripcionxcodigo_BD(Convert::ToInt32(CodigoInscripcion));
 	int saldoaumentado;
 	int tarifa = Convert::ToInt32(objInscripcion->objCurso->precioCurso);
 	int tiempo =objInscripcion->tiempoReserva;
+	ProfesorController^ objGestorProfesor = gcnew ProfesorController();
+	Profesor^ objProfesor = objGestorProfesor->buscaProfesor(objInscripcion->objCurso->usuarioProfesor);
 	
-	if ((estadoclase == "programada") && (estadopagoalumno == "validado") && (estadoprofesor == "cancelado")) {
+	if ((estadoclase == "finalizada") && (estadopagoalumno == "validado") && (estadoprofesor == "cancelado")) {
 
 		MessageBox::Show("Ya se había pagado al profesor !!!");
 	}
 
-	else if ((estadoclase == "programada") && (estadopagoalumno == "validado") && (estadoprofesor == "por pagar")) {
-		objGestorClase->aprobarPago(codigopago);
+	else if ((estadoclase == "finalizada") && (estadopagoalumno == "validado") && (estadoprofesor == "por pagar")) {
+		objGestorClase->aprobarPago(CodigoInscripcion);
 
 
-		if (codigopago == "BONUS") {
+		if (codigopago == "BONO") {
 			saldoaumentado = (tarifa * tiempo) * 0.5;
 		}
 		else {
 			saldoaumentado = (tarifa * tiempo) * 0.9;
 		}
 			
-			objGestorSaldo->pagarprofesor(saldoaumentado, objInscripcion->objCurso->objProfesor->dni);
+			objGestorSaldo->pagarprofesor(saldoaumentado, objProfesor->dni);
 
 			MessageBox::Show("Se ha pagado al profesor !!!");
 	
@@ -546,6 +573,8 @@ private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e
 
 }
 private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->comboBox1->Text = "";
+	this->comboBox2->Text = "";
 	String^ estadopagoprofesorbuscar = this->comboBox3->Text;
 	List<Clase^>^ listaClases;
 	ClaseController^ objGestorClase = gcnew ClaseController();
@@ -560,18 +589,21 @@ private: void mostrarGrillaClase(List<Clase^>^ listaClases) {
 	this->dataGridView1->Rows->Clear();
 	for (int i = 0; i < listaClases->Count; i++) {
 		Clase^ objClase = listaClases[i];
-		array<String^>^ fila = gcnew array<String^>(7);
+		array<String^>^ fila = gcnew array<String^>(8);
 		fila[0] = objClase->objPago->codigoPago;
-		fila[1] = objClase->objPago->objInscripcion->objAlumno->dni;
-		fila[2] = objClase->objPago->objInscripcion->horaInicio;
+		fila[1] = objClase->objAlumno->dni;
+		fila[2] = objClase->horaClase;
 		fila[3] = Convert::ToString(objClase->objPago->objInscripcion->tiempoReserva);
 		fila[4] = objClase->objPago->estadopago;
 		fila[5] = objClase->objPago->estadoclase;
 		fila[6] = objClase->estadopagoprofesor;
+		fila[7] = objClase->objPago->objInscripcion->codigoIns;
 
 		this->dataGridView1->Rows->Add(fila);
 	}
 }
 
+private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

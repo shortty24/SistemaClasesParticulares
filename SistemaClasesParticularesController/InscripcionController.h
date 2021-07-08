@@ -16,7 +16,8 @@ namespace SistemaClasesParticularesController {
 		String^ InscripcionController::EstadoBonoxAlumno(String^ dniAlumnoBuscar);
 		void InscripcionController::ModificaEstadoBonoxAlumno(String^ dniAlumnoBuscar);
 		String^ InscripcionController::codigoInsxProfesorxDiaxHora(String^ dniProfesorBuscar, String^ diafechaClase, String^ horaInicioBuscar);
-
+		//Inscripcion^ ObtenerObjetoInscripcionxCodigoPagoBD(String^ CodigoPago);
+		Alumno^ buscaAlumnoxDNIBD(String^ dniAlumno);
 		void AbrirConexion();
 		void CerrarConexion();
 

@@ -25,6 +25,7 @@ void PagoController::CerrarConexion() {
 
 Pago^ PagoController::buscarPagoxCodigoBD(int CodigoClase) {
 	Pago^ objPago;
+	InscripcionController^ gestorInscripcion = gcnew InscripcionController();
 	AbrirConexion();
 	Alumno^ objAlumnoEncontrado;
 	SqlCommand^ objQuery = gcnew SqlCommand();
@@ -32,8 +33,8 @@ Pago^ PagoController::buscarPagoxCodigoBD(int CodigoClase) {
 	objQuery->CommandText = "select * from PagosProyecto where CodigoInscripcion ='"+ CodigoClase +"';";
 	SqlDataReader^ objData = objQuery->ExecuteReader();
 	while (objData->Read()) {
-		String^ CodigoInscripcion = Convert::ToString(safe_cast<int>(objData[0]));
-		Inscripcion^ objInscripcion= gcnew Inscripcion(CodigoInscripcion);
+		int CodigoInscripcion = safe_cast<int>(objData[0]);
+		Inscripcion^ objInscripcion= gestorInscripcion->buscarInscripcionxcodigo_BD(CodigoInscripcion);
 		String^ EstadoPagoClase = safe_cast<String^>(objData[1]);
 		String^ HoraPago = Convert::ToString(safe_cast<TimeSpan>(objData[2]));
 		DateTime FechaPago = safe_cast<DateTime>(objData[3]);
@@ -91,7 +92,7 @@ List<Pago^>^ PagoController::buscarClasesxEstadoBD(String^ estadoclasebuscar) {
 	objQuery->CommandText = "select * from PagosProyecto pp, InscripcionesProyecto inp where EstadoLink='"+ estadoclasebuscar +"' and pp.CodigoInscripcion=inp.CodigoInscripcion;";
 	SqlDataReader^ objData = objQuery->ExecuteReader();
 	while (objData->Read()) {
-		String^ DNIAlumno = Convert::ToString(safe_cast<int>(objData[6]));
+		String^ DNIAlumno = safe_cast<String^>(objData[6]);
 		Alumno^ objAlumno = objGestorAlumno->buscaAlumnoxDNI_BD(DNIAlumno);
 		String^ CodigoInscripcion = Convert::ToString(safe_cast<int>(objData[0]));
 		int HorasPedidas = safe_cast<int>(objData[11]);
@@ -144,8 +145,45 @@ void PagoController::aprobarPagoBD(String^ codigopago) {
 
 	CerrarConexion();
 }
+void PagoController::desaprobarPagoBD(String^ codigopago) {
+
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+
+	objQuery->Connection = this->objConexion;
+
+	objQuery->CommandText = "UPDATE PagosProyecto SET EstadoPagoClase='no validado' where CodigoPago='" + codigopago + "';";
+
+	objQuery->ExecuteNonQuery();
+
+	CerrarConexion();
+}
+void PagoController::programarclaseBD(String^ codigopago) {
 
 
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+
+	objQuery->Connection = this->objConexion;
+
+	objQuery->CommandText = "UPDATE PagosProyecto SET EstadoLink='programada' where CodigoInscripcion='" + codigopago + "';";
+
+	objQuery->ExecuteNonQuery();
+
+	CerrarConexion();
+}
+void PagoController::actualizarPagoBD(Clase^ ClaseSeleccionada) {
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+
+	objQuery->CommandText = "UPDATE PagosProyecto " +
+		"SET EstadoLink = 'finalizada' " +
+		"WHERE CodigoInscripcion =" + ClaseSeleccionada->objPago->objInscripcion->codigoIns + ";";
+
+	objQuery->ExecuteNonQuery();
+	CerrarConexion();
+}
 
 
 /*Métdos con archivos .txt*/
