@@ -742,7 +742,7 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-
+	if (this->dataGridView1->SelectedRows->Count != 0) {
 		int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
 		String^ nombreProfSeleccionado = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[2]->Value->ToString();
 		String^ nombreDelCurso = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
@@ -785,6 +785,10 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 
 			this->dataGridView5->Rows->Add(fila);
 		}
+	}
+	else {
+		MessageBox::Show("Debe seleccionar el curso al que desea inscribirse.");
+	}
 }
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 }
@@ -905,13 +909,18 @@ private: System::Void dataGridView2_CellContentClick(System::Object^ sender, Sys
 private: System::Void monthCalendar1_DateChanged(System::Object^ sender, System::Windows::Forms::DateRangeEventArgs^ e) {
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
-	String^ nombreProfSeleccionado = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[2]->Value->ToString();
-	ProfesorController^ gestorProfesor = gcnew ProfesorController();
-	String^ usuarioProfesor;
-	usuarioProfesor = gestorProfesor->obtenerUsuarioxNombreCompleto_BD(nombreProfSeleccionado);
-	frmInfoProfesorCurso^ ventanaInfoProfesor = gcnew frmInfoProfesorCurso(usuarioProfesor);
-	ventanaInfoProfesor->ShowDialog();
+	if (this->dataGridView1->SelectedRows->Count != 0) {
+		int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
+		String^ nombreProfSeleccionado = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[2]->Value->ToString();
+		ProfesorController^ gestorProfesor = gcnew ProfesorController();
+		String^ usuarioProfesor;
+		usuarioProfesor = gestorProfesor->obtenerUsuarioxNombreCompleto_BD(nombreProfSeleccionado);
+		frmInfoProfesorCurso^ ventanaInfoProfesor = gcnew frmInfoProfesorCurso(usuarioProfesor);
+		ventanaInfoProfesor->ShowDialog();
+	}
+	else {
+		MessageBox::Show("Debe seleccionar una fila obtener la información del profesor.");
+	}
 }
 private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 }
@@ -922,37 +931,42 @@ private: System::Void dataGridView3_CellContentClick(System::Object^ sender, Sys
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
-	int posicionFilaSeleccionada = this->dataGridView6->SelectedRows[0]->Index;
-	String^ codigoSeleccionado = this->dataGridView6->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
-	frmPago^ ventanaPago = gcnew frmPago(codigoSeleccionado);
-	int coincide = 0;
-	PagoController^ gestorPago = gcnew PagoController();
-	List<Pago^>^ listaPagosAlumno = gestorPago->buscarPagosxAlumno_BD(AlumnoLogeado->dni);
-	for (int i = 0; i < listaPagosAlumno->Count; i++) {
-		Pago^ objPago = listaPagosAlumno[i];
-		if (objPago->objInscripcion->codigoIns == codigoSeleccionado) {
-			coincide = 1;
-			break;
+	if (this->dataGridView6->SelectedRows->Count != 0) {
+		int posicionFilaSeleccionada = this->dataGridView6->SelectedRows[0]->Index;
+		String^ codigoSeleccionado = this->dataGridView6->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
+		frmPago^ ventanaPago = gcnew frmPago(codigoSeleccionado);
+		int coincide = 0;
+		PagoController^ gestorPago = gcnew PagoController();
+		List<Pago^>^ listaPagosAlumno = gestorPago->buscarPagosxAlumno_BD(AlumnoLogeado->dni);
+		for (int i = 0; i < listaPagosAlumno->Count; i++) {
+			Pago^ objPago = listaPagosAlumno[i];
+			if (objPago->objInscripcion->codigoIns == codigoSeleccionado) {
+				coincide = 1;
+				break;
+			}
 		}
-	}
-	if (coincide == 1) {
-		MessageBox::Show("Ya se realizó el pago de esta inscripción.");
+		if (coincide == 1) {
+			MessageBox::Show("Ya se realizó el pago de esta inscripción.");
+		}
+		else {
+			ventanaPago->ShowDialog();
+
+			listaPagosAlumno = gestorPago->buscarPagosxAlumno_BD(AlumnoLogeado->dni);
+			this->dataGridView5->Rows->Clear();
+			for (int i = 0; i < listaPagosAlumno->Count; i++) {
+				Pago^ objPago1 = listaPagosAlumno[i];
+				array<String^>^ fila = gcnew array<String^>(4);
+				fila[0] = objPago1->objInscripcion->codigoIns;
+				fila[1] = objPago1->estadopago;
+				fila[2] = objPago1->horaPago;
+				fila[3] = objPago1->fechaPago;
+
+				this->dataGridView5->Rows->Add(fila);
+			}
+		}
 	}
 	else {
-		ventanaPago->ShowDialog();
-
-		listaPagosAlumno = gestorPago->buscarPagosxAlumno_BD(AlumnoLogeado->dni);
-		this->dataGridView5->Rows->Clear();
-		for (int i = 0; i < listaPagosAlumno->Count; i++) {
-			Pago^ objPago1 = listaPagosAlumno[i];
-			array<String^>^ fila = gcnew array<String^>(4);
-			fila[0] = objPago1->objInscripcion->codigoIns;
-			fila[1] = objPago1->estadopago;
-			fila[2] = objPago1->horaPago;
-			fila[3] = objPago1->fechaPago;
-
-			this->dataGridView5->Rows->Add(fila);
-		}
+		MessageBox::Show("Debe seleccionar la inscripción que desea pagar.");
 	}
 
 }
