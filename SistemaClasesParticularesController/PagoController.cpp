@@ -115,13 +115,13 @@ List<Pago^>^ PagoController::buscarClasesxEstadoBD(String^ estadoclasebuscar) {
 	return listaPagosEncontrados;
 }
 
-int PagoController::buscarIncscripcionxcodigocompletaBD(String^ codigopago) {
+int PagoController::buscarIncscripcionxcodigocompletaBD(String^ CodigoInscripcion) {
 	int Inscripcion;
 	AbrirConexion();
 	Profesor^ objProfesorEncontrado;
 	SqlCommand^ objQuery = gcnew SqlCommand();
 	objQuery->Connection = this->objConexion;
-	objQuery->CommandText = "select * from PagosProyecto where CodigoPago='" + codigopago + "';";
+	objQuery->CommandText = "select * from PagosProyecto where CodigoInscripcion='" + CodigoInscripcion + "';";
 	SqlDataReader^ objData = objQuery->ExecuteReader();
 	if (objData->Read()) {
 		Inscripcion = safe_cast<int>(objData[0]);
@@ -132,27 +132,27 @@ int PagoController::buscarIncscripcionxcodigocompletaBD(String^ codigopago) {
 	return Inscripcion;
 }
 
-void PagoController::aprobarPagoBD(String^ codigopago) {
+void PagoController::aprobarPagoBD(String^ CodigoInscripcion) {
 
 	AbrirConexion();
 	SqlCommand^ objQuery = gcnew SqlCommand();
 
 	objQuery->Connection = this->objConexion;
 
-	objQuery->CommandText = "UPDATE PagosProyecto SET EstadoPagoClase='validado' where CodigoPago='" + codigopago + "';";
+	objQuery->CommandText = "UPDATE PagosProyecto SET EstadoPagoClase='validado' where CodigoInscripcion='" + CodigoInscripcion + "';";
 
 	objQuery->ExecuteNonQuery();
 
 	CerrarConexion();
 }
-void PagoController::desaprobarPagoBD(String^ codigopago) {
+void PagoController::desaprobarPagoBD(String^ CodigoInscripcion) {
 
 	AbrirConexion();
 	SqlCommand^ objQuery = gcnew SqlCommand();
 
 	objQuery->Connection = this->objConexion;
 
-	objQuery->CommandText = "UPDATE PagosProyecto SET EstadoPagoClase='no validado' where CodigoPago='" + codigopago + "';";
+	objQuery->CommandText = "UPDATE PagosProyecto SET EstadoPagoClase='no validado' where CodigoInscripcion='" + CodigoInscripcion + "';";
 
 	objQuery->ExecuteNonQuery();
 

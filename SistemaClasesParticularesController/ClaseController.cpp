@@ -204,12 +204,12 @@ List<String^>^ ClaseController::obtenerListaCursosPedidos(String^ dniProfesorBus
 	return listaCurso;
 }
 
-Clase^ClaseController::BuscarClasexCodigoPagoBD(String^ codigopago) {
+Clase^ClaseController::BuscarClasexCodigoPagoBD(String^ CodigoInscripcion) {
 	Clase^ ObjClaseEncontrado;
 	AbrirConexion();
 	SqlCommand^ objQuery = gcnew SqlCommand();
 	objQuery->Connection = this->objConexion;
-	objQuery->CommandText = "select * from PagosProyecto PP, InscripcionesProyecto IPN,Personas P where PP.CodigoInscripcion=IPN.CodigoInscripcion and CodigoPago='"+ codigopago +"' and P.DNI= IPN.DNIAlumno;";
+	objQuery->CommandText = "select * from PagosProyecto PP, InscripcionesProyecto IPN,Personas P where PP.CodigoInscripcion=IPN.CodigoInscripcion and IPN.CodigoInscripcion='"+ CodigoInscripcion +"' and P.DNI= IPN.DNIAlumno;";
 	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
 	if (objData->Read()) {
 		String^ DniAlumno = safe_cast<String^>(objData[6]);
@@ -237,7 +237,8 @@ void ClaseController::crearclaseBD(Clase^ objClase) {
 	AbrirConexion();
 	SqlCommand^ objQuery = gcnew SqlCommand();
 	objQuery->Connection = this->objConexion;
-	objQuery->CommandText = "Insert into ClasesProyecto values('"+ objClase->DniAlumno +"','" + objClase->DniProfesor + "','" + objClase->NombreCurso + "','" + objClase->horaClase + "','" + objClase->fechaClase + "','" + objClase->objLink + "','" + objClase->CodigoInscripcion + "','" + objClase->EstadoLink + "','por pagar');";
+	
+	objQuery->CommandText = "Insert into ClasesProyecto values('"+ objClase->DniAlumno +"','" + objClase->DniProfesor+ "','" + objClase->NombreCurso + "','" + objClase->horaClase + "','" + objClase->fechaClase + "','" + objClase->objLink + "','" + objClase->CodigoInscripcion + "','" + objClase->EstadoLink + "','por pagar');";
 	objQuery->ExecuteNonQuery();
 	CerrarConexion();
 }
@@ -247,8 +248,7 @@ void ClaseController::enviarlinkBD(String^ linkclase, int codigoIns) {
 	SqlCommand^ objQuery = gcnew SqlCommand();
 	objQuery->Connection = this->objConexion;
 
-	objQuery->CommandText = "UPDATE ClasesProyecto " + "SET Link = '"+ linkclase +"' " +
-		"WHERE Link ='-' and CodigoClase="+codigoIns+";";
+	objQuery->CommandText = "UPDATE ClasesProyecto " + "SET Link = '"+ linkclase +"' WHERE Link ='-' and CodigoClase="+codigoIns+";";
 	objQuery->ExecuteNonQuery();
 	CerrarConexion();
 

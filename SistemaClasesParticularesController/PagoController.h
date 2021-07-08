@@ -18,9 +18,9 @@ namespace SistemaClasesParticularesController {
 		Pago^ buscarPagoxCodigoBD(int CodigoClase);
 		List<Pago^>^ buscarPagosxEstadoBD(String^ estadoBuscar);
 		List<Pago^>^ buscarClasesxEstadoBD(String^ estadoclasebuscar);
-		int buscarIncscripcionxcodigocompletaBD(String^ codigopago);
-		void aprobarPagoBD(String^ codigopago);
-		void desaprobarPagoBD(String^ codigopago);
+		int buscarIncscripcionxcodigocompletaBD(String^ CodigoInscripcion);
+		void aprobarPagoBD(String^ CodigoInscripcion);
+		void desaprobarPagoBD(String^ CodigoInscripcion);
 		void programarclaseBD(String^ codigopago);
 		void actualizarPagoBD(Clase^ ClaseSeleccionada);
 

@@ -24,12 +24,12 @@ namespace SistemaClasesParticularesController {
 		List<String^>^ obtenerListaCursosPedidos(String^ dniProfesorBuscar);
 		void crearclaseBD(Clase^ objClase);
 		void enviarlinkBD(String^ linkclase, int codigoIns);
-		Clase^ BuscarClasexCodigoPagoBD(String^ codigopago);
+		Clase^ BuscarClasexCodigoPagoBD(String^ CodigoInscripcion);///
 		void ProgramarClaseBD(String^ CodigoInscripcion);
 		List<Clase^>^ ClasesProgramadasxNombrexDiaBD(String^ dniProfesorBuscar, String^ nombreBuscar, String^ fechaBuscar);
 		List<Clase^>^ ClasesProgramadasxDiaBD(String^ dniProfesorBuscar, String^ fecha);
 		List<Clase^>^  ClasesProgramadasxNombreBD(String^ dniProfesorBuscar,String^ nombreAlumno);
-
+		Clase^ obtenerProximaClaseAlumno_BD(String^ DniAlumno);
 		
 		/*Métodos con archivos .txt*/
 		List<Clase^>^ ClasesProgramadas(String^ dniProfesorBuscar);
@@ -47,7 +47,7 @@ namespace SistemaClasesParticularesController {
 		void aprobarPago(String^ codigopago);
 		void CargarClaseDesdeArchivo();
 		List<Clase^>^ buscarPagosProfesorxEstado(String^ estado);
-		Clase^ obtenerProximaClaseAlumno_BD(String^ DniAlumno);
+		
 
 	};
 

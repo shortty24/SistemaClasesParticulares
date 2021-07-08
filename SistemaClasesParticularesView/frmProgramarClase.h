@@ -136,13 +136,6 @@ namespace SistemaClasesParticularesView {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->button6 = (gcnew System::Windows::Forms::Button());
 			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -151,6 +144,13 @@ namespace SistemaClasesParticularesView {
 			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->button6 = (gcnew System::Windows::Forms::Button());
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->groupBox2->SuspendLayout();
@@ -274,6 +274,46 @@ namespace SistemaClasesParticularesView {
 			this->dataGridView1->TabIndex = 2;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &frmProgramarClase::dataGridView1_CellContentClick);
 			// 
+			// Column4
+			// 
+			this->Column4->HeaderText = L"Codigo de Pago";
+			this->Column4->Name = L"Column4";
+			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"DNI alumno";
+			this->Column1->Name = L"Column1";
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"Hora Inicio";
+			this->Column2->Name = L"Column2";
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Duracion";
+			this->Column3->Name = L"Column3";
+			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"Pago Alumno";
+			this->Column5->Name = L"Column5";
+			// 
+			// Column6
+			// 
+			this->Column6->HeaderText = L"Clase";
+			this->Column6->Name = L"Column6";
+			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"Pago Profesor";
+			this->Column7->Name = L"Column7";
+			// 
+			// Column8
+			// 
+			this->Column8->HeaderText = L"CodigoInscripcion";
+			this->Column8->Name = L"Column8";
+			// 
 			// groupBox2
 			// 
 			this->groupBox2->Controls->Add(this->button2);
@@ -341,46 +381,6 @@ namespace SistemaClasesParticularesView {
 			this->button6->Text = L"Pagar Profesor";
 			this->button6->UseVisualStyleBackColor = true;
 			this->button6->Click += gcnew System::EventHandler(this, &frmProgramarClase::button6_Click);
-			// 
-			// Column4
-			// 
-			this->Column4->HeaderText = L"Codigo de Pago";
-			this->Column4->Name = L"Column4";
-			// 
-			// Column1
-			// 
-			this->Column1->HeaderText = L"DNI alumno";
-			this->Column1->Name = L"Column1";
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"Hora Inicio";
-			this->Column2->Name = L"Column2";
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Duracion";
-			this->Column3->Name = L"Column3";
-			// 
-			// Column5
-			// 
-			this->Column5->HeaderText = L"Pago Alumno";
-			this->Column5->Name = L"Column5";
-			// 
-			// Column6
-			// 
-			this->Column6->HeaderText = L"Clase";
-			this->Column6->Name = L"Column6";
-			// 
-			// Column7
-			// 
-			this->Column7->HeaderText = L"Pago Profesor";
-			this->Column7->Name = L"Column7";
-			// 
-			// Column8
-			// 
-			this->Column8->HeaderText = L"CodigoInscripcion";
-			this->Column8->Name = L"Column8";
 			// 
 			// frmProgramarClase
 			// 
@@ -454,15 +454,17 @@ private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e
 		int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
 		String^ codigopago = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
 		String^ estadopagoalumno = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[4]->Value->ToString();
+		String^ CodigoInscripcion = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[7]->Value->ToString();
 
 		if (estadopagoalumno == "por procesar") {
 			ClaseController^ objGestorClase = gcnew ClaseController();
-			Clase^objClase= objGestorClase->BuscarClasexCodigoPagoBD(codigopago);
+			Clase^ objClase= objGestorClase->BuscarClasexCodigoPagoBD(CodigoInscripcion);
+
 			objGestorClase->crearclaseBD(objClase);
 
 				
 			PagoController^ objGestorPago = gcnew PagoController();
-			objGestorPago->aprobarPagoBD(codigopago);
+			objGestorPago->aprobarPagoBD(CodigoInscripcion);
 
 
 			MessageBox::Show("El Pago ha sido validado con éxito !!!");
@@ -484,10 +486,11 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
 	String^ codigopago = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
 	String^ estadopagoalumno = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[4]->Value->ToString();
+	String^ CodigoInscripcion = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[7]->Value->ToString();
 
 	if (estadopagoalumno == "por procesar") {
 		PagoController^ objGestorPago = gcnew PagoController();
-		objGestorPago->desaprobarPagoBD(codigopago);
+		objGestorPago->desaprobarPagoBD(CodigoInscripcion);
 		MessageBox::Show("El Pago no ha sido validado !!!");
 	}
 	else if (estadopagoalumno == "validado") {
@@ -515,7 +518,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		objGestorClase->ProgramarClaseBD(CodigoInscripcion);
 
 		String^ linkclase = this->textBox2->Text;
-		int codigoIns = objGestorPago->buscarIncscripcionxcodigocompletaBD(codigopago);
+		int codigoIns = objGestorPago->buscarIncscripcionxcodigocompletaBD(CodigoInscripcion);
 
 		objGestorClase->enviarlinkBD(linkclase, codigoIns);
 		MessageBox::Show("El link de la clase ha sido enviado !!!");
@@ -524,10 +527,6 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	else if ((estadoclase == "programada") && (estadopagoalumno == "validado")){
 		MessageBox::Show("El link de la clase ya se había enviado !!!");
 	}
-
-	
-
-
 
 }
 private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
