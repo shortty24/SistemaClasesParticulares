@@ -26,8 +26,11 @@ namespace SistemaClasesParticularesController {
 		void enviarlinkBD(String^ linkclase, int codigoIns);
 		Clase^ BuscarClasexCodigoPagoBD(String^ codigopago);
 		void ProgramarClaseBD(String^ CodigoInscripcion);
+		List<Clase^>^ ClasesProgramadasxNombrexDiaBD(String^ dniProfesorBuscar, String^ nombreBuscar, String^ fechaBuscar);
+		List<Clase^>^ ClasesProgramadasxDiaBD(String^ dniProfesorBuscar, String^ fecha);
+		List<Clase^>^  ClasesProgramadasxNombreBD(String^ dniProfesorBuscar,String^ nombreAlumno);
 
-
+		
 		/*Métodos con archivos .txt*/
 		List<Clase^>^ ClasesProgramadas(String^ dniProfesorBuscar);
 		Alumno^ buscarAlumnoxDNI(String^ dniAlumno);

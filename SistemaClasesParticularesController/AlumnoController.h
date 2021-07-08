@@ -18,6 +18,7 @@ namespace SistemaClasesParticularesController {
 			Alumno^ buscaAlumnoBD(String^ usuarioAlumno);
 			Alumno^ buscaAlumnoxDNI_BD(String^ dniAlumno);
 			List<Alumno^>^ buscarAlumnosPotencialesAQuejaBD(String^ dniProfesor);
+			Alumno^ buscaAlumnoxNombre_BD(String^ NombreAlumno);
 
 			/*Métodos con archivos .txt*/
 			Alumno^ buscaAlumno(String^ usuarioAlumno);

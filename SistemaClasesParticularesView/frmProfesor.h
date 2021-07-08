@@ -58,7 +58,7 @@ namespace SistemaClasesParticularesView {
 	private: System::Windows::Forms::GroupBox^ groupBox1;
 	private: System::Windows::Forms::Button^ button8;
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::TextBox^ textBox3;
+
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::TabControl^ tabControl1;
 	private: System::Windows::Forms::TabPage^ tabPage1;
@@ -122,7 +122,7 @@ private: System::Windows::Forms::ComboBox^ comboBox1;
 private: System::Windows::Forms::TextBox^ textBox5;
 private: System::Windows::Forms::Label^ label6;
 private: System::Windows::Forms::Label^ label5;
-private: System::Windows::Forms::TextBox^ textBox4;
+
 private: System::Windows::Forms::TextBox^ textBox6;
 private: System::Windows::Forms::ComboBox^ comboBox2;
 
@@ -144,6 +144,8 @@ private: System::Windows::Forms::Label^ label7;
 private: System::Windows::Forms::TabPage^ tabPage4;
 private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
 private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
+private: System::Windows::Forms::ComboBox^ comboBox5;
+private: System::Windows::Forms::ComboBox^ comboBox4;
 
 
 
@@ -231,8 +233,8 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
 			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
-			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->Column12 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -240,11 +242,10 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column13 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->button8 = (gcnew System::Windows::Forms::Button());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
@@ -282,7 +283,8 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->tabPage4 = (gcnew System::Windows::Forms::TabPage());
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
-			this->Column13 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->comboBox4 = (gcnew System::Windows::Forms::ComboBox());
+			this->comboBox5 = (gcnew System::Windows::Forms::ComboBox());
 			this->tabPage2->SuspendLayout();
 			this->groupBox2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -313,16 +315,6 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			this->tabPage2->Text = L"Actividades";
 			this->tabPage2->UseVisualStyleBackColor = true;
 			// 
-			// groupBox2
-			// 
-			this->groupBox2->Controls->Add(this->dataGridView1);
-			this->groupBox2->Location = System::Drawing::Point(18, 245);
-			this->groupBox2->Name = L"groupBox2";
-			this->groupBox2->Size = System::Drawing::Size(757, 182);
-			this->groupBox2->TabIndex = 2;
-			this->groupBox2->TabStop = false;
-			this->groupBox2->Text = L"Clases Programadas";
-			// 
 			// button1
 			// 
 			this->button1->Location = System::Drawing::Point(358, 444);
@@ -332,6 +324,16 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			this->button1->Text = L"Finalizar clase";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &frmProfesor::button1_Click);
+			// 
+			// groupBox2
+			// 
+			this->groupBox2->Controls->Add(this->dataGridView1);
+			this->groupBox2->Location = System::Drawing::Point(18, 245);
+			this->groupBox2->Name = L"groupBox2";
+			this->groupBox2->Size = System::Drawing::Size(757, 182);
+			this->groupBox2->TabIndex = 2;
+			this->groupBox2->TabStop = false;
+			this->groupBox2->Text = L"Clases Programadas";
 			// 
 			// dataGridView1
 			// 
@@ -380,30 +382,28 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			this->Column4->Name = L"Column4";
 			this->Column4->ReadOnly = true;
 			// 
+			// Column13
+			// 
+			this->Column13->HeaderText = L"Código Clase";
+			this->Column13->Name = L"Column13";
+			// 
 			// groupBox1
 			// 
-			this->groupBox1->Controls->Add(this->textBox4);
+			this->groupBox1->Controls->Add(this->comboBox5);
+			this->groupBox1->Controls->Add(this->comboBox4);
 			this->groupBox1->Controls->Add(this->button8);
 			this->groupBox1->Controls->Add(this->label4);
-			this->groupBox1->Controls->Add(this->textBox3);
 			this->groupBox1->Controls->Add(this->label3);
 			this->groupBox1->Location = System::Drawing::Point(33, 62);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(478, 117);
+			this->groupBox1->Size = System::Drawing::Size(389, 117);
 			this->groupBox1->TabIndex = 0;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Clases Programadas";
 			// 
-			// textBox4
-			// 
-			this->textBox4->Location = System::Drawing::Point(72, 70);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(232, 20);
-			this->textBox4->TabIndex = 11;
-			// 
 			// button8
 			// 
-			this->button8->Location = System::Drawing::Point(355, 48);
+			this->button8->Location = System::Drawing::Point(298, 50);
 			this->button8->Name = L"button8";
 			this->button8->Size = System::Drawing::Size(71, 36);
 			this->button8->TabIndex = 10;
@@ -419,13 +419,6 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			this->label4->Size = System::Drawing::Size(43, 13);
 			this->label4->TabIndex = 2;
 			this->label4->Text = L"Fecha :";
-			// 
-			// textBox3
-			// 
-			this->textBox3->Location = System::Drawing::Point(72, 35);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(232, 20);
-			this->textBox3->TabIndex = 1;
 			// 
 			// label3
 			// 
@@ -788,10 +781,21 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
 			// 
-			// Column13
+			// comboBox4
 			// 
-			this->Column13->HeaderText = L"Código Clase";
-			this->Column13->Name = L"Column13";
+			this->comboBox4->FormattingEnabled = true;
+			this->comboBox4->Location = System::Drawing::Point(73, 38);
+			this->comboBox4->Name = L"comboBox4";
+			this->comboBox4->Size = System::Drawing::Size(196, 21);
+			this->comboBox4->TabIndex = 11;
+			// 
+			// comboBox5
+			// 
+			this->comboBox5->FormattingEnabled = true;
+			this->comboBox5->Location = System::Drawing::Point(73, 70);
+			this->comboBox5->Name = L"comboBox5";
+			this->comboBox5->Size = System::Drawing::Size(196, 21);
+			this->comboBox5->TabIndex = 12;
 			// 
 			// frmProfesor
 			// 
@@ -889,6 +893,16 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 		listaClasesProgramadas = objGestorLista->ClasesProgramadasxProfesorBD(ProfesorLogeado->dni);
 		mostrarGrillaClases(listaClasesProgramadas);
 
+		this->comboBox4->Items->Clear();
+		for (int i = 0; i < listaClasesProgramadas->Count; i++) {
+			this->comboBox4->Items->Add(listaClasesProgramadas[i]->objAlumno->objNombre);
+		}
+
+		this->comboBox5->Items->Clear();
+		for (int i = 0; i < listaClasesProgramadas->Count; i++) {
+			this->comboBox5->Items->Add(listaClasesProgramadas[i]->fechaClase);
+		}
+
 
 		/*TAB QUEJAS Y/O RECOMENDACIÓN*/
 		AlumnoController^ objGestorAlumno = gcnew AlumnoController();
@@ -940,19 +954,47 @@ private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e
 }
 
 	private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
-		String^ nombre = this->textBox3->Text;
-		String^ fecha = this->textBox4->Text;
-		List<Clase^>^ listaClasesProgramadas;
-		List<Clase^>^ listaClasesProgramadasxNombrexDia;
+		
+		String^ nombreAlumno = this->comboBox4->Text;
+		String^ fecha = this->comboBox5->Text;
+
 		ClaseController^ objGestorLista = gcnew ClaseController();
-		if ((textBox3->Text != "") || (textBox4->Text != "")) {
-			listaClasesProgramadasxNombrexDia = objGestorLista->ClasesProgramadasxNombrexDia(ProfesorLogeado->dni, nombre, fecha);
+		List<Clase^>^ listaClasesProgramadas = objGestorLista->ClasesProgramadasxProfesorBD(ProfesorLogeado->dni);
+		
+		/*for (int i = 0; i < listaClasesProgramadas->Count; i++) {
+			Clase^ objClase = listaClasesProgramadas[i];
+			if(objClase->
+		}*/
+		
+		if ((comboBox4->Text != "") && (comboBox5->Text != "")) {
+			List<Clase^>^ listaClasesProgramadasxNombrexDia = objGestorLista->ClasesProgramadasxNombrexDiaBD(ProfesorLogeado->dni, nombreAlumno, fecha);
 			mostrarGrillaClases(listaClasesProgramadasxNombrexDia);
 		}
-		else {
-			listaClasesProgramadas = objGestorLista->ClasesProgramadas(ProfesorLogeado->dni);
+		else if ((this->comboBox4->SelectedIndex == -1) && (comboBox5->Text != "")) {
+			List<Clase^>^ listaClasesProgramadasxDia = objGestorLista->ClasesProgramadasxDiaBD(ProfesorLogeado->dni, fecha);
+			mostrarGrillaClases(listaClasesProgramadasxDia);
+		}
+		else if (((comboBox4->Text != "") && (this->comboBox5->SelectedIndex == -1))) {
+			List<Clase^>^ listaClasesProgramadasxNombre = objGestorLista->ClasesProgramadasxNombreBD(ProfesorLogeado->dni, nombreAlumno);
+			mostrarGrillaClases(listaClasesProgramadasxNombre);
+		}	
+		else if (((this->comboBox4->SelectedIndex == 1) || (this->comboBox4->SelectedIndex == 0)) && (comboBox5->Text != "")) {
+			List<Clase^>^ listaClasesProgramadasxDia = objGestorLista->ClasesProgramadasxDiaBD(ProfesorLogeado->dni, fecha);
+			mostrarGrillaClases(listaClasesProgramadasxDia);
+		}
+		else if (((comboBox4->Text != "") && ((this->comboBox5->SelectedIndex == 1)|| (this->comboBox5->SelectedIndex == 0)))) {
+			List<Clase^>^ listaClasesProgramadasxNombre = objGestorLista->ClasesProgramadasxNombreBD(ProfesorLogeado->dni, nombreAlumno);
+			mostrarGrillaClases(listaClasesProgramadasxNombre);
+		}
+		else{
+			MessageBox::Show("Debe seleccionar al menos un campo");
 			mostrarGrillaClases(listaClasesProgramadas);
-		}  	
+		} 
+
+		this->comboBox4->Text = "";
+		this->comboBox5->Text = "";
+		this->comboBox4->SelectedIndex == -1;
+		this->comboBox5->SelectedIndex == -1;
 	}
 
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {	
@@ -1011,26 +1053,39 @@ private: System::Void textBox6_TextChanged(System::Object^ sender, System::Event
 		Clase^ objClase = objGestorClase->obtenerProximaClase(ProfesorLogeado->dni);
 		if (objClase != nullptr) {
 			MessageBox::Show("Recuerde que el " + objClase->fechaClase + " tiene una clase programada con el alumno " + objClase->objAlumno->objNombre + " " + objClase->objAlumno->objApellidoPaterno +
-				" " + objClase->objAlumno->objApellidoMaterno + " a las " + objClase->horaClase + ":00 horas");
+				" " + objClase->objAlumno->objApellidoMaterno + " a las " + objClase->horaClase);
 		}
 	}
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
-	String^ codigo = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[6]->Value->ToString();
-
 	ClaseController^ objGestorClase = gcnew ClaseController();
 	PagoController^ objGestorPago = gcnew PagoController();
-	Clase^ objClase = objGestorClase->obtenerClaseSeleccionadaBD(Convert::ToInt32(codigo));
-	 
-	if ((objClase->EstadoLink == "programada")) {
-		objGestorClase->actualizarClaseBD(objClase);
-		objGestorPago->actualizarPagoBD(objClase);
 
-		MessageBox::Show("La clase acaba de ser finalizada");
+	if (this->dataGridView1->SelectedRows->Count != 0) {
+		int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
+		String^ codigo = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[6]->Value->ToString();
+
+		
+		
+		Clase^ objClase = objGestorClase->obtenerClaseSeleccionadaBD(Convert::ToInt32(codigo));
+
+		if ((objClase->EstadoLink == "programada")) {
+			objGestorClase->actualizarClaseBD(objClase);
+			objGestorPago->actualizarPagoBD(objClase);
+
+			MessageBox::Show("La clase acaba de ser finalizada");
+		}
+		else {
+			MessageBox::Show("Esta clase ya está finalizada");
+		}
+
 	}
 	else {
-		MessageBox::Show("Esta clase ya está finalizada");
+		MessageBox::Show("Debe seleccionar una fila para eliminar");
 	}
+	
+	List<Clase^>^ listaClasesProgramadas;
+	listaClasesProgramadas = objGestorClase->ClasesProgramadasxProfesorBD(ProfesorLogeado->dni);
+	mostrarGrillaClases(listaClasesProgramadas);
 }
 };
 }
