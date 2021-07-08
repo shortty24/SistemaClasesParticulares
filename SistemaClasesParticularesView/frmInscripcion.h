@@ -410,6 +410,7 @@ private: System::Void comboBox1_SelectedIndexChanged_2(System::Object^ sender, S
 	HorarioController^ gestorHorario = gcnew HorarioController();
 	List<Horario^>^ listaHorarios = gestorHorario->HorarioxProfesorInscripcion_BD(dniProfesor);
 	List<String^>^ horasxDia;
+	this->comboBox3->Items->Clear();
 	for (int i = 0; i < listaHorarios->Count; i++) {
 		this->comboBox2->Items->Clear();
 		if (this->comboBox1->Text == listaHorarios[i]->dia) {
