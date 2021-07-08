@@ -61,10 +61,11 @@ List<Clase^>^ ClaseController::ClasesProgramadasxProfesorBD(String^ dniProfesorB
 		String^ fechaInsTR = Convert::ToString(FechaClase.ToShortDateString());
 		String^ Link= safe_cast<String^>(objData[5]);
 		int CodigoClase = safe_cast<int>(objData[6]);
+		Pago^ objPago = objGestorPago->buscarPagoxCodigoBD(CodigoClase);
 		String^ EstadoLink = safe_cast<String^>(objData[7]);
 		String^ EstadoPagoProfesor = safe_cast<String^>(objData[8]);
 
-		Clase^ objClase = gcnew Clase(objAlumno, objProfesor, objCurso, HoraClase, fechaInsTR, Link);
+		Clase^ objClase = gcnew Clase(objAlumno, objProfesor, objCurso, HoraClase, fechaInsTR, Link, objPago, EstadoLink, EstadoPagoProfesor);
 		listaClases->Add(objClase);
 	}
 	objData->Close();
@@ -136,7 +137,7 @@ Clase^ ClaseController::obtenerProximaClaseAlumno_BD(String^ DniAlumno) {
 	CerrarConexion();
 	return objClase;
 }
-Clase^ ClaseController::obtenerClaseSeleccionadaBD(int posicionFilaSeleccionada) {
+Clase^ ClaseController::obtenerClaseSeleccionadaBD(int codigo) {
 	AlumnoController^ objGestorClase = gcnew AlumnoController();
 	ProfesorController^ objGestorProfesor = gcnew ProfesorController();
 	CursoController^ objGestorCurso = gcnew CursoController();
@@ -146,25 +147,24 @@ Clase^ ClaseController::obtenerClaseSeleccionadaBD(int posicionFilaSeleccionada)
 	AbrirConexion();
 	SqlCommand^ objQuery = gcnew SqlCommand();
 	objQuery->Connection = this->objConexion;
-	objQuery->CommandText = "SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY FechaClase ASC) AS Orden, DNIAlumno, DNIProfesor, Curso, HoraClase, FechaClase, Link, CodigoClase,EstadoLink, EstadoPagoProfesor " +
-		"FROM ClasesProyecto) T1 WHERE Orden = "+ (posicionFilaSeleccionada+1) +";";
+	objQuery->CommandText = "select * from ClasesProyecto where CodigoClase="+ codigo+" order by FechaClase;";
 
 	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
 	while (objData->Read()) {
-		String^ DNIAlumno = safe_cast<String^>(objData[1]);
+		String^ DNIAlumno = safe_cast<String^>(objData[0]);
 		Alumno^ objAlumno = objGestorClase->buscaAlumnoxDNI_BD(DNIAlumno);
-		String^ DNIProfesor = safe_cast<String^>(objData[2]);
+		String^ DNIProfesor = safe_cast<String^>(objData[1]);
 		Profesor^ objProfesor = objGestorProfesor->buscaProfesorxDNI_BD(DNIProfesor);
-		String^ NombreCurso = safe_cast<String^>(objData[3]);
+		String^ NombreCurso = safe_cast<String^>(objData[2]);
 		Curso^ objCurso = objGestorCurso->buscarCursoxNombreCursoBD(NombreCurso);
-		String^ HoraClase = Convert::ToString(safe_cast<TimeSpan>(objData[4]));
-		DateTime FechaClase = safe_cast<DateTime>(objData[5]);
+		String^ HoraClase = Convert::ToString(safe_cast<TimeSpan>(objData[3]));
+		DateTime FechaClase = safe_cast<DateTime>(objData[4]);
 		String^ fechaInsTR = Convert::ToString(FechaClase.ToShortDateString());
-		String^ Link = safe_cast<String^>(objData[6]);
-		int CodigoClase = safe_cast<int>(objData[7]);
+		String^ Link = safe_cast<String^>(objData[5]);
+		int CodigoClase = safe_cast<int>(objData[6]);
 		Pago^ objPago = objGestorPago->buscarPagoxCodigoBD(CodigoClase);
-		String^ EstadoLink = safe_cast<String^>(objData[8]);
-		String^ EstadoPagoProfesor = safe_cast<String^>(objData[9]);
+		String^ EstadoLink = safe_cast<String^>(objData[7]);
+		String^ EstadoPagoProfesor = safe_cast<String^>(objData[8]);
 
 		objClase = gcnew Clase(objAlumno, objProfesor, objCurso, HoraClase, fechaInsTR, Link, objPago, EstadoLink, EstadoPagoProfesor);
 	}

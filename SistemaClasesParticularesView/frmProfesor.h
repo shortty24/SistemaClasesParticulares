@@ -143,6 +143,7 @@ private: System::Windows::Forms::TextBox^ textBox2;
 private: System::Windows::Forms::Label^ label7;
 private: System::Windows::Forms::TabPage^ tabPage4;
 private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
+private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 
 
 
@@ -281,6 +282,7 @@ private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->tabPage4 = (gcnew System::Windows::Forms::TabPage());
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->Column13 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->tabPage2->SuspendLayout();
 			this->groupBox2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -300,6 +302,7 @@ private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
 			// 
 			// tabPage2
 			// 
+			this->tabPage2->Controls->Add(this->button1);
 			this->tabPage2->Controls->Add(this->groupBox2);
 			this->tabPage2->Controls->Add(this->groupBox1);
 			this->tabPage2->Location = System::Drawing::Point(4, 22);
@@ -312,7 +315,6 @@ private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
 			// 
 			// groupBox2
 			// 
-			this->groupBox2->Controls->Add(this->button1);
 			this->groupBox2->Controls->Add(this->dataGridView1);
 			this->groupBox2->Location = System::Drawing::Point(18, 245);
 			this->groupBox2->Name = L"groupBox2";
@@ -323,7 +325,7 @@ private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(671, 39);
+			this->button1->Location = System::Drawing::Point(358, 444);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 40);
 			this->button1->TabIndex = 1;
@@ -334,13 +336,13 @@ private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
 				this->Column12,
-					this->Column1, this->Column11, this->Column3, this->Column2, this->Column4
+					this->Column1, this->Column11, this->Column3, this->Column2, this->Column4, this->Column13
 			});
 			this->dataGridView1->Location = System::Drawing::Point(7, 29);
 			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(646, 150);
+			this->dataGridView1->Size = System::Drawing::Size(744, 150);
 			this->dataGridView1->TabIndex = 0;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &frmProfesor::dataGridView1_CellContentClick);
 			// 
@@ -786,6 +788,11 @@ private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
 			// 
+			// Column13
+			// 
+			this->Column13->HeaderText = L"Código Clase";
+			this->Column13->Name = L"Column13";
+			// 
 			// frmProfesor
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -835,13 +842,14 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 		this->dataGridView1->Rows->Clear();
 		for (int i = 0; i < objClase->Count; i++) {
 			Clase^ ClaseProgramada = objClase[i];
-			array<String^>^ fila = gcnew array<String^>(6);
+			array<String^>^ fila = gcnew array<String^>(7);
 			fila[0] = ClaseProgramada->objAlumno->dni;
 			fila[1] = ClaseProgramada->objAlumno->objNombre + " " + ClaseProgramada->objAlumno->objApellidoPaterno + " " + ClaseProgramada->objAlumno->objApellidoMaterno;
 			fila[2] = ClaseProgramada->objCurso->nombreCurso;
 			fila[3] = ClaseProgramada->horaClase;
 			fila[4] = ClaseProgramada->fechaClase;
 			fila[5] = ClaseProgramada->objLink;
+			fila[6] = Convert::ToString(ClaseProgramada->objPago->objInscripcion->codigoIns);
 			this->dataGridView1->Rows->Add(fila);
 		}
 	}
@@ -1008,10 +1016,11 @@ private: System::Void textBox6_TextChanged(System::Object^ sender, System::Event
 	}
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
+	String^ codigo = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[6]->Value->ToString();
 
 	ClaseController^ objGestorClase = gcnew ClaseController();
 	PagoController^ objGestorPago = gcnew PagoController();
-	Clase^ objClase = objGestorClase->obtenerClaseSeleccionadaBD(posicionFilaSeleccionada);
+	Clase^ objClase = objGestorClase->obtenerClaseSeleccionadaBD(Convert::ToInt32(codigo));
 	 
 	if ((objClase->EstadoLink == "programada")) {
 		objGestorClase->actualizarClaseBD(objClase);
