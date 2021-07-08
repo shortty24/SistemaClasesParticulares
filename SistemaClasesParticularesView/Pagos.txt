@@ -7,6 +7,6 @@
 7;validado;19:57;24/06/2021;SDFSDF;programada
 8;no validado;19:58;24/06/2021;SDFSD;pendiente
 10;no validado;19:58;24/06/2021;TRYR;pendiente
-11;por procesar;19:58;24/06/2021;ERTET;pendiente
+11;validado;19:58;24/06/2021;ERTET;pendiente
 12;validado;21:25;24/06/2021;JIYUO;programada
 13;por procesar;13:41;29/06/2021;HGYR;pendiente

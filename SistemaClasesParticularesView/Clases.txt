@@ -11,3 +11,4 @@
 72348122;41248543;CalculoII;11;23/06/2021;link2;12;programada;por pagar
 72145159;43248547;FisicaI;13;26/06/2021;-;7;programada;por pagar
 72145159;43248547;FisicaI;13;26/06/2021;-;7;programada;por pagar
+72145159;43248547;FisicaII;20;27/06/2021;-;11;pendiente;por pagar

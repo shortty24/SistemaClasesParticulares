@@ -37,6 +37,7 @@ Alumno^ AlumnoController::buscaAlumno(String^usuarioAlumno) {
 	}
 	return objAlumnoEncontrado;
 }
+
 Alumno^ AlumnoController::buscaAlumnoxDNI(String^ dniAlumno) {
 	Alumno^ objAlumnoEncontrado;
 	array<String^>^ lineas = File::ReadAllLines("Personas.txt");
@@ -57,6 +58,7 @@ Alumno^ AlumnoController::buscaAlumnoxDNI(String^ dniAlumno) {
 	}
 	return objAlumnoEncontrado;
 }
+
 Alumno^ AlumnoController::buscaAlumnoBD(String^ usuarioAlumno) {
 	AbrirConexion();
 	Alumno^ objAlumnoEncontrado;
@@ -96,4 +98,29 @@ Alumno^ AlumnoController::buscaAlumnoxDNI_BD(String^ dniAlumno) {
 	}
 	CerrarConexion();
 	return objAlumnoEncontrado;
+}
+
+List<Alumno^>^ AlumnoController::buscarAlumnosPotencialesAQuejaBD(String^ dniProfesor) {
+	List<Alumno^>^ listaAlumnos = gcnew List<Alumno^>();
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from ClasesProyecto cp, Personas p where cp.EstadoLink='finalizada' and cp.DNIAlumno=p.DNI and cp.DNIProfesor='"+ dniProfesor +"';";
+	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
+	while (objData->Read()) {
+		String^ DNIAlumno = safe_cast<String^>(objData[0]);
+		String^ DNIProfesor = safe_cast<String^>(objData[1]);
+		String^ Nombre = safe_cast<String^>(objData[15]);
+		String^ ApellidoPaterno = safe_cast<String^>(objData[13]);
+		String^ ApellidoMaterno = safe_cast<String^>(objData[14]);
+
+		if (DNIProfesor == dniProfesor) {
+			Alumno^ objAlumno = gcnew Alumno(DNIAlumno, Nombre, ApellidoPaterno, ApellidoMaterno);
+			listaAlumnos->Add(objAlumno);
+		}
+	}
+	objData->Close();
+	CerrarConexion();
+
+	return listaAlumnos;
 }

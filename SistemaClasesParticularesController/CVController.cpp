@@ -21,7 +21,26 @@ void CVController::CerrarConexion() {
 
 void CVController::CargarCVDesdeArchivo() {
 	this->listaCV->Clear();
-	array<String^>^ lineas = File::ReadAllLines("CVs.txt");
+
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from CVs;";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+
+	while (objData->Read()) {
+		String^ dniprofesor = safe_cast<String^>(objData[0]);
+		String^ codigoMinedu = safe_cast<String^>(objData[1]);
+		String^ empresa = safe_cast<String^>(objData[2]);
+		String^ celuempresa = safe_cast<String^>(objData[3]);
+		String^ verficacion = safe_cast<String^>(objData[4]);
+		CV^ objCV = gcnew CV(dniprofesor, codigoMinedu, empresa, celuempresa, verficacion);
+		this->listaCV->Add(objCV);
+	}
+	objData->Close();
+	CerrarConexion();
+
+	/*array<String^>^ lineas = File::ReadAllLines("CVs.txt");
 
 	String^ separadores = ";";
 	for each (String ^ lineaCVs in lineas) {
@@ -33,7 +52,7 @@ void CVController::CargarCVDesdeArchivo() {
 		String^ verficacion = palabras[4];
 		CV^ objCV = gcnew CV(dniprofesor, codigoMinedu, empresa, celuempresa, verficacion);
 		this->listaCV->Add(objCV);
-	}
+	}*/
 }
 
 List<CV^>^ CVController::obtenerListaCVs() {
@@ -42,7 +61,27 @@ List<CV^>^ CVController::obtenerListaCVs() {
 
 List<CV^>^ CVController::buscarCV(String^ dniBuscar) {
 	List<CV^>^ listaCVsEncontrados = gcnew List<CV^>();
-	array<String^>^ lineas = File::ReadAllLines("CVs.txt");
+
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from CVs where DNI= '" + dniBuscar + "';";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+
+	while (objData->Read()) {
+		String^ dniprofesor = safe_cast<String^>(objData[0]);
+		String^ codigoMinedu = safe_cast<String^>(objData[1]);
+		String^ empresa = safe_cast<String^>(objData[2]);
+		String^ celuempresa = safe_cast<String^>(objData[3]);
+		String^ verficacion = safe_cast<String^>(objData[4]);
+		CV^ objCV = gcnew CV(dniprofesor, codigoMinedu, empresa, celuempresa, verficacion);
+		listaCVsEncontrados->Add(objCV);
+	}
+	objData->Close();
+	CerrarConexion();
+	return listaCVsEncontrados;
+
+	/*array<String^>^ lineas = File::ReadAllLines("CVs.txt");
 	String^ separadores = ";";
 	for each (String ^ lineaCVs in lineas) {
 		array<String^>^ palabras = lineaCVs->Split(separadores->ToCharArray());
@@ -56,12 +95,31 @@ List<CV^>^ CVController::buscarCV(String^ dniBuscar) {
 			listaCVsEncontrados->Add(objCV);
 		}
 	}
-	return listaCVsEncontrados;
+	return listaCVsEncontrados;*/
 }
 
 List<CV^>^ CVController::buscarCVxEstado(String^ estadoBuscar) {
 	List<CV^>^ listaCVsEncontrados = gcnew List<CV^>();
-	array<String^>^ lineas = File::ReadAllLines("CVs.txt");
+
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from CVs where EstadoCV= '" + estadoBuscar + "';";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+
+	while (objData->Read()) {
+		String^ dniprofesor = safe_cast<String^>(objData[0]);
+		String^ codigoMinedu = safe_cast<String^>(objData[1]);
+		String^ empresa = safe_cast<String^>(objData[2]);
+		String^ celuempresa = safe_cast<String^>(objData[3]);
+		String^ verficacion = safe_cast<String^>(objData[4]);
+		CV^ objCV = gcnew CV(dniprofesor, codigoMinedu, empresa, celuempresa, verficacion);
+		listaCVsEncontrados->Add(objCV);
+	}
+	objData->Close();
+	CerrarConexion();
+	return listaCVsEncontrados;
+	/*array<String^>^ lineas = File::ReadAllLines("CVs.txt");
 	String^ separadores = ";";
 	for each (String ^ lineaCVs in lineas) {
 		array<String^>^ palabras = lineaCVs->Split(separadores->ToCharArray());
@@ -75,11 +133,19 @@ List<CV^>^ CVController::buscarCVxEstado(String^ estadoBuscar) {
 			listaCVsEncontrados->Add(objCV);
 		}
 	}
-	return listaCVsEncontrados;
+	return listaCVsEncontrados;*/
 }
 
 void CVController::aprobarCV(String^ dniseleccionado) {
-	this->listaCV->Clear();
+
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "Update CVs set EstadoCV='Aprobado' where DNI='" + dniseleccionado + "';";
+	objQuery->ExecuteNonQuery();
+	CerrarConexion();
+
+	/*this->listaCV->Clear();
 	CargarCVDesdeArchivo();
 	for (int i = 0; i < this->listaCV->Count; i++) {
 		CV^ objCV = this->listaCV[i];
@@ -95,12 +161,20 @@ void CVController::aprobarCV(String^ dniseleccionado) {
 		lineasArchivoCV[i] = objCV->DniProfesor + ";" + objCV->objCodigoMinedu + ";" + objCV->objEmpresa + ";" + objCV->telefonoEmpresa + ";" + objCV->Validación;
 	}
 	/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
-	File::WriteAllLines("CVs.txt", lineasArchivoCV);
+	//File::WriteAllLines("CVs.txt", lineasArchivoCV);
 
 }
 
 void CVController::desaprobarCV(String^ dniseleccionado) {
-	this->listaCV->Clear();
+
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "Update CVs set EstadoCV='Desaprobado' where DNI='" + dniseleccionado + "';";
+	objQuery->ExecuteNonQuery();
+	CerrarConexion();
+
+	/*this->listaCV->Clear();
 	CargarCVDesdeArchivo();
 	for (int i = 0; i < this->listaCV->Count; i++) {
 		CV^ objCV = this->listaCV[i];
@@ -116,7 +190,7 @@ void CVController::desaprobarCV(String^ dniseleccionado) {
 		lineasArchivoCV[i] = objCV->DniProfesor + ";" + objCV->objCodigoMinedu + ";" + objCV->objEmpresa + ";" + objCV->telefonoEmpresa + ";" + objCV->Validación;
 	}
 	/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
-	File::WriteAllLines("CVs.txt", lineasArchivoCV);
+	//File::WriteAllLines("CVs.txt", lineasArchivoCV);
 
 }
 

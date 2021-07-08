@@ -19,6 +19,7 @@ namespace SistemaClasesParticularesController {
 
 		void AbrirConexion();
 		void CerrarConexion();
+
 		List<Inscripcion^>^ InscripcionesxAlumno_BD(String^ datoAlumno);
 		void GuardarInscripcion_BD(String^ diaNuevo, String^ horaInicioNuevo, String^ tiempoPedidoNuevo, String^ nombreDelCursoNuevo, String^ dniProfesorNuevo, String^ dniAlumnoNuevo, String^ fechaInscripcionNuevo, String^ horaInscripcionNuevo);
 		String^ EstadoBonoxAlumno_BD(String^ dniAlumnoBuscar);

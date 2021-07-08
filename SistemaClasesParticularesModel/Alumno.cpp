@@ -24,3 +24,10 @@ Alumno::Alumno(String^ CodigoUsuario, String^ objUsuario, String^ dni, String^ o
 	this->objCorreo = objCorreo;
 }
 
+Alumno::Alumno(String^ dni, String^ objNombre, String^ objApellidoPaterno, String^ objApellidoMaterno) : Persona(CodigoUsuario, dni, objUsuario, objContrasenha, objApellidoPaterno, objApellidoMaterno, objNombre, objCorreo) {
+	this->dni = dni;
+	this->objNombre = objNombre;
+	this->objApellidoPaterno = objApellidoPaterno;
+	this->objApellidoMaterno = objApellidoMaterno;
+}
+

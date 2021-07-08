@@ -398,13 +398,14 @@ private: System::Void groupBox1_Enter(System::Object^ sender, System::EventArgs^
 }
 private: System::Void frmProgramarClase_Load(System::Object^ sender, System::EventArgs^ e) {
 }
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	String^ estadopagobuscar = this->comboBox2->Text;
-	List<Pago^>^ listaPagos;
-	PagoController^ objGestorPago = gcnew PagoController();
-	listaPagos = objGestorPago->buscarPagosxEstado(estadopagobuscar);
-	mostrarGrilla(listaPagos);
-}
+
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		String^ estadopagobuscar = this->comboBox2->Text;
+		List<Pago^>^ listaPagos;
+		PagoController^ objGestorPago = gcnew PagoController();
+		listaPagos = objGestorPago->buscarPagosxEstadoBD(estadopagobuscar);
+		mostrarGrilla(listaPagos);
+	}
 
 private: void mostrarGrilla(List<Pago^>^ listaPagos) {
 	this->dataGridView1->Rows->Clear();
@@ -425,37 +426,39 @@ private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e
 	String^ estadoclasebuscar = this->comboBox1->Text;
 	List<Pago^>^ listaPagos;
 	PagoController^ objGestorPago = gcnew PagoController();
-	listaPagos = objGestorPago->buscarClasesxEstado(estadoclasebuscar);
+	listaPagos = objGestorPago->buscarClasesxEstadoBD(estadoclasebuscar);
 	mostrarGrilla(listaPagos);
 }
-private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
-	String^ codigopago = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
-	String^ estadopagoalumno = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[4]->Value->ToString();
 
-	if (estadopagoalumno == "por procesar") {
-		ClaseController^ objGestorClase = gcnew ClaseController();
-		objGestorClase->crearclasetxt(codigopago);
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
+		String^ codigopago = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();
+		String^ estadopagoalumno = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[4]->Value->ToString();
+
+		if (estadopagoalumno == "por procesar") {
+			ClaseController^ objGestorClase = gcnew ClaseController();
+			objGestorClase->crearclaseBD(codigopago);
+
+				
+			PagoController^ objGestorPago = gcnew PagoController();
+			objGestorPago->aprobarPagoBD(codigopago);
 
 
-		PagoController^ objGestorPago = gcnew PagoController();
-		objGestorPago->aprobarPago(codigopago);
+			MessageBox::Show("El Pago ha sido validado con éxito !!!");
 
+		}
 
-		MessageBox::Show("El Pago ha sido validado con éxito !!!");
+		else if (estadopagoalumno == "validado") {
+			MessageBox::Show("El Pago ya se había designado como VALIDO!!!");
+		}
+
+		else if (estadopagoalumno == "no validado") {
+			MessageBox::Show("El Pago ya se había designado como NO VALIDO!!!");
+		}
+
 
 	}
 
-	else if (estadopagoalumno == "validado") {
-		MessageBox::Show("El Pago ya se había designado como VALIDO!!!");
-	}
-
-	else if (estadopagoalumno == "no validado") {
-		MessageBox::Show("El Pago ya se había designado como NO VALIDO!!!");
-	}
-
-
-}
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
 	String^ codigopago = this->dataGridView1->Rows[posicionFilaSeleccionada]->Cells[0]->Value->ToString();

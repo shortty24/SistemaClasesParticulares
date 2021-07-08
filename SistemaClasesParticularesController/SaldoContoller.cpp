@@ -7,6 +7,33 @@ using namespace System::IO;
 
 SaldoController::SaldoController() {
 	this->listaSaldo = gcnew List<Saldo^>();
+	this->objConexion = gcnew SqlConnection();
+
+}
+void SaldoController::AbrirConexion() {
+	/*La cadena conexion está compuesto de: Servidor BD, nombre de BD, usuario de BD y contraseña de BD*/
+	this->objConexion->ConnectionString = "Server=200.16.7.140;DataBase=a20165855;User ID=a20165855;Password=h7b3EJcM;";
+	this->objConexion->Open(); /*Ya establecí la conexión con la BD*/
+}
+
+void SaldoController::CerrarConexion() {
+	this->objConexion->Close();
+}
+
+String^ SaldoController::obtenerSaldoBD(String^ DNIProfesor) {
+	String^ SaldoProfesor;
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from SaldosProyecto where DNIProfesor='"+DNIProfesor+"';";
+	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
+	while (objData->Read()) {
+		SaldoProfesor = safe_cast<String^>(objData[1]);
+	}
+	objData->Close();
+	CerrarConexion();
+
+	return SaldoProfesor;
 }
 
 void SaldoController::CargarSaldoDesdeArchivo() {

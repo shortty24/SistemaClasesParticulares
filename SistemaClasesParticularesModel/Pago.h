@@ -18,7 +18,6 @@ namespace SistemaClasesParticularesModel {
 		String^ estadoclase;
 
 		
-
 	public:
 		//Pago();
 		Pago(Inscripcion^ objInscripcion, String^ estadopago, String^ horaPago, String^ fechaPago, String^ codigoPago, String^ estadoclase);

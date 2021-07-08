@@ -25,5 +25,8 @@ Inscripcion::Inscripcion(Alumno^ objAlumno, String^ codigoIns, int tiempoReserva
 	this->codigoIns = codigoIns;
 	this->tiempoReserva = tiempoReserva;
 	this->horaInicio = horaInicio;
+}
 
+Inscripcion::Inscripcion(String^ codigoIns) {
+	this->codigoIns = codigoIns;
 }

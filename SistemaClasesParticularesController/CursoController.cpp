@@ -163,6 +163,19 @@ List<String^>^ CursoController::ListaNombreCursos_BD() {
 	return listaNombreCursos;
 }
 
+
+void CursoController::EliminarCursoBD(String^ UsuarioProfesor, String^ curso) {
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "delete from CursosDisponiblesProyecto where UsuarioProfesor='"+UsuarioProfesor+"' and NombreCurso='"+ curso +"';";
+
+	objQuery->ExecuteNonQuery(); /*Cuando es un select, se utiliza el ExecuteReader*/
+	
+	CerrarConexion();
+}
+
+
 /*Métodos con archivos .txt*/
 void CursoController::CargarCursosDesdeArchivo() {
 	this->listaCursos->Clear();

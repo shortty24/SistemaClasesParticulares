@@ -31,7 +31,7 @@ List<Clase^>^ ClaseController::ClasesProgramadasxProfesorBD(String^ dniProfesorB
 	AbrirConexion();
 	SqlCommand^ objQuery = gcnew SqlCommand();
 	objQuery->Connection = this->objConexion;
-	objQuery->CommandText = "select * from ClasesProyecto where DNIProfesor= " + dniProfesorBuscar + ";";
+	objQuery->CommandText = "select * from ClasesProyecto where DNIProfesor= '" + dniProfesorBuscar + "' order by FechaClase;";
 	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
 	while (objData->Read()) {
 		String^ DNIAlumno = safe_cast<String^>(objData[0]);
@@ -48,7 +48,6 @@ List<Clase^>^ ClaseController::ClasesProgramadasxProfesorBD(String^ dniProfesorB
 		String^ EstadoLink = safe_cast<String^>(objData[7]);
 		String^ EstadoPagoProfesor = safe_cast<String^>(objData[8]);
 
-		
 		Clase^ objClase = gcnew Clase(objAlumno, objProfesor, objCurso, HoraClase, fechaInsTR, Link);
 		listaClases->Add(objClase);
 	}
@@ -66,7 +65,7 @@ Clase^ ClaseController::obtenerProximaClase(String^ DniProfesor) {
 	AbrirConexion();
 	SqlCommand^ objQuery = gcnew SqlCommand();
 	objQuery->Connection = this->objConexion;
-	objQuery->CommandText = "select TOP 1 * from ClasesProyecto where DNIProfesor= '" + DniProfesor+ "'and EstadoPagoProfesor='cancelado' order by FechaClase;;";
+	objQuery->CommandText = "select TOP 1 * from ClasesProyecto where DNIProfesor= '" + DniProfesor+ "'and EstadoLink='programada' order by FechaClase;";
 	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
 	while (objData->Read()) {
 		String^ DNIAlumno = safe_cast<String^>(objData[0]);
@@ -121,6 +120,90 @@ Clase^ ClaseController::obtenerProximaClaseAlumno_BD(String^ DniAlumno) {
 	CerrarConexion();
 	return objClase;
 }
+Clase^ ClaseController::obtenerClaseSeleccionadaBD(int posicionFilaSeleccionada) {
+	AlumnoController^ objGestorClase = gcnew AlumnoController();
+	ProfesorController^ objGestorProfesor = gcnew ProfesorController();
+	CursoController^ objGestorCurso = gcnew CursoController();
+	PagoController^ objGestorPago = gcnew PagoController();
+	Clase^ objClase;
+
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY FechaClase ASC) AS Orden, DNIAlumno, DNIProfesor, Curso, HoraClase, FechaClase, Link, CodigoClase,EstadoLink, EstadoPagoProfesor " +
+		"FROM ClasesProyecto) T1 WHERE Orden = "+ (posicionFilaSeleccionada+1) +";";
+
+	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
+	while (objData->Read()) {
+		String^ DNIAlumno = safe_cast<String^>(objData[1]);
+		Alumno^ objAlumno = buscarAlumnoxDNI(DNIAlumno);
+		String^ DNIProfesor = safe_cast<String^>(objData[2]);
+		Profesor^ objProfesor = buscarProfesorxDNI(DNIProfesor);
+		String^ NombreCurso = safe_cast<String^>(objData[3]);
+		Curso^ objCurso = buscarCursoxNombreCurso(NombreCurso);
+		String^ HoraClase = safe_cast<String^>(objData[4]);
+		DateTime FechaClase = safe_cast<DateTime>(objData[5]);
+		String^ fechaInsTR = Convert::ToString(FechaClase.ToShortDateString());
+		String^ Link = safe_cast<String^>(objData[6]);
+		int CodigoClase = safe_cast<int>(objData[7]);
+		Pago^ objPago = objGestorPago->buscarPagoxCodigoBD(CodigoClase);
+		String^ EstadoLink = safe_cast<String^>(objData[8]);
+		String^ EstadoPagoProfesor = safe_cast<String^>(objData[9]);
+
+		objClase = gcnew Clase(objAlumno, objProfesor, objCurso, HoraClase, fechaInsTR, Link, objPago, EstadoLink, EstadoPagoProfesor);
+	}
+	objData->Close();
+	CerrarConexion();
+
+	return objClase;
+}
+
+void ClaseController::actualizarClaseBD(Clase^ ClaseSeleccionada) {
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+
+	objQuery->CommandText = "UPDATE ClasesProyecto "+  
+							"SET EstadoLink = 'finalizada' "+
+							"WHERE CodigoClase ="+ ClaseSeleccionada->objPago->objInscripcion->codigoIns+";";
+
+	objQuery->ExecuteNonQuery();
+	CerrarConexion();
+}
+
+List<String^>^ ClaseController::obtenerListaCursosPedidos(String^ dniProfesorBuscar) {
+	List<String^>^ listaCurso = gcnew List<String^>();
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from ClasesProyecto where DNIProfesor='"+ dniProfesorBuscar +"' and EstadoLink='programada' or EstadoLink='finalizada';";
+	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
+	while (objData->Read()) {
+		String^ Curso = safe_cast<String^>(objData[2]);
+		listaCurso->Add(Curso);
+	}
+	objData->Close();
+	CerrarConexion();
+
+	return listaCurso;
+}
+
+void ClaseController::crearclaseBD(String^ codigopago) {
+	PagoController^ objGestorPago = gcnew PagoController();
+	int Inscripcion = objGestorPago->buscarIncscripcionxcodigocompletaBD(codigopago);
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+
+	objQuery->Connection = this->objConexion;
+
+
+	objQuery->CommandText = "UPDATE ClasesProyecto SET  Link= '-', EstadoLink='pendiente', EstadoPagoProfesor='por pagar' where CodigoClase='"+ Inscripcion +"';";
+
+	objQuery->ExecuteNonQuery();
+
+	CerrarConexion();
+}
+
 
 /*Métodos con archivos .txt*/
 List<Clase^>^ ClaseController::ClasesProgramadas(String^ dniProfesorBuscar){
@@ -451,17 +534,24 @@ void ClaseController::crearclasetxt(String^ codigopago) {
 	array<String^>^ lineasArchivoClases = gcnew array<String^>(this->listaClases->Count+1);
 	for (int i = 0; i < this->listaClases->Count; i++) {
 		Clase^ objClase = this->listaClases[i];
-		lineasArchivoClases[i] = objClase->objAlumno->dni + ";" + objClase->objProfesor->dni + ";" + objClase->objCurso->nombreCurso + ";" + objClase->horaClase + ";" + objClase->fechaClase + ";" + objClase->objLink + ";" + objClase->objPago->objInscripcion->codigoIns + ";" + objClase->objPago->estadoclase + ";" + objClase->estadopagoprofesor;
+		lineasArchivoClases[i] = objClase->objAlumno->dni + ";" + objClase->objProfesor->dni + ";" + objClase->objCurso->nombreCurso + ";" + objClase->horaClase + 
+								";" + objClase->fechaClase + ";" + objClase->objLink + ";" + objClase->objPago->objInscripcion->codigoIns + ";" + objClase->objPago->estadoclase + 
+								";" + objClase->estadopagoprofesor;
 	}
 
 	PagoController^ objGestorPago = gcnew PagoController();
+
+
 	Inscripcion^ objInscripcion = objGestorPago->buscarIncscripcionxcodigocompleta(codigopago);
-		lineasArchivoClases[this->listaClases->Count] = objInscripcion->objAlumno->dni + ";" + objInscripcion->objCurso->objProfesor->dni + ";" + objInscripcion->objCurso->nombreCurso + ";" + objInscripcion->horaInicio + ";" + objInscripcion->fechaClase + ";" + "-" + ";" +objInscripcion->codigoIns +";" + "pendiente" +";" + "por pagar";
+		lineasArchivoClases[this->listaClases->Count] = objInscripcion->objAlumno->dni + ";" + objInscripcion->objCurso->objProfesor->dni + ";" + objInscripcion->objCurso->nombreCurso + 
+														";" + objInscripcion->horaInicio + ";" + objInscripcion->fechaClase + ";" + "-" + ";" +objInscripcion->codigoIns +";" + "pendiente" +
+														";" + "por pagar";
 	
 	/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
 	File::WriteAllLines("Clases.txt", lineasArchivoClases);
 
 }
+
 
 List<Clase^>^ ClaseController::buscarPagosProfesorxEstado(String^ estadoBuscar) {
 	List<Clase^>^ listaClasesEncontrados = gcnew List<Clase^>();
