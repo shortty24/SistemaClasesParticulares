@@ -229,6 +229,10 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			this->Column12 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column13 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
@@ -236,10 +240,6 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column13 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->tabPage5->SuspendLayout();
 			this->groupBox4->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
@@ -272,6 +272,8 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			// groupBox4
 			// 
 			this->groupBox4->Controls->Add(this->dataGridView2);
+			this->groupBox4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->groupBox4->Location = System::Drawing::Point(25, 29);
 			this->groupBox4->Name = L"groupBox4";
 			this->groupBox4->Size = System::Drawing::Size(574, 278);
@@ -325,7 +327,7 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			this->tabPage3->Padding = System::Windows::Forms::Padding(3);
 			this->tabPage3->Size = System::Drawing::Size(654, 548);
 			this->tabPage3->TabIndex = 2;
-			this->tabPage3->Text = L"Quejas y/o recomendaciones";
+			this->tabPage3->Text = L"Quejas";
 			this->tabPage3->UseVisualStyleBackColor = true;
 			// 
 			// groupBox3
@@ -338,18 +340,24 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			this->groupBox3->Controls->Add(this->button4);
 			this->groupBox3->Controls->Add(this->textBox2);
 			this->groupBox3->Controls->Add(this->label2);
-			this->groupBox3->Location = System::Drawing::Point(19, 23);
+			this->groupBox3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->groupBox3->Location = System::Drawing::Point(155, 43);
 			this->groupBox3->Name = L"groupBox3";
-			this->groupBox3->Size = System::Drawing::Size(556, 377);
+			this->groupBox3->Size = System::Drawing::Size(331, 377);
 			this->groupBox3->TabIndex = 0;
 			this->groupBox3->TabStop = false;
+			this->groupBox3->Text = L"Generar Queja";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(323, 74);
+			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label5->ForeColor = System::Drawing::SystemColors::ControlDark;
+			this->label5->Location = System::Drawing::Point(90, 118);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(173, 13);
+			this->label5->Size = System::Drawing::Size(201, 15);
 			this->label5->TabIndex = 11;
 			this->label5->Text = L"Cantidad máxima de caracteres: 50";
 			// 
@@ -365,35 +373,35 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			// textBox1
 			// 
 			this->textBox1->Enabled = false;
-			this->textBox1->Location = System::Drawing::Point(30, 220);
+			this->textBox1->Location = System::Drawing::Point(30, 243);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(133, 20);
+			this->textBox1->Size = System::Drawing::Size(133, 21);
 			this->textBox1->TabIndex = 9;
 			this->textBox1->TextChanged += gcnew System::EventHandler(this, &frmAlumno::textBox1_TextChanged_1);
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(27, 191);
+			this->label4->Location = System::Drawing::Point(27, 214);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(80, 13);
+			this->label4->Size = System::Drawing::Size(102, 15);
 			this->label4->TabIndex = 8;
 			this->label4->Text = L"DNI Agraviado:";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(27, 123);
+			this->label3->Location = System::Drawing::Point(27, 146);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(71, 13);
+			this->label3->Size = System::Drawing::Size(92, 15);
 			this->label3->TabIndex = 7;
 			this->label3->Text = L"DNI Agresor :";
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(131, 278);
+			this->button4->Location = System::Drawing::Point(123, 314);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(104, 33);
+			this->button4->Size = System::Drawing::Size(80, 33);
 			this->button4->TabIndex = 2;
 			this->button4->Text = L"Enviar";
 			this->button4->UseVisualStyleBackColor = true;
@@ -401,17 +409,17 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(30, 153);
+			this->textBox2->Location = System::Drawing::Point(30, 176);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(133, 20);
+			this->textBox2->Size = System::Drawing::Size(133, 21);
 			this->textBox2->TabIndex = 1;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(27, 30);
+			this->label2->Location = System::Drawing::Point(27, 32);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(41, 13);
+			this->label2->Size = System::Drawing::Size(53, 15);
 			this->label2->TabIndex = 0;
 			this->label2->Text = L"Queja :";
 			this->label2->Click += gcnew System::EventHandler(this, &frmAlumno::label2_Click);
@@ -434,6 +442,8 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			// groupBox7
 			// 
 			this->groupBox7->Controls->Add(this->dataGridView7);
+			this->groupBox7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->groupBox7->Location = System::Drawing::Point(34, 6);
 			this->groupBox7->Name = L"groupBox7";
 			this->groupBox7->Size = System::Drawing::Size(479, 168);
@@ -491,6 +501,8 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			// groupBox6
 			// 
 			this->groupBox6->Controls->Add(this->dataGridView6);
+			this->groupBox6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->groupBox6->Location = System::Drawing::Point(34, 359);
 			this->groupBox6->Name = L"groupBox6";
 			this->groupBox6->Size = System::Drawing::Size(479, 185);
@@ -549,6 +561,8 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			// groupBox2
 			// 
 			this->groupBox2->Controls->Add(this->dataGridView5);
+			this->groupBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->groupBox2->Location = System::Drawing::Point(34, 176);
 			this->groupBox2->Name = L"groupBox2";
 			this->groupBox2->Size = System::Drawing::Size(479, 168);
@@ -610,82 +624,10 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 				this->Column1,
 					this->Column4, this->Column2, this->Column13
 			});
-			this->dataGridView1->Location = System::Drawing::Point(19, 186);
+			this->dataGridView1->Location = System::Drawing::Point(95, 237);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->Size = System::Drawing::Size(449, 168);
 			this->dataGridView1->TabIndex = 4;
-			// 
-			// button3
-			// 
-			this->button3->Location = System::Drawing::Point(250, 375);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(132, 28);
-			this->button3->TabIndex = 3;
-			this->button3->Text = L"Información";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &frmAlumno::button3_Click);
-			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(83, 373);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(136, 30);
-			this->button2->TabIndex = 2;
-			this->button2->Text = L"Inscripción";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &frmAlumno::button2_Click);
-			// 
-			// groupBox1
-			// 
-			this->groupBox1->Controls->Add(this->comboBox1);
-			this->groupBox1->Controls->Add(this->button1);
-			this->groupBox1->Controls->Add(this->label1);
-			this->groupBox1->Location = System::Drawing::Point(19, 16);
-			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(449, 155);
-			this->groupBox1->TabIndex = 0;
-			this->groupBox1->TabStop = false;
-			this->groupBox1->Text = L"Criterios de Búsqueda";
-			// 
-			// comboBox1
-			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(75, 53);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(202, 21);
-			this->comboBox1->TabIndex = 5;
-			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &frmAlumno::comboBox1_SelectedIndexChanged);
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(323, 49);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(74, 26);
-			this->button1->TabIndex = 4;
-			this->button1->Text = L"Buscar";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &frmAlumno::button1_Click);
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(26, 57);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(40, 13);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"Curso :";
-			// 
-			// tabControl1
-			// 
-			this->tabControl1->Controls->Add(this->tabPage1);
-			this->tabControl1->Controls->Add(this->tabPage2);
-			this->tabControl1->Controls->Add(this->tabPage3);
-			this->tabControl1->Controls->Add(this->tabPage5);
-			this->tabControl1->Location = System::Drawing::Point(3, 2);
-			this->tabControl1->Name = L"tabControl1";
-			this->tabControl1->SelectedIndex = 0;
-			this->tabControl1->Size = System::Drawing::Size(662, 574);
-			this->tabControl1->TabIndex = 0;
 			// 
 			// Column1
 			// 
@@ -706,6 +648,82 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 			// 
 			this->Column13->HeaderText = L"Precio por hora";
 			this->Column13->Name = L"Column13";
+			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(326, 426);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(132, 28);
+			this->button3->TabIndex = 3;
+			this->button3->Text = L"Información";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &frmAlumno::button3_Click);
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(159, 424);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(136, 30);
+			this->button2->TabIndex = 2;
+			this->button2->Text = L"Inscripción";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &frmAlumno::button2_Click);
+			// 
+			// groupBox1
+			// 
+			this->groupBox1->Controls->Add(this->comboBox1);
+			this->groupBox1->Controls->Add(this->button1);
+			this->groupBox1->Controls->Add(this->label1);
+			this->groupBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->groupBox1->Location = System::Drawing::Point(95, 62);
+			this->groupBox1->Name = L"groupBox1";
+			this->groupBox1->Size = System::Drawing::Size(449, 155);
+			this->groupBox1->TabIndex = 0;
+			this->groupBox1->TabStop = false;
+			this->groupBox1->Text = L"Criterios de Búsqueda";
+			// 
+			// comboBox1
+			// 
+			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Location = System::Drawing::Point(84, 54);
+			this->comboBox1->Name = L"comboBox1";
+			this->comboBox1->Size = System::Drawing::Size(202, 23);
+			this->comboBox1->TabIndex = 5;
+			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &frmAlumno::comboBox1_SelectedIndexChanged);
+			// 
+			// button1
+			// 
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->Location = System::Drawing::Point(323, 49);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(74, 26);
+			this->button1->TabIndex = 4;
+			this->button1->Text = L"Buscar";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &frmAlumno::button1_Click);
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(26, 57);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(52, 15);
+			this->label1->TabIndex = 0;
+			this->label1->Text = L"Curso :";
+			// 
+			// tabControl1
+			// 
+			this->tabControl1->Controls->Add(this->tabPage1);
+			this->tabControl1->Controls->Add(this->tabPage2);
+			this->tabControl1->Controls->Add(this->tabPage3);
+			this->tabControl1->Controls->Add(this->tabPage5);
+			this->tabControl1->Location = System::Drawing::Point(3, 2);
+			this->tabControl1->Name = L"tabControl1";
+			this->tabControl1->SelectedIndex = 0;
+			this->tabControl1->Size = System::Drawing::Size(662, 574);
+			this->tabControl1->TabIndex = 0;
 			// 
 			// frmAlumno
 			// 
