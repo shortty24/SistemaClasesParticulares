@@ -1010,10 +1010,13 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	int posicionFilaSeleccionada = this->dataGridView1->SelectedRows[0]->Index;
 
 	ClaseController^ objGestorClase = gcnew ClaseController();
+	PagoController^ objGestorPago = gcnew PagoController();
 	Clase^ objClase = objGestorClase->obtenerClaseSeleccionadaBD(posicionFilaSeleccionada);
 	 
 	if ((objClase->EstadoLink == "programada")) {
 		objGestorClase->actualizarClaseBD(objClase);
+		objGestorPago->actualizarPagoBD(objClase);
+
 		MessageBox::Show("La clase acaba de ser finalizada");
 	}
 	else {

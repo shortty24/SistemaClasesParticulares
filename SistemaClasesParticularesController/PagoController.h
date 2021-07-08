@@ -22,6 +22,7 @@ namespace SistemaClasesParticularesController {
 		void aprobarPagoBD(String^ codigopago);
 		void desaprobarPagoBD(String^ codigopago);
 		void programarclaseBD(String^ codigopago);
+		void actualizarPagoBD(Clase^ ClaseSeleccionada);
 
 		//Pago^ buscarPagoxCodigoPagoBD(String^ CodigoClase);
 

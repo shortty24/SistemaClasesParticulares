@@ -428,13 +428,14 @@ private: void mostrarGrilla(List<Pago^>^ listaPagos) {
 	this->dataGridView1->Rows->Clear();
 	for (int i = 0; i < listaPagos->Count; i++) {
 		Pago^ objPago = listaPagos[i];
-		array<String^>^ fila = gcnew array<String^>(6);
+		array<String^>^ fila = gcnew array<String^>(8);
 		fila[0] = objPago->codigoPago;
 		fila[1] = objPago->objInscripcion->objAlumno->dni;
 		fila[2] = objPago->objInscripcion->horaInicio;
 		fila[3] = Convert::ToString(objPago->objInscripcion->tiempoReserva);
 		fila[4] = objPago->estadopago;
 		fila[5] = objPago->estadoclase;
+		fila[7] = objPago->objInscripcion->codigoIns;
 
 		this->dataGridView1->Rows->Add(fila);
 	}
@@ -510,7 +511,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	if ((estadoclase == "pendiente") && (estadopagoalumno == "validado")) {
 		PagoController^ objGestorPago = gcnew PagoController();
 		ClaseController^ objGestorClase = gcnew ClaseController();
-		objGestorPago->programarclaseBD(codigopago);
+		objGestorPago->programarclaseBD(CodigoInscripcion);
 		objGestorClase->ProgramarClaseBD(CodigoInscripcion);
 
 		String^ linkclase = this->textBox2->Text;
@@ -547,12 +548,12 @@ private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e
 	ProfesorController^ objGestorProfesor = gcnew ProfesorController();
 	Profesor^ objProfesor = objGestorProfesor->buscaProfesor(objInscripcion->objCurso->usuarioProfesor);
 	
-	if ((estadoclase == "programada") && (estadopagoalumno == "validado") && (estadoprofesor == "cancelado")) {
+	if ((estadoclase == "finalizada") && (estadopagoalumno == "validado") && (estadoprofesor == "cancelado")) {
 
 		MessageBox::Show("Ya se había pagado al profesor !!!");
 	}
 
-	else if ((estadoclase == "programada") && (estadopagoalumno == "validado") && (estadoprofesor == "por pagar")) {
+	else if ((estadoclase == "finalizada") && (estadopagoalumno == "validado") && (estadoprofesor == "por pagar")) {
 		objGestorClase->aprobarPago(CodigoInscripcion);
 
 

@@ -166,10 +166,22 @@ void PagoController::programarclaseBD(String^ codigopago) {
 
 	objQuery->Connection = this->objConexion;
 
-	objQuery->CommandText = "UPDATE PagosProyecto SET EstadoLink='programada' where CodigoPago='" + codigopago + "';";
+	objQuery->CommandText = "UPDATE PagosProyecto SET EstadoLink='programada' where CodigoInscripcion='" + codigopago + "';";
 
 	objQuery->ExecuteNonQuery();
 
+	CerrarConexion();
+}
+void PagoController::actualizarPagoBD(Clase^ ClaseSeleccionada) {
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+
+	objQuery->CommandText = "UPDATE PagosProyecto " +
+		"SET EstadoLink = 'finalizada' " +
+		"WHERE CodigoInscripcion =" + ClaseSeleccionada->objPago->objInscripcion->codigoIns + ";";
+
+	objQuery->ExecuteNonQuery();
 	CerrarConexion();
 }
 

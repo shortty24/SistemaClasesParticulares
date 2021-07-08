@@ -1,4 +1,0 @@
-72348122;No se presento a la clase;42248643;Bloqueado
-42248643;Agresion verbal;72238113;No Bloqueado
-45814974;Agresion verbal;72145159;Por Revisar
-72348122;Agresion verbal;42248643;Por Revisar

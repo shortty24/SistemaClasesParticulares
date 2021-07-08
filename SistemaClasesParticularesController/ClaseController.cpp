@@ -152,11 +152,11 @@ Clase^ ClaseController::obtenerClaseSeleccionadaBD(int posicionFilaSeleccionada)
 	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
 	while (objData->Read()) {
 		String^ DNIAlumno = safe_cast<String^>(objData[1]);
-		Alumno^ objAlumno = buscarAlumnoxDNI(DNIAlumno);
+		Alumno^ objAlumno = objGestorClase->buscaAlumnoxDNI_BD(DNIAlumno);
 		String^ DNIProfesor = safe_cast<String^>(objData[2]);
-		Profesor^ objProfesor = buscarProfesorxDNI(DNIProfesor);
+		Profesor^ objProfesor = objGestorProfesor->buscaProfesorxDNI_BD(DNIProfesor);
 		String^ NombreCurso = safe_cast<String^>(objData[3]);
-		Curso^ objCurso = buscarCursoxNombreCurso(NombreCurso);
+		Curso^ objCurso = objGestorCurso->buscarCursoxNombreCursoBD(NombreCurso);
 		String^ HoraClase = Convert::ToString(safe_cast<TimeSpan>(objData[4]));
 		DateTime FechaClase = safe_cast<DateTime>(objData[5]);
 		String^ fechaInsTR = Convert::ToString(FechaClase.ToShortDateString());
@@ -615,11 +615,11 @@ List<Clase^>^ ClaseController::buscarPagosProfesorxEstado(String^ estadoBuscar) 
 	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
 	while (objData->Read()) {
 		String^ DNIAlumno = safe_cast<String^>(objData[0]);
-		Alumno^ objAlumno = buscarAlumnoxDNI(DNIAlumno);
+		Alumno^ objAlumno = objGestorClase->buscaAlumnoxDNI_BD(DNIAlumno);
 		String^ DNIProfesor = safe_cast<String^>(objData[1]);
-		Profesor^ objProfesor = buscarProfesorxDNI(DNIProfesor);
+		Profesor^ objProfesor = objGestorProfesor->buscaProfesorxDNI_BD(DNIProfesor);
 		String^ NombreCurso = safe_cast<String^>(objData[2]);
-		Curso^ objCurso = buscarCursoxNombreCurso(NombreCurso);
+		Curso^ objCurso = objGestorCurso->buscarCursoxNombreCursoBD(NombreCurso);
 		String^ HoraClase = Convert::ToString(safe_cast<TimeSpan>(objData[3]));
 		DateTime FechaClase = safe_cast<DateTime>(objData[4]);
 		String^ fechaInsTR = Convert::ToString(FechaClase.ToShortDateString());

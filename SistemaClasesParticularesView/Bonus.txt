@@ -1,5 +1,0 @@
-70154984;No Canjeado
-72348122;Canjeado
-72238113;No Canjeado
-72145159;Canjeado
-76699594;No Canjeado
