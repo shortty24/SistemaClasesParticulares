@@ -19,6 +19,49 @@ void InscripcionController::AbrirConexion() {
 void InscripcionController::CerrarConexion() {
 	this->objConexion->Close();
 }
+/*Inscripcion^ InscripcionController::ObtenerObjetoInscripcionxCodigoPagoBD(String^ CodigoPago) {
+	Inscripcion^ objInscripcionEncontrado;
+	AlumnoController^ objGestor = gcnew AlumnoController();
+	Alumno^ objAlumno;
+	//objAlumno = objGestor->buscaAlumnoxDNI_BD()
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from PagosProyecto PP, InscripcionesProyecto IPN where PP.CodigoInscripcion=IPN.CodigoInscripcion and CodigoPago='"+ CodigoPago +"';";
+	SqlDataReader^ objData = objQuery->ExecuteReader();
+	if (objData->Read()) {
+		String^ dni = safe_cast<String^>(objData["DNI"]);
+		objAlumno = objGestor->buscaAlumnoxDNI_BD(dni);
+		String^ usuario = safe_cast<String^>(objData["Usuario"]);
+		String^ contrasenha = safe_cast<String^>(objData["Contrasenha"]);
+		String^ apellidoPaterno = safe_cast<String^>(objData["ApellidoPaterno"]);
+		String^ apellidoMaterno = safe_cast<String^>(objData["ApellidoMaterno"]);
+		String^ nombre = safe_cast<String^>(objData["Nombre"]);
+		objData->Close();
+		objInscripcionEncontrada = gcnew Inscripcion(objAlumno, objCurso, horainscripcion, fechainscripcion, duraciondeclase, horadeclase, fechaclase, codigodeinscripcion);
+	}
+	CerrarConexion();
+	return objProfesorEncontrado;
+}*/
+Alumno^ InscripcionController::buscaAlumnoxDNIBD(String^ dniAlumno) {
+	Alumno^ objAlumnoEncontrado;
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "select * from Personas where DNI='" + dniAlumno + "';";
+	SqlDataReader^ objData1 = objQuery->ExecuteReader();
+	if (objData1->Read()) {
+		String^ dni = safe_cast<String^>(objData1["DNI"]);
+		String^ usuario = safe_cast<String^>(objData1["Usuario"]);
+		String^ contrasenha = safe_cast<String^>(objData1["Contrasenha"]);
+		String^ apellidoPaterno = safe_cast<String^>(objData1["ApellidoPaterno"]);
+		String^ apellidoMaterno = safe_cast<String^>(objData1["ApellidoMaterno"]);
+		String^ nombre = safe_cast<String^>(objData1["Nombre"]);
+		objData1->Close();
+		objAlumnoEncontrado = gcnew Alumno(dni, usuario, contrasenha, apellidoPaterno, apellidoMaterno, nombre);
+	}
+	CerrarConexion();
+	return objAlumnoEncontrado;
+}
 
 
 List<Inscripcion^>^ InscripcionController::InscripcionesxAlumno(String^ datoAlumno) {

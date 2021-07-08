@@ -16,6 +16,7 @@ namespace SistemaClasesParticularesController {
 		void AbrirConexion();
 		void CerrarConexion();
 		String^ obtenerSaldoBD(String^ DNIProfesor);
+		int ObtenerSaldoxDni(String^ dniprofesor);
 
 		void pagarprofesor(int saldoaumentado, String^ dniprofesor);
 		List<Saldo^>^ obtenerListaSaldos();

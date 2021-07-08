@@ -20,6 +20,8 @@ namespace SistemaClasesParticularesController {
 		List<Pago^>^ buscarClasesxEstadoBD(String^ estadoclasebuscar);
 		int buscarIncscripcionxcodigocompletaBD(String^ codigopago);
 		void aprobarPagoBD(String^ codigopago);
+		void desaprobarPagoBD(String^ codigopago);
+		void programarclaseBD(String^ codigopago);
 
 		//Pago^ buscarPagoxCodigoPagoBD(String^ CodigoClase);
 

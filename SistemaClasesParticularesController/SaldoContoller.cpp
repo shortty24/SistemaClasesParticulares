@@ -21,19 +21,19 @@ void SaldoController::CerrarConexion() {
 }
 
 String^ SaldoController::obtenerSaldoBD(String^ DNIProfesor) {
-	String^ SaldoProfesor;
+	int SaldoProfesor;
 	AbrirConexion();
 	SqlCommand^ objQuery = gcnew SqlCommand();
 	objQuery->Connection = this->objConexion;
-	objQuery->CommandText = "select * from SaldosProyecto where DNIProfesor='"+DNIProfesor+"';";
+	objQuery->CommandText = "select * from SaldosProfesoresProyecto where DNIProfesor='"+DNIProfesor+"';";
 	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
 	while (objData->Read()) {
-		SaldoProfesor = safe_cast<String^>(objData[1]);
+		SaldoProfesor = safe_cast<int>(objData[1]);
 	}
 	objData->Close();
 	CerrarConexion();
 
-	return SaldoProfesor;
+	return Convert::ToString(SaldoProfesor);
 }
 
 void SaldoController::CargarSaldoDesdeArchivo() {
@@ -55,7 +55,23 @@ List<Saldo^>^ SaldoController::obtenerListaSaldos() {
 }
 
 void SaldoController::pagarprofesor(int saldoaumentado, String^ dniprofesor) {
-	this->listaSaldo->Clear();
+
+	AbrirConexion();
+	int SaldoAnterior = ObtenerSaldoxDni(dniprofesor);
+	int SaldoActualizar = saldoaumentado + SaldoAnterior;
+	SqlCommand^ objQuery = gcnew SqlCommand();
+
+	objQuery->Connection = this->objConexion;
+
+	objQuery->CommandText = "UPDATE SaldosProfesoresProyecto SET Saldo="+SaldoActualizar+" where DNIProfesor='" + dniprofesor + "';";
+
+	objQuery->ExecuteNonQuery();
+
+	CerrarConexion();
+
+
+
+	/*this->listaSaldo->Clear();
 	CargarSaldoDesdeArchivo();
 	for (int i = 0; i < this->listaSaldo->Count; i++) {
 		Saldo^ objSaldo = this->listaSaldo[i];
@@ -74,22 +90,27 @@ void SaldoController::pagarprofesor(int saldoaumentado, String^ dniprofesor) {
 		lineasArchivoClases[i] = objSaldo->DniProfesor + ";" + objSaldo->saldo;
 	}
 	/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
-	File::WriteAllLines("Saldos.txt", lineasArchivoClases);
+	//File::WriteAllLines("Saldos.txt", lineasArchivoClases);*/
+}
+int SaldoController::ObtenerSaldoxDni(String^ dniprofesor) {
+	int saldo;
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "Select * from SaldosProfesoresProyecto where DNIProfesor='" + dniprofesor + "';";
+	SqlDataReader^ objData1 = objQuery->ExecuteReader();
+	if (objData1->Read()) {
+		saldo = safe_cast<int>(objData1[1]);
+
+	}
+	objData1->Close();
+	return saldo;
 }
 
-
 void SaldoController::crearsaldo(String^ dniseleccionado) {
-	this->listaSaldo->Clear();
-	CargarSaldoDesdeArchivo();
-	
-
-	array<String^>^ lineasArchivoClases = gcnew array<String^>(this->listaSaldo->Count+1);
-	for (int i = 0; i < this->listaSaldo->Count; i++) {
-		Saldo^ objSaldo = this->listaSaldo[i];
-		lineasArchivoClases[i] = objSaldo->DniProfesor + ";" + objSaldo->saldo;
-	}
-
-	lineasArchivoClases[this->listaSaldo->Count] = dniseleccionado + ";" + "0";
-	/*Aquí ya mi array de lineasArchivoPartido esta OK, con la información a grabar*/
-	File::WriteAllLines("Saldos.txt", lineasArchivoClases);
+	AbrirConexion();
+	SqlCommand^ objQuery = gcnew SqlCommand();
+	objQuery->Connection = this->objConexion;
+	objQuery->CommandText = "Insert into SaldosProfesoresProyecto values('"+ dniseleccionado +"','0');";
+	objQuery->ExecuteNonQuery();
+	CerrarConexion();
 }

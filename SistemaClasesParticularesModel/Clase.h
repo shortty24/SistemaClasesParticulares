@@ -17,6 +17,11 @@ namespace SistemaClasesParticularesModel {
 			String^ horaClase;
 			String^ fechaClase;
 			String^ objLink;
+			String^ DniAlumno;
+			String^ DniProfesor;
+			String^ NombreCurso;
+			int CodigoInscripcion;
+
 			Alumno^ objAlumno;
 			Profesor^ objProfesor;
 			Administrador^ objAdministrador;
@@ -32,5 +37,6 @@ namespace SistemaClasesParticularesModel {
 			Clase(Alumno^ objAlumno, Profesor^ objProfesor, Curso^ objCurso, String^ horaClase, String^ fechaClase, String^ objLink);
 			Clase(Alumno^ objAlumno, Profesor^ objProfesor, Curso^ objCurso, String^ horaClase, String^ fechaClase, String^ objLink, Pago^ objPago, String^ estadopagoprofesor);
 			Clase(Alumno^ objAlumno, Profesor^ objProfesor, Curso^ objCurso, String^ horaClase, String^ fechaClase, String^ objLink, Pago^ objPago, String^ EstadoLink, String^ estadopagoprofesor);
+			Clase(String^DniAlumno, String^ DniProfesor, String^ NombreCurso, String^ horaClase, String^ fechaClase, String^ objLink,int CodigoInscripcion, String^ EstadoLink, String^ estadopagoprofesor);
 	};
 }
