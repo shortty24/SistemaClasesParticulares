@@ -400,6 +400,7 @@ private: System::Void frmInscripcion_Load(System::Object^ sender, System::EventA
 	fila[0] = cursoEncontrado->nombreCurso;
 	fila[1] = cursoEncontrado->dificultad;
 	fila[2] = profesorEncontrado->objNombre + " " + profesorEncontrado->objApellidoPaterno + " " + profesorEncontrado->objApellidoMaterno;
+	fila[3] = cursoEncontrado->precioCurso + " soles";
 	//fila[3] = AlumnoLogeado->objApellidoMaterno;
 	//fila[4] = AlumnoLogeado->objNombre;
 	this->dataGridView1->Rows->Add(fila);
