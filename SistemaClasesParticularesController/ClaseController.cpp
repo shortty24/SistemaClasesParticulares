@@ -98,7 +98,7 @@ Clase^ ClaseController::obtenerProximaClaseAlumno_BD(String^ DniAlumno) {
 	AbrirConexion();
 	SqlCommand^ objQuery = gcnew SqlCommand();
 	objQuery->Connection = this->objConexion;
-	objQuery->CommandText = "select TOP 1 * from ClasesProyecto where DNIAlumno= '" + DniAlumno + "' order by FechaClase;";
+	objQuery->CommandText = "select TOP 1 * from ClasesProyecto where DNIAlumno= '" + DniAlumno + "' order by FechaClase desc;";
 	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
 	if (objData->Read()) {
 		String^ DNIAlumno = safe_cast<String^>(objData[0]);
