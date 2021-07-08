@@ -611,7 +611,7 @@ List<Clase^>^ ClaseController::buscarPagosProfesorxEstado(String^ estadoBuscar) 
 	AbrirConexion();
 	SqlCommand^ objQuery = gcnew SqlCommand();
 	objQuery->Connection = this->objConexion;
-	objQuery->CommandText = "select * from ClasesProyecto where EstadoPagoProfesor= '" + estadoBuscar + "';";
+	objQuery->CommandText = "select * from ClasesProyecto where EstadoPagoProfesor= '" + estadoBuscar + "' order by FechaClase;";
 	SqlDataReader^ objData = objQuery->ExecuteReader(); /*Cuando es un select, se utiliza el ExecuteReader*/
 	while (objData->Read()) {
 		String^ DNIAlumno = safe_cast<String^>(objData[0]);
