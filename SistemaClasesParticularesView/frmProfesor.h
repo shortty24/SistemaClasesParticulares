@@ -895,7 +895,7 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 		List<Alumno^>^ listaAlumnos = objGestorAlumno->buscarAlumnosPotencialesAQuejaBD(ProfesorLogeado->dni);
 		this->comboBox3->Items->Clear();
 		for (int i = 0; i < listaAlumnos->Count; i++) {
-			this->comboBox3->Items->Add(listaAlumnos[i]->dni +" - "+listaAlumnos[i]->objNombre+ " " +listaAlumnos[i]->objApellidoPaterno+ " " +listaAlumnos[i]->objApellidoMaterno);
+			this->comboBox3->Items->Add(listaAlumnos[i]->dni);
 		}
 		this->textBox1->Text = ProfesorLogeado->dni;
 
@@ -997,7 +997,7 @@ private: System::Void dataGridView1_CellContentClick(System::Object^ sender, Sys
 	private: System::Void button10_Click(System::Object^ sender, System::EventArgs^ e) {
 
 		QuejasController^ gestorQueja = gcnew QuejasController();
-		gestorQueja->generarQuejaxProfesor(this->textBox1->Text, this->comboBox3->Text, this->textBox6->Text);
+		gestorQueja->generarQuejaxProfesor(this->comboBox3->Text, this->textBox1->Text, this->textBox6->Text);
 		MessageBox::Show("Se realizó la queja con éxito.");
 		this->textBox6->Clear();
 	}
